@@ -1,1 +1,0 @@
-# Stylizt - Frontend

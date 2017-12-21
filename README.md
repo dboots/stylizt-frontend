@@ -1,1 +1,1 @@
-#Stylizt - Frontend
+# Stylizt - Frontend

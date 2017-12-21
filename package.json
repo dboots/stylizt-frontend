@@ -42,6 +42,6 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Starting up!\" && exit 1"
+    "start": "echo \"Starting up!\""
   }
 }

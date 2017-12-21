@@ -12,6 +12,6 @@
     "gulp-header": "^1.8.9",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "harp": "*"
+    "harp": "^0.25.0"
   }
 }

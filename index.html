@@ -39,7 +39,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">Fill your vacant chairs with talented stylists</h1>
+            <h2>Bringing together Salons &amp; Talented Stylists</h2>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
@@ -93,7 +93,6 @@
     </section>
 
     <!-- Image Showcases -->
-    <!--
     <section class="showcase">
       <div class="container-fluid p-0">
         <div class="row no-gutters">
@@ -120,7 +119,6 @@
         </div>
       </div>
     </section>
-  -->
 
     <!-- Testimonials -->
     <!--
@@ -231,24 +229,16 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-      !function(name,path,ctx){
-        var latest,prev=name!=='Keen'&&window.Keen?window.Keen:false;ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;latest=w.Keen;if(prev){w.Keen=prev}else{try{delete w.Keen}catch(e){w.Keen=void 0}}ctx[name]=latest;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}
-      }('KeenAsync','https://d26b395fwzu5fz.cloudfront.net/keen-tracking-1.1.3.min.js',this);
 
-      KeenAsync.ready(function(){
-        // Configure a client instance
-        var client = new KeenAsync({
-          projectId: '5a3c10b4c9e77c0001ff17a3',
-          writeKey: 'CEE0E63DB813EB9EB3E6F5596DEBE9154F11410A627930564318F35E378B113F791506EA4312438EB01DCB0BECC0AAEBEBE0611950FD3B1FEB26EF77379A1145E7344A01692F21DB0D60F2811AB0C3492A64C28C1E5A1D061F9A6C0825B73D90'
-        });
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111511349-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        // Record an event
-        client.recordEvent('pageviews', {
-          title: document.title
-        });
-      });
-    </script>
+  gtag('config', 'UA-111511349-1');
+</script>
 
   </body>
 

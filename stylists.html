@@ -45,16 +45,18 @@
           <!--<h3 class="my-4">Sign up to early to get 6 FREE months of PREMIUM access.</h3>-->
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
+          <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <input type="email" class="txt-email form-control form-control-lg" placeholder="Enter your email...">
             </div>
-          </form>
+            <div class="col-12 col-md-3">
+              <button class="btn btn-block btn-lg btn-primary btn-signup">Sign up!</button>
+            </div>
+            
+          </div>
+          <div class="form-row">
+            <span class="error message">Can't get notified without a proper email!</span>
+          </div>
         </div>
       </div>
 
@@ -244,6 +246,38 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-111511349-1');
+
+    $('.btn-signup').on('click', function(e) {
+      var email = $('.txt-email').val();
+
+      $('.message').fadeOut();
+
+      if (email.indexOf('@') != -1) {
+        $.ajax({
+          url: 'https://stylizt-backend.herokuapp.com/api/signup',
+          method: 'POST',
+          data: {
+            'email': email,
+            'type': 'stylist'
+          },
+          success: function(result) {
+            message('Thanks for signing up!');
+          },
+          error: function(err) {
+            message('An error has occurred');
+          }
+        });
+      } else {
+        message('Can\t be notified without a proper email address!');
+      }
+    });
+
+    function message(txt) {
+      $('.message').html(txt).fadeIn();
+      setTimeout(function() {
+        $('.message').fadeOut();
+      }, 3000);
+    }
   </script>
 
 </body>

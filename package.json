@@ -13,5 +13,17 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "harp": "^0.25.0"
-  }
+  },
+  "main": "gulpfile.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dboots/stylizt-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dboots/stylizt-frontend/issues"
+  },
+  "homepage": "https://github.com/dboots/stylizt-frontend#readme"
 }

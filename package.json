@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/cli": "1.6.3",
+    "@ngtools/webpack": "1.9.3",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",

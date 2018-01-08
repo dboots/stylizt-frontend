@@ -11,6 +11,6 @@ export class SignupService {
   constructor(private http:HttpClient) { }
 
   signup(body) {
-    return this.http.post('http://stylizt-backend.herokuapp.com/api/signup', body, httpOptions);
+    return this.http.post('http://localhost:3000/api/signup', body, httpOptions);
   }
 }

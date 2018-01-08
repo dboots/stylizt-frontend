@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupService } from '../signup/signup.service';
-import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-owner',
@@ -8,28 +6,9 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./owner.component.scss']
 })
 export class OwnerComponent implements OnInit {
-
-  public signupService;
-
-  constructor(private _signupService: SignupService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
 
-  signup() {
-    this._signupService.signup({
-      email: 'test@test.com',
-      type: 'stylist'
-    }).subscribe(
-        data => {
-            console.log(data);
-            return true;
-        },
-        error => {
-            console.log(error);
-            return Observable.throw(error);
-        }
-    );
   }
-
 }

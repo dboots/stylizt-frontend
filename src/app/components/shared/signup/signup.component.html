@@ -1,0 +1,30 @@
+<div class="form-row" *ngIf="showSignup">
+  <div class="col-12 mb-2 mb-md-0">
+    <input type="name" [(ngModel)]="model.name" class="mb-2 txt-name form-control form-control-lg" placeholder="Your Name">
+    <input type="email" [(ngModel)]="model.email"  class="mb-2 txt-email form-control form-control-lg" placeholder="Email Address">
+  </div>
+  <div class="col-12">
+    <button (click)="signup()" class="btn btn-block btn-lg btn-primary btn-signup">Sign up!</button>
+  </div>
+</div>
+
+<div class="form-row" *ngIf="!showSignup">
+  <div class="col-12 mb-2 mb-md-0">
+    <input type="email" [(ngModel)]="model.email" class="mb-2 txt-email form-control form-control-lg" placeholder="Email Address">
+    <input type="password" [(ngModel)]="model.password"  class="mb-2 txt-password form-control form-control-lg" placeholder="Password">
+  </div>
+  <div class="col-12">
+    <button (click)="login()" class="btn btn-block btn-lg btn-primary btn-signup">Login</button>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="col-12 mb-2 mb-md-0">
+    {{message}}
+  </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <button type="button" class="btn btn-link" (click)="showSignup = !showSignup">Already a member?</button>
+    </div>
+</div>

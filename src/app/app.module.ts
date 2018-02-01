@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SignupService } from './signup/signup.service'
+import { SignupService } from './services/signup.service'
 
-import { StylistComponent } from './stylist/stylist.component';
-import { OwnerComponent } from './owner/owner.component';
-import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
+import { StylistComponent } from './components/stylist/stylist.component';
+import { OwnerComponent } from './components/owner/owner.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/shared/nav/nav.component';
+import { SignupComponent } from './components/shared/signup/signup.component';
 
 
 @NgModule({

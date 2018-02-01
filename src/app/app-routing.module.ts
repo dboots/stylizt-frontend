@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { StylistComponent } from './stylist/stylist.component';
-import { OwnerComponent } from './owner/owner.component';
+import { HomeComponent } from './components/home/home.component';
+import { StylistComponent } from './components/stylist/stylist.component';
+import { OwnerComponent } from './components/owner/owner.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },

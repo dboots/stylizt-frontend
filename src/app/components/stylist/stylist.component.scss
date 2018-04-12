@@ -1,0 +1,27 @@
+.card {
+    padding: 2%;
+    margin: 5% 1% 0;
+
+    button {
+        width: 100%;
+    }
+
+    ul {
+        flex-grow: 1;
+    }
+}
+
+section {
+    &.padded {
+        padding: 2% 0;
+    }
+
+    &.pricing {
+        background: #999999;
+        padding: 0 0 2% 0;
+    }
+
+    &.signup {
+        background: #DEDEDE;
+    }
+}

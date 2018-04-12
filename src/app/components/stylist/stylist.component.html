@@ -2,59 +2,58 @@
 <header class="masthead text-white text-center">
   <div class="overlay"></div>
   <div class="container">
+    
     <div class="row">
-      <div class="col-md-9 mx-auto">
+      <div class="col-md-6 mx-auto">
         <h1>Claim. Your. Chair.</h1>
-        <p>Hair To Chair keeps talented stylists connected with their clients and professional salons.</p>
-        <h2>Sign up today to get connected!</h2>
-      </div>
-      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-        <app-signup type="stylist"></app-signup>
+        <p class="bigly">Hair To Chair keeps talented stylists connected with their clients and professional salons.</p>
+        <button class="btn btn-primary btn-block">Signup For Free</button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- Icons Grid -->
-<section class="features-icons bg-light text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-          <div class="features-icons-icon d-flex">
-            <i class="icon-screen-desktop m-auto text-primary"></i>
+<!-- Icons Grid 
+  <section class="features-icons bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-screen-desktop m-auto text-primary"></i>
+            </div>
+            <h3>Salon Availability</h3>
+            <p class="lead mb-0">Be the first to know when a seat becomes open</p>
           </div>
-          <h3>Salon Availability</h3>
-          <p class="lead mb-0">Be the first to know when a seat becomes open</p>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-          <div class="features-icons-icon d-flex">
-            <i class="icon-layers m-auto text-primary"></i>
+        <div class="col-md-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-layers m-auto text-primary"></i>
+            </div>
+            <h3>Talent Portfolio</h3>
+            <p class="lead mb-0">Your talent is on display to potential salons &amp; client</p>
           </div>
-          <h3>Talent Portfolio</h3>
-          <p class="lead mb-0">Your talent is on display to potential salons</p>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-          <div class="features-icons-icon d-flex">
-            <i class="icon-check m-auto text-primary"></i>
+        <div class="col-md-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-check m-auto text-primary"></i>
+            </div>
+            <h3>Privacy</h3>
+            <p class="lead mb-0">You choose the information you want to be public</p>
           </div>
-          <h3>Privacy</h3>
-          <p class="lead mb-0">You choose the information you want to be public</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+-->
 
 <!-- Image Showcases -->
 <section class="showcase">
   <div class="container-fluid p-0">
     <div class="row no-gutters">
-
+      
       <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../assets/img/bg-showcase-1.jpg');"></div>
       <div class="col-lg-6 order-lg-1 my-auto showcase-text">
         <h2>Salon Availability</h2>
@@ -71,47 +70,107 @@
     <div class="row no-gutters">
       <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../assets/img/bg-showcase-3.jpg');"></div>
       <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-        <h2>Client Endorsements</h2>
-        <p class="lead mb-0">Let your clients speak for you. Client endorsements will show salons that you are great at what you do. Not only bring your talent but your loyal clients.</p>
+        <h2>Client Management</h2>
+        <p class="lead mb-0">Keep track of your available clients and let your clients keep track of your availability.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section class="pricing">
+  <div class="row justify-content-center" >
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h2>Basic</h2>
+          <p class="bigly text-center">FREE</p>
+          <ul class="text-left">
+            <li>manage up to 5 clients</li>
+            <li>browse area salons</li>
+          </ul>
+          <button class="btn btn-primary">Signup</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h2>Pro</h2>
+          <p class="bigly text-center">$9.99/mo</p>
+          <ul class="text-left">
+            <li>unlimited client management</li>
+            <li>client email messaging</li>
+            <li>salon seat notifications</li>
+          </ul>
+          <button class="btn btn-primary">Signup</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h2>Elite</h2>
+          <p class="bigly text-center">$29.99/mo</p>
+          <ul class="text-left">
+            <li>unlimited client management</li>
+            <li>client email messaging</li>
+            <li>client text messaging</li>
+            <li>priority salon seat notifications</li>
+            <li>featured in talent searches</li>
+            <li>First 30 days FREE!</li>
+          </ul>
+          <button class="btn btn-primary">Signup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="signup padded">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto text-center">
+      <p class="bigly">Hair to Chair is launching soon! Interested in joining now? Sign up today for a free 6 months of PRO. No credit card required!</p>
+      <app-signup type="stylist"></app-signup>
+    </div>
+  </div>
+</section>
+
+
 <!-- Testimonials -->
-    <!--
-    <section class="testimonials text-center bg-light">
-      <div class="container">
-        <h2 class="mb-5">What people are saying...</h2>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-              <h5>Margaret E.</h5>
-              <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-            </div>
+<!--
+  <section class="testimonials text-center bg-light">
+    <div class="container">
+      <h2 class="mb-5">What people are saying...</h2>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
+            <h5>Margaret E.</h5>
+            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
           </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-              <h5>Fred S.</h5>
-              <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-            </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
+            <h5>Fred S.</h5>
+            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
           </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-              <h5>Sarah W.</h5>
-              <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-            </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
+            <h5>Sarah W.</h5>
+            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
           </div>
         </div>
       </div>
-    </section>
-  -->
-  <!-- Call to Action -->
+    </div>
+  </section>
+-->
+<!-- Call to Action -->
 
-  <!--
+<!--
   <section class="call-to-action text-white text-center">
     <div class="overlay"></div>
     <div class="container">
@@ -134,5 +193,5 @@
       </div>
     </div>
   </section>
-
+  
 -->

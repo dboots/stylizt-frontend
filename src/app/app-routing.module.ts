@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
-import { StylistComponent } from './components/stylist/stylist.component';
-import { OwnerComponent } from './components/owner/owner.component';
+import { HomePage } from './components/home/home.component';
+import { StylistPage } from './components/stylist/stylist.component';
+import { OwnerPage } from './components/owner/owner.component';
+import { SignupPage } from './components/signup/signup.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'stylist', component: StylistComponent },
-    { path: 'owner', component: OwnerComponent },
+    { path: '', component: HomePage },
+    { path: 'stylist', component: StylistPage },
+    { path: 'owner', component: OwnerPage },
+    { path: 'signup', component: SignupPage }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes, {useHash: true})],
+    imports: [ RouterModule.forRoot(routes, {})],
     exports: [ RouterModule ],
 })
 

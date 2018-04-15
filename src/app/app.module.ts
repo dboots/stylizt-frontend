@@ -9,21 +9,24 @@ import { AppComponent } from './app.component';
 
 import { SignupService } from './services/signup.service'
 
-import { StylistComponent } from './components/stylist/stylist.component';
-import { OwnerComponent } from './components/owner/owner.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavComponent } from './components/shared/nav/nav.component';
+import { StylistPage } from './components/stylist/stylist.component';
+import { OwnerPage } from './components/owner/owner.component';
+import { HomePage } from './components/home/home.component';
+import { SignupPage } from './components/signup/signup.component';
+
 import { SignupComponent } from './components/shared/signup/signup.component';
+import { NavComponent } from './components/shared/nav/nav.component';
 
 
 @NgModule({
   declarations: [
     SignupComponent,
     AppComponent,
-    StylistComponent,
-    OwnerComponent,
+    StylistPage,
+    OwnerPage,
     NavComponent,
-    HomeComponent,
+    HomePage,
+    SignupPage
   ],
   imports: [
     BrowserModule,

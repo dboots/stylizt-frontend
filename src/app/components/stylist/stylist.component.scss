@@ -3,17 +3,25 @@
 }
 
 
+.col-card {
+    @media (max-width: 1024px) {
+        margin: 1rem;
+    } 
+}
 .card {
-    padding: 2%;
-    margin: 5% 1% 0;
-    height: 100%;
+    @media (max-width: 1024px) {
+        padding: 2%;
+    }
 
+    height: 100%;
+    
     button {
         width: 100%;
     }
-
+    
     ul {
         flex-grow: 1;
+        font-size: 12px;
     }
 }
 
@@ -21,12 +29,12 @@ section {
     &.padded {
         padding: 2% 0;
     }
-
+    
     &.pricing {
         background: #999999;
-        padding: 0 0 2% 0;
+        padding: 2% 0 2% 0;
     }
-
+    
     &.signup {
         background: #DEDEDE;
     }

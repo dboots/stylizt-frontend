@@ -1,5 +1,6 @@
 .masthead {
     padding: 10% 0;
+    margin: 56px 0 0;
 }
 
 
@@ -9,11 +10,17 @@
     } 
 }
 .card {
+    height: 100%;
+
     @media (max-width: 1024px) {
         padding: 2%;
     }
 
-    height: 100%;
+    .card-price {
+        font-size: 2rem;
+        color: #007bff;
+        font-weight: bold;
+    }
     
     button {
         width: 100%;
@@ -21,7 +28,11 @@
     
     ul {
         flex-grow: 1;
-        font-size: 12px;
+        font-size: 14px;
+
+        li {
+            padding: 5px 0;
+        }
     }
 }
 

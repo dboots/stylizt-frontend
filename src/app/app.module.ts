@@ -13,6 +13,7 @@ import { StylistPage } from './components/stylist/stylist.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { HomePage } from './components/home/home.component';
 import { SignupPage } from './components/signup/signup.component';
+import { ContactPage } from './components/contact/contact.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
@@ -26,7 +27,8 @@ import { NavComponent } from './components/shared/nav/nav.component';
     OwnerPage,
     NavComponent,
     HomePage,
-    SignupPage
+    SignupPage,
+    ContactPage
   ],
   imports: [
     BrowserModule,

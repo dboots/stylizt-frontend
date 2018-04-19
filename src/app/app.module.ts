@@ -17,6 +17,7 @@ import { ContactPage } from './components/contact/contact.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NavComponent } from './components/shared/nav/nav.component';
     StylistPage,
     OwnerPage,
     NavComponent,
+    FooterComponent,
     HomePage,
     SignupPage,
     ContactPage

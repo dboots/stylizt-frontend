@@ -1,10 +1,19 @@
 nav {
     padding: 0 1rem;
     
-    .nav-signup {
+    .nav-item-signup {
         background: #007bff;
-        color: white;
         width: 100%;
         text-align: center;
+
+        a {
+            color: white;
+        }
+    }
+    
+    li {
+        a {
+            cursor: pointer;
+        }
     }
 }

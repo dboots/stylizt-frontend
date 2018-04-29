@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./owner.component.scss']
 })
 export class OwnerPage implements OnInit {
+  plan: number;
+
   constructor() { }
 
   ngOnInit() {

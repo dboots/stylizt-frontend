@@ -5,11 +5,16 @@
 }
 .card {
     height: 100%;
-
+    
     @media (max-width: 1024px) {
         padding: 2%;
     }
-
+    
+    &.active {
+        background: rgba(0, 0, 255, .6);
+        color: white;
+    }
+    
     .card-price {
         font-size: 2rem;
         color: #007bff;
@@ -23,7 +28,7 @@
     ul {
         flex-grow: 1;
         font-size: 14px;
-
+        
         li {
             padding: 5px 0;
         }

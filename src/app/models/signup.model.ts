@@ -3,4 +3,5 @@ export class Signup {
     email: string;
     type: string;
     password: string;
+    plan: number;
 }

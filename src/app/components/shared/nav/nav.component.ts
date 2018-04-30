@@ -10,7 +10,8 @@ import { Signup } from '../../../models/signup.model';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  model = new Signup();
+  model: Signup = new Signup();
+  message: string = '';
   
   constructor(
     private modalService: NgbModal,
@@ -41,14 +42,13 @@ export class NavComponent implements OnInit {
   }
   
   doLogin() {
-    console.log('login');
-    console.log(this.model);
     this.signupService.login(this.model).subscribe(
       data => {
-        console.log(data);
+        this.message = '';
         return true;
       },
       error => {
+        this.message = 'Invalid login, please try again.';
         return Observable.throw(error);
       }
     );

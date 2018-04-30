@@ -17,10 +17,10 @@
     <ul class="navbar-nav ml-auto align-items-center">
       <!--<li class="nav-item nav-item-signup">
         <a class="nav-link" (click)="modal(signup)">Signup</a>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" (click)="modal(login)">Login</a>
-      </li>-->
+      </li>
     </ul>
   </div>
 </nav>
@@ -57,6 +57,10 @@
     </button>
   </div>
   <div class="modal-body">
+    <div class="text-center">
+      {{message}}
+    </div>
+    
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" [(ngModel)]="model.email" class="form-control" id="name">
@@ -67,8 +71,14 @@
       <input type="password" [(ngModel)]="model.password" class="form-control" id="password">
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
-    <button type="button" class="btn btn-outline-primary" (click)="doLogin()">Login</button>
+  <div class="m-2">
+    <div class="pull-left">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Forgot Password?</button>  
+    </div>
+
+    <div class="pull-right">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
+      <button type="button" class="btn btn-outline-primary" (click)="doLogin()">Login</button>
+    </div>
   </div>
 </ng-template>

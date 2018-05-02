@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { SignupService } from '../../../services/signup.service';
 import { Signup } from '../../../models/signup.model';
+import { AuthService } from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +19,10 @@ export class SignupComponent {
   showSignup = true;
   success = false;
 
-  constructor(private _signupService: SignupService) { }
+  constructor(
+      private signupService: SignupService,
+      private authService: AuthService
+    ) { }
 
   signup() {
     this.model.type = this.type;
@@ -36,7 +41,7 @@ export class SignupComponent {
         return false;
     }
 
-    this._signupService.signup(this.model).subscribe(
+    this.signupService.signup(this.model).subscribe(
         data => {
             localStorage.setItem('token', data['token']);
             this.message = 'Thanks for signing up!';
@@ -51,7 +56,7 @@ export class SignupComponent {
   }
 
   login() {
-    this._signupService.login(this.model).subscribe(
+    this.signupService.login(this.model).subscribe(
         data => {
             this.message = 'Thanks for logging in!';
             return true;

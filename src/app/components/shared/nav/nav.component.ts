@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SignupService } from '../../../services/signup.service';
+import { AuthService } from '../../../services/auth.service';
 import { Signup } from '../../../models/signup.model';
 
 @Component({
@@ -15,7 +16,8 @@ export class NavComponent implements OnInit {
   
   constructor(
     private modalService: NgbModal,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private authService: AuthService
   ) { }
   
   ngOnInit() {
@@ -45,6 +47,7 @@ export class NavComponent implements OnInit {
     this.signupService.login(this.model).subscribe(
       data => {
         this.message = '';
+        console.log(this.authService.decode(data['token']));
         return true;
       },
       error => {

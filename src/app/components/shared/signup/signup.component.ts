@@ -36,9 +36,9 @@ export class SignupComponent {
         return false;
     }
 
-    console.log(this.model);
     this._signupService.signup(this.model).subscribe(
         data => {
+            localStorage.setItem('token', data['token']);
             this.message = 'Thanks for signing up!';
             this.success = true;
             return true;

@@ -7,9 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SignupService } from './services/signup.service'
+import { SignupService } from './services/signup.service';
+import { AuthGuardService } from './services/route-guard.service';
+import { AuthService } from './services/auth.service';
 
 import { StylistPage } from './components/stylist/stylist.component';
+import { StylistProfilePage } from './components/stylist/profile/profile.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { HomePage } from './components/home/home.component';
 import { SignupPage } from './components/signup/signup.component';
@@ -25,6 +28,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     SignupComponent,
     AppComponent,
     StylistPage,
+    StylistProfilePage,
     OwnerPage,
     NavComponent,
     FooterComponent,
@@ -39,7 +43,11 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [SignupService],
+  providers: [
+    SignupService,
+    AuthGuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

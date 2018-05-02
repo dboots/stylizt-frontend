@@ -3,13 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomePage } from './components/home/home.component';
 import { StylistPage } from './components/stylist/stylist.component';
+import { StylistProfilePage } from './components/stylist/profile/profile.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { SignupPage } from './components/signup/signup.component';
 import { ContactPage } from './components/contact/contact.component';
 
+import { AuthGuardService as AuthGuard } from './services/route-guard.service';
+
 const routes: Routes = [
     { path: '', component: HomePage },
     { path: 'stylist', component: StylistPage },
+    { path: 'stylist/profile', component: StylistProfilePage, canActivate: [AuthGuard] },
     { path: 'owner', component: OwnerPage },
     { path: 'signup', component: SignupPage },
     { path: 'contact', component: ContactPage }

@@ -9,7 +9,7 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
 })
 export class StylistProfilePage implements OnInit {
   uploader: FileUploader = new FileUploader({
-    url: 'https://api.cloudinary.com/v1_1/drcvakvh3'
+    url: 'https://api.cloudinary.com/v1_1/drcvakvh3/image/upload'
   });
 
   constructor() {

@@ -14,40 +14,34 @@
         <a class="nav-link" routerLink="/contact">Contact</a>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto align-items-center">
-      <!--<li class="nav-item nav-item-signup">
-        <a class="nav-link" (click)="modal(signup)">Signup</a>
-      </li>-->
+    <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto align-items-center">
       <li class="nav-item">
         <a class="nav-link" (click)="modal(login)">Login</a>
       </li>
     </ul>
+    
+    <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="stylist/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="modal(login)">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="modal(login)">Clients</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="modal(login)">Schedule</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="modal(login)">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
   </div>
 </nav>
-
-<ng-template #signup let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Signup</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" [(ngModel)]="model.name" class="form-control" id="name">
-    </div>
-    
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" [(ngModel)]="model.email" class="form-control" id="email">
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
-    <button type="button" class="btn btn-outline-primary" (click)="doSignup()">Signup</button>
-  </div>
-</ng-template>
 
 <ng-template #login let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -73,9 +67,9 @@
   </div>
   <div class="m-2">
     <div class="pull-left">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Forgot Password?</button>  
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Forgot Password?</button>  
     </div>
-
+    
     <div class="pull-right">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
       <button type="button" class="btn btn-outline-primary" (click)="doLogin()">Login</button>

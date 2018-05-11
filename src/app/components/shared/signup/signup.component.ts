@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { SignupService } from '../../../services/signup.service';
-import { Signup } from '../../../models/signup.model';
+import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,14 +14,15 @@ import { AuthService } from '../../../services/auth.service';
 export class SignupComponent {
   @Input() type: string;
   @Input() plan: number;
-  model = new Signup();
+  model = new User();
   message = '';
   showSignup = true;
   success = false;
 
   constructor(
       private signupService: SignupService,
-      private authService: AuthService
+      private authService: AuthService,
+      private router: Router
     ) { }
 
   signup() {
@@ -44,11 +45,8 @@ export class SignupComponent {
     this.signupService.signup(this.model).subscribe(
         data => {
             localStorage.setItem('token', data['token']);
-            this.message = 'Thanks for signing up!';
-            this.success = true;
-            return true;
-        },
-        error => {
+            this.router.navigate(['/stylist/profile']);
+        }, error => {
             this.message = 'Invalid email address';
             return Observable.throw(error);
         }
@@ -60,8 +58,7 @@ export class SignupComponent {
         data => {
             this.message = 'Thanks for logging in!';
             return true;
-        },
-        error => {
+        }, error => {
             this.message = 'Invalid email address';
             return Observable.throw(error);
         }

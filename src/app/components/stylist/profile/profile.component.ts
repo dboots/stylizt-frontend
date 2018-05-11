@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 
 @Component({
   selector: 'page-stylistprofile',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class StylistProfilePage implements OnInit {
-  constructor() { }
+  uploader: FileUploader = new FileUploader({
+    url: 'https://api.cloudinary.com/v1_1/drcvakvh3'
+  });
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

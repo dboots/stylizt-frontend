@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SignupService } from '../../../services/signup.service';
 import { AuthService } from '../../../services/auth.service';
-import { Signup } from '../../../models/signup.model';
+import { User } from '../../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,46 +12,44 @@ import { Signup } from '../../../models/signup.model';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  model: Signup = new Signup();
+  model: User = new User();
+  modalRef: NgbModalRef;
   message: string = '';
   
   constructor(
     private modalService: NgbModal,
     private signupService: SignupService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
   
   ngOnInit() {
   }
+
+  isLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
   
   modal(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalRef = this.modalService.open(content)
+    this.modalRef.result.then((result) => {
     }, (reason) => {
     });
   }
-  
-  doSignup() {
-    console.log('signup');
-    console.log(this.model);
-    this.signupService.signup(this.model).subscribe(
-      data => {
-        console.log(data);
-        return true;
-      },
-      error => {
-        return Observable.throw(error);
-      }
-    );
-  }
-  
+
   doLogin() {
     this.signupService.login(this.model).subscribe(
       data => {
         this.message = '';
-        console.log(this.authService.decode(data['token']));
-        return true;
-      },
-      error => {
+        this.modalRef.close();
+        localStorage.setItem('token', data['token']);
+        this.router.navigate(['stylist/profile']);
+      }, error => {
         this.message = 'Invalid login, please try again.';
         return Observable.throw(error);
       }

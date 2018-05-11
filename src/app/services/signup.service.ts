@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Signup } from '../models/signup.model';
+import { User } from '../models/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,7 +12,7 @@ export class SignupService {
 
   constructor(private http:HttpClient) { }
 
-  signup(body: Signup) {
+  signup(body: User) {
     return this.http.post(environment.rootApiUrl + '/signup', body, httpOptions);
   }
 

@@ -16,12 +16,15 @@ import { StylistPage } from './components/stylist/stylist.component';
 import { StylistProfilePage } from './components/stylist/profile/profile.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { HomePage } from './components/home/home.component';
-import { SignupPage } from './components/signup/signup.component';
 import { ContactPage } from './components/contact/contact.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary } from 'cloudinary-core';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -34,7 +37,6 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     NavComponent,
     FooterComponent,
     HomePage,
-    SignupPage,
     ContactPage
   ],
   imports: [
@@ -43,6 +45,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'your_cloud_name' } as CloudinaryConfiguration),
+    FileUploadModule
   ],
   providers: [
     SignupService,

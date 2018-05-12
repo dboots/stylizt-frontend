@@ -22,13 +22,13 @@
     
     <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center">
       <li class="nav-item">
-        <a class="nav-link" routerLink="stylist/profile">Profile</a>
+        <a class="nav-link" routerLink="/stylist/profile">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="modal(login)">Clients</a>
+        <a class="nav-link" routerLink="stylist/clients">Clients</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="modal(login)">Portfolio</a>
+        <a class="nav-link" routerLink="stylist/portfolio">Portfolio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>

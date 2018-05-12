@@ -13,7 +13,9 @@ import { AuthGuardService } from './services/route-guard.service';
 import { AuthService } from './services/auth.service';
 
 import { StylistPage } from './components/stylist/stylist.component';
+import { StylistClientsPage } from './components/stylist/clients/clients.component';
 import { StylistProfilePage } from './components/stylist/profile/profile.component';
+import { StylistPortfolioPage } from './components/stylist/portfolio/portfolio.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { HomePage } from './components/home/home.component';
 import { ContactPage } from './components/contact/contact.component';
@@ -32,7 +34,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     SignupComponent,
     AppComponent,
     StylistPage,
+    StylistClientsPage,
     StylistProfilePage,
+    StylistPortfolioPage,
     OwnerPage,
     NavComponent,
     FooterComponent,

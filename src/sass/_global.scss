@@ -18,6 +18,11 @@ h6 {
   font-size: 1rem;
 }
 
+.content {
+  margin: 50px 0 0 0;
+  min-height: 800px;
+}
+
 section {
   &.padded {
     padding: 2% 0;

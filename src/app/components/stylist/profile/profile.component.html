@@ -6,13 +6,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <h2>Notifications</h2>
-            </div>
-            <div class="col-md-6">
-                <h2>Profile</h2>
+            <div class="col-md-6 text-center">
                 <img [src]="image()" />
                 <input type="file" ng2FileSelect [uploader]="uploader" />
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>Name</label>
                     <input [(ngModel)]="user.name" class="form-control" type="text" />
@@ -33,6 +31,7 @@
                 </div>
                 
                 <button type="button" (click)="uploadAndUpdate()" class="btn btn-primary">Update Profile</button>
+                {{status}}
             </div>
         </div>
     </div>

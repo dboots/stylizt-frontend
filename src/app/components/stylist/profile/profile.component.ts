@@ -14,6 +14,7 @@ export class StylistProfilePage implements OnInit {
   uploader: FileUploader;
   user: User;
   responses: Array<any>;
+  status: string;
   
   constructor(
     private cloudinary: Cloudinary,
@@ -29,6 +30,7 @@ export class StylistProfilePage implements OnInit {
     
     const uploaderOptions: FileUploaderOptions = {
       url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
+      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
       autoUpload: false,
       isHTML5: true,
       removeAfterUpload: true,
@@ -57,7 +59,7 @@ export class StylistProfilePage implements OnInit {
     };
     
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
-      console.log(progress);
+      this.status = 'Upload image... ' + progress + '% complete';
     };
   }
 
@@ -76,6 +78,7 @@ export class StylistProfilePage implements OnInit {
   update() {
     this.userService.update(this.authService.token, this.user).subscribe((result: any) => {
       this.authService.token = result.token;
+      this.status = 'Profile updated!';
     }, (err) => {
       console.log('Error while updating user', err);
     });

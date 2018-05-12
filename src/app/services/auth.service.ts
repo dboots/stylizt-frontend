@@ -8,7 +8,6 @@ export class AuthService {
     }
 
     set token(val) {
-        console.log('setting token', val);
         localStorage.setItem('token', val);
     }
     
@@ -25,7 +24,6 @@ export class AuthService {
     }
     
     public decode() {
-        console.log('decoding', this.token);
         return this.jwt.decodeToken(this.token).data;
     }
     

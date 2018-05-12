@@ -3,21 +3,30 @@ import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
+    get token(): string {
+        return localStorage.getItem('token');
+    }
+
+    set token(val) {
+        console.log('setting token', val);
+        localStorage.setItem('token', val);
+    }
+    
     constructor(
         private jwt: JwtHelper
     ) {}
     
     public isAuthenticated(): boolean {
-        const token = localStorage.getItem('token');
-        if (token) {
-            return !this.jwt.isTokenExpired(token);
+        if (this.token) {
+            return !this.jwt.isTokenExpired(this.token);
         } else {
             return false;
         }
     }
     
-    public decode(token) {
-        return this.jwt.decodeToken(token);
+    public decode() {
+        console.log('decoding', this.token);
+        return this.jwt.decodeToken(this.token).data;
     }
     
     public logout() {

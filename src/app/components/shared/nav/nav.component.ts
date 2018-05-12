@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { SignupService } from '../../../services/signup.service';
+import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
   
   constructor(
     private modalService: NgbModal,
-    private signupService: SignupService,
+    private userService: UserService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -43,11 +43,11 @@ export class NavComponent implements OnInit {
   }
 
   doLogin() {
-    this.signupService.login(this.model).subscribe(
+    this.userService.login(this.model).subscribe(
       data => {
         this.message = '';
         this.modalRef.close();
-        localStorage.setItem('token', data['token']);
+        this.authService.token = data['token'];
         this.router.navigate(['stylist/profile']);
       }, error => {
         this.message = 'Invalid login, please try again.';

@@ -8,8 +8,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class SignupService {
-
+export class UserService {
   constructor(private http:HttpClient) { }
 
   signup(body: User) {
@@ -18,5 +17,9 @@ export class SignupService {
 
   login(body) {
     return this.http.post(environment.rootApiUrl + '/login', body, httpOptions);
+  }
+
+  update(token: string, body: User) {
+    return this.http.post(environment.rootApiUrl + '/update', body, httpOptions)
   }
 }

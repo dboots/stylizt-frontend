@@ -8,7 +8,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SignupService } from './services/signup.service';
+import { UserService } from './services/user.service';
 import { AuthGuardService } from './services/route-guard.service';
 import { AuthService } from './services/auth.service';
 
@@ -49,7 +49,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     FileUploadModule
   ],
   providers: [
-    SignupService,
+    UserService,
     AuthGuardService,
     AuthService,
     JwtHelper

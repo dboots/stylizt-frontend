@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import { User } from '../../../models/user.model';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'page-stylistprofile',
@@ -8,14 +11,74 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
   styleUrls: ['./profile.component.scss']
 })
 export class StylistProfilePage implements OnInit {
-  uploader: FileUploader = new FileUploader({
-    url: 'https://api.cloudinary.com/v1_1/drcvakvh3/image/upload'
-  });
-
-  constructor() {
+  uploader: FileUploader;
+  user: User;
+  responses: Array<any>;
+  
+  constructor(
+    private cloudinary: Cloudinary,
+    private authService: AuthService,
+    private userService: UserService,
+    private zone: NgZone,
+  ) {
+    this.responses = [];
   }
-
+  
   ngOnInit() {
+    this.user = this.authService.decode();
+    
+    const uploaderOptions: FileUploaderOptions = {
+      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
+      autoUpload: false,
+      isHTML5: true,
+      removeAfterUpload: true,
+      headers: [{
+        name: 'X-Requested-With',
+        value: 'XMLHttpRequest'
+      }]
+    };
+    
+    this.uploader = new FileUploader(uploaderOptions);
+    
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      form.append('upload_preset', 'k9kduvri');
+      form.append('folder', 'profile');
+      form.append('file', fileItem);
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+    
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+      // TODO: delete old file
+
+      response = JSON.parse(response);
+      this.user.image = response['public_id'];
+      this.update();
+    };
+    
+    this.uploader.onProgressItem = (fileItem: any, progress: any) => {
+      console.log(progress);
+    };
   }
 
+  image() {
+    return 'http://res.cloudinary.com/drcvakvh3/image/upload/' + this.user.image;
+  }
+  
+  uploadAndUpdate() {
+    if (this.uploader.queue.length) {
+      this.uploader.uploadAll();
+    } else {
+      this.update();
+    }
+  }
+
+  update() {
+    this.userService.update(this.authService.token, this.user).subscribe((result: any) => {
+      this.authService.token = result.token;
+    }, (err) => {
+      console.log('Error while updating user', err);
+    });
+  }
+  
 }

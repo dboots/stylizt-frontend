@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { SignupService } from '../../../services/signup.service';
+import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class SignupComponent {
   success = false;
 
   constructor(
-      private signupService: SignupService,
+      private userService: UserService,
       private authService: AuthService,
       private router: Router
     ) { }
@@ -42,7 +42,7 @@ export class SignupComponent {
         return false;
     }
 
-    this.signupService.signup(this.model).subscribe(
+    this.userService.signup(this.model).subscribe(
         data => {
             localStorage.setItem('token', data['token']);
             this.router.navigate(['/stylist/profile']);
@@ -54,7 +54,7 @@ export class SignupComponent {
   }
 
   login() {
-    this.signupService.login(this.model).subscribe(
+    this.userService.login(this.model).subscribe(
         data => {
             this.message = 'Thanks for logging in!';
             return true;

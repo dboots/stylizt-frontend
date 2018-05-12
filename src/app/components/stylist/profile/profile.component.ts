@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
@@ -57,6 +57,14 @@ export class StylistProfilePage implements OnInit {
       this.user.image = response['public_id'];
       this.update();
     };
+
+    this.uploader.onAfterAddingFile = (item: FileItem) => {
+      this.status = '';
+    }
+
+    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+      this.status = 'Unable to add file';
+    }
     
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
       this.status = 'Upload image... ' + progress + '% complete';
@@ -64,7 +72,7 @@ export class StylistProfilePage implements OnInit {
   }
 
   image() {
-    return 'http://res.cloudinary.com/drcvakvh3/image/upload/' + this.user.image;
+    return 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + this.user.image + '.jpg';
   }
   
   uploadAndUpdate() {

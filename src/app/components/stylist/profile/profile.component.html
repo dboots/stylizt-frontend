@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 text-center">
-                <img [src]="image()" />
+                <img *ngIf="image()" [src]="image()" />
                 <input type="file" ng2FileSelect [uploader]="uploader" />
             </div>
             <div class="col-md-6">

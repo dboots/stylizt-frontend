@@ -22,4 +22,16 @@ export class UserService {
   update(token: string, body: User) {
     return this.http.post(environment.rootApiUrl + '/update', body, httpOptions)
   }
+
+  setPassword(body) {
+    return this.http.post(environment.rootApiUrl + '/password', body, httpOptions)
+  }
+
+  resetPassword(body) {
+    return this.http.post(environment.rootApiUrl + '/password/reset', body, httpOptions);
+  }
+
+  forgotPassword(body) {
+    return this.http.post(environment.rootApiUrl + '/password/forgot', body, httpOptions);
+  }
 }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelper } from 'angular2-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { StylistPortfolioPage } from './components/stylist/portfolio/portfolio.c
 import { OwnerPage } from './components/owner/owner.component';
 import { HomePage } from './components/home/home.component';
 import { ContactPage } from './components/contact/contact.component';
+import { PasswordPage } from './components/password/password.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
@@ -41,7 +42,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     NavComponent,
     FooterComponent,
     HomePage,
-    ContactPage
+    ContactPage,
+    PasswordPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     HttpClientModule,
     FormsModule,
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'your_cloud_name' } as CloudinaryConfiguration),
-    FileUploadModule
+    FileUploadModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,

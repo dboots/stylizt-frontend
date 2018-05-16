@@ -8,6 +8,7 @@ import { StylistClientsPage } from './components/stylist/clients/clients.compone
 import { StylistPortfolioPage } from './components/stylist/portfolio/portfolio.component';
 import { OwnerPage } from './components/owner/owner.component';
 import { ContactPage } from './components/contact/contact.component';
+import { PasswordPage } from './components/password/password.component';
 
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
@@ -18,7 +19,8 @@ const routes: Routes = [
     { path: 'stylist/clients', component: StylistClientsPage, canActivate: [AuthGuard] },
     { path: 'stylist/portfolio', component: StylistPortfolioPage, canActivate: [AuthGuard] },
     { path: 'owner', component: OwnerPage },
-    { path: 'contact', component: ContactPage }
+    { path: 'contact', component: ContactPage },
+    { path: 'password/:token', component: PasswordPage },
 ];
 
 @NgModule({

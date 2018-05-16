@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
   model: User = new User();
   modalRef: NgbModalRef;
   message: string = '';
+  forgotPassword: boolean = false;
   
   constructor(
     private modalService: NgbModal,
@@ -25,11 +26,11 @@ export class NavComponent implements OnInit {
   
   ngOnInit() {
   }
-
+  
   isLoggedIn() {
     return this.authService.isAuthenticated();
   }
-
+  
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
@@ -41,7 +42,17 @@ export class NavComponent implements OnInit {
     }, (reason) => {
     });
   }
-
+  
+  doResetPassword() {
+    if (this.model.email.length > 0) {
+      this.userService.forgotPassword(this.model).subscribe((result) => {
+        this.message = 'An email has been sent requesting to reset your password';
+      }, (err) => {
+        this.message = 'Unable to process that request';
+      });
+    }
+  }
+  
   doLogin() {
     this.userService.login(this.model).subscribe(
       data => {

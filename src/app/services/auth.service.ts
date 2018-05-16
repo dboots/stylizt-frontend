@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -23,8 +24,8 @@ export class AuthService {
         }
     }
     
-    public decode() {
-        return this.jwt.decodeToken(this.token).data;
+    public decode(): User {
+        return this.jwt.decodeToken(this.token).data as User;
     }
     
     public logout() {

@@ -37,6 +37,7 @@ export class NavComponent implements OnInit {
   }
   
   modal(content) {
+    this.message = '';
     this.modalRef = this.modalService.open(content)
     this.modalRef.result.then((result) => {
     }, (reason) => {

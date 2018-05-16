@@ -14,7 +14,7 @@ import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
 const routes: Routes = [
     { path: '', component: HomePage },
-    { path: 'stylist', component: StylistPage, canActivate: [AuthGuard] },
+    { path: 'stylist', component: StylistPage },
     { path: 'stylist/profile', component: StylistProfilePage, canActivate: [AuthGuard] },
     { path: 'stylist/clients', component: StylistClientsPage, canActivate: [AuthGuard] },
     { path: 'stylist/portfolio', component: StylistPortfolioPage, canActivate: [AuthGuard] },

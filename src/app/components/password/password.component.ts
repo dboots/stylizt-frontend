@@ -27,7 +27,7 @@ function matchPassword(ac: AbstractControl) {
 export class PasswordPage implements OnInit {
   passwordForm: FormGroup;
   password_new: FormControl;
-  password_confirm: FormControl
+  password_confirm: FormControl;
   token: string;
   message: string;
   success: boolean = false;

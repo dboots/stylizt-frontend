@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   model: User = new User();
   modalRef: NgbModalRef;
-  message: string = '';
+  message: String = '';
   forgotPassword: boolean = false;
   
   constructor(

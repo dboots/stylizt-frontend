@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { ClientService } from '../../../../services/client.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'page-stylistclientsdetail',
@@ -13,13 +15,23 @@ export class StylistClientsDetailPage implements OnInit {
   fcName: FormControl;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private clientService: ClientService,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.fcName = new FormControl('', [Validators.required]),
     this.detailForm = new FormGroup({
       name: this.fcName
+    });
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+      let clientId = params['id'];
+      this.clientService.detail(clientId, this.authService.token).subscribe((result) => {
+        console.log(result['data']);
+      });
     });
   }
   

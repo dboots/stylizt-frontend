@@ -1,0 +1,33 @@
+.clients {
+    .client {
+        height: 300px;
+        width: 90%;
+        border: 2px solid black;
+        border-radius: 5px;
+        background: url('https://placekitten.com/200/300');
+        background-size: cover;
+        position: relative;
+        cursor: pointer;
+
+        .client-name {
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            background: rgba(255, 255, 255, .6);
+            width: 100%;
+            left: 0;
+            text-align: center;
+            font-size: 14px;
+        }
+    }
+
+    .client-add-new {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 58px;
+        border: 2px dashed black;
+        background: none;
+        cursor: pointer;
+    }
+}

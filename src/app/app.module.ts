@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { UserService } from './services/user.service';
+import { ClientService } from './services/client.service';
 import { AuthGuardService } from './services/route-guard.service';
 import { AuthService } from './services/auth.service';
 
 import { StylistPage } from './components/stylist/stylist.component';
 import { StylistClientsPage } from './components/stylist/clients/clients.component';
+import { StylistClientsDetailPage } from './components/stylist/clients/detail/detail.component';
 import { StylistProfilePage } from './components/stylist/profile/profile.component';
 import { StylistPortfolioPage } from './components/stylist/portfolio/portfolio.component';
 import { OwnerPage } from './components/owner/owner.component';
@@ -36,6 +38,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     AppComponent,
     StylistPage,
     StylistClientsPage,
+    StylistClientsDetailPage,
     StylistProfilePage,
     StylistPortfolioPage,
     OwnerPage,
@@ -57,6 +60,7 @@ import { FileUploadModule } from 'ng2-file-upload';
   ],
   providers: [
     UserService,
+    ClientService,
     AuthGuardService,
     AuthService,
     JwtHelper

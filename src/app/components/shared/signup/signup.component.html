@@ -1,13 +1,13 @@
 <div *ngIf="showSignup" [hidden]="success">
   <div class="col-12 my-4">
-    <p class="bigly text-center">{{message}}</p>
+    <p class="bigly text-center">{{ message }}</p>
   </div>
 
   <div class="col-12 mb-2 mb-md-0">
     <input type="name" [(ngModel)]="model.name" class="mb-2 txt-name form-control form-control-lg" placeholder="Your Name">
     <input type="email" [(ngModel)]="model.email"  class="mb-2 txt-email form-control form-control-lg" placeholder="Email Address">
     <input type="password" [(ngModel)]="model.password"  class="mb-2 txt-email form-control form-control-lg" placeholder="Password">
-    <input type="password" [(ngModel)]="password_confirm"  class="mb-2 txt-email form-control form-control-lg" placeholder="Confirm Password">
+    <input type="password" [(ngModel)]="passwordConfirm"  class="mb-2 txt-email form-control form-control-lg" placeholder="Confirm Password">
   </div>
   <div class="col-12 mb-2">
     <button (click)="signup()" class="btn btn-block btn-lg btn-primary btn-signup">Sign up!</button>
@@ -15,7 +15,7 @@
 </div>
 
 <div [hidden]="!success" class="my-4">
-  <h2 class="text-center">{{this.message}}</h2>
+  <h2 class="text-center">{{ this.message }}</h2>
 </div>
 
 <div *ngIf="!showSignup">

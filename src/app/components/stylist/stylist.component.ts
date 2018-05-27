@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'page-stylist',
+  selector: 'app-page-stylist',
   templateUrl: './stylist.component.html',
   styleUrls: ['./stylist.component.scss']
 })
-export class StylistPage implements OnInit {
+export class StylistPageComponent implements OnInit {
   plan: number;
 
   constructor() { }

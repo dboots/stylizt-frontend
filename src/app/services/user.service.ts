@@ -10,7 +10,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   signup(body: User) {
     return this.http.post(environment.rootApiUrl + '/signup', body, AuthService.httpOptions());
@@ -21,11 +21,11 @@ export class UserService {
   }
 
   update(token: string, body: User) {
-    return this.http.post(environment.rootApiUrl + '/update', body, AuthService.httpOptions(token))
+    return this.http.post(environment.rootApiUrl + '/update', body, AuthService.httpOptions(token));
   }
 
   setPassword(body) {
-    return this.http.post(environment.rootApiUrl + '/password', body, AuthService.httpOptions())
+    return this.http.post(environment.rootApiUrl + '/password', body, AuthService.httpOptions());
   }
 
   resetPassword(body) {

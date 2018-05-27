@@ -13,15 +13,15 @@ import { ClientService } from './services/client.service';
 import { AuthGuardService } from './services/route-guard.service';
 import { AuthService } from './services/auth.service';
 
-import { StylistPage } from './components/stylist/stylist.component';
-import { StylistClientsPage } from './components/stylist/clients/clients.component';
-import { StylistClientsDetailPage } from './components/stylist/clients/detail/detail.component';
-import { StylistProfilePage } from './components/stylist/profile/profile.component';
-import { StylistPortfolioPage } from './components/stylist/portfolio/portfolio.component';
-import { OwnerPage } from './components/owner/owner.component';
-import { HomePage } from './components/home/home.component';
-import { ContactPage } from './components/contact/contact.component';
-import { PasswordPage } from './components/password/password.component';
+import { StylistPageComponent } from './components/stylist/stylist.component';
+import { StylistClientsPageComponent } from './components/stylist/clients/clients.component';
+import { StylistClientsDetailPageComponent } from './components/stylist/clients/detail/detail.component';
+import { StylistProfilePageComponent } from './components/stylist/profile/profile.component';
+import { StylistPortfolioPageComponent } from './components/stylist/portfolio/portfolio.component';
+import { OwnerPageComponent } from './components/owner/owner.component';
+import { HomePageComponent } from './components/home/home.component';
+import { ContactPageComponent } from './components/contact/contact.component';
+import { PasswordPageComponent } from './components/password/password.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
@@ -31,22 +31,21 @@ import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5
 import { Cloudinary } from 'cloudinary-core';
 import { FileUploadModule } from 'ng2-file-upload';
 
-
 @NgModule({
   declarations: [
     SignupComponent,
     AppComponent,
-    StylistPage,
-    StylistClientsPage,
-    StylistClientsDetailPage,
-    StylistProfilePage,
-    StylistPortfolioPage,
-    OwnerPage,
+    StylistPageComponent,
+    StylistClientsPageComponent,
+    StylistClientsDetailPageComponent,
+    StylistProfilePageComponent,
+    StylistPortfolioPageComponent,
+    OwnerPageComponent,
     NavComponent,
     FooterComponent,
-    HomePage,
-    ContactPage,
-    PasswordPage
+    HomePageComponent,
+    ContactPageComponent,
+    PasswordPageComponent
   ],
   imports: [
     BrowserModule,

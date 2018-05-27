@@ -1,21 +1,20 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { User } from '../../../models/user.model';
-import { AuthService } from '../../../services/auth.service';
-import { UserService } from '../../../services/user.service';
+import { User } from '../../../models';
+import { AuthService, UserService } from '../../../services';
 
 @Component({
-  selector: 'page-stylistprofile',
+  selector: 'app-page-stylistprofile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class StylistProfilePage implements OnInit {
+export class StylistProfilePageComponent implements OnInit {
   uploader: FileUploader;
   user: User;
-  responses: Array<any>;
+  responses: any[];
   status: string;
-  
+
   constructor(
     private cloudinary: Cloudinary,
     private authService: AuthService,
@@ -27,7 +26,7 @@ export class StylistProfilePage implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.decode();
-    
+
     const uploaderOptions: FileUploaderOptions = {
       url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
       allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
@@ -49,7 +48,7 @@ export class StylistProfilePage implements OnInit {
       fileItem.withCredentials = false;
       return { fileItem, form };
     };
-    
+
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
       // TODO: delete old file
 
@@ -60,12 +59,12 @@ export class StylistProfilePage implements OnInit {
 
     this.uploader.onAfterAddingFile = (item: FileItem) => {
       this.status = '';
-    }
+    };
 
     this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
       this.status = 'Unable to add file';
-    }
-    
+    };
+
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
       this.status = 'Upload image... ' + progress + '% complete';
     };
@@ -74,7 +73,7 @@ export class StylistProfilePage implements OnInit {
   image() {
     return 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + this.user.image + '.jpg';
   }
-  
+
   uploadAndUpdate() {
     if (this.uploader.queue.length) {
       this.uploader.uploadAll();
@@ -91,5 +90,5 @@ export class StylistProfilePage implements OnInit {
       console.log('Error while updating user', err);
     });
   }
-  
+
 }

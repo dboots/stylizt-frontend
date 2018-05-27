@@ -7,13 +7,14 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ClientService {
   constructor(
-    private http:HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
-  
+
   create(body: Client, token: string) {
     return this.http.post(environment.rootApiUrl + '/stylist/clients', body, AuthService.httpOptions(token));
   }
-  
+
   read(token: string) {
     return this.http.get(environment.rootApiUrl + '/stylist/clients', AuthService.httpOptions(token));
   }

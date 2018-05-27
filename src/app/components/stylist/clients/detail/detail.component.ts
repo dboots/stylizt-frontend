@@ -3,21 +3,21 @@ import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { ClientService } from '../../../../services/client.service';
-import { AuthService } from '../../../../services/auth.service';
-import { Client } from '../../../../models/client.model';
+import { AuthService, ClientService } from '../../../../services';
+import { Client } from '../../../../models';
 
 @Component({
-  selector: 'page-stylistclientsdetail',
+  selector: 'app-page-stylistclientsdetail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
 
-export class StylistClientsDetailPage implements OnInit {    
+export class StylistClientsDetailPageComponent implements OnInit {
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
   clientProfileImage: string;
+  clientNote: string;
 
   uploader: FileUploader;
   uploadStatus: string;
@@ -95,23 +95,23 @@ export class StylistClientsDetailPage implements OnInit {
       fileItem.withCredentials = false;
       return { fileItem, form };
     };
-    
+
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
       // TODO: delete old file
 
       response = JSON.parse(response);
-      // this.clientProfileImage = response['public_id'];
-      this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+      // this.clientProfileImage = response[''];
+      this.clientProfileImage = 'http://res.cloudipublic_idnary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
     };
 
     this.uploader.onAfterAddingFile = (item: FileItem) => {
       this.uploadStatus = '';
-    }
+    };
 
     this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
       this.uploadStatus = 'Unable to add file';
-    }
-    
+    };
+
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
       this.uploadStatus = 'Upload image... ' + progress + '% complete';
     };

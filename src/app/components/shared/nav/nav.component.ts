@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../../../services/user.service';
-import { AuthService } from '../../../services/auth.service';
-import { User } from '../../../models/user.model';
+import { AuthService, UserService } from '../../../services';
+import { User } from '../../../models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,36 +13,36 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   model: User = new User();
   modalRef: NgbModalRef;
-  message: String = '';
+  message: string = '';
   forgotPassword: boolean = false;
-  
+
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
     private router: Router
   ) { }
-  
+
   ngOnInit() {
   }
-  
+
   isLoggedIn() {
     return this.authService.isAuthenticated();
   }
-  
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-  
+
   modal(content) {
     this.message = '';
-    this.modalRef = this.modalService.open(content)
+    this.modalRef = this.modalService.open(content);
     this.modalRef.result.then((result) => {
     }, (reason) => {
     });
   }
-  
+
   doResetPassword() {
     if (this.model.email.length > 0) {
       this.userService.forgotPassword(this.model).subscribe((result) => {
@@ -53,19 +52,19 @@ export class NavComponent implements OnInit {
       });
     }
   }
-  
+
   doLogin() {
     this.userService.login(this.model).subscribe(
-      data => {
+      (data) => {
         this.message = '';
         this.modalRef.close();
         this.authService.token = data['token'];
         this.router.navigate(['stylist/profile']);
-      }, error => {
+      }, (error) => {
         this.message = 'Invalid login, please try again.';
         return Observable.throw(error);
       }
     );
   }
-  
+
 }

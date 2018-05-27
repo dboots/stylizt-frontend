@@ -11,7 +11,7 @@ export class ClientService {
   ) { }
   
   create(body: Client, token: string) {
-    return this.http.post(environment.rootApiUrl + '/stylist/clients/create', body, AuthService.httpOptions(token));
+    return this.http.post(environment.rootApiUrl + '/stylist/clients', body, AuthService.httpOptions(token));
   }
   
   read(token: string) {

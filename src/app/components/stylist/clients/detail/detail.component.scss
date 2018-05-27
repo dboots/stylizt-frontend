@@ -1,0 +1,10 @@
+@import '../../../../../sass/_mixins';
+@import '../../../../../sass/_variables';
+
+.detail-component {
+    .form-field-error {
+        color: $danger;
+        font-size: 12px;
+        margin: 2px;
+    }
+}

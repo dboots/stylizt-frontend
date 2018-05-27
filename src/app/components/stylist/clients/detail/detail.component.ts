@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 import { ClientService } from '../../../../services/client.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Client } from '../../../../models/client.model';
@@ -15,6 +17,10 @@ export class StylistClientsDetailPage implements OnInit {
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
+  clientProfileImage: string;
+
+  uploader: FileUploader;
+  uploadStatus: string;
 
   constructor(
     private router: Router,
@@ -33,6 +39,7 @@ export class StylistClientsDetailPage implements OnInit {
     });
 
     this.initForm();
+    this.initFileUpload();
   }
 
   initForm() {
@@ -66,7 +73,56 @@ export class StylistClientsDetailPage implements OnInit {
     }
   }
 
+  initFileUpload() {
+    const uploaderOptions: FileUploaderOptions = {
+      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
+      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
+      autoUpload: false,
+      isHTML5: true,
+      removeAfterUpload: true,
+      headers: [{
+        name: 'X-Requested-With',
+        value: 'XMLHttpRequest'
+      }]
+    };
+
+    this.uploader = new FileUploader(uploaderOptions);
+
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      form.append('upload_preset', 'k9kduvri');
+      form.append('folder', 'client_profile');
+      form.append('file', fileItem);
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+    
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+      // TODO: delete old file
+
+      response = JSON.parse(response);
+      // this.clientProfileImage = response['public_id'];
+      this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+    };
+
+    this.uploader.onAfterAddingFile = (item: FileItem) => {
+      this.uploadStatus = '';
+    }
+
+    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+      this.uploadStatus = 'Unable to add file';
+    }
+    
+    this.uploader.onProgressItem = (fileItem: any, progress: any) => {
+      this.uploadStatus = 'Upload image... ' + progress + '% complete';
+    };
+  }
+
   saveClient() {
+    if (this.uploader.queue.length) {
+      this.uploader.uploadAll();
+    } else {
+
+    }
     const name = this.detailForm.get('name').value;
     const zipcode = this.detailForm.get('zip').value;
     const body: Client = {

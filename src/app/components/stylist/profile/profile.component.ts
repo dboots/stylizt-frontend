@@ -24,7 +24,7 @@ export class StylistProfilePage implements OnInit {
   ) {
     this.responses = [];
   }
-  
+
   ngOnInit() {
     this.user = this.authService.decode();
     
@@ -39,9 +39,9 @@ export class StylistProfilePage implements OnInit {
         value: 'XMLHttpRequest'
       }]
     };
-    
+
     this.uploader = new FileUploader(uploaderOptions);
-    
+
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       form.append('upload_preset', 'k9kduvri');
       form.append('folder', 'profile');

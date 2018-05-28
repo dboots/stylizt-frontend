@@ -17,13 +17,19 @@
                         <div class="form-group">
                             <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
                             <div class="form-field-error" *ngIf="detailFormErrors.name.required">
-                                Name is required!
+                                Name is required
                             </div>
                         </div>              
                         <div class="form-group">
                             <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
                             <div class="form-field-error" *ngIf="detailFormErrors.zip.required">
-                                Zipcode is required!
+                                Zipcode is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" formControlName="email" placeholder="Email" />
+                            <div class="form-field-error" *ngIf="detailFormErrors.email.required || detailFormErrors.email.email">
+                                Enter a valid email
                             </div>
                         </div>
                         <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>

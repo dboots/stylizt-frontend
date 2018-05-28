@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  rootApiUrl: 'https://stylizt-backend.herokuapp.com/api'
+  rootApiUrl: 'http://localhost:3000/api'
 };

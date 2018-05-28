@@ -52,12 +52,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
   initForm() {
     this.detailFormErrors = {
       name: {},
-      zip: {}
+      zip: {},
+      email: {}
     };
 
     this.detailForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      zip: ['', Validators.required]
+      zip: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
     });
 
     this.formValuesChanged();
@@ -178,10 +180,9 @@ export class StylistClientsDetailPageComponent implements OnInit {
     const zipcode = this.detailForm.get('zip').value;
     const body: Client = {
       name: this.detailForm.get('name').value,
-      email: '',
+      email: this.detailForm.get('email').value,
       zip: this.detailForm.get('zip').value,
-      image: '',
-      owner: ''
+      image: this.clientProfileImage
     };
     this.clientService.update(this.clientId, body, this.authService.token).subscribe((result) => {
       console.log(result);

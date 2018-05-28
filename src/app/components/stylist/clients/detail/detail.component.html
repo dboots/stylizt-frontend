@@ -7,7 +7,7 @@
           <p>Here you can add notes, images, appointment details to your client</p>
         </div>
       </div>
-      <div class="detail-form row">
+      <div class="row">
         <div class="col-md-6 text-center">
           <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
           <input type="file" ng2FileSelect [uploader]="uploader" />
@@ -17,13 +17,22 @@
             <div class="form-group">
               <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
               <div class="form-field-error" *ngIf="detailFormErrors.name.required">
-                Name is required!
+                Name is required
               </div>
             </div>              
             <div class="form-group">
               <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
               <div class="form-field-error" *ngIf="detailFormErrors.zip.required">
-                Zipcode is required!
+                Zipcode is required
+              </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" formControlName="email" placeholder="Email" />
+              <div class="form-field-error" *ngIf="detailFormErrors.email.required">
+                Enter is required
+              </div>
+              <div class="form-field-error" *ngIf="!detailFormErrors.email.required && detailFormErrors.email.email">
+                Enter a valid email
               </div>
             </div>
             <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>

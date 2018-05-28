@@ -3,7 +3,6 @@ export class Client {
   email: string;
   zip: string;
   image: string;
-  owner: string;
 
   constructor(
       name: string,
@@ -12,6 +11,5 @@ export class Client {
   ) {
       this.name = name;
       this.email = email;
-      this.owner = owner;
   }
 }

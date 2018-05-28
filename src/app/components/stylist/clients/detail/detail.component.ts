@@ -16,11 +16,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
-  clientProfileImage: string;
   clientNote: string;
 
   uploader: FileUploader;
   uploadStatus: string;
+  clientProfileImage: string;
+  noteImageUploader: FileUploader;
+  noteImageUploadStatus: string;
+  clientNoteImage: string;
 
   constructor(
     private router: Router,
@@ -33,13 +36,17 @@ export class StylistClientsDetailPageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.clientId = params['id'];
-      this.clientService.detail(this.clientId, this.authService.token).subscribe((result) => {
-        console.log(result['data']);
+      this.clientService.detail(this.clientId, this.authService.token).subscribe((result: any) => {
+        console.log(result.data);
+        this.detailForm.patchValue({
+          name: result.data.name
+        });
       });
     });
 
     this.initForm();
     this.initFileUpload();
+    this.initNoteImageFileUpload();
   }
 
   initForm() {
@@ -101,7 +108,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
       response = JSON.parse(response);
       // this.clientProfileImage = response[''];
-      this.clientProfileImage = 'http://res.cloudipublic_idnary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+      this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
     };
 
     this.uploader.onAfterAddingFile = (item: FileItem) => {
@@ -114,6 +121,50 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
       this.uploadStatus = 'Upload image... ' + progress + '% complete';
+    };
+  }
+
+  initNoteImageFileUpload() {
+    const uploaderOptions: FileUploaderOptions = {
+      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
+      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
+      autoUpload: false,
+      isHTML5: true,
+      removeAfterUpload: true,
+      headers: [{
+        name: 'X-Requested-With',
+        value: 'XMLHttpRequest'
+      }]
+    };
+
+    this.noteImageUploader = new FileUploader(uploaderOptions);
+
+    this.noteImageUploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      form.append('upload_preset', 'k9kduvri');
+      form.append('folder', 'client_note');
+      form.append('file', fileItem);
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+
+    this.noteImageUploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+      // TODO: delete old file
+
+      response = JSON.parse(response);
+      // this.clientProfileImage = response[''];
+      this.clientNoteImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+    };
+
+    this.noteImageUploader.onAfterAddingFile = (item: FileItem) => {
+      this.noteImageUploadStatus = '';
+    };
+
+    this.noteImageUploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+      this.noteImageUploadStatus = 'Unable to add file';
+    };
+
+    this.noteImageUploader.onProgressItem = (fileItem: any, progress: any) => {
+      this.noteImageUploadStatus = 'Upload image... ' + progress + '% complete';
     };
   }
 
@@ -137,5 +188,13 @@ export class StylistClientsDetailPageComponent implements OnInit {
     }, (err) => {
       alert(err.error.messages[0]);
     });
+  }
+
+  addClientNote() {
+    if (this.noteImageUploader.queue.length) {
+      this.noteImageUploader.uploadAll();
+    } else {
+
+    }
   }
 }

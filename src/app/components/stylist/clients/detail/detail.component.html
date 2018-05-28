@@ -1,35 +1,51 @@
 <div class="detail-component">
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1>Client Detail</h1>
-                    <p>Here you can add notes, images, appointment details to your client</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
-                    <input type="file" ng2FileSelect [uploader]="uploader" />
-                </div>
-                <div class="col-md-6">
-                    <form novalidate [formGroup]="detailForm" (ngSubmit)="saveClient()">
-                        <div class="form-group">
-                            <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
-                            <div class="form-field-error" *ngIf="detailFormErrors.name.required">
-                                Name is required!
-                            </div>
-                        </div>              
-                        <div class="form-group">
-                            <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
-                            <div class="form-field-error" *ngIf="detailFormErrors.zip.required">
-                                Zipcode is required!
-                            </div>
-                        </div>
-                        <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>
-                    </form>
-                </div>
-            </div>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Client Detail</h1>
+          <p>Here you can add notes, images, appointment details to your client</p>
         </div>
+      </div>
+      <div class="detail-form row">
+        <div class="col-md-6 text-center">
+          <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
+          <input type="file" ng2FileSelect [uploader]="uploader" />
+        </div>
+        <div class="col-md-6">
+          <form novalidate [formGroup]="detailForm" (ngSubmit)="saveClient()">
+            <div class="form-group">
+              <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
+              <div class="form-field-error" *ngIf="detailFormErrors.name.required">
+                Name is required!
+              </div>
+            </div>              
+            <div class="form-group">
+              <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
+              <div class="form-field-error" *ngIf="detailFormErrors.zip.required">
+                Zipcode is required!
+              </div>
+            </div>
+            <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h1>Client Notes</h1>
+        <textarea [(ngModel)]="clientNote" rows="5" cols="30"></textarea>
+        <div class="form-field-error" *ngIf="!clientNote">
+          Note is required!
+        </div>
+        <div class="d-flex">
+          <div>
+            <img *ngIf="clientNoteImage" [src]="clientNoteImage" />
+            <input type="file" multiple ng2FileSelect [uploader]="noteImageUploader" />
+          </div>
+          <div>
+            <button [disabled]="!clientNote" class="btn btn-primary" (click)="addClientNote()">Add Client Note</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

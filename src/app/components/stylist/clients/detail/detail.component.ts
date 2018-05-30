@@ -37,12 +37,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.clientId = params['id'];
       this.clientService.detail(this.clientId, this.authService.token).subscribe((result: any) => {
-        console.log(result.data);
         this.detailForm.patchValue({
           name: result.data.name,
           zip: result.data.zip,
           email: result.data.email
         });
+        this.clientProfileImage = result.data.image;
       });
     });
 
@@ -174,7 +174,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     };
   }
 
-  saveClient() {
+  onUpdate() {
     if (this.uploader.queue.length) {
       this.uploader.uploadAll();
     } else {

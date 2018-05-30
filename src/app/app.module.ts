@@ -8,10 +8,13 @@ import { JwtHelper } from 'angular2-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { UserService } from './services/user.service';
-import { ClientService } from './services/client.service';
-import { AuthGuardService } from './services/route-guard.service';
-import { AuthService } from './services/auth.service';
+import {
+  UserService,
+  ClientService,
+  AuthGuardService,
+  AuthService,
+  PortfolioService
+} from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
 import { StylistClientsPageComponent } from './components/stylist/clients/clients.component';
@@ -62,6 +65,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ClientService,
     AuthGuardService,
     AuthService,
+    PortfolioService,
     JwtHelper
   ],
   bootstrap: [AppComponent]

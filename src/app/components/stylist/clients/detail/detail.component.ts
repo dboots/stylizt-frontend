@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { AuthService, ClientService } from '../../../../services';
-import { Client } from '../../../../models';
+import {
+  AuthService,
+  ClientService,
+  PortfolioService
+} from '../../../../services';
+import { Client, Portfolio } from '../../../../models';
 
 @Component({
   selector: 'app-page-stylistclientsdetail',
@@ -13,6 +18,7 @@ import { Client } from '../../../../models';
 })
 
 export class StylistClientsDetailPageComponent implements OnInit {
+  modalRef: NgbModalRef;
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
@@ -24,12 +30,19 @@ export class StylistClientsDetailPageComponent implements OnInit {
   noteImageUploader: FileUploader;
   noteImageUploadStatus: string;
   clientNoteImage: string;
+  portfolioImageUploader: FileUploader;
+  portfolioImageUploadStatus: string;
+  clientPortfolioImage: string[] = [];
+  clientPortfolios: Portfolio[] = [];
+  selectedImageForModal: string;
 
   constructor(
     private router: Router,
-    private clientService: ClientService,
+    private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private clientService: ClientService,
+    private portfolioService: PortfolioService,
     private authService: AuthService
   ) {}
 
@@ -43,12 +56,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
           email: result.data.email
         });
         this.clientProfileImage = result.data.image;
+        this.clientPortfolios = result.data.portfolio;
       });
     });
 
     this.initForm();
     this.initFileUpload();
     this.initNoteImageFileUpload();
+    this.initPortfolioImageFileUpload();
   }
 
   initForm() {
@@ -174,6 +189,53 @@ export class StylistClientsDetailPageComponent implements OnInit {
     };
   }
 
+  initPortfolioImageFileUpload() {
+    const uploaderOptions: FileUploaderOptions = {
+      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
+      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
+      autoUpload: false,
+      isHTML5: true,
+      removeAfterUpload: true,
+      headers: [{
+        name: 'X-Requested-With',
+        value: 'XMLHttpRequest'
+      }]
+    };
+
+    this.portfolioImageUploader = new FileUploader(uploaderOptions);
+
+    this.portfolioImageUploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      form.append('upload_preset', 'k9kduvri');
+      form.append('folder', 'client_portfolio');
+      form.append('file', fileItem);
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+
+    this.portfolioImageUploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+      // TODO: delete old file
+
+      response = JSON.parse(response);
+      const portfolioImage = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
+      this.addPortfolio(portfolioImage);
+      // Temp solution. Should be removed.
+      this.clientPortfolioImage.push(portfolioImage);
+    };
+
+    this.portfolioImageUploader.onAfterAddingFile = (item: FileItem) => {
+      this.portfolioImageUploadStatus = '';
+      this.portfolioImageUploader.uploadAll();
+    };
+
+    this.portfolioImageUploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+      this.portfolioImageUploadStatus = 'Unable to add file';
+    };
+
+    this.portfolioImageUploader.onProgressItem = (fileItem: any, progress: any) => {
+      this.portfolioImageUploadStatus = 'Upload image... ' + progress + '% complete';
+    };
+  }
+
   onUpdate() {
     if (this.uploader.queue.length) {
       this.uploader.uploadAll();
@@ -196,6 +258,41 @@ export class StylistClientsDetailPageComponent implements OnInit {
     }, (err) => {
       alert(err.error.messages[0]);
     });
+  }
+
+  addPortfolio(portfolioImage) {
+    const portfolio: Portfolio = new Portfolio(portfolioImage, '', this.clientId);
+    this.portfolioService.create(portfolio.clientId, portfolio, this.authService.token)
+      .subscribe((result: any) => {
+        this.clientPortfolios.push(result);
+      }, (err) => {
+
+      });
+  }
+
+  openPortfolioDetailModal(portfolioDetailModal, image) {
+    this.selectedImageForModal = image;
+    this.modalRef = this.modalService.open(portfolioDetailModal, { windowClass: 'client-portfolio-modal', size: 'lg' });
+  }
+
+  deletePortfolio() {
+    const selectedPortfolioToDelete: Portfolio = null;
+    this.portfolioService.delete(selectedPortfolioToDelete.clientId, selectedPortfolioToDelete.id, this.authService.token)
+      .subscribe((result: any) => {
+        this.modalRef.close();
+      }, (err) => {
+        this.modalRef.close();
+      });
+  }
+
+  updateCaptionForPortfolio() {
+    const selectedPortfolioToUpdate: Portfolio = null;
+    this.portfolioService.update(selectedPortfolioToUpdate.clientId, selectedPortfolioToUpdate.id, selectedPortfolioToUpdate, this.authService.token)
+      .subscribe((result: any) => {
+        this.modalRef.close();
+      }, (err) => {
+        this.modalRef.close();
+      });
   }
 
   addClientNote() {

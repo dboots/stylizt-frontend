@@ -5,11 +5,11 @@ export class Client {
   image: string;
 
   constructor(
-      name: string,
-      email: string,
-      owner: string
+    name: string,
+    email: string,
+    owner: string
   ) {
-      this.name = name;
-      this.email = email;
+    this.name = name;
+    this.email = email;
   }
 }

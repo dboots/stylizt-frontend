@@ -56,7 +56,7 @@
     "label-position": true,
     "jsdoc-format": true,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,

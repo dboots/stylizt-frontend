@@ -118,3 +118,19 @@ header.masthead {
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem; }
+
+
+/********************************************/
+/* Stylist Custom Styles */
+/********************************************/
+.modal {
+  &.client-portfolio-modal {
+    .modal-content {
+      .modal-body {
+        img {
+          max-height: 400px;
+        }
+      }
+    }
+  }
+}

@@ -39,7 +39,9 @@ export class StylistClientsDetailPageComponent implements OnInit {
       this.clientService.detail(this.clientId, this.authService.token).subscribe((result: any) => {
         console.log(result.data);
         this.detailForm.patchValue({
-          name: result.data.name
+          name: result.data.name,
+          zip: result.data.zip,
+          email: result.data.email
         });
       });
     });
@@ -107,10 +109,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
       // TODO: delete old file
+      console.log('UPLOADEDING!!!!', item, response, status, headers);
 
       response = JSON.parse(response);
       // this.clientProfileImage = response[''];
       this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+      this.updateClientDetails();
     };
 
     this.uploader.onAfterAddingFile = (item: FileItem) => {
@@ -174,8 +178,11 @@ export class StylistClientsDetailPageComponent implements OnInit {
     if (this.uploader.queue.length) {
       this.uploader.uploadAll();
     } else {
-
+      this.updateClientDetails();
     }
+  }
+
+  updateClientDetails() {
     const name = this.detailForm.get('name').value;
     const zipcode = this.detailForm.get('zip').value;
     const body: Client = {

@@ -13,3 +13,5 @@ export { UserService } from './user.service';
 import { PortfolioService } from './portfolio.service';
 export { PortfolioService } from './portfolio.service';
 
+import { NotesService } from './notes.service';
+export { NotesService } from './notes.service';

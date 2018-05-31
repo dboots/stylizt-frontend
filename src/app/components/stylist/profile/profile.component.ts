@@ -70,16 +70,12 @@ export class StylistProfilePageComponent implements OnInit {
     };
   }
 
-  image() {
-    return 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + this.user.image + '.jpg';
+  profileImageUploadCompleted(response) {
+    this.user.image = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
   }
 
   uploadAndUpdate() {
-    if (this.uploader.queue.length) {
-      this.uploader.uploadAll();
-    } else {
-      this.update();
-    }
+    this.update();
   }
 
   update() {

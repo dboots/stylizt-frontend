@@ -3,6 +3,9 @@
  * Copyright 2013-2018 
  * Licensed under ISC (https://github.com/BlackrockDigital/stylizt-frontend/blob/master/LICENSE)
  */
+ $fa-font-path: '../node_modules/font-awesome/fonts';
+ @import '../node_modules/font-awesome/scss/font-awesome';
+
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 

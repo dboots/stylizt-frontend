@@ -13,5 +13,3 @@ export { UserService } from './user.service';
 import { PortfolioService } from './portfolio.service';
 export { PortfolioService } from './portfolio.service';
 
-import { CloudinaryService } from './cloudinary.service';
-export { CloudinaryService } from './cloudinary.service';

@@ -27,12 +27,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
   uploader: FileUploader;
   uploadStatus: string;
   clientProfileImage: string;
-  noteImageUploader: FileUploader;
-  noteImageUploadStatus: string;
-  clientNoteImage: string;
+  notesImageUploader: FileUploader;
+  notesImageUploadStatus: string;
+  clientNotesImages: string[] = [];
   portfolioImageUploader: FileUploader;
   portfolioImageUploadStatus: string;
-  clientPortfolioImage: string[] = [];
+  clientPortfolioImages: string[] = [];
   clientPortfolios: Portfolio[] = [];
   selectedImageForModal: string;
 
@@ -61,9 +61,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
     });
 
     this.initForm();
-    this.initFileUpload();
-    this.initNoteImageFileUpload();
-    this.initPortfolioImageFileUpload();
   }
 
   initForm() {
@@ -99,149 +96,26 @@ export class StylistClientsDetailPageComponent implements OnInit {
     }
   }
 
-  initFileUpload() {
-    const uploaderOptions: FileUploaderOptions = {
-      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
-      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
-      autoUpload: false,
-      isHTML5: true,
-      removeAfterUpload: true,
-      headers: [{
-        name: 'X-Requested-With',
-        value: 'XMLHttpRequest'
-      }]
-    };
-
-    this.uploader = new FileUploader(uploaderOptions);
-
-    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
-      form.append('upload_preset', 'k9kduvri');
-      form.append('folder', 'client_profile');
-      form.append('file', fileItem);
-      fileItem.withCredentials = false;
-      return { fileItem, form };
-    };
-
-    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      // TODO: delete old file
-      console.log('UPLOADEDING!!!!', item, response, status, headers);
-
-      response = JSON.parse(response);
-      // this.clientProfileImage = response[''];
-      this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
-      this.updateClientDetails();
-    };
-
-    this.uploader.onAfterAddingFile = (item: FileItem) => {
-      this.uploadStatus = '';
-    };
-
-    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
-      this.uploadStatus = 'Unable to add file';
-    };
-
-    this.uploader.onProgressItem = (fileItem: any, progress: any) => {
-      this.uploadStatus = 'Upload image... ' + progress + '% complete';
-    };
+  profileImageUploadCompleted(response) {
+    console.log(12312312312, response);
+    this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
   }
 
-  initNoteImageFileUpload() {
-    const uploaderOptions: FileUploaderOptions = {
-      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
-      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
-      autoUpload: false,
-      isHTML5: true,
-      removeAfterUpload: true,
-      headers: [{
-        name: 'X-Requested-With',
-        value: 'XMLHttpRequest'
-      }]
-    };
-
-    this.noteImageUploader = new FileUploader(uploaderOptions);
-
-    this.noteImageUploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
-      form.append('upload_preset', 'k9kduvri');
-      form.append('folder', 'client_note');
-      form.append('file', fileItem);
-      fileItem.withCredentials = false;
-      return { fileItem, form };
-    };
-
-    this.noteImageUploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      // TODO: delete old file
-
-      response = JSON.parse(response);
-      // this.clientProfileImage = response[''];
-      this.clientNoteImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
-    };
-
-    this.noteImageUploader.onAfterAddingFile = (item: FileItem) => {
-      this.noteImageUploadStatus = '';
-    };
-
-    this.noteImageUploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
-      this.noteImageUploadStatus = 'Unable to add file';
-    };
-
-    this.noteImageUploader.onProgressItem = (fileItem: any, progress: any) => {
-      this.noteImageUploadStatus = 'Upload image... ' + progress + '% complete';
-    };
+  notesImageUploadCompleted(response) {
+    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
+    // Temp solution. Should be removed.
+    this.clientNotesImages.push(image);
   }
 
-  initPortfolioImageFileUpload() {
-    const uploaderOptions: FileUploaderOptions = {
-      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
-      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
-      autoUpload: false,
-      isHTML5: true,
-      removeAfterUpload: true,
-      headers: [{
-        name: 'X-Requested-With',
-        value: 'XMLHttpRequest'
-      }]
-    };
-
-    this.portfolioImageUploader = new FileUploader(uploaderOptions);
-
-    this.portfolioImageUploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
-      form.append('upload_preset', 'k9kduvri');
-      form.append('folder', 'client_portfolio');
-      form.append('file', fileItem);
-      fileItem.withCredentials = false;
-      return { fileItem, form };
-    };
-
-    this.portfolioImageUploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      // TODO: delete old file
-
-      response = JSON.parse(response);
-      const portfolioImage = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
-      this.addPortfolio(portfolioImage);
-      // Temp solution. Should be removed.
-      this.clientPortfolioImage.push(portfolioImage);
-    };
-
-    this.portfolioImageUploader.onAfterAddingFile = (item: FileItem) => {
-      this.portfolioImageUploadStatus = '';
-      this.portfolioImageUploader.uploadAll();
-    };
-
-    this.portfolioImageUploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
-      this.portfolioImageUploadStatus = 'Unable to add file';
-    };
-
-    this.portfolioImageUploader.onProgressItem = (fileItem: any, progress: any) => {
-      this.portfolioImageUploadStatus = 'Upload image... ' + progress + '% complete';
-    };
+  portfolioImageUploadCompleted(response) {
+    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
+    this.addPortfolio(image);
+    // Temp solution. Should be removed.
+    this.clientPortfolioImages.push(image);
   }
 
   onUpdate() {
-    if (this.uploader.queue.length) {
-      this.uploader.uploadAll();
-    } else {
-      this.updateClientDetails();
-    }
+    this.updateClientDetails();
   }
 
   updateClientDetails() {
@@ -296,10 +170,10 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   addClientNote() {
-    if (this.noteImageUploader.queue.length) {
-      this.noteImageUploader.uploadAll();
-    } else {
+    // if (this.notesImageUploader.queue.length) {
 
-    }
+    // } else {
+
+    // }
   }
 }

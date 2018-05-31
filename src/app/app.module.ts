@@ -29,6 +29,7 @@ import { PasswordPageComponent } from './components/password/password.component'
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { CloudinaryUploaderComponent } from './components/shared/cloudinary-uploader/cloudinary-uploader.component';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
@@ -46,6 +47,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     OwnerPageComponent,
     NavComponent,
     FooterComponent,
+    CloudinaryUploaderComponent,
     HomePageComponent,
     ContactPageComponent,
     PasswordPageComponent

@@ -10,7 +10,12 @@
       <div class="row">
         <div class="col-md-6 text-center">
           <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
-          <input type="file" ng2FileSelect [uploader]="uploader" />
+          <app-cloudinary-uploader
+            [uploader]="uploader"
+            [folderName]="'client_profile'"
+            [buttonName]="'Upload'"
+            (completeItem)="profileImageUploadCompleted($event)">
+          </app-cloudinary-uploader>
         </div>
         <div class="col-md-6">
           <form novalidate [formGroup]="detailForm" (ngSubmit)="onUpdate()">
@@ -38,10 +43,12 @@
             <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>
           </form>
           <div class="mt-4">
-            <button (click)="fileInput.click()" class="btn btn-primary">Add Images to Portfolio</button>
-            <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
-              <input type="file" multiple #fileInput ng2FileSelect [uploader]="portfolioImageUploader" />
-            </span>
+            <app-cloudinary-uploader
+              [uploader]="portfolioImageUploader"
+              [folderName]="'client_portfolio'"
+              [buttonName]="'Add Images to Portfolio'"
+              (completeItem)="portfolioImageUploadCompleted($event)">
+            </app-cloudinary-uploader>
           </div>    
         </div>
       </div>
@@ -50,7 +57,7 @@
         <div class="row">
           <div
             class="portfolio col-md-4 col-sm-12 py-2"
-            *ngFor="let image of clientPortfolioImage"
+            *ngFor="let image of clientPortfolioImages"
             (click)="openPortfolioDetailModal(portfolioDetailModal, image)">
             <img [src]="image" />
           </div>
@@ -64,8 +71,19 @@
         </div>
         <div class="d-flex">
           <div>
-            <img *ngIf="clientNoteImage" [src]="clientNoteImage" />
-            <input type="file" multiple ng2FileSelect [uploader]="noteImageUploader" />
+            <div class="row">
+              <div
+                class="portfolio col-md-4 col-sm-12 p-2"
+                *ngFor="let image of clientNotesImages">
+                <img [src]="image" />
+              </div>
+            </div>
+            <app-cloudinary-uploader
+              [uploader]="notesImageUploader"
+              [folderName]="'client_notes'"
+              [buttonName]="'Attach/Upload Image'"
+              (completeItem)="notesImageUploadCompleted($event)">
+            </app-cloudinary-uploader>
           </div>
           <div>
             <button [disabled]="!clientNote" class="btn btn-primary" (click)="addClientNote()">Add Client Note</button>

@@ -25,4 +25,44 @@
       }
     }
   }
+
+  .client-notes-container {
+    .notes-add-button {
+      margin-left: 30px;
+      font-size: 30px;
+    }
+
+    .notes-form {
+      transition: max-height ease 0.5s;
+      max-height: 0;
+      overflow: hidden;
+
+      &.opened {
+        height: 500px;
+        max-height: 500px;
+      }
+
+      textarea {
+        &.public {
+          border-color: $red;
+        }
+      }
+
+      .note-image {
+        position: relative;
+
+        img {
+          width: 100%;
+        }
+
+        i {
+          cursor: pointer;
+          position: absolute;
+          bottom: 7px;
+          left: 21px;
+          font-size: 30px;
+        }
+      }
+    }
+  }
 }

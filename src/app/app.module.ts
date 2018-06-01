@@ -13,7 +13,8 @@ import {
   ClientService,
   AuthGuardService,
   AuthService,
-  PortfolioService
+  PortfolioService,
+  NotesService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -30,10 +31,12 @@ import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { CloudinaryUploaderComponent } from './components/shared/cloudinary-uploader/cloudinary-uploader.component';
+import { ConfirmDialogComponent } from './components/shared/diglogs/confirm-dialog/confirm-dialog.component';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NoteCardComponent } from './components/shared/note-card/note-card.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     CloudinaryUploaderComponent,
     HomePageComponent,
     ContactPageComponent,
-    PasswordPageComponent
+    PasswordPageComponent,
+    ConfirmDialogComponent,
+    NoteCardComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,11 @@ import { FileUploadModule } from 'ng2-file-upload';
     AuthGuardService,
     AuthService,
     PortfolioService,
+    NotesService,
     JwtHelper
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   bootstrap: [AppComponent]
 })

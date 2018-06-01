@@ -4,12 +4,19 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import { ConfirmDialogComponent } from '../../../shared/diglogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
   ClientService,
-  PortfolioService
+  PortfolioService,
+  NotesService
 } from '../../../../services';
-import { Client, Portfolio } from '../../../../models';
+import {
+  Client,
+  Portfolio,
+  Notes,
+  NotesMockData
+} from '../../../../models';
 
 @Component({
   selector: 'app-page-stylistclientsdetail',
@@ -22,19 +29,24 @@ export class StylistClientsDetailPageComponent implements OnInit {
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
-  clientNote: string;
 
   uploader: FileUploader;
   uploadStatus: string;
   clientProfileImage: string;
-  notesImageUploader: FileUploader;
-  notesImageUploadStatus: string;
-  clientNotesImages: string[] = [];
+
   portfolioImageUploader: FileUploader;
   portfolioImageUploadStatus: string;
   clientPortfolioImages: string[] = [];
   clientPortfolios: Portfolio[] = [];
   selectedImageForModal: string;
+
+  notesImageUploader: FileUploader;
+  notesImageUploadStatus: string;
+  clientNotesImages: string[] = [];
+  clientNote: string;
+  isPublicNotes: boolean;
+  clientNotes: Notes[] = [];
+  isNotesFormOpened: boolean;
 
   constructor(
     private router: Router,
@@ -43,6 +55,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
     private portfolioService: PortfolioService,
+    private notesService: NotesService,
     private authService: AuthService
   ) {}
 
@@ -57,6 +70,9 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
         this.clientProfileImage = result.data.image;
         this.clientPortfolios = result.data.portfolio;
+        this.clientNotes = result.data.notes;
+        // For Test Only, should be removed
+        this.clientNotes = NotesMockData;
       });
     });
 
@@ -97,7 +113,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   profileImageUploadCompleted(response) {
-    console.log(12312312312, response);
     this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
   }
 
@@ -169,11 +184,45 @@ export class StylistClientsDetailPageComponent implements OnInit {
       });
   }
 
+  openNotesForm() {
+    this.isNotesFormOpened = !this.isNotesFormOpened;
+  }
+
+  removeNoteImage(idx) {
+    this.clientNotesImages.splice(idx, 1);
+  }
+
+  cancelNote() {
+    this.clientNote = '';
+    this.isPublicNotes = false;
+    this.clientNotesImages = [];
+    this.isNotesFormOpened = false;
+  }
+
   addClientNote() {
-    // if (this.notesImageUploader.queue.length) {
+    if (this.isPublicNotes === true) {
+      const modalRef = this.modalService.open(ConfirmDialogComponent, {centered: true});
+      modalRef.componentInstance.confirmMessage = 'Are you sure to post a public note?';
+      modalRef.result.then((result) => {
+        if (result === 'Confirm click') {
+          this.postNote();
+        }
+      }, (reason) => {
+        console.log(22222, reason);
+      });
+    } else {
+      this.postNote();
+    }
+  }
 
-    // } else {
+  postNote() {
+    const postDate = new Date();
+    const notes: Notes = new Notes(this.clientId, this.clientNote, new Date(), this.isPublicNotes, this.clientNotesImages);
+    this.notesService.create(notes.clientId, notes, this.authService.token)
+      .subscribe((result: any) => {
+        this.clientNotes.push(result);
+      }, (err) => {
 
-    // }
+      });
   }
 }

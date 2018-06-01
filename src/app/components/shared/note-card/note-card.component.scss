@@ -1,0 +1,15 @@
+@import '../../../../sass/_mixins';
+@import '../../../../sass/_variables';
+
+.note-card-component {
+  .top-info {
+    &.private {
+      color: $red;
+    }
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}

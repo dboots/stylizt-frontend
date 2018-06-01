@@ -1,0 +1,7 @@
+<div class="note-card-component">
+  <div class="top-info" [class.private]="!note.isPublic">{{ note.isPublic ? 'PUBLIC' : 'PRIVATE' }} - posted {{ note.postDate }}</div>
+  <div class="d-flex align-items-center mt-4">
+    <img class="mr-4" *ngIf="note.images" [src]="note.images[0]" />
+    <div>{{ note.notes }}</div>
+  </div>
+</div>

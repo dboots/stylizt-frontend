@@ -11,7 +11,6 @@
         <div class="col-md-6 d-flex flex-column align-items-center justify-content-between">
           <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
           <app-cloudinary-uploader
-            [uploader]="uploader"
             [folderName]="'client_profile'"
             [buttonName]="'Upload'"
             (completeItem)="profileImageUploadCompleted($event)">
@@ -44,7 +43,6 @@
           </form>
           <div class="mt-4">
             <app-cloudinary-uploader
-              [uploader]="portfolioImageUploader"
               [folderName]="'client_portfolio'"
               [buttonName]="'Add Images to Portfolio'"
               (completeItem)="portfolioImageUploadCompleted($event)">
@@ -76,7 +74,6 @@
           <div class="d-flex justify-content-between">
             <div>
               <app-cloudinary-uploader
-                [uploader]="notesImageUploader"
                 [folderName]="'client_notes'"
                 [buttonName]="'Attach/Upload Image'"
                 (completeItem)="notesImageUploadCompleted($event)">

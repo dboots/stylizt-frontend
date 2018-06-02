@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import { ConfirmDialogComponent } from '../../../shared/diglogs/confirm-dialog/confirm-dialog.component';
 import {
@@ -30,17 +29,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
   detailFormErrors: any;
   clientId: string;
 
-  uploader: FileUploader;
   uploadStatus: string;
   clientProfileImage: string;
 
-  portfolioImageUploader: FileUploader;
   portfolioImageUploadStatus: string;
   clientPortfolioImages: string[] = [];
   clientPortfolios: Portfolio[] = [];
   selectedImageForModal: string;
 
-  notesImageUploader: FileUploader;
   notesImageUploadStatus: string;
   clientNotesImages: string[] = [];
   clientNote: string;

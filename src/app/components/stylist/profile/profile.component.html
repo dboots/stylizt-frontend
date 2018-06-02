@@ -9,7 +9,6 @@
       <div class="col-md-6 text-center">
         <img *ngIf="user.image" [src]="user.image" />
         <app-cloudinary-uploader
-          [uploader]="uploader"
           [folderName]="'profile'"
           [buttonName]="'Upload'"
           (completeItem)="profileImageUploadCompleted($event)">

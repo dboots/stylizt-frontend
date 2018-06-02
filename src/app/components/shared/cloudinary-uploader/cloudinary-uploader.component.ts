@@ -8,7 +8,7 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
   styleUrls: ['./cloudinary-uploader.component.scss']
 })
 export class CloudinaryUploaderComponent implements OnInit {
-  @Input() uploader: FileUploader;
+  uploader: FileUploader;
   @Input() folderName: string;
   @Input() buttonName: string;
   @Output() completeItem: EventEmitter<any> = new EventEmitter();

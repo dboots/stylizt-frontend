@@ -22,7 +22,7 @@ export class TalentService {
       { id: 1, name: 'Bangs' },
       { id: 2, name: 'Frizz' },
       { id: 4, name: 'Blowouts' },
-      { id: 6, name: 'Potatoe' }
+      { id: 6, name: 'Potatoe' },
       { id: 8, name: 'Apple' },
       { id: 9, name: 'Banana' },
       { id: 10, name: 'Tomatoe' },

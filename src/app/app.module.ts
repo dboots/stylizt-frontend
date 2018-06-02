@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelper } from 'angular2-jwt';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,8 @@ import {
   AuthGuardService,
   AuthService,
   PortfolioService,
-  NotesService
+  NotesService,
+  TalentService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -37,6 +39,7 @@ import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5
 import { Cloudinary } from 'cloudinary-core';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NoteCardComponent } from './components/shared/note-card/note-card.component';
+import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import { NoteCardComponent } from './components/shared/note-card/note-card.compo
     ContactPageComponent,
     PasswordPageComponent,
     ConfirmDialogComponent,
-    NoteCardComponent
+    NoteCardComponent,
+    TalentTagsInputComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ import { NoteCardComponent } from './components/shared/note-card/note-card.compo
     FormsModule,
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'your_cloud_name' } as CloudinaryConfiguration),
     FileUploadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularMultiSelectModule
   ],
   providers: [
     UserService,
@@ -74,6 +79,7 @@ import { NoteCardComponent } from './components/shared/note-card/note-card.compo
     AuthService,
     PortfolioService,
     NotesService,
+    TalentService,
     JwtHelper
   ],
   entryComponents: [

@@ -15,3 +15,6 @@ export { PortfolioService } from './portfolio.service';
 
 import { NotesService } from './notes.service';
 export { NotesService } from './notes.service';
+
+import { TalentService } from './talent.service';
+export { TalentService } from './talent.service';

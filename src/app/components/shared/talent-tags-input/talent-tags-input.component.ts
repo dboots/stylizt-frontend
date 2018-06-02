@@ -21,12 +21,11 @@ export class TalentTagsInputComponent implements OnInit {
   ngOnInit() {
     this.settings = {
       text: 'Search for talent to add...',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
       classes: 'myclass custom-class',
       primaryKey: 'id',
       labelKey: 'name',
-      enableSearchFilter: true
+      enableSearchFilter: true,
+      enableCheckAll: false
       // noDataLabel: 'Search for talent to add...',
       // searchBy: ['name']
     };
@@ -49,14 +48,6 @@ export class TalentTagsInputComponent implements OnInit {
   OnItemDeSelect(item: any) {
       console.log(item);
       console.log(this.selectedItems);
-  }
-
-  onSelectAll(items: any) {
-      console.log(items);
-  }
-
-  onDeSelectAll(items: any) {
-      console.log(items);
   }
 
   onSearch(evt: any) {

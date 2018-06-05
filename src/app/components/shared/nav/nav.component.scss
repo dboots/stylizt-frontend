@@ -1,6 +1,11 @@
 nav {
-  padding: 40px 52px 10px;
+  background-color: black;
 
+  .navbar-brand {
+    img {
+      max-height: 50px;
+    }
+  }
   .nav-item-signup {
     background: #007bff;
     width: 100%;

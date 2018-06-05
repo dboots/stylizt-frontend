@@ -1,37 +1,35 @@
-<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="">HAIR TO CHAIR</a>
+<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" routerLink="">HAIR TO CHAIR</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   
   
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto align-items-center">
-      <!--<li class="nav-item mr-lg-4">
-        <button class="btn btn-outline-primary btn-sm">Signup For Free</button>
-      </li>-->
+    <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/contact">Contact</a>
+        <a class="nav-link text-white" routerLink="/contact">Contact</a>
       </li>
-    </ul>
-    <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto align-items-center">
       <li class="nav-item">
-        <a class="nav-link" (click)="modal(login)">Login</a>
+        <a class="nav-link text-white" routerLink="/signup">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="modal(login)">Login</a>
       </li>
     </ul>
     
     <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/stylist/profile">Profile</a>
+        <a class="nav-link text-white" routerLink="/stylist/profile">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="stylist/clients">Clients</a>
+        <a class="nav-link text-white" routerLink="stylist/clients">Clients</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="stylist/portfolio">Portfolio</a>
+        <a class="nav-link text-white" routerLink="stylist/portfolio">Portfolio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="logout()">Logout</a>
+        <a class="nav-link text-white" (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>

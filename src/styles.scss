@@ -7,7 +7,8 @@
  @import '../node_modules/font-awesome/scss/font-awesome';
 
 body {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  font-family: "proxima_novaregular", Arial, sans-serif;
+}
 
 h1,
 h2,
@@ -15,7 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'proxima_novabold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700; }
 
 .bigly {
@@ -137,4 +138,8 @@ footer.footer {
       }
     }
   }
+}
+
+.black-diamond-font {
+  font-family: "Black Diamond";
 }

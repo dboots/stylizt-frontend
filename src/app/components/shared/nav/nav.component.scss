@@ -1,6 +1,10 @@
 nav {
   background-color: black;
 
+  .navbar-toggler {
+    background: white;
+  }
+  
   .navbar-brand {
     img {
       max-height: 50px;
@@ -10,7 +14,7 @@ nav {
     background: #007bff;
     width: 100%;
     text-align: center;
-
+    
     a {
       color: white;
     }

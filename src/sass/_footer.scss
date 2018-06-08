@@ -1,4 +1,14 @@
 footer.footer {
+  background: $green;
   padding-top: 4rem;
   padding-bottom: 4rem;
+
+  .text-white {
+    font-size: 18px;
+  }
+
+  .text-dark {
+    letter-spacing: 3px;
+    line-height: 1.7;
+  }
 }

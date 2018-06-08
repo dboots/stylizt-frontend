@@ -1,5 +1,11 @@
 nav {
   background-color: black;
+  height: 240px;
+  padding: 100px 30px 25px 30px;
+
+  .container {
+    max-width: 100%;
+  }
 
   .navbar-toggler {
     background: white;
@@ -7,9 +13,14 @@ nav {
   
   .navbar-brand {
     img {
-      max-height: 50px;
+      max-height: 110px;
     }
   }
+
+  .nav-link {
+    font-size: 25px;
+  }
+
   .nav-item-signup {
     background: #007bff;
     width: 100%;

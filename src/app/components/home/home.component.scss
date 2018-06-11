@@ -55,6 +55,20 @@ header {
   font-size: 40px;
   letter-spacing: 20px;
   padding: 60px 0;
+
+  @media (max-width: 1200px) {
+    letter-spacing: 10px;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 32px;
+    letter-spacing: 5px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 27px;
+    letter-spacing: 3px;
+  }
 }
 
 .empty-dark-section {
@@ -64,9 +78,19 @@ header {
 
 .enter-search-here {
   font-size: 27px;
-  color: $gray-700;
-  letter-spacing: 7px;
-  padding: 19px 0;
+
+  input {
+    font-size: 27px;
+    color: $gray-700;
+    letter-spacing: 7px;
+    margin-left: 20px;
+    padding: 19px 0;
+    border: none;
+
+    &:focus {
+      box-shadow: none;
+    }  
+  }
 
   i {
     color: $green;
@@ -92,6 +116,18 @@ header {
     font-size: 90px;
     right: 56px;
     top: -66px;
+
+    @media (max-width: 1200px) {
+      font-size: 70px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 50px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 35px;
+    }
   }
 
   .col-sm-6 {
@@ -108,6 +144,11 @@ header {
     font-size: 45px;
     font-weight: bold;
     letter-spacing: 10px;
+
+    @media (max-width: 992px) {
+      font-size: 25px;
+      letter-spacing: 10px;
+    }
   }
 }
 
@@ -126,8 +167,9 @@ header {
   }
 
   .detail-text {
-    font-size: 25px;
+    font-size: 22px;
     letter-spacing: 1px;
+    font-weight: bold;
   }
 }
 
@@ -136,6 +178,11 @@ header {
   font-size: 45px;
   letter-spacing: 20px;
   padding: 15px 0;
+
+  @media (max-width: 992px) {
+    font-size: 25px;
+    letter-spacing: 10px;
+  }
 }
 
 .fixed-bottom {

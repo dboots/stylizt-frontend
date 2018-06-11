@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
   modalRef: NgbModalRef;
   message: string = '';
   forgotPassword: boolean = false;
+  isFullNav: boolean = true;
 
   constructor(
     private modalService: NgbModal,
@@ -22,6 +23,16 @@ export class NavComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) { }
+
+  @HostListener('window:scroll', ['$event'])
+  track(event) {
+    console.log('Scroll Event', window.pageYOffset);
+    if (window.pageYOffset > 500) {
+      this.isFullNav = false;
+    } else {
+      this.isFullNav = true;
+    }
+  }
 
   ngOnInit() {
   }

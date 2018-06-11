@@ -1,10 +1,27 @@
 nav {
   background-color: black;
-  height: 240px;
-  padding: 100px 30px 25px 30px;
+  transition: all ease .2s;
 
-  .container {
-    max-width: 100%;
+  &.full {
+    padding: 100px 30px 25px 30px;
+  
+    .container {
+      max-width: 100%;
+    }
+
+    .nav-link {
+      font-size: 25px;
+    }
+
+    .navbar-brand {
+      img {
+        max-height: 110px;
+
+        @media (max-width: 768px) {
+          max-height: 70px;
+        }
+      }
+    }  
   }
 
   .navbar-toggler {
@@ -13,12 +30,8 @@ nav {
   
   .navbar-brand {
     img {
-      max-height: 110px;
+      max-height: 50px;
     }
-  }
-
-  .nav-link {
-    font-size: 25px;
   }
 
   .nav-item-signup {

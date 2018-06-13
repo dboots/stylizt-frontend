@@ -5,6 +5,7 @@ nav {
   &.full {
     .container {
       max-width: 100%;
+      padding-top: 0;
     }
 
     .nav-link {
@@ -22,23 +23,31 @@ nav {
     }  
   }
 
-  .navbar-toggler {
-    background: white;
-  }
+  .container {
+    padding-top: 89px;
 
-  .nav-item-signup {
-    background: #007bff;
-    width: 100%;
-    text-align: center;
-    
-    a {
-      color: white;
+    .navbar-brand {
+      img {
+        width: 242px;
+        height: 65px;
+      }
     }
-  }
+
+    .navbar-toggler {
+      background: white;
+    }
   
-  li {
-    a {
-      cursor: pointer;
+    ul.navbar-nav {
+      font-family: "proxima_novalight", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 4.5px;
+
+      li {
+        a {
+          cursor: pointer;
+        }
+      }  
     }
   }
 }

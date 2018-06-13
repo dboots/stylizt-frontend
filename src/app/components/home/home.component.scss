@@ -4,16 +4,28 @@ header {
   &.masthead {
     .hero-container {
       .title-content {
-        border-left: 3px solid $green;
+        border-left: 2px solid $green;
 
         > div {
+          font-family: 'proxima_novamedium';
           font-size: 29px;
           line-height: 2;
 
+          @media (max-width: 1200px) {
+            font-size: 17px;
+            line-height: 1.94;
+            letter-spacing: 0.7px;
+          }
+
           &.text-uppercase {
+            font-family: 'proxima_novalight';
             font-size: 65px;
             line-height: 1.2;
 
+            @media (max-width: 1200px) {
+              font-size: 40px;
+            }
+  
             span {
               color: $green;
             }

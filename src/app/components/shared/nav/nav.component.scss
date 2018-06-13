@@ -3,22 +3,20 @@ nav {
   transition: all ease .2s;
 
   &.full {
-    padding: 100px 30px 25px 30px;
-  
     .container {
       max-width: 100%;
     }
 
     .nav-link {
-      font-size: 25px;
+      font-size: 15px;
     }
 
     .navbar-brand {
       img {
-        max-height: 110px;
+        max-height: 50px;
 
         @media (max-width: 768px) {
-          max-height: 70px;
+          max-height: 50px;
         }
       }
     }  
@@ -26,12 +24,6 @@ nav {
 
   .navbar-toggler {
     background: white;
-  }
-  
-  .navbar-brand {
-    img {
-      max-height: 50px;
-    }
   }
 
   .nav-item-signup {

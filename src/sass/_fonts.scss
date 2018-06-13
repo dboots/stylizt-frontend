@@ -6,6 +6,27 @@
 }
 
 @font-face {
+  font-family: 'proxima_novalightit';
+  src: url('/assets/fonts/Proxima Nova Light It.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url('/assets/fonts/Proxima Nova Light.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novathin';
+  src: url('/assets/fonts/Proxima-Nova-Thin.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
   font-family: 'proxima_novamedium';
   src: url('/assets/fonts/proximanova-medium.otf') format('otf'),
        url('/assets/fonts/proximanova-medium-webfont.woff2') format('woff2'),

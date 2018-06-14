@@ -1,33 +1,64 @@
-.clients {
-  .client {
-    height: 300px;
-    width: 90%;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-size: cover;
-    position: relative;
-    cursor: pointer;
-    background-position: center;
+@import '../../../../sass/variables';
 
-    .client-name {
-      font-weight: bold;
-      position: absolute;
-      bottom: 0;
-      background: rgba(255, 255, 255, .6);
-      width: 100%;
-      left: 0;
-      text-align: center;
-      font-size: 14px;
+.client-component {
+  padding-top: 100px;
+
+  .header-row {
+    .black-diamond-font {
+      font-size: 52px;
+      letter-spacing: 0.8px;
+    }
+
+    .subtitle {
+      font-family: "proxima_novalight", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0.6px;
+      color: $gray-900;
     }
   }
 
-  .client-add-new {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 58px;
-    border: 2px dashed black;
-    background: none;
-    cursor: pointer;
+  .clients-row {
+    text-transform: uppercase;
+
+    .client {
+      height: 255px;
+      width: 100%;
+      border: 2px solid $gray-300;
+      border-radius: 3px;
+      background-size: cover;
+      position: relative;
+      cursor: pointer;
+      background-position: center;
+  
+      .client-name {
+        font-family: "proxima_novalight", Arial, sans-serif;
+        position: absolute;
+        bottom: 0;
+        background: rgba(255, 255, 255, .6);
+        width: 100%;
+        left: 0;
+        text-align: center;
+        font-size: 15px;
+        letter-spacing: 3.9px;
+        padding: 12px;
+      }
+    }
+  
+    .client-add-new {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 58px;
+      color: $white;
+      background: $green;
+      text-align: center;
+
+      div {
+        font-size: 16px;
+      }
+    }
   }
 }

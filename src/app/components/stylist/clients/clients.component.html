@@ -1,19 +1,21 @@
-<div class="content">
+<div class="client-component content">
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>Clients</h1>
-        <p>
-          This will be your directory of clients. Here you can view last schedule date and send them
-          text/email messages (plan permitting),
-        </p>
+    <div class="header-row row">
+      <div class="col-md-6">
+        <div class="black-diamond-font">YOUR CLIENTS</div>
+      </div>
+      <div class="col-md-6">
+        <div class="subtitle">This is your directory of clients. You can view last schedule dates and send them text/email messages.</div>    
       </div>
     </div>
-    <div class="row clients">
+  </div>
+  <div class="green-divider"></div>
+  <div class="container">
+    <div class="clients-row row">
       <div class="col-md-3 col-sm-12 my-2">
-        <div class="client client-add-new m-auto" (click)="showAddClientModal(addModal)">
-          <span class="align-middle">+</span>
-          <div class="client-name">Add New Client</div>
+        <div class="client client-add-new" (click)="showAddClientModal(addModal)">
+          <span class="">+</span>
+          <div class="">Add New Client</div>
         </div>
       </div>
       <div class="col-md-3 col-sm-12 my-2 " *ngFor="let client of clients, let i = index">

@@ -1,49 +1,46 @@
-<div class="content">
+<div class="profile-component content">
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1>Profile</h1>
+        <div class="profile-title black-diamond-font">PROFILE</div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 text-center">
+    <div class="profile-row row">
+      <div class="photo-column col-md-6 text-right">
         <img *ngIf="user.image" [src]="user.image" />
         <app-cloudinary-uploader
           [folderName]="'profile'"
-          [buttonName]="'Upload'"
+          [buttonName]="'UPLOAD PHOTO'"
           (completeItem)="profileImageUploadCompleted($event)">
         </app-cloudinary-uploader>
-
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label>Name</label>
+          <label>YOUR NAME</label>
           <input [(ngModel)]="user.name" class="form-control" type="text" />
         </div>
         
         <div class="form-group">
-          <label>Email</label>
+          <label>EMAIL ADDRESS</label>
           <input [(ngModel)]="user.email" class="form-control" type="text" />
         </div>
         <div class="form-group">
-          <label>Zip</label>
+          <label>ZIP</label>
           <input [(ngModel)]="user.zip" class="form-control" type="text" />
         </div>
         
-        <div class="form-group">
-          <label>Bio</label>
+        <div class="bio-content form-group">
+          <label>BIO</label>
           <textarea [(ngModel)]="user.bio" class="form-control"></textarea>
         </div>
-        
-        <button type="button" (click)="uploadAndUpdate()" class="btn btn-primary">Update Profile</button>
+
+        <div class="form-group">
+          <label>YOUR TALENTS</label>
+          <app-talent-tags-input></app-talent-tags-input>
+        </div>
+
+        <button type="button" (click)="uploadAndUpdate()" class="btn btn-primary pull-right">UPDATE PROFILE</button>
         {{ status }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h2>Talents</h2>
-        <p>Coming soon! List your stylist talents so your dream clients can find you.</p>
-        <app-talent-tags-input></app-talent-tags-input>
       </div>
     </div>
   </div>

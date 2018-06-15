@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -20,7 +20,8 @@ import {
 @Component({
   selector: 'app-page-stylistclientsdetail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class StylistClientsDetailPageComponent implements OnInit {

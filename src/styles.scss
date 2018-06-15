@@ -5,6 +5,9 @@
  */
  $fa-font-path: '../node_modules/font-awesome/fonts';
  @import '../node_modules/font-awesome/scss/font-awesome';
+ @import './sass/mixins';
+ @import './sass/variables';
+ @import './sass/fonts';
 
 body {
   font-family: "proxima_novaregular", Arial, sans-serif;
@@ -143,4 +146,10 @@ footer.footer {
 
 .black-diamond-font {
   font-family: "Black Diamond";
+}
+ 
+.green-divider {
+  height: 16px;
+  background: $green;
+  margin-bottom: 30px;
 }

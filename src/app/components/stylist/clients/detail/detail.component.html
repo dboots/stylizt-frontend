@@ -3,34 +3,39 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1>Client Detail</h1>
-          <p>Here you can add notes, images, appointment details to your client</p>
+          <div class="profile-title black-diamond-font">CLIENT PROFILE</div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 d-flex flex-column align-items-center justify-content-between">
+    </div>
+    <div class="green-divider"></div>
+    <div class="container">
+      <div class="profile-row row">
+        <div class="photo-column col-md-6 d-flex flex-column align-items-end justify-content-between">
           <img *ngIf="clientProfileImage" [src]="clientProfileImage" />
           <app-cloudinary-uploader
             [folderName]="'client_profile'"
-            [buttonName]="'Upload'"
+            [buttonName]="'UPLOAD PHOTO'"
             (completeItem)="profileImageUploadCompleted($event)">
           </app-cloudinary-uploader>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex flex-column justify-content-end">
           <form novalidate [formGroup]="detailForm" (ngSubmit)="onUpdate()">
             <div class="form-group">
+              <label>CLIENT NAME</label>
               <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
               <div class="form-field-error" *ngIf="detailFormErrors.name.required">
                 Name is required
               </div>
             </div>              
             <div class="form-group">
+              <label>ZIPCODE</label>
               <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
               <div class="form-field-error" *ngIf="detailFormErrors.zip.required">
                 Zipcode is required
               </div>
             </div>
             <div class="form-group">
+              <label>EMAIL ADDRESS</label>
               <input class="form-control" type="text" formControlName="email" placeholder="Email" />
               <div class="form-field-error" *ngIf="detailFormErrors.email.required">
                 Email is required
@@ -39,32 +44,59 @@
                 Enter a valid email
               </div>
             </div>
-            <button [disabled]="detailForm.invalid" class="btn btn-primary">Update</button>
+            <button [disabled]="detailForm.invalid" class="btn btn-primary">UPDATE PROFILE</button>
           </form>
-          <div class="mt-4">
-            <app-cloudinary-uploader
-              [folderName]="'client_portfolio'"
-              [buttonName]="'Add Images to Portfolio'"
-              (completeItem)="portfolioImageUploadCompleted($event)">
-            </app-cloudinary-uploader>
-          </div>    
         </div>
       </div>
-      <div class="client-portfolio-container mt-4">
-        <h1>Client Portfolio</h1>
+    </div>
+    
+    <div class="container text-center text-uppercase mt-4">
+      <div class="row">
+        <div class="col">
+          <div class="portfolio-title">Client Portfolio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="client-portfolio-container container-fluid text-center text-uppercase">
+      <div class="row mb-4">
+        <div class="col">
+          <app-cloudinary-uploader
+            [folderName]="'client_portfolio'"
+            [buttonName]="'ADD IMAGES'"
+            (completeItem)="portfolioImageUploadCompleted($event)">
+          </app-cloudinary-uploader>
+        </div>
+      </div>
+      <div class="row p-4 mt-4">
+        <div
+          class="portfolio col-md-3 col-sm-12 py-2"
+          *ngFor="let image of clientPortfolioImages"
+          (click)="openPortfolioDetailModal(portfolioDetailModal, image)">
+          <img [src]="image" />
+        </div>
+      </div>
+    </div>
+      
+    <div class="bg-light">
+      <div class="container text-center text-uppercase mt-4">
         <div class="row">
-          <div
-            class="portfolio col-md-3 col-sm-12 py-2"
-            *ngFor="let image of clientPortfolioImages"
-            (click)="openPortfolioDetailModal(portfolioDetailModal, image)">
-            <img [src]="image" />
+          <div class="col">
+            <div class="portfolio-title">Client Notes</div>
           </div>
         </div>
       </div>
-      <div class="client-notes-container mt-4">
-        <div class="d-flex align-items-center">
-          <h1>Client Notes</h1>
-          <i (click)="openNotesForm()" class="notes-add-button fa fa-plus-circle" aria-hidden="true"></i>    
+    </div>
+
+    <div class="bg-light">
+      <div class="client-notes-container container">
+        <div class="row text-center">
+          <div class="col">
+            <div class="notes-add-button d-flex align-items-center justify-content-center mx-auto" (click)="openNotesForm()">
+              <i class="fa fa-plus-square" aria-hidden="true"></i>    
+              <div>ADD NOTE</div>                        
+            </div>
+          </div>
         </div>
         <div class="notes-form" [class.opened]="isNotesFormOpened">
           <textarea class="w-100" [class.public]="isPublicNotes" [(ngModel)]="clientNote" rows="5" cols="30"></textarea>

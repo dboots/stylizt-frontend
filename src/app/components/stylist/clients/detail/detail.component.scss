@@ -74,10 +74,12 @@
       font-family: "proxima_novalight", Arial, sans-serif;
       font-size: 20px;
       letter-spacing: 6px;
+      border: 1px solid $gray-300;
       border-radius: 5px;
       padding: 10px;
       background: white;
       color: #737370;
+      margin-bottom: 50px;
       
       i {
         font-size: 30px;
@@ -105,9 +107,9 @@
       .note-image {
         position: relative;
 
-        img {
-          width: 100%;
-        }
+        // img {
+        //   width: 100%;
+        // }
 
         i {
           cursor: pointer;

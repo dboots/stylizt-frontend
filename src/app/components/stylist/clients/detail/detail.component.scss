@@ -19,7 +19,7 @@
   
   .form-field-error {
     color: $danger;
-    font-size: 12px;
+    font-size: 16px;
     margin: 2px;
   }
   
@@ -65,7 +65,7 @@
     }
   }
 
-  .client-notes-container {
+  .client-notes-add-button-container {
     padding: 50px;
 
     .notes-add-button {
@@ -87,23 +87,85 @@
         margin-right: 10px;
       }
     }
+  }
 
-    .notes-form {
-      transition: max-height ease 0.5s;
-      max-height: 0;
-      overflow: hidden;
+  .bg-green {
+    background: $green;
+    transition: max-height ease 0.5s;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
 
-      &.opened {
-        height: 500px;
-        max-height: 500px;
+    &.opened {
+      height: 550px;
+      max-height: 550px;
+      padding-top: 50px;
+
+      @media (max-width: 768px) {
+        height: 600px;
+        max-height: 600px;
       }
+    }
 
-      textarea {
-        &.public {
-          border-color: $red;
+    .client-notes-container {
+      .notes-form {
+        label {
+          font-family: "proxima_novalight", Arial, sans-serif;
+          font-size: 12px;
+          letter-spacing: 3.6px;
+        }
+
+        textarea {
+          font-family: "proxima_novamedium", Arial, sans-serif;
+          font-size: 17px;
+          line-height: 2.06;
+          letter-spacing: 0.7px;
+          color: #231f20;
+          padding: 0 10px;
+
+          &.public {
+            border-color: $red;
+          }
         }
       }
 
+      .button-row {
+        button {
+          font-family: "proxima_novasemibold", Arial, sans-serif;
+          font-size: 17px;
+          letter-spacing: 5.1px;
+          background: $black;
+
+          @media (max-width: 992px) {
+            letter-spacing: 1px;
+          }
+        }
+
+        app-cloudinary-uploader {
+          margin-right: 30px;
+        }
+
+        .left-col {
+          button {
+
+          }
+        }
+
+        .right-col {
+          .public-checkbox {
+            padding: 10px;
+            background: white;
+            margin-right: 30px;
+
+            div {
+              margin-left: 15px;
+              font-size: 17px;
+              letter-spacing: 4px;
+            }
+          }
+        }
+      }
+        
       .note-image {
         position: relative;
 
@@ -117,8 +179,9 @@
           bottom: 7px;
           left: 21px;
           font-size: 30px;
+          color: $danger;
         }
       }
-    }
+    }  
   }
 }

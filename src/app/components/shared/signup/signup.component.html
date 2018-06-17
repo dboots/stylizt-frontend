@@ -3,14 +3,13 @@
     <p class="bigly text-center">{{ message }}</p>
   </div>
 
-  <div class="col-12 mb-2 mb-md-0">
-    <input type="name" [(ngModel)]="model.name" class="mb-2 txt-name form-control form-control-lg" placeholder="Your Name">
-    <input type="email" [(ngModel)]="model.email"  class="mb-2 txt-email form-control form-control-lg" placeholder="Email Address">
-    <input type="password" [(ngModel)]="model.password"  class="mb-2 txt-email form-control form-control-lg" placeholder="Password">
-    <input type="password" [(ngModel)]="passwordConfirm"  class="mb-2 txt-email form-control form-control-lg" placeholder="Confirm Password">
-  </div>
-  <div class="col-12 mb-2">
-    <button (click)="signup()" class="btn btn-block btn-lg btn-primary btn-signup">Sign up!</button>
+  <div class="main-form-content col-12 mb-2 mb-md-0">
+    <div class="black-diamond-font">Sign Up Now</div>
+    <input type="name" [(ngModel)]="model.name" class="" placeholder="YOUR NAME">
+    <input type="email" [(ngModel)]="model.email"  class="" placeholder="EMAIL ADDRESS">
+    <input type="password" [(ngModel)]="model.password"  class="" placeholder="PASSWORD">
+    <input type="password" [(ngModel)]="passwordConfirm"  class="" placeholder="CONFIRM PASSWORD">
+    <button (click)="signup()" class="pull-right">SUBMIT</button>
   </div>
 </div>
 

@@ -1,0 +1,26 @@
+@import '../../../../sass/variables';
+
+.main-form-content {
+  > div {
+    font-size: 75px;
+  }
+  
+  input {
+    font-size: 25px;
+    letter-spacing: 5px;
+    padding-left: 15px;
+    max-width: 620px;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 15px;
+  }
+  
+  button {
+    background: $green;
+    font-size: 27px;
+    font-weight: bold;
+    border-radius: 15px;
+    letter-spacing: 7px;
+    padding: 5px 45px;
+  }
+}

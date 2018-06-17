@@ -26,7 +26,6 @@ export class NavComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   track(event) {
-    console.log('Scroll Event', window.pageYOffset);
     if (window.pageYOffset > 500) {
       this.isFullNav = false;
     } else {

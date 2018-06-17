@@ -1,3 +1,5 @@
+@import '../../../../sass/variables';
+
 nav {
   background-color: black;
   transition: all ease .2s;
@@ -46,6 +48,11 @@ nav {
       li {
         a {
           cursor: pointer;
+          color: $white;
+
+          &:hover {
+            color: $green;
+          }
         }
       }  
     }

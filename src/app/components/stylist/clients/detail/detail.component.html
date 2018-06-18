@@ -70,10 +70,11 @@
       </div>
       <div class="row p-4 mt-4">
         <div
-          class="portfolio col-md-3 col-sm-12 py-2"
+          class="portfolio col-md-3 col-sm-12 my-4"
           *ngFor="let image of clientPortfolioImages"
           (click)="openPortfolioDetailModal(portfolioDetailModal, image)">
           <img [src]="image" />
+          <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
         </div>
       </div>
     </div>

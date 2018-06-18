@@ -6,6 +6,16 @@ footer.footer {
   .icon-img {
     height: 100px;
     margin-right: 30px;
+
+    @media (max-width: 768px) {
+      height: 70px;
+      margin-right: 20px;
+    }
+
+    @media (max-width: 414px) {
+      height: 50px;
+      margin-right: 0px; 
+    }
   }
 
   .text-white {
@@ -13,7 +23,7 @@ footer.footer {
   }
 
   .text-dark {
-    letter-spacing: 3px;
+    letter-spacing: 4.5px;
     line-height: 1.7;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,5 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  track(event) {
-    console.log('Scroll Event', window.pageYOffset);
   }
 }

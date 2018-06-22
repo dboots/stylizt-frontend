@@ -180,6 +180,30 @@ header {
   }
 }
 
+.info-container {
+  font-size: 18px;
+  line-height: 2;
+  letter-spacing: 0.6px;
+  margin-top: 50px;
+
+  i {
+    font-size: 60px;
+    padding: 25px;
+    border-radius: 50%;
+    border: 5px solid $gray-400;
+    color: $green;
+  }
+
+  .info-title {
+    font-family: 'proxima_novabold';
+    margin-top: 34px;
+  }
+
+  .info-sub-text {
+
+  }
+}
+
 .signup-component {
   .image-div {
     font-size: 30px;

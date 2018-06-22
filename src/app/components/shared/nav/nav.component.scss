@@ -4,11 +4,30 @@ nav {
   background-color: black;
   transition: all ease .2s;
 
-  &.full {
-    .container {
-      max-width: 100%;
-      padding-top: 0;
-    }
+  // &.full {
+  //   .container {
+  //     max-width: 100%;
+  //     padding-top: 0;
+  //   }
+
+  //   .nav-link {
+  //     font-size: 15px;
+  //   }
+
+  //   .navbar-brand {
+  //     img {
+  //       max-height: 50px;
+
+  //       @media (max-width: 768px) {
+  //         max-height: 50px;
+  //       }
+  //     }
+  //   }  
+  // }
+
+  .container {
+    max-width: 100%;
+    padding-top: 0;
 
     .nav-link {
       font-size: 15px;
@@ -16,22 +35,13 @@ nav {
 
     .navbar-brand {
       img {
+        width: 242px;
+        height: 65px;
         max-height: 50px;
 
         @media (max-width: 768px) {
           max-height: 50px;
         }
-      }
-    }  
-  }
-
-  .container {
-    padding-top: 89px;
-
-    .navbar-brand {
-      img {
-        width: 242px;
-        height: 65px;
       }
     }
 

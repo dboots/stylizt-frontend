@@ -3,14 +3,25 @@
   <div class="overlay"></div>
   <div class="hero-container container-fluid">
     <div class="row">
-      <div class="title-content col-lg-5 offset-md-6 text-left">
-        <div class="text-uppercase d-flex">We <span class="black-diamond-font ml-4">Connect</span></div>
-        <div class="text-uppercase">Salons &amp; Stylists</div>
-        <div>Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
+      <div class="title-content col-xl-4 col-lg-6 offset-md-6 text-left">
+        <div class="title">Claim. Your. Chair.</div>
+        <div class="subtitle">Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
       </div>
-      <div class="signup-form-content col-xl-4 col-lg-6 offset-md-6 text-left">
+    </div>
+    <div class="row">
+      <div class="select-box col-xl-4 col-lg-5 offset-md-6 offset-2 text-left">
+        <div class="title"><span>1,234</span> CLIENTS LOOKING FOR</div>
+        <div class="options">
+          <select class="form-control" [(ngModel)]="salon">
+            <option *ngFor="let o of salonOptions" [ngValue]="o">
+              {{ o }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="signup-form-content col-xl-4 col-lg-6 offset-md-6 text-left">
         <app-signup type="general" plan="0"></app-signup>
-      </div>
+      </div> -->
     </div>
   </div>
 </header>

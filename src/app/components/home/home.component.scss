@@ -4,38 +4,68 @@ header {
   &.masthead {
     .hero-container {
       .title-content {
-        border-left: 2px solid $green;
+        border-left: 2px solid $black;
+        margin-bottom: 55px;
 
-        > div {
-          font-family: 'proxima_novamedium';
-          font-size: 29px;
-          line-height: 2;
+        .title {
+          font-family: "Black Diamond";
+          font-size: 63px;
+          letter-spacing: 1.9px;
+          color: $black;
 
           @media (max-width: 1200px) {
-            font-size: 17px;
-            line-height: 1.94;
-            letter-spacing: 0.7px;
+            // font-size: 17px;
+            // line-height: 1.94;
+            // letter-spacing: 0.7px;
           }
+        }
 
-          &.text-uppercase {
-            font-family: 'proxima_novalight';
-            font-size: 65px;
-            line-height: 1.2;
+        .subtitle {
+          font-family: 'proxima_novamedium';
+          font-size: 16px;
+          line-height: 1.38;
+          letter-spacing: 0.6px;
+          color: #231f20;
 
-            @media (max-width: 1200px) {
-              font-size: 40px;
-            }
-  
-            span {
-              color: $green;
-            }
+          @media (max-width: 1200px) {
+            // font-size: 40px;
           }
         }
       }
 
-      .signup-form-content {
-        margin-top: 100px;
+      .select-box {
+        font-family: 'proxima_novalight';
+        font-size: 17px;
+        letter-spacing: 5.1px;
+        color: $black;
+
+        .title {
+          display: inline-block;
+          background: $white;
+          padding: 0 22px;
+
+          span {
+            font-family: 'proxima_novabold';
+          }
+        }
+
+        .options {
+          padding-left: 130px;
+
+          select {
+            text-transform: uppercase;
+            font-family: 'proxima_novabold';
+            font-size: 17px;
+            letter-spacing: 5.1px;
+            color: $black;
+            width: 131px;
+            height: 25px;
+          }
+        }
       }
+      // .signup-form-content {
+      //   margin-top: 100px;
+      // }
     }
   }
 }

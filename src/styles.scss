@@ -53,12 +53,12 @@ header.masthead {
   padding-bottom: 8rem; }
   header.masthead .overlay {
     position: absolute;
-    background-color: #212529;
+    background-color: $green;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
-    opacity: 0.5; }
+    opacity: 0.9; }
   header.masthead h1 {
     font-size: 3rem; }
   header.masthead h3 {

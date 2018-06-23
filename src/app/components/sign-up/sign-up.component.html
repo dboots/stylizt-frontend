@@ -1,0 +1,79 @@
+<div class="sign-up-component content">
+  <div class="container">
+    <div class="header-row row">
+      <div class="col-md-6">
+        <div class="black-diamond-font">SIGN UP NOW</div>
+      </div>
+      <div class="col-md-6">
+        <div class="subtitle">Sign up today and get access to discounted rates, exclusive beta user giveaways, and free swag!</div>    
+      </div>
+    </div>
+  </div>
+
+  <div class="green-divider"></div>
+
+  <div class="container">
+    <div class="card-row row">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>BASIC</div>
+              <div class="price2">FREE</div>
+            </div>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Manage up to 5 clients</div>
+              <div class="d-flex justify-content-center align-items-center">Browse area salons</div>
+              <div class="d-flex justify-content-center align-items-center">Browse potential  matching clients</div>
+            </div>
+            <button (click)="select()" class="">SELECT</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>PRO</div>
+              <div class="price1">$14.99/mo</div>
+              <div class="price2">$9.99/mo</div>
+            </div>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
+              <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Salon seat notifications</div>
+              <div class="d-flex justify-content-center align-items-center">Matching client notifications</div>
+            </div>
+            <button (click)="select()" class="">SELECT</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>ELITE</div>
+              <div class="price1">$39.99/mo</div>
+              <div class="price2">$29.99/mo</div>
+            </div>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
+              <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Client text messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Priority salon seat notifications</div>
+              <div class="d-flex justify-content-center align-items-center">Priority matching clientnotifications </div>
+              <div class="d-flex justify-content-center align-items-center">Featured in talent searche</div>
+            </div>
+            <button (click)="select()" class="">SELECT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="signup-container">
+    <div class="container">
+      <app-signup type="general" plan="0"></app-signup>
+    </div>
+  </div>
+</div>

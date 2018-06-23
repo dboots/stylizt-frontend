@@ -10,6 +10,7 @@ import { StylistPortfolioPageComponent } from './components/stylist/portfolio/po
 import { OwnerPageComponent } from './components/owner/owner.component';
 import { ContactPageComponent } from './components/contact/contact.component';
 import { PasswordPageComponent } from './components/password/password.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'stylist/portfolio', component: StylistPortfolioPageComponent, canActivate: [AuthGuard] },
     { path: 'owner', component: OwnerPageComponent },
     { path: 'contact', component: ContactPageComponent },
+    { path: 'sign-up', component: SignUpComponent },
     { path: 'password/:token', component: PasswordPageComponent },
 ];
 

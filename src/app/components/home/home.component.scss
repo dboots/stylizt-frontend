@@ -184,7 +184,7 @@ header {
   font-size: 18px;
   line-height: 2;
   letter-spacing: 0.6px;
-  margin-top: 50px;
+  margin: 50px auto;
 
   i {
     font-size: 60px;
@@ -203,6 +203,46 @@ header {
 
   }
 }
+
+.how-it-works {
+  .title {
+    font-family: 'proxima_novalight';
+    font-size: 30px;
+    letter-spacing: 9px;
+    display: inline-block;
+    background: $gray-200;
+    padding: 18px 200px 5px;
+
+    @media (max-width: 768px) {
+      padding: 18px 30px 5px;
+    }
+  }
+
+  .bg-grey {
+    background: $gray-200;
+
+    .how-it-works-container {
+      padding: 50px 0;
+      
+      i {
+        font-size: 150px;
+        margin-bottom: 30px;
+      }
+    
+      .description {
+        font-family: 'proxima_novalight';
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        color: #231f20;
+    
+        span {
+          font-family: 'proxima_novabold';
+        }
+      }
+    }
+  }
+}
+
 
 .signup-component {
   .image-div {

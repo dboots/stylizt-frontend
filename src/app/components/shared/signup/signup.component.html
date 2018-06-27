@@ -1,17 +1,15 @@
 <div *ngIf="showSignup" [hidden]="success">
-  <div class="col-12 py-4 text-danger">
+  <div class="col-12 my-4">
     <p class="bigly text-center">{{ message }}</p>
   </div>
 
   <div class="main-form-content col-12 mb-2 mb-md-0">
-    <!-- <div class="black-diamond-font">Sign Up Now</div> -->
+    <div class="black-diamond-font">Sign Up Now</div>
     <input type="name" [(ngModel)]="model.name" class="" placeholder="YOUR NAME">
     <input type="email" [(ngModel)]="model.email"  class="" placeholder="EMAIL ADDRESS">
     <input type="password" [(ngModel)]="model.password"  class="" placeholder="PASSWORD">
     <input type="password" [(ngModel)]="passwordConfirm"  class="" placeholder="CONFIRM PASSWORD">
-    <div class="d-flex justify-content-center pb-4">
-      <button (click)="signup()" class="">SIGN UP</button>
-    </div>
+    <button (click)="signup()" class="pull-right">SUBMIT</button>
   </div>
 </div>
 

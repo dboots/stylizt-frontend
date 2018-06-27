@@ -40,7 +40,6 @@ import { Cloudinary } from 'cloudinary-core';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NoteCardComponent } from './components/shared/note-card/note-card.component';
 import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +59,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     PasswordPageComponent,
     ConfirmDialogComponent,
     NoteCardComponent,
-    TalentTagsInputComponent,
-    SignUpComponent
+    TalentTagsInputComponent
   ],
   imports: [
     BrowserModule,

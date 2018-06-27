@@ -4,68 +4,38 @@ header {
   &.masthead {
     .hero-container {
       .title-content {
-        border-left: 2px solid $black;
-        margin-bottom: 55px;
+        border-left: 2px solid $green;
 
-        .title {
-          font-family: "Black Diamond";
-          font-size: 63px;
-          letter-spacing: 1.9px;
-          color: $black;
-
-          @media (max-width: 1200px) {
-            // font-size: 17px;
-            // line-height: 1.94;
-            // letter-spacing: 0.7px;
-          }
-        }
-
-        .subtitle {
+        > div {
           font-family: 'proxima_novamedium';
-          font-size: 16px;
-          line-height: 1.38;
-          letter-spacing: 0.6px;
-          color: #231f20;
+          font-size: 29px;
+          line-height: 2;
 
           @media (max-width: 1200px) {
-            // font-size: 40px;
-          }
-        }
-      }
-
-      .select-box {
-        font-family: 'proxima_novalight';
-        font-size: 17px;
-        letter-spacing: 5.1px;
-        color: $black;
-
-        .title {
-          display: inline-block;
-          background: $white;
-          padding: 0 22px;
-
-          span {
-            font-family: 'proxima_novabold';
-          }
-        }
-
-        .options {
-          padding-left: 130px;
-
-          select {
-            text-transform: uppercase;
-            font-family: 'proxima_novabold';
             font-size: 17px;
-            letter-spacing: 5.1px;
-            color: $black;
-            width: 131px;
-            height: 25px;
+            line-height: 1.94;
+            letter-spacing: 0.7px;
+          }
+
+          &.text-uppercase {
+            font-family: 'proxima_novalight';
+            font-size: 65px;
+            line-height: 1.2;
+
+            @media (max-width: 1200px) {
+              font-size: 40px;
+            }
+  
+            span {
+              color: $green;
+            }
           }
         }
       }
-      // .signup-form-content {
-      //   margin-top: 100px;
-      // }
+
+      .signup-form-content {
+        margin-top: 100px;
+      }
     }
   }
 }
@@ -179,70 +149,6 @@ header {
     }
   }
 }
-
-.info-container {
-  font-size: 18px;
-  line-height: 2;
-  letter-spacing: 0.6px;
-  margin: 50px auto;
-
-  i {
-    font-size: 60px;
-    padding: 25px;
-    border-radius: 50%;
-    border: 5px solid $gray-400;
-    color: $green;
-  }
-
-  .info-title {
-    font-family: 'proxima_novabold';
-    margin-top: 34px;
-  }
-
-  .info-sub-text {
-
-  }
-}
-
-.how-it-works {
-  .title {
-    font-family: 'proxima_novalight';
-    font-size: 30px;
-    letter-spacing: 9px;
-    display: inline-block;
-    background: $gray-200;
-    padding: 18px 200px 5px;
-
-    @media (max-width: 768px) {
-      padding: 18px 30px 5px;
-    }
-  }
-
-  .bg-grey {
-    background: $gray-200;
-
-    .how-it-works-container {
-      padding: 50px 0;
-      
-      i {
-        font-size: 150px;
-        margin-bottom: 30px;
-      }
-    
-      .description {
-        font-family: 'proxima_novalight';
-        font-size: 14px;
-        letter-spacing: 0.4px;
-        color: #231f20;
-    
-        span {
-          font-family: 'proxima_novabold';
-        }
-      }
-    }
-  }
-}
-
 
 .signup-component {
   .image-div {

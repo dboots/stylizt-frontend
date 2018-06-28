@@ -1,201 +1,186 @@
 <!-- Masthead -->
-<header class="masthead text-white text-center">
+<header class="masthead text-white text-center" track-scroll>
   <div class="overlay"></div>
-  <div class="container">
-    
+  <div class="hero-container container-fluid">
     <div class="row">
-      <div class="col-md-6 mx-auto">
-        <h1>Claim. Your. Chair.</h1>
-        <p class="bigly">Hair To Chair keeps talented stylists connected with their clients and professional salons.</p>
+      <div class="title-content col-xl-4 col-lg-6 offset-md-6 text-left">
+        <div class="title">Claim. Your. Chair.</div>
+        <div class="subtitle">Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
       </div>
+    </div>
+    <div class="row">
+      <div class="select-box col-xl-4 col-lg-5 offset-md-6 offset-2 text-left">
+        <div class="title"><span>1,234</span> CLIENTS LOOKING FOR</div>
+        <div class="options">
+          <select class="form-control" [(ngModel)]="salon">
+            <option *ngFor="let o of salonOptions" [ngValue]="o">
+              {{ o }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="signup-form-content col-xl-4 col-lg-6 offset-md-6 text-left">
+        <app-signup type="general" plan="0"></app-signup>
+      </div> -->
     </div>
   </div>
 </header>
 
-<!-- Icons Grid 
-  <section class="features-icons bg-light text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-screen-desktop m-auto text-primary"></i>
-            </div>
-            <h3>Salon Availability</h3>
-            <p class="lead mb-0">Be the first to know when a seat becomes open</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-layers m-auto text-primary"></i>
-            </div>
-            <h3>Talent Portfolio</h3>
-            <p class="lead mb-0">Your talent is on display to potential salons &amp; client</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-check m-auto text-primary"></i>
-            </div>
-            <h3>Privacy</h3>
-            <p class="lead mb-0">You choose the information you want to be public</p>
-          </div>
-        </div>
+<div class="info-container container text-center">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="d-flex flex-column align-items-center">
+        <i class="fa fa-glass" aria-hidden="true"></i>
+        <div class="info-title">SALON AVAILABILITY</div>
+        <div class="info-sub-text">Are you looking to make a move? Keep tabs on which salons are hiring or have open chairs.</div>
       </div>
     </div>
-  </section>
--->
-
-<!-- Image Showcases -->
-<section class="showcase">
-  <div class="container-fluid p-0">
-    <div class="row no-gutters">
-      
-      <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../assets/img/bg-showcase-1.jpg');"></div>
-      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-        <h2>Salon Availability</h2>
-        <p class="lead mb-0">Are you looking to make a move? Keep tabs on which salons are hiring or have open chairs.</p>
+    <div class="col-md-4">
+      <div class="d-flex flex-column align-items-center">
+        <i class="fa fa-camera-retro" aria-hidden="true"></i>
+        <div class="info-title">TALENT PORTFOLIO</div>
+        <div class="info-sub-text">Showcase every snip and every curl. Highlight your latest style conquests.</div>
       </div>
     </div>
-    <div class="row no-gutters">
-      <div class="col-lg-6 text-white showcase-img" style="background-image: url('../assets/img/bg-showcase-2.jpg');"></div>
-      <div class="col-lg-6 my-auto showcase-text">
-        <h2>Talent Portfolio</h2>
-        <p class="lead mb-0">Showcase every snip and every curl. Highlight your latest style conquests.</p>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../assets/img/bg-showcase-3.jpg');"></div>
-      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-        <h2>Client Management</h2>
-        <p class="lead mb-0">Keep track of your available clients and let your clients keep track of your availability.</p>
+    <div class="col-md-4">
+      <div class="d-flex flex-column align-items-center">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <div class="info-title">CLIENT MANAGEMENT</div>
+        <div class="info-sub-text">Keep track of your available clients and let your clients keep track of your availability.</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="pricing">
+<div class="how-it-works text-center">
+  <div class="title">HOW IT WORKS</div>
+  <div class="bg-grey">
+    <div class="how-it-works-container container">
+      <div class="row mb-4">
+        <div class="col-md-4 text-center">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <div class="description">
+            A potential client is searching for a stylist that specializes in
+            <span> unicorn hair</span>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <div class="description">
+            This style is one of your areas of expertise and the client is able to ﬁnd you based on your
+            <span> "talents"</span>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="fa fa-window-maximize" aria-hidden="true"></i>
+          <div class="description">
+            Utilize the messaging system built into your
+            <span> pro</span>
+            or
+            <span> elite </span>
+            plan to schedule an appointment with the client.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-2 text-center">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <div class="description">
+            Once the job has been done, show your killer work by posting a photo to your 
+            <span> client feed</span>
+            and your
+            <span> portfolio pages.</span>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <div class="description">
+            Get
+            <span> notified </span>
+            when your client is due for their next appointment.
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div class="sign-up-component content">
   <div class="container">
-    <div class="row justify-content-center" >
-      <div class="col-12 text-center">
-        <h2 class="pb-3">Hair To Chair will be ready soon! Want to get a head start? Signup
-          today and get access to discounted rates, exclusive beta user giveaways, and free swag!</h2>
+    <div class="header-row row">
+      <div class="col-md-6">
+        <div class="black-diamond-font">SIGN UP NOW</div>
       </div>
-      <div class="col-lg-3 col-card">
-        <div class="card" [ngClass]="{'active': (plan == 1)}">
-          <div class="card-body">
-            <h2>Basic</h2>
-            <p class="bigly card-price text-center">FREE</p>
-            <ul class="text-left">
-              <li>manage up to 5 clients</li>
-              <li>browse area salons</li>
-              <li>browse potential matching clients</li>
-            </ul>
-          </div>
-          <button (click)="plan = 1" class="btn btn-primary">SELECT THIS PLAN</button>
-        </div>
+      <div class="col-md-6">
+        <div class="subtitle">Sign up today and get access to discounted rates, exclusive beta user giveaways, and free swag!</div>    
       </div>
-      <div class="col-lg-3 col-card">
-        <div class="card" [ngClass]="{'active': (plan == 2)}">
-          <div class="card-body">
-            <h2>Pro</h2>
-            <p class="bigly card-price text-center"><s>$14.99/mo</s></p>
-            <p class="bigly card-price text-center">$9.99/mo</p>
-            <ul class="text-left">
-              <li>unlimited client management</li>
-              <li>client email messaging</li>
-              <li>salon seat notifications</li>
-              <li>matching client notifications</li>
-            </ul>
-          </div>
-          <button (click)="plan = 2" class="btn btn-primary">SELECT THIS PLAN</button>
-        </div>
-      </div>
-      <div class="col-lg-3 col-card">
-        <div class="card" [ngClass]="{'active': (plan == 3)}">
-          <div class="card-body">
-            <h2>Elite</h2>
-            <p class="bigly card-price text-center"><s>$39.99/mo</s></p>
-            <p class="bigly card-price text-center">$29.99/mo</p>
-            <ul class="text-left">
-              <li>unlimited client management</li>
-              <li>client email messaging</li>
-              <li>client text messaging</li>
-              <li>priority salon seat notifications</li>
-              <li>priority matching client notifications</li>
-              <li>featured in talent searches</li>
-            </ul>
-          </div>
-          <button (click)="plan = 3" class="btn btn-primary">SELECT THIS PLAN</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <app-signup type="stylist" [plan]="plan"></app-signup>
-        </div>
     </div>
   </div>
-</section>
 
-<!-- Testimonials -->
-<!--
-  <section class="testimonials text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">What people are saying...</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-            <h5>Margaret E.</h5>
-            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-            <h5>Fred S.</h5>
-            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-            <h5>Sarah W.</h5>
-            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
-<!-- Call to Action -->
+  <div class="green-divider"></div>
 
-<!--
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Launching Soon! Register today for 6 months of Premium STYLIZT access</h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
+  <div class="container">
+    <div class="card-row row">
+      <div class="col-md-4">
+        <div class="card text-center" [ngClass]="{'actived': (plan == 1)}">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>BASIC</div>
+              <div class="price2">FREE</div>
             </div>
-          </form>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Manage up to 5 clients</div>
+              <div class="d-flex justify-content-center align-items-center">Browse area salons</div>
+              <div class="d-flex justify-content-center align-items-center">Browse potential  matching clients</div>
+            </div>
+            <button (click)="plan = 1" class="">SELECT</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center" [ngClass]="{'actived': (plan == 2)}">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>PRO</div>
+              <div class="price1">$14.99/mo</div>
+              <div class="price2">$9.99/mo</div>
+            </div>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
+              <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Salon seat notifications</div>
+              <div class="d-flex justify-content-center align-items-center">Matching client notifications</div>
+            </div>
+            <button (click)="plan = 2" class="">SELECT</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center" [ngClass]="{'actived': (plan == 3)}">
+          <div class="card-body">
+            <div class="price-body d-flex flex-column align-items-center justify-content-center">
+              <div>ELITE</div>
+              <div class="price1">$39.99/mo</div>
+              <div class="price2">$29.99/mo</div>
+            </div>
+            <div class="detail-body">
+              <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
+              <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Client text messaging</div>
+              <div class="d-flex justify-content-center align-items-center">Priority salon seat notifications</div>
+              <div class="d-flex justify-content-center align-items-center">Priority matching clientnotifications </div>
+              <div class="d-flex justify-content-center align-items-center">Featured in talent searche</div>
+            </div>
+            <button (click)="plan = 3" class="">SELECT</button>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-  
--->
+  </div>
+
+  <div class="signup-container">
+    <div class="container">
+      <app-signup type="general" [plan]="plan"></app-signup>
+    </div>
+  </div>
+</div>

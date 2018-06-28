@@ -1,0 +1,255 @@
+@import '../../../sass/variables';
+
+header {
+  &.masthead {
+    .overlay {
+      background-color: $green;
+      opacity: 0.9;
+    }
+
+    .hero-container {
+      .title-content {
+        border-left: 2px solid $black;
+        margin-bottom: 55px;
+
+        .title {
+          font-family: "Black Diamond";
+          font-size: 63px;
+          letter-spacing: 1.9px;
+          color: $black;
+
+          @media (max-width: 1200px) {
+            // font-size: 17px;
+            // line-height: 1.94;
+            // letter-spacing: 0.7px;
+          }
+        }
+
+        .subtitle {
+          font-family: 'proxima_novamedium';
+          font-size: 16px;
+          line-height: 1.38;
+          letter-spacing: 0.6px;
+          color: #231f20;
+
+          @media (max-width: 1200px) {
+            // font-size: 40px;
+          }
+        }
+      }
+
+      .select-box {
+        font-family: 'proxima_novalight';
+        font-size: 17px;
+        letter-spacing: 5.1px;
+        color: $black;
+
+        .title {
+          display: inline-block;
+          background: $white;
+          padding: 0 22px;
+
+          span {
+            font-family: 'proxima_novabold';
+          }
+        }
+
+        .options {
+          padding-left: 130px;
+
+          select {
+            text-transform: uppercase;
+            font-family: 'proxima_novabold';
+            font-size: 17px;
+            letter-spacing: 5.1px;
+            color: $black;
+            width: 131px;
+            height: 25px;
+          }
+        }
+      }
+      // .signup-form-content {
+      //   margin-top: 100px;
+      // }
+    }
+  }
+}
+
+.info-container {
+  font-size: 18px;
+  line-height: 2;
+  letter-spacing: 0.6px;
+  margin: 50px auto;
+
+  i {
+    font-size: 60px;
+    padding: 25px;
+    border-radius: 50%;
+    border: 5px solid $gray-400;
+    color: $green;
+  }
+
+  .info-title {
+    font-family: 'proxima_novabold';
+    margin-top: 34px;
+  }
+
+  .info-sub-text {
+
+  }
+}
+
+.how-it-works {
+  .title {
+    font-family: 'proxima_novalight';
+    font-size: 30px;
+    letter-spacing: 9px;
+    display: inline-block;
+    background: $gray-200;
+    padding: 18px 200px 5px;
+
+    @media (max-width: 768px) {
+      padding: 18px 30px 5px;
+    }
+  }
+
+  .bg-grey {
+    background: $gray-200;
+
+    .how-it-works-container {
+      padding: 50px 0;
+      
+      i {
+        font-size: 150px;
+        margin-bottom: 30px;
+      }
+    
+      .description {
+        font-family: 'proxima_novalight';
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        color: #231f20;
+    
+        span {
+          font-family: 'proxima_novabold';
+        }
+      }
+    }
+  }
+}
+
+.sign-up-component {
+  padding-top: 100px;
+
+  .header-row {
+    .black-diamond-font {
+      font-size: 52px;
+      letter-spacing: 0.8px;
+    }
+
+    .subtitle {
+      font-family: "proxima_novalight", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0.6px;
+      color: $gray-900;
+    }
+  }
+
+  .card-row {
+    .card {
+      border: none;
+
+      .card-body {
+        padding: 0;
+
+        .price-body {
+          height: 170px;
+          background: $black;
+
+          > div {
+            &:first-child {
+              font-family: "Black Diamond";
+              font-size: 35px;
+              font-weight: 900;
+              letter-spacing: 1.9px;
+              color: $white;
+              margin-bottom: 10px;
+            }
+
+            &.price1 {
+              font-family: "proxima_novalight", Arial, sans-serif;
+              font-size: 19px;
+              letter-spacing: 0.7px;
+              color: $white;
+              text-decoration: line-through;
+            }
+
+            &.price2 {
+              font-family: "proxima_novabold", Arial, sans-serif;
+              font-size: 19px;
+              letter-spacing: 0.8px;
+              color: $green;
+            }
+          }
+        }
+
+        .detail-body {
+          font-family: "proxima_novamedium", Arial, sans-serif;
+          font-size: 17px;
+          letter-spacing: 0.7px;
+          color: #231f20;
+
+          > div {
+            padding: 0 50px;
+            height: 65px;
+
+            &:nth-child(odd) {
+              background: $gray-200;
+            }
+
+            &:nth-child(even) {
+              background: $gray-400;
+            }
+          }
+        }
+
+        button {
+          font-family: "proxima_novasemibold", Arial, sans-serif;
+          font-size: 17px;
+          letter-spacing: 5.1px;
+          background: $green;
+          border-radius: 8px;
+          width: 140px;
+          margin: auto;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+
+  .signup-container {
+    background: $gray-200;
+  }
+}
+
+.title-block {
+  background: $black;
+  font-size: 45px;
+  letter-spacing: 20px;
+  padding: 15px 0;
+
+  @media (max-width: 992px) {
+    font-size: 25px;
+    letter-spacing: 10px;
+  }
+}
+
+.fixed-bottom {
+  z-index: 0;
+  margin: 0 15px;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
+}

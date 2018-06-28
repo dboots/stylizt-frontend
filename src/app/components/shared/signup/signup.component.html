@@ -1,5 +1,5 @@
-<div *ngIf="showSignup" [hidden]="success">
-  <div class="col-12 my-4">
+<div class="signup-component" [class.stylist]="type === 'stylist'" *ngIf="showSignup" [hidden]="success">
+  <div class="warning-message col-12">
     <p class="bigly text-center">{{ message }}</p>
   </div>
 
@@ -9,7 +9,9 @@
     <input type="email" [(ngModel)]="model.email"  class="" placeholder="EMAIL ADDRESS">
     <input type="password" [(ngModel)]="model.password"  class="" placeholder="PASSWORD">
     <input type="password" [(ngModel)]="passwordConfirm"  class="" placeholder="CONFIRM PASSWORD">
-    <button (click)="signup()" class="pull-right">SUBMIT</button>
+    <div class="submit-button-div d-flex pb-4">
+      <button (click)="signup()" class="">SUBMIT</button>
+    </div>  
   </div>
 </div>
 

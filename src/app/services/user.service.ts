@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable()
 export class UserService {
@@ -21,7 +17,7 @@ export class UserService {
   }
 
   update(token: string, body: User) {
-    return this.http.post(environment.rootApiUrl + '/update', body, AuthService.httpOptions(token));
+    return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }
 
   setPassword(body) {

@@ -13,8 +13,9 @@ export class TalentService {
     private authService: AuthService
   ) { }
 
-  read(token: string) {
-    return this.http.get(`${environment.rootApiUrl}/stylist/talents`, AuthService.httpOptions(token));
+  read() {
+    let token = this.authService.token;
+    return this.http.get(`${environment.rootApiUrl}/talents`, AuthService.httpOptions(token));
   }
 
   readMockData() {

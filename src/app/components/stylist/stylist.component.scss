@@ -18,8 +18,8 @@ header {
           letter-spacing: 1.9px;
           color: $black;
 
-          @media (max-width: 1200px) {
-            // font-size: 17px;
+          @media (max-width: 414px) {
+            font-size: 45px;
             // line-height: 1.94;
             // letter-spacing: 0.7px;
           }
@@ -65,6 +65,10 @@ header {
             color: $black;
             width: 131px;
             height: 25px;
+
+            @media (max-width: 768px) {
+              height: 40px;
+            }
           }
         }
       }
@@ -117,7 +121,7 @@ header {
     background: $gray-200;
 
     .how-it-works-container {
-      padding: 50px 0;
+      padding: 50px 15px;
       
       img {
         margin-bottom: 30px;
@@ -138,8 +142,6 @@ header {
 }
 
 .sign-up-component {
-  padding-top: 100px;
-
   .header-row {
     .black-diamond-font {
       font-size: 52px;

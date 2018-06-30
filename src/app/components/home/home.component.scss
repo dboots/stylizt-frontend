@@ -32,10 +32,6 @@ header {
           }
         }
       }
-
-      .signup-form-content {
-        margin-top: 100px;
-      }
     }
   }
 }
@@ -43,7 +39,7 @@ header {
 .find-salons-title-container {
   font-size: 40px;
   letter-spacing: 20px;
-  padding: 60px 0;
+  padding: 60px 15px;
 
   @media (max-width: 1200px) {
     letter-spacing: 10px;
@@ -96,7 +92,7 @@ header {
   letter-spacing: 5px;
 
   .row {
-    padding: 135px 0;
+    padding: 45px 0;
 
     @media (max-width: 576px) {
       padding: 15px 15px;
@@ -157,10 +153,10 @@ header {
     background-repeat: no-repeat;
     height: 300px;
     background-size: cover;
-    letter-spacing: 5.7px;
 
     @media (max-width: 768px) {
       font-size: 22px;
+      letter-spacing: 2px;
     }
 
     .black-diamond-font {
@@ -173,7 +169,7 @@ header {
       }
 
       @media (max-width: 414px) {
-        font-size: 43px;
+        font-size: 38px;
       }
     }
   }

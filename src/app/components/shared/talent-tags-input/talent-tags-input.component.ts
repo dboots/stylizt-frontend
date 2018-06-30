@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AuthService, TalentService } from '../../../services';
+import { Component, OnInit, Input } from '@angular/core';
+import { TalentService } from '../../../services';
+import { Talent } from '../../../models/talent.model';
 
 @Component({
   selector: 'app-talent-tags-input',
@@ -8,48 +8,51 @@ import { AuthService, TalentService } from '../../../services';
   styleUrls: ['./talent-tags-input.component.scss']
 })
 export class TalentTagsInputComponent implements OnInit {
-  itemList: any = [];
-  selectedItems = [];
+  itemList: Talent[] = [];
+  @Input() talents: Talent[] = [];
+  selectedItems: Talent[] = [];
   settings = {};
-
+  
   constructor(
-    private http: HttpClient,
-    private authService: AuthService,
     private talentService: TalentService
   ) { }
-
+  
   ngOnInit() {
     this.settings = {
       text: 'YOUR TALENTS...',
       classes: 'myclass custom-class',
-      primaryKey: 'id',
-      labelKey: 'name',
+      primaryKey: '_id',
+      labelKey: 'talent',
       enableSearchFilter: true,
       enableCheckAll: false
       // noDataLabel: 'Search for talent to add...',
       // searchBy: ['name']
     };
-
+    
     this.itemList = [];
     // this.talentService.read(this.authService.token) // The actual api which should be replaced later
-    this.talentService.readMockData()
-      .subscribe((res: any) => {
-        this.itemList = res;
-      }, (err) => {
+    this.talentService.read().subscribe((res: any) => {
+      this.itemList = res.data;
 
+      this.selectedItems = this.itemList.filter((talent: any) => {
+        let idx = getTalentIndex(talent, this.talents);
+        return (idx != -1);
       });
-  }
 
+    }, (err) => {
+      
+    });
+  }
+  
   onItemSelect(item: any) {
-      console.log(item);
-      console.log(this.selectedItems);
+    this.talents.push(item._id);
   }
-
-  OnItemDeSelect(item: any) {
-      console.log(item);
-      console.log(this.selectedItems);
+  
+  onItemDeSelect(item: any) {
+    let idx = getTalentIndex(item as Talent, this.talents);
+    this.talents.splice(idx, 1);
   }
-
+  
   onSearch(evt: any) {
     // console.log(evt.target.value);
     // this.http.get('https://restcountries.eu/rest/v2/name/'+evt.target.value+'?fulltext=true')
@@ -57,7 +60,13 @@ export class TalentTagsInputComponent implements OnInit {
     //         console.log(res);
     //         this.itemList = res;
     //     }, (error) => {
-
+    
     //     });
   }
+}
+
+function getTalentIndex(needle: Talent, haystack: Talent[]): number {
+  return haystack.findIndex((t: Talent) => {
+    return (t._id == needle._id);
+  });
 }

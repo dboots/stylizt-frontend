@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { Cloudinary } from '@cloudinary/angular-5.x';
-import { User } from '../../../models';
+import { User, Talent } from '../../../models';
 import { AuthService, UserService } from '../../../services';
 
 @Component({
@@ -12,18 +11,18 @@ export class StylistProfilePageComponent implements OnInit {
   user: User;
   responses: any[];
   status: string;
+  talents: Talent[] = [];
 
   constructor(
-    private cloudinary: Cloudinary,
     private authService: AuthService,
-    private userService: UserService,
-    private zone: NgZone,
+    private userService: UserService
   ) {
     this.responses = [];
   }
 
   ngOnInit() {
     this.user = this.authService.decode();
+    this.talents = this.user.talents;
   }
 
   profileImageUploadCompleted(response) {
@@ -31,6 +30,7 @@ export class StylistProfilePageComponent implements OnInit {
   }
 
   uploadAndUpdate() {
+    this.user.talents = this.talents;
     this.update();
   }
 

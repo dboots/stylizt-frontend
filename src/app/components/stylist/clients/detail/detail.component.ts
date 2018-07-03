@@ -140,7 +140,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
       image: this.clientProfileImage
     };
     this.clientService.update(this.clientId, body, this.authService.token).subscribe((result) => {
-      console.log(result);
     }, (err) => {
       alert(err.error.messages[0]);
     });
@@ -205,7 +204,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
           this.postNote();
         }
       }, (reason) => {
-        console.log(22222, reason);
       });
     } else {
       this.postNote();

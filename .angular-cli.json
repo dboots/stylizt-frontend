@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "client"
+    "name": "client",
+    "ejected": true
   },
   "apps": [
     {
@@ -23,11 +24,7 @@
         "styles.scss"
       ],
       "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
+      "environmentSource": "environments/environment.ts"
     }
   ],
   "e2e": {

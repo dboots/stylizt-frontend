@@ -4,5 +4,11 @@
 
 Make sure angular-cli is installed: `npm install -g @angular/cli`
 
-Client: From **/client** do `npm i && ng server` or just `ng server` if you've already done an `npm i`
-Server: From **/server** do `node index`
+# Install
+`npm i`
+
+# Start Client
+`npm run start:dev`
+
+# Build Client
+`npm run start` which is an alias for `npm run build && node server.js`

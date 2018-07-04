@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { User, Talent } from '../../../models';
 import { AuthService, UserService } from '../../../services';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-page-stylistprofile',
@@ -12,10 +13,12 @@ export class StylistProfilePageComponent implements OnInit {
   responses: any[];
   status: string;
   talents: Talent[] = [];
+  modalRef: NgbModalRef;
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private modalService: NgbModal,
   ) {
     this.responses = [];
   }
@@ -40,6 +43,13 @@ export class StylistProfilePageComponent implements OnInit {
       this.status = 'Profile updated!';
     }, (err) => {
       console.log('Error while updating user', err);
+    });
+  }
+
+  modal(content) {
+    this.modalRef = this.modalService.open(content);
+    this.modalRef.result.then((result) => {
+    }, (reason) => {
     });
   }
 

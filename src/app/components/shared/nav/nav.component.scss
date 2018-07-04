@@ -36,6 +36,23 @@ nav {
       letter-spacing: 4.5px;
       
       .nav-item {
+        @media (max-width: 991px) {
+          width: 100%;
+          margin: 1% 0;
+
+          a {
+            padding: 2%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          margin: 2% 0;
+
+          a {
+            padding: 4%;
+          }
+        }
+
         a {
           cursor: pointer;
           color: $white;
@@ -44,6 +61,7 @@ nav {
             color: $green;
           }
         }
+
         &.nav-login {
           a {
             &:hover {

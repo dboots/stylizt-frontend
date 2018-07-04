@@ -41,6 +41,7 @@ import { Cloudinary } from 'cloudinary-core';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NoteCardComponent } from './components/shared/note-card/note-card.component';
 import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
+import { CustomDropdownComponent } from './components/shared/custom-dropdown/custom-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TalentTagsInputComponent } from './components/shared/talent-tags-input/
     PasswordPageComponent,
     ConfirmDialogComponent,
     NoteCardComponent,
-    TalentTagsInputComponent
+    TalentTagsInputComponent,
+    CustomDropdownComponent
   ],
   imports: [
     BrowserModule,

@@ -114,19 +114,11 @@
   <div class="container">
     <div class="title-row row">
       <div class="col text-center">CHICAGO, IL THAT 
-        <div ngbDropdown class="style-dropdown d-inline-block my-3 my-md-0">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ currentOption }}</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <ng-container *ngFor="let option of dropdownOptions">
-              <button
-                *ngIf="option !== currentOption"
-                class="dropdown-item"
-                (click)="selectDropdown(option)">
-                {{ option }}
-              </button>
-            </ng-container>
-          </div>
-        </div>
+        <app-custom-dropdown
+          [dropdownOptions]="dropdownOptions"
+          [currentOption]="currentOption"
+          (onselect)="selectDropdown($event)">
+        </app-custom-dropdown>
       </div>
     </div>
     <div class="row py-md-4 py-sm-1">

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { ConfirmDialogComponent } from '../../../shared/diglogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
   ClientService,

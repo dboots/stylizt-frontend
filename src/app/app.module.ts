@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelper } from 'angular2-jwt';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,7 +71,8 @@ import { TalentTagsInputComponent } from './components/shared/talent-tags-input/
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'your_cloud_name' } as CloudinaryConfiguration),
     FileUploadModule,
     ReactiveFormsModule,
-    AngularMultiSelectModule
+    AngularMultiSelectModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     UserService,

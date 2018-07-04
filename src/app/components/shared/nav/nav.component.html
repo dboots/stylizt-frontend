@@ -10,12 +10,12 @@
     
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
+      <ul *ngIf="!isLoggedIn() && !isStylist" class="navbar-nav ml-auto align-items-center text-uppercase">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Featured Looks</a>
+          <a class="nav-link" [ngx-scroll-to]="'#featured-looks'" [ngx-scroll-to-offset]="-70">Featured Looks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Local Talent</a>
+          <a class="nav-link" [ngx-scroll-to]="'#local-talent'" [ngx-scroll-to-offset]="-70">Local Talent</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact">Contact</a>
@@ -25,12 +25,12 @@
         </li>
       </ul>
       
-      <ul *ngIf="false" class="navbar-nav ml-auto align-items-center text-uppercase">
+      <ul *ngIf="!isLoggedIn() && isStylist" class="navbar-nav ml-auto align-items-center text-uppercase">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">How It Works</a>
+          <a class="nav-link" [ngx-scroll-to]="'#how-it-works'" [ngx-scroll-to-offset]="-80">How It Works</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Sign Up</a>
+          <a class="nav-link" [ngx-scroll-to]="'#sign-up'" [ngx-scroll-to-offset]="-80">Sign Up</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact">Contact</a>

@@ -1,9 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -16,13 +16,24 @@ export class NavComponent implements OnInit {
   message: string = '';
   forgotPassword: boolean = false;
   isFullNav: boolean = true;
+  isStylist: boolean;
 
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        if (evt.url.includes('/stylist')) {
+          this.isStylist = true;
+        } else {
+          this.isStylist = false;
+        }
+      }
+    });
+  }
 
   @HostListener('window:scroll', ['$event'])
   track(event) {

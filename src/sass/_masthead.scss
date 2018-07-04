@@ -1,7 +1,7 @@
 header {
   &.masthead {
     margin-top: 75px;
-    padding: 8rem 0 !important;
+    padding: 8rem 0;
     position: relative;
     background-color: $gray-800;
     background: url('../assets/img/bg-masthead.jpg') no-repeat center center;
@@ -14,6 +14,38 @@ header {
       top: 0;
       left: 0;
       opacity: 0.3;
+    }
+    .hero-container {
+      .title-content {
+        border-left: 3px solid $green;
+        border-right: 3px solid $green;
+
+        > div {
+          font-family: 'proxima_novamedium';
+          font-size: 33px;
+          line-height: 1.25;
+
+          @media (max-width: 1200px) {
+            font-size: 22px;
+            line-height: 1.55;
+            letter-spacing: 0.7px;
+          }
+
+          &.text-uppercase {
+            font-family: 'proxima_novalight';
+            font-size: 66px;
+            line-height: 1.2;
+
+            @media (max-width: 1200px) {
+              font-size: 40px;
+            }
+  
+            span {
+              color: $green;
+            }
+          }
+        }
+      }
     }
     h1 {
       font-size: 3rem;

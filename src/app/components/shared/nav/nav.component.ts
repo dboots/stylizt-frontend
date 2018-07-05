@@ -60,7 +60,7 @@ export class NavComponent implements OnInit {
           {name: 'Featured Looks', url: '#featured-looks', scroll: true},
           {name: 'Local Talent', url: '#local-talent', scroll: true},
           {name: 'Contact', url: '/contact', scroll: false},
-          {name: 'Login', url: 'login', scroll: false}
+          {name: 'Login'}
         ];
       });
   }

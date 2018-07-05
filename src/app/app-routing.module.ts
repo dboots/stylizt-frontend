@@ -21,7 +21,7 @@ const routes: Routes = [
         {name: 'Featured Looks', url: '#featured-looks', scroll: true},
         {name: 'Local Talent', url: '#local-talent', scroll: true},
         {name: 'Contact', url: '/contact', scroll: false},
-        {name: 'Login', url: 'login', scroll: false}
+        {name: 'Login'}
       ]}
     },
     {
@@ -31,7 +31,7 @@ const routes: Routes = [
         {name: 'How It Works', url: '#how-it-works', scroll: true},
         {name: 'Sign Up', url: '#sign-up', scroll: true},
         {name: 'Contact', url: '/contact', scroll: false},
-        {name: 'Login', url: 'login', scroll: false}
+        {name: 'Login'}
       ]}
     },
     { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },

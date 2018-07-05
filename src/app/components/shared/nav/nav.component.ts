@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
@@ -16,21 +16,22 @@ export class NavComponent implements OnInit {
   message: string = '';
   forgotPassword: boolean = false;
   isFullNav: boolean = true;
-  isStylist: boolean;
+  navItems: any[];
 
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
-        if (evt.url.includes('/stylist')) {
-          this.isStylist = true;
-        } else {
-          this.isStylist = false;
-        }
+        // if (evt.url.includes('/stylist')) {
+        //   this.isStylist = true;
+        // } else {
+        //   this.isStylist = false;
+        // }
       }
     });
   }
@@ -45,6 +46,23 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .map(() => this.activatedRoute)
+      .map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      })
+      .filter((route) => route.outlet === 'primary')
+      .mergeMap((route) => route.data)
+      .subscribe((event) => {
+        this.navItems = event.navItems || [
+          {name: 'Featured Looks', url: '#featured-looks', scroll: true},
+          {name: 'Local Talent', url: '#local-talent', scroll: true},
+          {name: 'Contact', url: '/contact', scroll: false},
+          {name: 'Login', url: 'login', scroll: false}
+        ];
+      });
   }
 
   isLoggedIn() {

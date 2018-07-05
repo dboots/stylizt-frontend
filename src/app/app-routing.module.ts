@@ -14,8 +14,26 @@ import { PasswordPageComponent } from './components/password/password.component'
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
 const routes: Routes = [
-    { path: '', component: HomePageComponent },
-    { path: 'stylist', component: StylistPageComponent },
+    {
+      path: '',
+      component: HomePageComponent,
+      data: {navItems: [
+        {name: 'Featured Looks', url: '#featured-looks', scroll: true},
+        {name: 'Local Talent', url: '#local-talent', scroll: true},
+        {name: 'Contact', url: '/contact', scroll: false},
+        {name: 'Login', url: 'login', scroll: false}
+      ]}
+    },
+    {
+      path: 'stylist',
+      component: StylistPageComponent,
+      data: {navItems: [
+        {name: 'How It Works', url: '#how-it-works', scroll: true},
+        {name: 'Sign Up', url: '#sign-up', scroll: true},
+        {name: 'Contact', url: '/contact', scroll: false},
+        {name: 'Login', url: 'login', scroll: false}
+      ]}
+    },
     { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },
     { path: 'stylist/clients/:id', component: StylistClientsDetailPageComponent, canActivate: [AuthGuard] },
     { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },

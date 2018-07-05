@@ -8,35 +8,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul *ngIf="!isLoggedIn() && !isStylist" class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item">
-          <a class="nav-link" [ngx-scroll-to]="'#featured-looks'" [ngx-scroll-to-offset]="-70">Featured Looks</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [ngx-scroll-to]="'#local-talent'" [ngx-scroll-to-offset]="-70">Local Talent</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Contact</a>
-        </li>
-        <li class="nav-item nav-login">
-          <a class="nav-link" (click)="modal(login)">Login</a>
-        </li>
-      </ul>
-      
-      <ul *ngIf="!isLoggedIn() && isStylist" class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item">
-          <a class="nav-link" [ngx-scroll-to]="'#how-it-works'" [ngx-scroll-to-offset]="-80">How It Works</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [ngx-scroll-to]="'#sign-up'" [ngx-scroll-to-offset]="-80">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Contact</a>
-        </li>
-        <li class="nav-item nav-login">
-          <a class="nav-link" (click)="modal(login)">Login</a>
+      <ul
+        *ngIf="!isLoggedIn()"
+        class="navbar-nav ml-auto align-items-center text-uppercase">
+        <li class="nav-item" [class.nav-login]="nav.name === 'Login'" *ngFor="let nav of navItems">
+          <a class="nav-link" *ngIf="nav.name !== 'Login' && nav.scroll" [ngx-scroll-to]="nav.url" [ngx-scroll-to-offset]="-80">{{ nav.name }}</a>
+          <a class="nav-link" *ngIf="nav.name !== 'Login' && !nav.scroll" [routerLink]="nav.url" >{{ nav.name }}</a>
+          <a class="nav-link" *ngIf="nav.name === 'Login'" (click)="modal(login)">Login</a>
         </li>
       </ul>
       

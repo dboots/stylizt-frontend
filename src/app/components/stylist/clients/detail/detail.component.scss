@@ -1,6 +1,21 @@
 @import '../../../../../sass/_mixins';
 @import '../../../../../sass/_variables';
 
+.fa {
+  font-size: 50px;
+}
+
+.icon-title {
+  margin: 5%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.icon-text {
+  font-size: 14px;
+  font-style: italic;
+}
+
 .detail-component {
   padding-top: 100px;
 

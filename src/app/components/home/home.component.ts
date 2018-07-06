@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { LocationService } from '../../services';
 
 @Component({
   selector: 'app-home',
@@ -13,34 +13,12 @@ export class HomePageComponent implements OnInit {
   currentLocation: string;
 
   constructor(
-    private http: HttpClient
+    public locationService: LocationService
   ) {}
 
   ngOnInit() {
     this.dropdownOptions = ['DO IT ALL', 'BANGS', 'UPDOS', 'WEAVES'];
     this.currentOption = 'DO IT ALL';
-
-    this.getCurrentLocation();
-  }
-
-  getCurrentLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const res: any = await this.http.get('//maps.googleapis.com/maps/api/geocode/json',
-            {
-              params: {
-                latlng: pos.coords.latitude + ',' + pos.coords.longitude
-              }
-            }
-          ).toPromise();
-          this.currentLocation = res.results[0].formatted_address || '';
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }
   }
 
   selectDropdown(option: any) {

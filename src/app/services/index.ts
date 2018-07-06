@@ -18,3 +18,6 @@ export { NotesService } from './notes.service';
 
 import { TalentService } from './talent.service';
 export { TalentService } from './talent.service';
+
+import { LocationService } from './location.service';
+export { LocationService } from './location.service';

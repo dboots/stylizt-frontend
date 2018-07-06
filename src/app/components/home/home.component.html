@@ -105,7 +105,7 @@
   
   <div id="local-talent" class="row mt-5">
     <div class="col-12 m-auto text-center text-white title-block">
-      TALENT {{ currentLocation && 'IN' }}
+      TALENT {{ locationService.currentLocation && 'IN' }}
     </div>
   </div>
 </div>
@@ -113,7 +113,7 @@
 <div class="talent-in-your-area-section">
   <div class="container">
     <div class="title-row row">
-      <div class="col text-center">{{ currentLocation }} THAT 
+      <div class="col text-center">{{ locationService.currentLocation }} THAT 
         <app-custom-dropdown
           [dropdownOptions]="dropdownOptions"
           [currentOption]="currentOption"

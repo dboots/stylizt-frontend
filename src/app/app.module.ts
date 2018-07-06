@@ -17,7 +17,8 @@ import {
   AuthService,
   PortfolioService,
   NotesService,
-  TalentService
+  TalentService,
+  LocationService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -84,6 +85,7 @@ import { CustomDropdownComponent } from './components/shared/custom-dropdown/cus
     PortfolioService,
     NotesService,
     TalentService,
+    LocationService,
     JwtHelper
   ],
   entryComponents: [

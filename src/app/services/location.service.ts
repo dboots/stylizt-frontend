@@ -3,24 +3,36 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class LocationService {
-  currentLocation: string;
+  get currentLocation(): string {
+    return localStorage.getItem('currentLocation');
+  }
+
+  set currentLocation(val) {
+    localStorage.setItem('currentLocation', val);
+  }
 
   constructor(private http: HttpClient) {
-    this.getCurrentLocation();
+    if (!this.currentLocation) {
+      this.getCurrentLocation();
+    }
   }
 
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (pos) => {
-          const res: any = await this.http.get('//maps.googleapis.com/maps/api/geocode/json',
+          const res: any = await this.http.get('https://maps.googleapis.com/maps/api/geocode/json',
             {
               params: {
+                key: 'AIzaSyDCLogJN6E_s1uNso1FDiB90qGFHVOjd9w',
                 latlng: pos.coords.latitude + ',' + pos.coords.longitude
               }
             }
           ).toPromise();
-          this.currentLocation = res.results[0].formatted_address || '';
+          const currentLocation = res.results[0].formatted_address || '';
+          if (currentLocation) {
+            this.currentLocation = currentLocation;
+          }
         },
         (err) => {
           console.log(err);

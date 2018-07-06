@@ -20,10 +20,14 @@ export class HomePageComponent implements OnInit {
     this.dropdownOptions = ['DO IT ALL', 'BANGS', 'UPDOS', 'WEAVES'];
     this.currentOption = 'DO IT ALL';
 
+    this.getCurrentLocation();
+  }
+
+  getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (pos) => {
-          const res: any = await this.http.get('http://maps.googleapis.com/maps/api/geocode/json',
+          const res: any = await this.http.get('//maps.googleapis.com/maps/api/geocode/json',
             {
               params: {
                 latlng: pos.coords.latitude + ',' + pos.coords.longitude

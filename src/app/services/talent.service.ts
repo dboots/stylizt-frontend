@@ -7,15 +7,21 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class TalentService {
+  itemList: Talent[];
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  read() {
-    let token = this.authService.token;
-    return this.http.get(`${environment.rootApiUrl}/talents`, AuthService.httpOptions(token));
+  async read(): Promise<any[]> {
+    const token = this.authService.token;
+    if (this.itemList === undefined) {
+      const result = await this.http.get(environment.rootApiUrl + '/talents', AuthService.httpOptions(token))
+        .map((res: any) => res['data'] as any[]).toPromise();
+      this.itemList = result;
+    }
+    return new Promise<any[]>((resolve) => resolve(this.itemList));
   }
 
   readMockData() {

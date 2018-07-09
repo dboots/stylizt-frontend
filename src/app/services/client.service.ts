@@ -6,17 +6,24 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ClientService {
+  clients: any[];
+
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) { }
+  ) {}
 
   create(body: Client, token: string) {
     return this.http.post(environment.rootApiUrl + '/stylist/clients', body, AuthService.httpOptions(token));
   }
 
-  read(token: string) {
-    return this.http.get(environment.rootApiUrl + '/stylist/clients', AuthService.httpOptions(token));
+  async read(token: string): Promise<any[]> {
+    if (this.clients === undefined) {
+      const result = await this.http.get(environment.rootApiUrl + '/stylist/clients', AuthService.httpOptions(token))
+        .map((res: any) => res['data'] as any[]).toPromise();
+      this.clients = result;
+    }
+    return new Promise<any[]>((resolve) => resolve(this.clients));
   }
 
   update(id: string, body: Client, token: string) {

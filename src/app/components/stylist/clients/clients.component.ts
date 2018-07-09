@@ -24,18 +24,18 @@ export class StylistClientsPageComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.clientName = new FormControl('', [Validators.required]),
 
     this.clientForm = new FormGroup({
       clientName: this.clientName
     });
 
-    this.clientService.read(this.authService.token).subscribe((result) => {
-      this.clients = result['data'] as any[];
-    }, (err) => {
-      console.log(err);
-    });
+    try {
+      this.clients = await this.clientService.read(this.authService.token);
+    } catch (e) {
+      console.log('exception', e);
+    }
   }
 
   showAddClientModal(modal) {

@@ -29,16 +29,29 @@ export class SignupComponent {
     this.model.type = this.type;
 
     // TODO: Convert this to use FormValidators
+    /*
     if (!this.plan) {
       this.message = 'Please select a plan that interests you';
       return false;
     } else {
       this.model.plan = this.plan;
     }
+    */
 
     // TODO: Convert this to use FormValidators
+
+    if (!this.model.name) {
+      this.message = 'Please enter your name';
+      return false;
+    }
+
     if (!this.model.email) {
       this.message = 'Please enter an email address';
+      return false;
+    }
+
+    if (!this.model.password) {
+      this.message = 'Please enter a password';
       return false;
     }
 

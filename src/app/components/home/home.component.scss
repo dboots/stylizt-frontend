@@ -2,7 +2,9 @@
 
 header {
   &.masthead {
-    padding: 6rem;
+    padding: 8rem;
+    background: url('../../../assets/img/header-home.jpg') no-repeat center center;
+    background-size: cover;
   }
 }
 .find-salons-title-container {
@@ -117,6 +119,7 @@ header {
 
 .signup-component {
   .image-div {
+    background: rgba(0, 0, 0, .8);
     text-decoration: none;
     font-size: 30px;
     background-repeat: no-repeat;

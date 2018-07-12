@@ -21,9 +21,9 @@ header {
         border-right: 3px solid $green;
 
         > div {
-          font-family: 'proxima_novamedium';
           font-size: 33px;
           line-height: 1.25;
+          font-family: 'proxima_novalight';
 
           @media (max-width: 1200px) {
             font-size: 22px;

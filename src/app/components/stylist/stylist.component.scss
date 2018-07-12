@@ -2,21 +2,24 @@
 
 header {
   &.masthead {
-    
+    padding: 11rem 0;
+    background: url('../../../assets/img/header-stylist.jpg') no-repeat center center;
+    background-size: cover;
+
     .hero-container {
       .title {
         font-family: "Black Diamond";
         font-size: 55px;
         letter-spacing: 1.9px;
         color: $black;
-        
+
         @media (max-width: 414px) {
           font-size: 45px;
           // line-height: 1.94;
           // letter-spacing: 0.7px;
         }
       }
-      
+
       .subtitle {
         font-family: 'proxima_novamedium';
         font-size: 16px;
@@ -28,13 +31,13 @@ header {
           // font-size: 40px;
         }
       }
-      
+
       .select-box {
         font-family: 'proxima_novalight';
         font-size: 17px;
         letter-spacing: 5.1px;
         color: $black;
-        
+
         .title {
           display: inline-block;
           background: $white;

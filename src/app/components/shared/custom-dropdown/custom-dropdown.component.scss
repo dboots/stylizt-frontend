@@ -1,9 +1,14 @@
 @import '../../../../sass/variables';
 
 .custom-dropdown-component {
+  .dropdown-item {
+    text-align: left;
+    font-size: 30px;
+    padding: 5% 2%;
+  }
   > button {
     font-family: "proxima_novabold";
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 10px;
     color: $black;
     background: $white;

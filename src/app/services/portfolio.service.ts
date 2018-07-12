@@ -18,15 +18,11 @@ export class PortfolioService {
     return this.http.get(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio`, AuthService.httpOptions(token));
   }
 
-  update(clientId: string, portfolioId: string, body: Portfolio, token: string) {
-    return this.http.patch(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio/${portfolioId}`, body, AuthService.httpOptions(token));
+  update(body: Portfolio, token: string) {
+    return this.http.patch(`${environment.rootApiUrl}/stylist/portfolio/${body._id}`, body, AuthService.httpOptions(token));
   }
 
-  detail(clientId: string, portfolioId: string, token: string) {
-    return this.http.get(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio/${portfolioId}`, AuthService.httpOptions(token));
-  }
-
-  delete(clientId: string, portfolioId: string, token: string) {
-    return this.http.delete(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio/${portfolioId}`, AuthService.httpOptions(token));
+  delete(portfolioId: string, token: string) {
+    return this.http.delete(`${environment.rootApiUrl}/stylist/portfolio/${portfolioId}`, AuthService.httpOptions(token));
   }
 }

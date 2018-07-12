@@ -10,15 +10,18 @@
 </header>
 
 <!-- Image Showcases -->
-<section class="">
-  <form (ngSubmit)="submit($event)" *ngIf="!formSubmitted">
+<section>
+  <form [formGroup]="contactForm" (ngSubmit)="submit()" *ngIf="!formSubmitted" novalidate>
     <div class="row">
       <div class="col-md-8 mx-auto">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <label class="text-uppercase" for="exampleInputEmail1">Name</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label class="text-uppercase" for="nameInput">Name</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Name" id="nameInput">
+              <div class="form-field-error" *ngIf="contactFormErrors.name.required">
+                Name is required
+              </div>
             </div>
           </div>
         </div>
@@ -26,9 +29,15 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <label class="text-uppercase" for="exampleInputEmail1">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label class="text-uppercase" for="emailInput">Email</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="Email" id="emailInput">
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              <div class="form-field-error" *ngIf="contactFormErrors.email.required">
+                Email is required!
+              </div>
+              <div class="form-field-error" *ngIf="!contactFormErrors.email.required && contactFormErrors.email.email">
+                Enter a valid email!
+              </div>
             </div>
           </div>    
         </div>
@@ -36,15 +45,18 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <label class="text-uppercase" for="exampleInputEmail1">Tell us your thoughts</label>
-              <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+              <label class="text-uppercase" for="thoughtsTextarea">Tell us your thoughts</label>
+              <textarea class="form-control" formControlName="thoughts" placeholder="Type here..." id="thoughtsTextarea" rows="3"></textarea>
+              <div class="form-field-error" *ngIf="contactFormErrors.thoughts.required">
+                Required field!
+              </div>  
             </div>
           </div>
         </div>
         
-        <div class="">
+        <div>
           <div class="pull-right">
-            <button type="submit" class="common-gw-button">Submit</button>
+            <button type="submit" class="btn common-gw-button" [disabled]="contactForm.invalid">Submit</button>
           </div>
         </div>
       </div>

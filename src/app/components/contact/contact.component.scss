@@ -1,6 +1,8 @@
 @import '../../../sass/variables';
 
 section {
+  padding: 45px;
+  
   form {
     font-family: 'proxima_novalight';
     font-size: 15px;
@@ -21,6 +23,32 @@ section {
           border: 1px solid $green;
         }
       }
+    }
+  }
+
+  .success-container {
+    margin: 50px auto 0;
+    
+    i {
+      font-size: 60px;
+      padding: 25px;
+      border-radius: 50%;
+      border: 5px solid $gray-400;
+      color: $green;
+    }
+    
+    .title {
+      font-family: 'Black Diamond';
+      font-size: 60px;
+      letter-spacing: 5px;
+      color: #9ed5be;
+      margin: 45px 0 20px;
+    }
+    
+    .sub-text {
+      font-size: 20px;
+      line-height: 2;
+      letter-spacing: 0.6px;
     }
   }
 }

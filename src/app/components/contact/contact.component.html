@@ -10,8 +10,8 @@
 </header>
 
 <!-- Image Showcases -->
-<section class="p-4">
-  <form>
+<section class="">
+  <form (ngSubmit)="submit($event)" *ngIf="!formSubmitted">
     <div class="row">
       <div class="col-md-8 mx-auto">
         <div class="row">
@@ -50,4 +50,13 @@
       </div>
     </div>
   </form>
+  <div class="success-container container" *ngIf="formSubmitted">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <div class="title text-uppercase">Thank you!</div>
+        <div class="sub-text">Your form was submitted successfully!</div>
+      </div>
+    </div>    
+  </div>
 </section>

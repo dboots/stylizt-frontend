@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactPageComponent implements OnInit {
+  formSubmitted: boolean;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  submit(event) {
+    this.formSubmitted = true;
+  }
 }

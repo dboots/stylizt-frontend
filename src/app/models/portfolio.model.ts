@@ -1,7 +1,7 @@
 import { Talent } from './talent.model';
 
 export class Portfolio {
-  id: string;
+  _id: string;
   clientId: string;
   image: string;
   caption: string;

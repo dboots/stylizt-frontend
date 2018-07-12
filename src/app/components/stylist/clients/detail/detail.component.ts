@@ -65,7 +65,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
           email: result.data.email
         });
 
-        console.log(result.data);
         this.clientProfileImage = result.data.image;
         this.clientPortfolios = result.data.portfolio;
         this.clientNotes = result.data.notes;
@@ -151,7 +150,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
     var t = this;
     this.portfolioService.create(portfolio, this.authService.token)
       .subscribe((result: any) => {
-        console.log(result.data);
         t.clientPortfolios.push(result.data);
       }, (err) => {
 
@@ -163,20 +161,21 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.modalRef = this.modalService.open(portfolioDetailModal, { windowClass: 'client-portfolio-modal', size: 'lg' });
   }
 
-  deletePortfolio() {
-    const selectedPortfolioToDelete: Portfolio = null;
-    this.portfolioService.delete(selectedPortfolioToDelete.clientId, selectedPortfolioToDelete.id, this.authService.token)
+  deletePortfolio(portfolio: Portfolio) {
+    this.portfolioService.delete(portfolio._id, this.authService.token)
       .subscribe((result: any) => {
+        let idx = this.clientPortfolios.findIndex((p: Portfolio) => p._id === portfolio._id);
+        this.clientPortfolios.splice(idx, 1);
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();
       });
   }
 
-  updateCaptionForPortfolio() {
-    const selectedPortfolioToUpdate: Portfolio = null;
-    this.portfolioService.update(selectedPortfolioToUpdate.clientId, selectedPortfolioToUpdate.id, selectedPortfolioToUpdate, this.authService.token)
+  updatePortfolio(portfolio: Portfolio) {
+    this.portfolioService.update(portfolio, this.authService.token)
       .subscribe((result: any) => {
+        portfolio.talents = result.data.talents;
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();

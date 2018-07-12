@@ -9,7 +9,7 @@
     </div>
     <div class="green-divider"></div>
     <div class="container">
-      <div class="row">
+      <div class="row align-items-end">
         <div class="col-md-6">
           <div class="row">
             <div class="col">
@@ -90,9 +90,9 @@
     <div class="row p-4 mt-4">
       <div
       class="portfolio col-md-3 col-sm-12 my-4"
-      *ngFor="let image of clientPortfolioImages"
-      (click)="openPortfolioDetailModal(portfolioDetailModal, image)">
-      <img [src]="image" />
+      *ngFor="let item of clientPortfolios"
+      (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
+      <img [src]="item.image" />
       <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
     </div>
   </div>
@@ -190,11 +190,11 @@
     </button>
   </div>
   <div class="modal-body m-auto">
-    <img [src]="selectedImageForModal" />
+    <img [src]="selectedPortfolioItem.image" />
   </div>
   
   <div class="m-2">
-    <textarea class="w-100" [(ngModel)]="selectedImageForModal" rows="5" cols="30"></textarea>
+    <textarea class="w-100" [(ngModel)]="selectedPortfolioItem.caption" rows="5" cols="30"></textarea>
     <div class="d-flex justify-content-between">
       <button type="button" class="btn btn-outline-dark" (click)="deletePortfolio()">Delete Image</button>
       <button type="button" class="btn btn-outline-primary" (click)="updateCaptionForPortfolio()">Update Caption</button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Portfolio } from '../models';
 import { AuthService } from './auth.service';
@@ -7,12 +7,11 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class PortfolioService {
   constructor(
-    private http: HttpClient,
-    private authService: AuthService
+    private http: HttpClient
   ) { }
 
-  create(clientId: string, body: Portfolio, token: string) {
-    return this.http.post(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio`, body, AuthService.httpOptions(token));
+  create(body: Portfolio, token: string) {
+    return this.http.post(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
   read(clientId: string, token: string) {

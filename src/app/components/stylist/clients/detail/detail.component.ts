@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, ActivationEnd, Params } from '@angular/router';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Cloudinary } from '@cloudinary/angular-5.x';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
@@ -36,7 +35,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   portfolioImageUploadStatus: string;
   clientPortfolioImages: string[] = [];
   clientPortfolios: Portfolio[] = [];
-  selectedImageForModal: string;
+  selectedPortfolioItem: Portfolio;
 
   notesImageUploadStatus: string;
   clientNotesImages: string[] = [];
@@ -65,6 +64,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
           zip: result.data.zip,
           email: result.data.email
         });
+
+        console.log(result.data);
         this.clientProfileImage = result.data.image;
         this.clientPortfolios = result.data.portfolio;
         this.clientNotes = result.data.notes;
@@ -123,7 +124,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
     this.addPortfolio(image);
     // Temp solution. Should be removed.
-    this.clientPortfolioImages.push(image);
+    //this.clientPortfolioImages.push(image);
   }
 
   onUpdate() {
@@ -131,8 +132,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   updateClientDetails() {
-    const name = this.detailForm.get('name').value;
-    const zipcode = this.detailForm.get('zip').value;
     const body: Client = {
       name: this.detailForm.get('name').value,
       email: this.detailForm.get('email').value,
@@ -146,17 +145,21 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   addPortfolio(portfolioImage) {
-    const portfolio: Portfolio = new Portfolio(portfolioImage, '', this.clientId);
-    this.portfolioService.create(portfolio.clientId, portfolio, this.authService.token)
+    const talents = [];
+    const portfolio: Portfolio = new Portfolio( this.clientId, portfolioImage, '', talents, false);
+    
+    var t = this;
+    this.portfolioService.create(portfolio, this.authService.token)
       .subscribe((result: any) => {
-        this.clientPortfolios.push(result);
+        console.log(result.data);
+        t.clientPortfolios.push(result.data);
       }, (err) => {
 
       });
   }
 
-  openPortfolioDetailModal(portfolioDetailModal, image) {
-    this.selectedImageForModal = image;
+  openPortfolioDetailModal(portfolioDetailModal, portfolioItem) {
+    this.selectedPortfolioItem = portfolioItem;
     this.modalRef = this.modalService.open(portfolioDetailModal, { windowClass: 'client-portfolio-modal', size: 'lg' });
   }
 

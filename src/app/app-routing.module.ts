@@ -17,20 +17,20 @@ const routes: Routes = [
     {
       path: '',
       component: HomePageComponent,
-      data: {navItems: [
-        {name: 'Featured Looks', url: '#featured-looks', scroll: true},
-        {name: 'Local Talent', url: '#local-talent', scroll: true},
-        {name: 'Contact', url: '/contact', scroll: false},
-        {name: 'Login'}
+      data: { navItems: [
+        { name: 'Featured Looks', url: '#featured-looks', scroll: true },
+        { name: 'Local Talent', url: '#local-talent', scroll: true },
+        { name: 'Contact', url: '/contact', scroll: false },
+        { name: 'Login' }
       ]}
     },
     {
       path: 'stylist',
       component: StylistPageComponent,
-      data: {navItems: [
-        {name: 'How It Works', url: '#how-it-works', scroll: true},
-        {name: 'Sign Up', url: '#sign-up', scroll: true},
-        {name: 'Contact', url: '/contact', scroll: false},
+      data: { navItems: [
+        {name: 'How It Works', url: '#how-it-works', scroll: true },
+        {name: 'Sign Up', url: '#sign-up', scroll: true },
+        {name: 'Contact', url: '/contact', scroll: false },
         {name: 'Login'}
       ]}
     },
@@ -39,7 +39,13 @@ const routes: Routes = [
     { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },
     { path: 'stylist/portfolio', component: StylistPortfolioPageComponent, canActivate: [AuthGuard] },
     { path: 'owner', component: OwnerPageComponent },
-    { path: 'contact', component: ContactPageComponent },
+    {
+      path: 'contact',
+      component: ContactPageComponent,
+      data: { navItems: [
+        { name: 'Login' }
+      ]}
+    },
     { path: 'password/:token', component: PasswordPageComponent },
 ];
 

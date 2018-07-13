@@ -5,28 +5,71 @@
 
   <div class="main-form-content col-12 mb-2 mb-md-0">
     <div class="black-diamond-font mb-2">Sign Up Now</div>
-    <input type="name" [(ngModel)]="model.name" class="" placeholder="YOUR NAME">
-    <input type="email" [(ngModel)]="model.email"  class="" placeholder="EMAIL ADDRESS">
-    <input type="password" [(ngModel)]="model.password"  class="" placeholder="PASSWORD">
-    <input type="password" [(ngModel)]="passwordConfirm"  class="" placeholder="CONFIRM PASSWORD">
-    <div class="submit-button-div d-flex pb-4">
-      <button (click)="signup()" class="">SUBMIT</button>
-    </div>  
+    <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="name" placeholder="YOUR NAME">
+        <div class="form-field-error" *ngIf="signupFormErrors.name.required">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" formControlName="email" placeholder="EMAIL ADDRESS">
+        <div class="form-field-error" *ngIf="signupFormErrors.email.required">
+          Email is required!
+        </div>
+        <div class="form-field-error" *ngIf="!signupFormErrors.email.required && signupFormErrors.email.email">
+          Enter a valid email!
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="PASSWORD">
+        <div class="form-field-error" *ngIf="signupFormErrors.password.required">
+          Password is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="passwordRepeat"  placeholder="CONFIRM PASSWORD">
+        <div class="form-field-error" *ngIf="signupFormErrors.passwordRepeat.required">
+          Required!
+        </div>
+        <div class="form-field-error" *ngIf="signupFormErrors.passwordRepeat.passwordsNotMatch">
+          Password must match!
+        </div>
+      </div>
+      <div class="submit-button-div d-flex pb-4">
+        <button type="submit" class="btn" [disabled]="signupForm.invalid">SUBMIT</button>
+      </div>
+    </form>
   </div>
 </div>
 
 <div [hidden]="!success" class="my-4">
-  <h2 class="text-center">{{ this.message }}</h2>
+  <h2 class="text-center">{{ message }}</h2>
 </div>
 
 <div *ngIf="!showSignup">
-  <div class="col-12 mb-2 mb-md-0">
-    <input type="email" [(ngModel)]="model.email" class="mb-2 txt-email form-control form-control-lg" placeholder="Email Address">
-    <input type="password" [(ngModel)]="model.password"  class="mb-2 txt-password form-control form-control-lg" placeholder="Password">
-  </div>
-  <div class="col-12 mb-2">
-    <button (click)="login()" class="btn btn-block btn-lg btn-primary btn-signup">Login</button>
-  </div>
+  <form [formGroup]="signupForm" (ngSubmit)="login()" novalidate>
+    <div class="col-12 mb-2 mb-md-0">
+      <div class="form-group">
+        <input type="email" class="form-control" formControlName="email" placeholder="EMAIL ADDRESS">
+        <div class="form-field-error" *ngIf="signupFormErrors.email.required">
+          Email is required!
+        </div>
+        <div class="form-field-error" *ngIf="!signupFormErrors.email.required && signupFormErrors.email.email">
+          Enter a valid email!
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="PASSWORD">
+        <div class="form-field-error" *ngIf="signupFormErrors.password.required">
+          Password is required!
+        </div>
+      </div>  
+    </div>
+    <div class="col-12 mb-2">
+      <button type="submit" class="btn btn-block btn-lg btn-primary btn-signup" [disabled]="signupForm.invalid">Login</button>
+    </div>
+  </form>
 </div>
 
 <!--

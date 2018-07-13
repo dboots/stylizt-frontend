@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -17,17 +18,56 @@ export class SignupComponent {
   message = '';
   showSignup = true;
   success = false;
-  passwordConfirm: string;
+
+  signupForm: FormGroup;
+  signupFormErrors: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private userService: UserService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.initForm();
+  }
+
+  initForm() {
+    this.signupFormErrors = {
+      name: {},
+      email: {},
+      password: {},
+      passwordRepeat: {}
+    };
+
+    this.signupForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      passwordRepeat: ['', [Validators.required, confirmPassword]],
+    });
+
+    this.formValuesChanged();
+    this.signupForm.valueChanges.subscribe(() => {
+      this.formValuesChanged();
+    });
+  }
+
+  formValuesChanged() {
+    for (const field in this.signupFormErrors) {
+      if (this.signupFormErrors.hasOwnProperty(field)) {
+        this.signupFormErrors[field] = {};
+
+        const control = this.signupForm.get(field);
+
+        if (control && control.dirty && !control.valid) {
+          this.signupFormErrors[field] = control.errors;
+        }
+      }
+    }
+  }
 
   signup() {
     this.model.type = this.type;
-
     // TODO: Convert this to use FormValidators
     /*
     if (!this.plan) {
@@ -37,33 +77,9 @@ export class SignupComponent {
       this.model.plan = this.plan;
     }
     */
-
-    // TODO: Convert this to use FormValidators
-
-    if (!this.model.name) {
-      this.message = 'Please enter your name';
-      return false;
-    }
-
-    if (!this.model.email) {
-      this.message = 'Please enter an email address';
-      return false;
-    }
-
-    if (!this.model.password) {
-      this.message = 'Please enter a password';
-      return false;
-    }
-
-    if (this.model.password.length < 8) {
-      this.message = 'Password must be larger than 8 characters';
-      return false;
-    }
-
-    if (this.model.password !== this.passwordConfirm) {
-      this.message = 'Passwords must match';
-      return false;
-    }
+    this.model.name = this.signupForm.get('name').value;
+    this.model.email = this.signupForm.get('email').value;
+    this.model.password = this.signupForm.get('password').value;
 
     this.userService.signup(this.model).subscribe(
       (data) => {
@@ -78,6 +94,9 @@ export class SignupComponent {
   }
 
   login() {
+    this.model.email = this.signupForm.get('email').value;
+    this.model.password = this.signupForm.get('password').value;
+
     this.userService.login(this.model).subscribe(
       (data) => {
         this.message = 'Thanks for logging in!';
@@ -87,5 +106,28 @@ export class SignupComponent {
         return Observable.throw(error);
       }
     );
+  }
+}
+
+function confirmPassword(control: AbstractControl) {
+  if ( !control.parent || !control ) {
+    return;
+  }
+
+  const password = control.parent.get('password');
+  const passwordRepeat = control.parent.get('passwordRepeat');
+
+  if ( !password || !passwordRepeat ) {
+    return;
+  }
+
+  if ( passwordRepeat.value === '' ) {
+    return;
+  }
+
+  if ( password.value !== passwordRepeat.value ) {
+    return {
+      passwordsNotMatch: true
+    };
   }
 }

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {
+  CommonService,
   UserService,
   ClientService,
   AuthGuardService,
@@ -43,6 +44,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { NoteCardComponent } from './components/shared/note-card/note-card.component';
 import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
 import { CustomDropdownComponent } from './components/shared/custom-dropdown/custom-dropdown.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { CustomDropdownComponent } from './components/shared/custom-dropdown/cus
     ConfirmDialogComponent,
     NoteCardComponent,
     TalentTagsInputComponent,
-    CustomDropdownComponent
+    CustomDropdownComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { CustomDropdownComponent } from './components/shared/custom-dropdown/cus
     ScrollToModule.forRoot()
   ],
   providers: [
+    CommonService,
     UserService,
     ClientService,
     AuthGuardService,

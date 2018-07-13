@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { CommonService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    public commonService: CommonService
+  ) { }
 
   ngOnInit() {
     this.router.events.subscribe((evt) => {

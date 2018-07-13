@@ -1,3 +1,7 @@
 <app-nav></app-nav>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
+<app-loading
+  *ngIf="commonService.showLoadingScreen"
+  [progress]="commonService.loadingProgress">
+</app-loading>

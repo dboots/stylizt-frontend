@@ -81,22 +81,21 @@
       <div class="row mb-4">
         <div class="col">
           <app-cloudinary-uploader
-          [folderName]="'client_portfolio'"
-          [buttonName]="'ADD IMAGES'"
-          (completeItem)="portfolioImageUploadCompleted($event)">
-        </app-cloudinary-uploader>
+            [folderName]="'client_portfolio'"
+            [buttonName]="'ADD IMAGES'"
+            (completeItem)="portfolioImageUploadCompleted($event)">
+          </app-cloudinary-uploader>
+        </div>
+      </div>
+      <div class="row p-4 mt-4">
+        <div class="portfolio col-md-3 col-sm-12 my-4"
+          *ngFor="let item of clientPortfolios"
+          (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
+          <img [src]="item.image" />
+          <div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div>
+        </div>
       </div>
     </div>
-    <div class="row p-4 mt-4">
-      <div
-      class="portfolio col-md-3 col-sm-12 my-4"
-      *ngFor="let item of clientPortfolios"
-      (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
-      <img [src]="item.image" />
-      <div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div>
-    </div>
-  </div>
-</div>
 <!--
   <div class="bg-light">
     <div class="container text-center text-uppercase">
@@ -180,26 +179,27 @@
 </div>
 </div>
 -->
+  </div>
 </div>
 
-<ng-template #portfolioDetailModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Portfolio Detail</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body m-auto">
-    <img [src]="selectedPortfolioItem.image" />
-  </div>
-  
-  <div class="m-2">
-    <textarea class="w-100" [(ngModel)]="selectedPortfolioItem.caption" rows="5" cols="30"></textarea>
-    <input type="checkbox" [(ngModel)]="selectedPortfolioItem.display" /> Display image in portfolio?
-    <app-talent-tags-input [talents]="selectedPortfolioItem.talents"></app-talent-tags-input>
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-danger" (click)="deletePortfolio(selectedPortfolioItem)">DELETE</button>
-      <button type="button" class="btn btn-outline-primary" (click)="updatePortfolio(selectedPortfolioItem)">SAVE</button>
+  <ng-template #portfolioDetailModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Portfolio Detail</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </div>
-</ng-template>
+    <div class="modal-body m-auto">
+      <img [src]="selectedPortfolioItem.image" />
+    </div>
+    
+    <div class="m-2">
+      <textarea class="w-100" [(ngModel)]="selectedPortfolioItem.caption" rows="5" cols="30"></textarea>
+      <input type="checkbox" [(ngModel)]="selectedPortfolioItem.display" /> Display image in portfolio?
+      <app-talent-tags-input [talents]="selectedPortfolioItem.talents"></app-talent-tags-input>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-danger" (click)="deletePortfolio(selectedPortfolioItem)">DELETE</button>
+        <button type="button" class="btn btn-outline-primary" (click)="updatePortfolio(selectedPortfolioItem)">SAVE</button>
+      </div>
+    </div>
+  </ng-template>

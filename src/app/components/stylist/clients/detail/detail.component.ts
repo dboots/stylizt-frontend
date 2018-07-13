@@ -146,8 +146,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
   addPortfolio(portfolioImage) {
     const talents = [];
     const portfolio: Portfolio = new Portfolio( this.clientId, portfolioImage, '', talents, false);
-    
-    var t = this;
+
+    const t = this;
     this.portfolioService.create(portfolio, this.authService.token)
       .subscribe((result: any) => {
         t.clientPortfolios.push(result.data);

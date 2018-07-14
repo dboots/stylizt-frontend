@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-12 my-2 " *ngFor="let client of clients, let i = index">
-        <div class="client m-auto" [ngStyle]="{'background-image': 'url(' + client.image + ')'}" (click)="showDetail(client._id)">
+        <div class="client m-auto" [ngStyle]="client.portfolio[0] && {'background-image': 'url(' + client.portfolio[0].image + ')'} || {}" (click)="showDetail(client._id)">
           <div class="client-name">{{ client.name }}</div>
         </div>
       </div>

@@ -113,7 +113,7 @@
   <div class="container">
     <div class="title-row row">
       <div class="col text-center">
-        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}, {{ locationService.currentLocation.state }} </span>
+        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}</span>
         THAT 
         <app-custom-dropdown
           [dropdownOptions]="dropdownOptions"

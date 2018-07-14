@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { LocationService } from '../../services';
+import { LocationService, PortfolioService } from '../../services';
+import { Portfolio } from '../../models';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +10,25 @@ import { LocationService } from '../../services';
 export class HomePageComponent implements OnInit {
   dropdownOptions: any[];
   currentOption;
+  portfolio: Portfolio[];
 
   constructor(
-    public locationService: LocationService
+    public locationService: LocationService,
+    private portfolioService: PortfolioService
   ) {}
 
   ngOnInit() {
     this.dropdownOptions = ['DO IT ALL', 'BANGS', 'UPDOS', 'WEAVES'];
     this.currentOption = 'DO IT ALL';
+
+    // TODO: Convert result to Portfolio models
+    this.portfolioService.read().subscribe((result: any) => {
+      this.portfolio = result.data;
+      console.log(this.portfolio);
+
+    }, (err) => {
+      console.log(err);
+    })
   }
 
   selectDropdown(option: any) {

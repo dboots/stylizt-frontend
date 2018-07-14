@@ -134,8 +134,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     const body: Client = {
       name: this.detailForm.get('name').value,
       email: this.detailForm.get('email').value,
-      zip: this.detailForm.get('zip').value,
-      image: this.clientProfileImage
+      zip: this.detailForm.get('zip').value
     };
     this.clientService.update(this.clientId, body, this.authService.token).subscribe((result) => {
     }, (err) => {

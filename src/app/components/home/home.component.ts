@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from "@angular/platform-browser";
 import { LocationService, PortfolioService } from '../../services';
 import { Portfolio } from '../../models';
 
@@ -13,9 +14,19 @@ export class HomePageComponent implements OnInit {
   portfolio: Portfolio[];
 
   constructor(
+    private meta: Meta,
+    private title: Title,
     public locationService: LocationService,
     private portfolioService: PortfolioService
-  ) {}
+  ) {
+    title.setTitle('Hair to Chair - Stylists specializing in bangs, updos');
+
+    meta.addTags([
+      { name: 'author',   content: 'Coursetro.com'},
+      { name: 'keywords', content: 'angular seo, angular 4 universal, etc'},
+      { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
+    ]);
+  }
 
   ngOnInit() {
     this.dropdownOptions = ['DO IT ALL', 'BANGS', 'UPDOS', 'WEAVES'];

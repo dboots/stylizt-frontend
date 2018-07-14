@@ -10,7 +10,6 @@ import { LocationService } from '../../services';
 export class HomePageComponent implements OnInit {
   dropdownOptions: any[];
   currentOption;
-  currentLocation: string;
 
   constructor(
     public locationService: LocationService

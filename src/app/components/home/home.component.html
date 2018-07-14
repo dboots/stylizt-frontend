@@ -112,7 +112,9 @@
 <div class="talent-in-your-area-section">
   <div class="container">
     <div class="title-row row">
-      <div class="col text-center">{{ locationService.currentLocation }} THAT 
+      <div class="col text-center">
+        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}, {{ locationService.currentLocation.state }} </span>
+        THAT 
         <app-custom-dropdown
           [dropdownOptions]="dropdownOptions"
           [currentOption]="currentOption"

@@ -29,23 +29,21 @@
 
 <ng-template #addModal let-c="close" let-d="dismiss">
   <form novalidate [formGroup]="clientForm" (ngSubmit)="addClient()" class="m-2">
-    <div class="modal-header">
-      <h4 class="modal-title">Add New Client</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" formControlName="clientName" class="form-control">
-      </div>
-    </div>
-    
-    <div class="m-2">
-      <div class="pull-right">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
-        <button [disabled]="!clientForm.valid" class="btn btn-outline-primary">Add Client</button>
+    <div class="add-client-modal-component text-uppercase">
+      <div class="black-diamond-font">Add New Client</div>
+      <div class="green-divider"></div>
+      <div class="main-content">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" formControlName="clientName" class="form-control">
+        </div>
+        
+        <div>
+          <div class="pull-right">
+            <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+            <button type="submit" [disabled]="!clientForm.valid" class="common-gw-button">Add Client</button>
+          </div>
+        </div>
       </div>
     </div>
   </form>

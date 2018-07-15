@@ -21,11 +21,9 @@ export class HomePageComponent implements OnInit {
   ) {
     title.setTitle('Hair to Chair - Stylists specializing in bangs, updos');
 
-    meta.addTags([
-      { name: 'author',   content: 'Coursetro.com'},
-      { name: 'keywords', content: 'angular seo, angular 4 universal, etc'},
-      { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
-    ]);
+    meta.updateTag({ name: 'description', content: 'Search and connect with talented hair stylists that fit your hair and life!' });
+
+    console.log('meta created');
   }
 
   ngOnInit() {

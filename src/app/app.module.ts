@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {
-  CommonService,
   UserService,
   ClientService,
   AuthGuardService,
@@ -81,7 +80,6 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     ScrollToModule.forRoot()
   ],
   providers: [
-    CommonService,
     UserService,
     ClientService,
     AuthGuardService,

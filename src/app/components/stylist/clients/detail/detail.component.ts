@@ -44,6 +44,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
   clientNotes: Notes[] = [];
   isNotesFormOpened: boolean;
 
+  currentIndex = -1;
+
   constructor(
     private router: Router,
     private modalService: NgbModal,
@@ -66,7 +68,10 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
 
         this.clientProfileImage = result.data.image;
-        this.clientPortfolios = result.data.portfolio;
+        this.clientPortfolios = result.data.portfolio.map((portfolio) =>
+          new Portfolio(portfolio.clientId, portfolio.image, portfolio.caption, portfolio.talents, portfolio.display, portfolio._id)
+        );
+        this.currentIndex = this.clientPortfolios.length - 1;
         this.clientNotes = result.data.notes;
         // For Test Only, should be removed
         this.clientNotes = NotesMockData;
@@ -144,16 +149,23 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   addPortfolio(portfolioImage) {
-    const talents = [];
-    const portfolio: Portfolio = new Portfolio( this.clientId, portfolioImage, '', talents, false);
+    this.currentIndex++;
+    this.clientPortfolios[this.currentIndex].image = portfolioImage;
 
-    const t = this;
-    this.portfolioService.create(portfolio, this.authService.token)
+    this.portfolioService.create(this.clientPortfolios[this.currentIndex].toPayload(), this.authService.token)
       .subscribe((result: any) => {
-        t.clientPortfolios.push(result.data);
+        this.clientPortfolios[this.currentIndex] = result.data;
+        this.clientPortfolios[this.currentIndex].loading = false;
       }, (err) => {
 
       });
+  }
+
+  fileAdded() {
+    const talents = [];
+    const portfolio: Portfolio = new Portfolio(this.clientId, '', '', talents, false);
+    portfolio.loading = true;
+    this.clientPortfolios.push(portfolio);
   }
 
   openPortfolioDetailModal(portfolioDetailModal, portfolioItem) {
@@ -166,6 +178,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
       .subscribe((result: any) => {
         let idx = this.clientPortfolios.findIndex((p: Portfolio) => p._id === portfolio._id);
         this.clientPortfolios.splice(idx, 1);
+        this.currentIndex--;
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();
@@ -173,7 +186,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   updatePortfolio(portfolio: Portfolio) {
-    this.portfolioService.update(portfolio, this.authService.token)
+    this.portfolioService.update(portfolio.toPayload(), this.authService.token)
       .subscribe((result: any) => {
         portfolio.talents = result.data.talents;
         this.modalRef.close();

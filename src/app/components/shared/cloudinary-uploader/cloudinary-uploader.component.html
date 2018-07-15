@@ -4,3 +4,7 @@
     <input type="file" multiple #fileInput ng2FileSelect [uploader]="uploader" />
   </span>
 </div>
+<app-loading
+  *ngIf="showLoadingScreen"
+  [progress]="loadingProgress/100">
+</app-loading>

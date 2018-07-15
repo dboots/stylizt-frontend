@@ -83,16 +83,18 @@
           <app-cloudinary-uploader
             [folderName]="'client_portfolio'"
             [buttonName]="'ADD IMAGES'"
+            (afterAddingFile)="fileAdded()"
             (completeItem)="portfolioImageUploadCompleted($event)">
           </app-cloudinary-uploader>
         </div>
       </div>
       <div class="row p-4 mt-4">
         <div class="portfolio col-md-3 col-sm-12 my-4"
-          *ngFor="let item of clientPortfolios"
+          *ngFor="let item of clientPortfolios; index as idx"
           (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
-          <img [src]="item.image" />
+          <img [src]="item.image || 'assets/img/placeholder.jpg'" />
           <div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div>
+          <app-loading *ngIf="item.loading" ></app-loading>
         </div>
       </div>
     </div>

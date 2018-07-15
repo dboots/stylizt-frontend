@@ -10,7 +10,7 @@ export class PortfolioService {
     private http: HttpClient
   ) { }
 
-  create(body: Portfolio, token: string) {
+  create(body, token: string) {
     return this.http.post(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
@@ -18,7 +18,7 @@ export class PortfolioService {
     return this.http.get(`${environment.rootApiUrl}/stylist/clients/${clientId}/portfolio`, AuthService.httpOptions(token));
   }
 
-  update(body: Portfolio, token: string) {
+  update(body, token: string) {
     return this.http.patch(`${environment.rootApiUrl}/stylist/portfolio/${body._id}`, body, AuthService.httpOptions(token));
   }
 

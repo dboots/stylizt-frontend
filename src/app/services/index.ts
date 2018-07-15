@@ -1,9 +1,6 @@
 import { AuthService } from './auth.service';
 export { AuthService } from './auth.service';
 
-import { CommonService } from './common.service';
-export { CommonService } from './common.service';
-
 import { ClientService } from './client.service';
 export { ClientService } from './client.service';
 

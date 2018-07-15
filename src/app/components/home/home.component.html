@@ -40,37 +40,9 @@
 <div class="find-salons-main-section">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 text-center position-relative my-4 mt-md-0">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
-      </div>
-      <div class="col-md-3 text-center position-relative my-4 mt-md-0">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/300x300" />
-        <div class="fixed-bottom position-absolute bg-white p-2">CAPTION</div>
+      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>
       </div>
     </div>
   </div>
@@ -113,50 +85,50 @@
   <div class="container">
     <div class="title-row row">
       <div class="col text-center">
-        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}, {{ locationService.currentLocation.state }} </span>
+        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}</span>
         THAT 
         <app-custom-dropdown
-          [dropdownOptions]="dropdownOptions"
-          [currentOption]="currentOption"
-          (onselect)="selectDropdown($event)">
-        </app-custom-dropdown>
-      </div>
-    </div>
-    <div class="row py-md-4 py-sm-1">
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
+        [dropdownOptions]="dropdownOptions"
+        [currentOption]="currentOption"
+        (onselect)="selectDropdown($event)">
+      </app-custom-dropdown>
     </div>
   </div>
+  <div class="row py-md-4 py-sm-1">
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+    <div class="col-md-3 text-center position-relative mb-4">
+      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div class="container">

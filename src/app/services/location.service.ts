@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Location } from '../models';
+import { Location } from '../models/location.model';
 
 @Injectable()
 export class LocationService {

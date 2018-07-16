@@ -13,6 +13,16 @@ export class HomePageComponent implements OnInit {
   currentOption;
   portfolio: Portfolio[];
 
+  slideConfig = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    prevArrow: false,
+    nextArrow: false
+  };
+
   constructor(
     private meta: Meta,
     private title: Title,

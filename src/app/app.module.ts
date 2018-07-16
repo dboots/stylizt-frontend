@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelper } from 'angular2-jwt';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { SlickModule } from 'ngx-slick';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -77,7 +78,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     FileUploadModule,
     ReactiveFormsModule,
     AngularMultiSelectModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    SlickModule.forRoot(),
   ],
   providers: [
     UserService,

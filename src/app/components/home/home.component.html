@@ -39,12 +39,18 @@
 
 <div class="find-salons-main-section">
   <div class="container">
-    <div class="row">
+    <div class="desktop-row row">
       <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />
         <div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>
       </div>
     </div>
+    <ngx-slick class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let p of portfolio">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>
+      </div>
+    </ngx-slick>  
   </div>
 </div>
 
@@ -55,7 +61,7 @@
     </div>
   </div>
   
-  <div class="row justify-content-center">
+  <div class="desktop-row row justify-content-center">
     <div class="col-sm-6 position-relative">
       <div class="black-diamond-font">UNICORN HAIR</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
@@ -73,6 +79,24 @@
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
   </div>
+  <ngx-slick class="carousel" [config]="slideConfig">
+    <div ngxSlickItem class="col-sm-6">
+      <div class="black-diamond-font">UNICORN HAIR</div>
+      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
+    </div>
+    <div ngxSlickItem class="col-sm-6">
+      <div class="black-diamond-font">FRIZZ FREE</div>
+      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
+    </div>
+    <div ngxSlickItem class="col-sm-6">
+      <div class="black-diamond-font">BANGS</div>
+      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
+    </div>
+    <div ngxSlickItem class="col-sm-6">
+      <div class="black-diamond-font">UNDERCUT</div>
+      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
+    </div>
+  </ngx-slick>
   
   <div id="local-talent" class="row mt-5">
     <div class="col-12 m-auto text-center text-white title-block">
@@ -88,47 +112,81 @@
         <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}</span>
         THAT 
         <app-custom-dropdown
-        [dropdownOptions]="dropdownOptions"
-        [currentOption]="currentOption"
-        (onselect)="selectDropdown($event)">
-      </app-custom-dropdown>
+          [dropdownOptions]="dropdownOptions"
+          [currentOption]="currentOption"
+          (onselect)="selectDropdown($event)">
+        </app-custom-dropdown>
+      </div>
     </div>
+    <div class="desktop-row row py-md-4 py-sm-1">
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+    </div>
+    <ngx-slick class="carousel" [config]="slideConfig">
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
+        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
+        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      </div>
+    </ngx-slick>
   </div>
-  <div class="row py-md-4 py-sm-1">
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-    <div class="col-md-3 text-center position-relative mb-4">
-      <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-      <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-    </div>
-  </div>
-</div>
 </div>
 
 <div class="container">

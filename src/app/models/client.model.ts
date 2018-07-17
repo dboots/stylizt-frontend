@@ -7,7 +7,7 @@ export class Client {
   constructor(
     name: string,
     email: string,
-    _id: string
+    _id?: string
   ) {
     this.name = name;
     this.email = email;

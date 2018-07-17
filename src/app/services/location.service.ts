@@ -19,9 +19,11 @@ export class LocationService {
   }
 
   constructor(private http: HttpClient) {
+    /*
     if (!this.currentLocation) {
       this.getCurrentLocation();
     }
+    */
   }
 
   getCurrentLocation() {

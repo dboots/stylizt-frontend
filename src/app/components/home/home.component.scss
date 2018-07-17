@@ -75,12 +75,6 @@ header {
 .find-salons-main-section {
   background: $black;
   letter-spacing: 5px;
-
-  .container {
-    .row {
-      padding: 45px 0;
-    }
-  }
 }
 
 .featured-look-container{
@@ -92,7 +86,7 @@ header {
     }
   }
 
-  .black-diamond-font {
+  .title {
     position: absolute;
     font-size: 90px;
     right: 56px;

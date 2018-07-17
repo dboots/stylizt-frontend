@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from "@angular/platform-browser";
-import { LocationService, PortfolioService } from '../../services';
-import { Portfolio } from '../../models';
+import { LocationService, PortfolioService, TalentService, UserService } from '../../services';
+import { Portfolio, User } from '../../models';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
   dropdownOptions: any[];
   currentOption;
   portfolio: Portfolio[];
+  stylists: User[];
 
   slideConfig = {
     dots: true,
@@ -24,30 +25,28 @@ export class HomePageComponent implements OnInit {
   };
 
   constructor(
-    private meta: Meta,
-    private title: Title,
-    public locationService: LocationService,
-    private portfolioService: PortfolioService
-  ) {
-    title.setTitle('Hair to Chair - Stylists specializing in bangs, updos');
-
-    meta.updateTag({ name: 'description', content: 'Search and connect with talented hair stylists that fit your hair and life!' });
-
-    console.log('meta created');
-  }
+    private locationService: LocationService,
+    private portfolioService: PortfolioService,
+    private talentService: TalentService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
-    this.dropdownOptions = ['DO IT ALL', 'BANGS', 'UPDOS', 'WEAVES'];
-    this.currentOption = 'DO IT ALL';
+    this.talentService.read().then((result) => {
+      this.dropdownOptions = result;
+      this.currentOption = result[0];
+    });
 
     // TODO: Convert result to Portfolio models
     this.portfolioService.read().subscribe((result: any) => {
       this.portfolio = result.data;
-      console.log(this.portfolio);
-
     }, (err) => {
       console.log(err);
-    })
+    });
+
+    this.userService.read().subscribe((result: any) => {
+      this.stylists = result.data;
+    });
   }
 
   selectDropdown(option: any) {

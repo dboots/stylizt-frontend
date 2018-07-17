@@ -15,7 +15,7 @@ export class PortfolioService {
   }
 
   read() {
-    return this.http.get(`${environment.rootApiUrl}/portfolio`, {params: {talents: 'foo'}});
+    return this.http.get(`${environment.rootApiUrl}/portfolio`, {params: {talents: []}});
   }
 
   update(body, token: string) {

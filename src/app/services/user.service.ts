@@ -16,6 +16,10 @@ export class UserService {
     return this.http.post(environment.rootApiUrl + '/login', body, AuthService.httpOptions());
   }
 
+  read() {
+    return this.http.get(`${environment.rootApiUrl}/stylists`);
+  }
+
   update(token: string, body: User) {
     return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }

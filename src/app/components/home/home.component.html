@@ -16,39 +16,51 @@
   <div class="find-salons-title-container container">
     <div class="row">
       <div class="col">
-        <div class="text-center">FIND YOUR NEXT HAIR</div>
+        <div class="text-center">FIND YOUR NEXT
+          
+          <app-custom-dropdown
+          [options]="dropdownOptions"
+          label="talent"
+          id="_id"
+          [selected]="currentOption"
+          (onselect)="selectDropdown($event)">
+        </app-custom-dropdown>
+        
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="empty-dark-section"></div>
 
-<div class="bg-light">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="enter-search-here d-flex justify-content-center align-items-center">
-          <i class="fa fa-search"></i>
-          <input class="form-control bg-light" placeholder="" />
+<!--
+  <div class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="enter-search-here d-flex justify-content-center align-items-center">
+            <i class="fa fa-search"></i>
+            <input class="form-control bg-light" placeholder="" />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+-->
 
 <div class="find-salons-main-section">
   <div class="container">
     <div class="desktop-row row">
       <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />
-        <div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>
+        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
       </div>
     </div>
     <ngx-slick class="carousel" [config]="slideConfig">
       <div ngxSlickItem *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />
-        <div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>
+        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
       </div>
     </ngx-slick>  
   </div>
@@ -63,127 +75,64 @@
   
   <div class="desktop-row row justify-content-center">
     <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font">UNICORN HAIR</div>
+      <div class="black-diamond-font title">UNICORN HAIR</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font">FRIZZ FREE</div>
+      <div class="black-diamond-font title">FRIZZ FREE</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font">BANGS</div>
+      <div class="black-diamond-font title">BANGS</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font">UNDERCUT</div>
+      <div class="black-diamond-font title">UNDERCUT</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
   </div>
   <ngx-slick class="carousel" [config]="slideConfig">
     <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font">UNICORN HAIR</div>
+      <div class="black-diamond-font title">UNICORN HAIR</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font">FRIZZ FREE</div>
+      <div class="black-diamond-font title">FRIZZ FREE</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font">BANGS</div>
+      <div class="black-diamond-font title">BANGS</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
     <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font">UNDERCUT</div>
+      <div class="black-diamond-font title">UNDERCUT</div>
       <img class="img-fluid" src="http://via.placeholder.com/500x500" />
     </div>
   </ngx-slick>
   
   <div id="local-talent" class="row mt-5">
     <div class="col-12 m-auto text-center text-white title-block">
-      TALENT {{ locationService.currentLocation && 'IN' }}
+      <span class="black-diamond-font green">H2C</span> TALENT NEAR YOU
     </div>
   </div>
 </div>
 
 <div class="talent-in-your-area-section">
   <div class="container">
-    <div class="title-row row">
-      <div class="col text-center">
-        <span *ngIf="locationService.currentLocation">{{ locationService.currentLocation.city }}</span>
-        THAT 
-        <app-custom-dropdown
-          [dropdownOptions]="dropdownOptions"
-          [currentOption]="currentOption"
-          (onselect)="selectDropdown($event)">
-        </app-custom-dropdown>
-      </div>
-    </div>
     <div class="desktop-row row py-md-4 py-sm-1">
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      <div class="col-md-3 text-center position-relative mb-4" *ngFor="let stylist of stylists">
+        <a href="#">
+          <img class="img-fluid w-100" [src]="stylist.image" />
+          <div class="fixed-bottom position-absolute bg-white p-2"><b>{{stylist.name}}</b></div>
+        </a>
       </div>
     </div>
     <ngx-slick class="carousel" [config]="slideConfig">
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
-      </div>
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4">
-        <img class="img-fluid w-100" src="http://via.placeholder.com/400x400" />
-        <div class="fixed-bottom position-absolute bg-white p-2"><b>NAME</b>, TALENTS</div>
+      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4" *ngFor="let stylist of stylists">
+        <a href="#">
+          <img class="img-fluid w-100" [src]="stylist.image" />
+          <div class="fixed-bottom position-absolute bg-white p-2"><b>{{stylist.name}}</b></div>
+        </a>
       </div>
     </ngx-slick>
   </div>

@@ -6,8 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./custom-dropdown.component.scss']
 })
 export class CustomDropdownComponent implements OnInit {
-  @Input() dropdownOptions: any[];
-  @Input() currentOption;
+  @Input() options: any[];
+  @Input() label: string;
+  @Input() selected: string;
   @Output() onselect: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

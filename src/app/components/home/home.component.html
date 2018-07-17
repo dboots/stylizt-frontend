@@ -57,7 +57,7 @@
         <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
       </div>
     </div>
-    <ngx-slick class="carousel" [config]="slideConfig">
+    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
       <div ngxSlickItem *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />
         <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
@@ -127,7 +127,7 @@
         </a>
       </div>
     </div>
-    <ngx-slick class="carousel" [config]="slideConfig">
+    <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
       <div ngxSlickItem class="col-md-3 text-center position-relative mb-4" *ngFor="let stylist of stylists">
         <a href="#">
           <img class="img-fluid w-100" [src]="stylist.image" />

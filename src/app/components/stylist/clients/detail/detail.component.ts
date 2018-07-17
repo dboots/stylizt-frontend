@@ -141,7 +141,13 @@ export class StylistClientsDetailPageComponent implements OnInit {
       email: this.detailForm.get('email').value,
       zip: this.detailForm.get('zip').value
     };
-    this.clientService.update(this.clientId, body, this.authService.token).subscribe((result) => {
+    this.clientService.update(this.clientId, body, this.authService.token).subscribe((result: any) => {
+      let idx = this.clientService.clients.findIndex((x: Client) => {
+        return x._id == result.data._id;
+      });
+
+      result.data.portfolio = this.clientPortfolios;
+      this.clientService.clients[idx] = result.data;
     }, (err) => {
       alert(err.error.messages[0]);
     });
@@ -178,6 +184,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
         let idx = this.clientPortfolios.findIndex((p: Portfolio) => p._id === portfolio._id);
         this.clientPortfolios.splice(idx, 1);
         this.currentIndex--;
+
+        idx = this.clientService.clients.findIndex((x: Client) => {
+          return x._id == this.clientId
+        });
+  
+        this.clientService.clients[idx].portfolio = this.clientPortfolios;
+
+
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();
@@ -185,7 +199,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   updatePortfolio(portfolio: Portfolio) {
-    this.portfolioService.update(portfolio.toPayload(), this.authService.token)
+    this.portfolioService.update(portfolio, this.authService.token)
       .subscribe((result: any) => {
         portfolio.talents = result.data.talents;
         this.modalRef.close();

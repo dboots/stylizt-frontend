@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ClientService {
-  clients: any[];
+  public clients: any[];
 
   constructor(
     private http: HttpClient,

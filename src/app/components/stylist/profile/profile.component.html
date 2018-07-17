@@ -48,23 +48,23 @@
 </div>
 
 <ng-template #addTalent let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Add Talent</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Talent</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="email">Talent</label>
+      <input type="text" class="form-control" id="talent">
     </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label for="email">Talent</label>
-        <input type="text" class="form-control" id="talent">
-      </div>
+  </div>
+  
+  <div class="m-2">    
+    <div class="pull-right">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
+      <button type="button" class="btn btn-outline-primary">Add Talent</button>
     </div>
-    
-    <div class="m-2">    
-      <div class="pull-right">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
-        <button type="button" class="btn btn-outline-primary">Add Talent</button>
-      </div>
-    </div>
-  </ng-template>
+  </div>
+</ng-template>

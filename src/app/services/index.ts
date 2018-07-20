@@ -21,3 +21,6 @@ export { TalentService } from './talent.service';
 
 import { LocationService } from './location.service';
 export { LocationService } from './location.service';
+
+import { PostService } from './post.service';
+export { PostService } from './post.service';

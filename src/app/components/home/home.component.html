@@ -19,12 +19,12 @@
         <div class="text-center">FIND YOUR NEXT
           
           <app-custom-dropdown
-          [options]="dropdownOptions"
-          label="talent"
-          id="_id"
-          [selected]="currentOption"
-          (onselect)="selectDropdown($event)">
-        </app-custom-dropdown>
+            [options]="dropdownOptions"
+            label="talent"
+            id="_id"
+            [selected]="currentOption"
+            (onselect)="selectDropdown($event)">
+          </app-custom-dropdown>
         
       </div>
     </div>
@@ -73,41 +73,15 @@
     </div>
   </div>
   
-  <div class="desktop-row row justify-content-center">
-    <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font title">UNICORN HAIR</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font title">FRIZZ FREE</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font title">BANGS</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div class="col-sm-6 position-relative">
-      <div class="black-diamond-font title">UNDERCUT</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
+  <div class="desktop-row row justify-content-around">
+    <div *ngFor="let post of posts" class="col-sm-5 position-relative">
+      <app-post [post]="post"></app-post>
     </div>
   </div>
   <ngx-slick class="carousel" [config]="slideConfig">
-    <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font title">UNICORN HAIR</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font title">FRIZZ FREE</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font title">BANGS</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
-    <div ngxSlickItem class="col-sm-6">
-      <div class="black-diamond-font title">UNDERCUT</div>
-      <img class="img-fluid" src="http://via.placeholder.com/500x500" />
-    </div>
+    <div ngxSlickItem *ngFor="let post of posts" class="col-sm-5 position-relative">
+      <app-post [post]="post"></app-post>
+    </div>    
   </ngx-slick>
   
   <div id="local-talent" class="row mt-5">

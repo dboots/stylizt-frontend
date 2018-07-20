@@ -19,7 +19,8 @@ import {
   PortfolioService,
   NotesService,
   TalentService,
-  LocationService
+  LocationService,
+  PostService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -45,6 +46,7 @@ import { NoteCardComponent } from './components/shared/note-card/note-card.compo
 import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
 import { CustomDropdownComponent } from './components/shared/custom-dropdown/custom-dropdown.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { PostComponent } from './components/shared/post/post.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     NoteCardComponent,
     TalentTagsInputComponent,
     CustomDropdownComponent,
-    LoadingComponent
+    LoadingComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     NotesService,
     TalentService,
     LocationService,
+    PostService,
     JwtHelper
   ],
   entryComponents: [

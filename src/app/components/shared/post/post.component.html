@@ -1,0 +1,8 @@
+<a class="post-component" [href]="post.link" target="_blank">
+  <div>
+    <img [src]="post.image" />
+    <div class="title text-uppercase">{{ post.title }}</div>
+    <div class="date text-uppercase">{{ post.date | date:'MMMM d, y' }}</div>
+    <div class="blog-content" [innerHtml]="post.content"></div>
+  </div>
+</a>

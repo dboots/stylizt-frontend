@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from "@angular/platform-browser";
-import { LocationService, PortfolioService, TalentService, UserService } from '../../services';
-import { Portfolio, User } from '../../models';
+import {
+  LocationService,
+  PortfolioService,
+  TalentService,
+  UserService,
+  PostService
+} from '../../services';
+import {
+  Portfolio,
+  User,
+  Post
+} from '../../models';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +23,7 @@ export class HomePageComponent implements OnInit {
   currentOption;
   portfolio: Portfolio[];
   stylists: User[];
+  posts: Post[];
 
   slideConfig = {
     dots: true,
@@ -28,7 +39,8 @@ export class HomePageComponent implements OnInit {
     private locationService: LocationService,
     private portfolioService: PortfolioService,
     private talentService: TalentService,
-    private userService: UserService
+    private userService: UserService,
+    private postService: PostService
   ) { }
 
   ngOnInit() {
@@ -46,6 +58,10 @@ export class HomePageComponent implements OnInit {
 
     this.userService.read().subscribe((result: any) => {
       this.stylists = result.data;
+    });
+
+    this.postService.getBlogs().subscribe((posts: Post[]) => {
+      this.posts = posts;
     });
   }
 

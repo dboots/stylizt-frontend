@@ -4,3 +4,4 @@ export * from './portfolio.model';
 export * from './notes.model';
 export * from './talent.model';
 export * from './location.model';
+export * from './post';

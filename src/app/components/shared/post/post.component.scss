@@ -8,6 +8,8 @@
   > div {
     border-left: 3px solid $green;
     padding-left: 25px;
+    max-height: 600px;
+    overflow: hidden;
   
     img {
       width: 100%;

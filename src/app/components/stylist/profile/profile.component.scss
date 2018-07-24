@@ -20,12 +20,7 @@
       .photo-column {
         img {
           width: 100%;
-          height: 545px;
           margin-bottom: 1rem;
-
-          @media (max-width: 992px) {
-            height: 500px;
-          }
         }
       }
 

@@ -169,7 +169,7 @@ module.exports = {
           "replacements": [{
             "pattern": /__APIURL__/ig,
             "replacement": function (match, p1, offset, string) {
-              let url = process.env.APIURL || 'http://localhost:3000/api';
+              let url = process.env.APIURL || 'http://localhost:3333/api';
               return url;
             }
           },{

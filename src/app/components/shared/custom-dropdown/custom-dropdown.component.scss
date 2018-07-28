@@ -17,7 +17,7 @@
   > button {
     font-family: "proxima_novabold";
     font-size: 40px;
-    letter-spacing: 20px;
+    letter-spacing: 16px;
     color: $green;
     background: $black;
     padding: 0 12px;
@@ -32,7 +32,7 @@
 
   @media (max-width: 992px) {
     > button {
-      font-size: 25px;
+      font-size: 20px;
     }
 
     > div {

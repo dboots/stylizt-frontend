@@ -24,10 +24,10 @@
           <a class="nav-link" routerLink="/stylist/profile">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="stylist/clients">Clients</a>
+          <a class="nav-link" routerLink="/stylist/clients">Clients</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="stylist/portfolio">Portfolio</a>
+        <li class="nav-item" *ngIf="loggedInUser">
+          <a class="nav-link" routerLink="/portfolio/{{loggedInUser._id}}">Portfolio</a>
         </li>
         <li class="nav-item nav-login">
           <a class="nav-link" (click)="logout()">Logout</a>

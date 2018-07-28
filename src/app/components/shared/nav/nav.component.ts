@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 
@@ -18,32 +18,15 @@ export class NavComponent implements OnInit {
   isFullNav: boolean = true;
   navItems: any[];
 
+  loggedInUser: User;
+
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-    router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd) {
-        // if (evt.url.includes('/stylist')) {
-        //   this.isStylist = true;
-        // } else {
-        //   this.isStylist = false;
-        // }
-      }
-    });
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  track(event) {
-    if (window.pageYOffset > 500) {
-      this.isFullNav = false;
-    } else {
-      this.isFullNav = true;
-    }
-  }
+  ) {}
 
   ngOnInit() {
     this.router.events
@@ -56,6 +39,7 @@ export class NavComponent implements OnInit {
       .filter((route) => route.outlet === 'primary')
       .mergeMap((route) => route.data)
       .subscribe((event) => {
+        this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
         this.navItems = event.navItems || [
           {name: 'Featured Looks', url: '#featured-looks', scroll: true},
           {name: 'Local Talent', url: '#local-talent', scroll: true},

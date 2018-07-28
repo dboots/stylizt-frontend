@@ -8,7 +8,7 @@
 
 .carousel {
   display: none;
-
+  
   @media screen and (max-width: 768px) {
     display: block;
   }
@@ -29,12 +29,12 @@ header {
   @media (max-width: 1200px) {
     letter-spacing: 10px;
   }
-
+  
   @media (max-width: 992px) {
     font-size: 32px;
     letter-spacing: 5px;
   }
-
+  
   @media (max-width: 768px) {
     font-size: 27px;
     letter-spacing: 3px;
@@ -48,7 +48,7 @@ header {
 
 .enter-search-here {
   font-size: 27px;
-
+  
   input {
     font-size: 27px;
     color: $gray-700;
@@ -56,17 +56,17 @@ header {
     margin-left: 20px;
     padding: 19px 0;
     border: none;
-
+    
     @media (max-width: 414px) {
       font-size: 17px;
       letter-spacing: 4px;
     }
-
+    
     &:focus {
       box-shadow: none;
     }  
   }
-
+  
   i {
     color: $green;
   }
@@ -80,40 +80,40 @@ header {
 .featured-look-container{
   .featured-look-title {
     margin-bottom: 100px;
-
+    
     @media screen and (max-width: 768px) {
       margin-bottom: 30px;
     }
   }
-
+  
   .title {
     position: absolute;
     font-size: 90px;
     right: 56px;
     top: -66px;
-
+    
     @media (max-width: 1200px) {
       font-size: 70px;
     }
-
+    
     @media (max-width: 992px) {
       font-size: 50px;
     }
-
+    
     @media (max-width: 992px) {
       font-size: 40px;
     }
   }
-
+  
   .carousel {
     .black-diamond-font {
       position: unset;
     }
   }
-
+  
   .col-sm-5 {
     margin-bottom: 100px;
-
+    
     @media screen and (max-width: 768px) {
       margin-bottom: 0;
     }
@@ -122,17 +122,44 @@ header {
 
 .talent-in-your-area-section {
   background: $black;
-  letter-spacing: 5px;
-
+  letter-spacing: 3px;
+  
   .title-row {
     color: $white;
     font-size: 45px;
     font-weight: bold;
     letter-spacing: 10px;
-
+    
     @media (max-width: 992px) {
       font-size: 25px;
       letter-spacing: 10px;
+    }
+  }
+  
+  .name {
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+    }
+  }
+  
+  
+  .bio {
+    line-height: 21px;
+  }
+  
+  .talents {
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+    
+    .talent {
+      background: $green;
+      color: $black;
+      margin: 2px;
+      font-size: 14px;
+      padding: 2%;
+      float: left;
+      
     }
   }
 }
@@ -145,27 +172,27 @@ header {
     background-repeat: no-repeat;
     height: 300px;
     background-size: cover;
-
+    
     @media (max-width: 768px) {
       font-size: 22px;
       letter-spacing: 2px;
     }
-
+    
     .black-diamond-font {
       font-family: "Black Diamond";
       font-size: 35px;
       letter-spacing: 8.3px;
-
+      
       @media (max-width: 768px) {
         font-size: 55px;
       }
-
+      
       @media (max-width: 414px) {
         font-size: 38px;
       }
     }
   }
-
+  
   .detail-text {
     font-family: 'proxima_novamedium';
     font-size: 17px;
@@ -180,7 +207,7 @@ header {
   font-size: 45px;
   letter-spacing: 20px;
   padding: 15px 0;
-
+  
   @media (max-width: 992px) {
     font-size: 25px;
     letter-spacing: 10px;
@@ -190,7 +217,7 @@ header {
 .fixed-bottom {
   z-index: 0;
   margin: 0 15px;
-
+  
   @media (max-width: 768px) {
     font-size: 30px;
   }

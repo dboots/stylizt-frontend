@@ -19,12 +19,12 @@
         <div class="text-center">FIND YOUR NEXT
           
           <app-custom-dropdown
-            [options]="dropdownOptions"
-            label="talent"
-            id="_id"
-            [selected]="currentOption"
-            (onselect)="selectDropdown($event)">
-          </app-custom-dropdown>
+          [options]="dropdownOptions"
+          label="talent"
+          id="_id"
+          [selected]="currentOption"
+          (onselect)="selectDropdown($event)">
+        </app-custom-dropdown>
         
       </div>
     </div>
@@ -94,19 +94,37 @@
 <div class="talent-in-your-area-section">
   <div class="container">
     <div class="desktop-row row py-md-4 py-sm-1">
-      <div class="col-md-3 text-center position-relative mb-4" *ngFor="let stylist of stylists">
-        <a href="#">
-          <img class="img-fluid w-100" [src]="stylist.image" />
-          <div class="fixed-bottom position-absolute bg-white p-2"><b>{{stylist.name}}</b></div>
-        </a>
+      <div class="col-md-6 mb-4" *ngFor="let stylist of stylists">
+        <div class="row">
+          <div class="col-md-6 text-center position-relative">
+            <a [routerLink]="['/portfolio', stylist._id]">
+              <img class="img-fluid w-100" [src]="stylist.image" />
+            </a>
+          </div>
+          <div class="col-md-6 text-white d-flex flex-column">
+            <p class="text-uppercase green font-weight-bold">{{stylist.name}}</p>
+            <p class="bio flex-fill">{{stylist.bio}}</p>
+            <p class="text-uppercase green font-weight-bold">Specializing in:</p>
+            <div class="flex-row talents">
+              <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    
     <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem class="col-md-3 text-center position-relative mb-4" *ngFor="let stylist of stylists">
-        <a href="#">
-          <img class="img-fluid w-100" [src]="stylist.image" />
-          <div class="fixed-bottom position-absolute bg-white p-2"><b>{{stylist.name}}</b></div>
-        </a>
+      <div ngxSlickItem *ngFor="let stylist of stylists">
+        <div class="col-md-6 text-white d-flex flex-column">
+          <img class="img-fluid" [src]="stylist.image" />
+          <p class="name text-uppercase green font-weight-bold">{{stylist.name}}</p>
+          <p class="bio flex-fill">{{stylist.bio}}</p>
+          <p class="text-uppercase green font-weight-bold">Specializing in:</p>
+          <div class="flex-row talents">
+            <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+            <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+          </div>
+        </div>
       </div>
     </ngx-slick>
   </div>

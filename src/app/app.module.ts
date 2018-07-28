@@ -27,7 +27,7 @@ import { StylistPageComponent } from './components/stylist/stylist.component';
 import { StylistClientsPageComponent } from './components/stylist/clients/clients.component';
 import { StylistClientsDetailPageComponent } from './components/stylist/clients/detail/detail.component';
 import { StylistProfilePageComponent } from './components/stylist/profile/profile.component';
-import { StylistPortfolioPageComponent } from './components/stylist/portfolio/portfolio.component';
+import { StylistPortfolioPageComponent } from './components/portfolio/portfolio.component';
 import { OwnerPageComponent } from './components/owner/owner.component';
 import { HomePageComponent } from './components/home/home.component';
 import { ContactPageComponent } from './components/contact/contact.component';

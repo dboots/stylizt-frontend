@@ -6,7 +6,7 @@ import { StylistPageComponent } from './components/stylist/stylist.component';
 import { StylistProfilePageComponent } from './components/stylist/profile/profile.component';
 import { StylistClientsPageComponent } from './components/stylist/clients/clients.component';
 import { StylistClientsDetailPageComponent } from './components/stylist/clients/detail/detail.component';
-import { StylistPortfolioPageComponent } from './components/stylist/portfolio/portfolio.component';
+import { StylistPortfolioPageComponent } from './components/portfolio/portfolio.component';
 import { OwnerPageComponent } from './components/owner/owner.component';
 import { ContactPageComponent } from './components/contact/contact.component';
 import { PasswordPageComponent } from './components/password/password.component';
@@ -37,7 +37,7 @@ const routes: Routes = [
     { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },
     { path: 'stylist/clients/:id', component: StylistClientsDetailPageComponent, canActivate: [AuthGuard] },
     { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },
-    { path: 'stylist/portfolio', component: StylistPortfolioPageComponent, canActivate: [AuthGuard] },
+    { path: 'portfolio/:id', component: StylistPortfolioPageComponent },
     { path: 'owner', component: OwnerPageComponent },
     {
       path: 'contact',

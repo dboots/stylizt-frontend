@@ -14,8 +14,8 @@ export class PortfolioService {
     return this.http.post(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
-  read() {
-    return this.http.get(`${environment.rootApiUrl}/portfolio`, {params: {talents: []}});
+  read(params) {
+    return this.http.get(`${environment.rootApiUrl}/portfolio`, {params: params});
   }
 
   update(body, token: string) {

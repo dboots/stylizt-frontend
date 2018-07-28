@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
     });
 
     // TODO: Convert result to Portfolio models
-    this.portfolioService.read({}).subscribe((result: any) => {
+    this.portfolioService.search({}).subscribe((result: any) => {
       this.portfolio = result.data;
     }, (err) => {
       console.log(err);

@@ -106,7 +106,7 @@
             <p class="bio flex-fill">{{stylist.bio}}</p>
             <p class="text-uppercase green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">
-              <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
             </div>
           </div>
         </div>
@@ -121,8 +121,7 @@
           <p class="bio flex-fill">{{stylist.bio}}</p>
           <p class="text-uppercase green font-weight-bold">Specializing in:</p>
           <div class="flex-row talents">
-            <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
-            <a href class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
           </div>
         </div>
       </div>

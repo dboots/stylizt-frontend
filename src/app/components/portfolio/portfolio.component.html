@@ -11,16 +11,34 @@
   </div>
   <div class="green-divider"></div>
   <div class="container">
-    Portfolio: {{portfolio | json}}
-    Talent Filter
-    List of portfolio items by talent
+    <div class="row">
+      <div class="col-md-3">
+        <img class="img-fluid" [src]="stylist.image" />
+      </div>
+      <div class="col-md-8">
+        <h3>{{stylist.name}}</h3>
+        <p>{{stylist.bio}}</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="container text-center text-uppercase mt-4">
-    <div class="row">
-      <div class="col">
-        <div class="portfolio-title">Client Portfolio</div>
-      </div>
+  <div class="row">
+    <div class="col">
+      <div class="portfolio-title">Client Portfolio</div>
     </div>
   </div>
+  <div class="desktop-row row">
+    <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+      <img class="img-fluid w-100" [src]="p.image" />
+      <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+    </div>
+  </div>
+  <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let p of portfolio">
+      <img class="img-fluid w-100" [src]="p.image" />
+      <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+    </div>
+  </ngx-slick>  
+</div>

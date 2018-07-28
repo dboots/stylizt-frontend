@@ -18,6 +18,10 @@ export class PortfolioService {
     return this.http.get(`${environment.rootApiUrl}/portfolio`, {params: params});
   }
 
+  search(params) {
+    return this.http.get(`${environment.rootApiUrl}/search/portfolio`, {params: params});
+  }
+
   update(body, token: string) {
     return this.http.patch(`${environment.rootApiUrl}/stylist/portfolio/${body._id}`, body, AuthService.httpOptions(token));
   }

@@ -1,19 +1,5 @@
 @import '../../../sass/variables';
 
-.desktop-row {
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-.carousel {
-  display: none;
-  
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-}
-
 header {
   &.masthead {
     padding: 8rem;

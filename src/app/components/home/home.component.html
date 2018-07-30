@@ -78,7 +78,7 @@
       <app-post [post]="post"></app-post>
     </div>
   </div>
-  <ngx-slick class="carousel" [config]="slideConfig">
+  <ngx-slick *ngIf="posts && posts.length" class="carousel" [config]="slideConfig">
     <div ngxSlickItem *ngFor="let post of posts" class="col-sm-5 position-relative">
       <app-post [post]="post"></app-post>
     </div>    

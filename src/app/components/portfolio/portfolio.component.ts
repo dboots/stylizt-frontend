@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../../services';
 import { Portfolio, User } from '../../models';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -13,21 +14,24 @@ export class StylistPortfolioPageComponent implements OnInit {
   portfolio: Portfolio;
   stylist: User;
   params;
+  mapUrl: SafeResourceUrl;
 
   constructor(
     private portfolioService: PortfolioService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {
     this.route.params.subscribe((params) => { this.params = params });
   }
 
   ngOnInit() {
     this.portfolioService.read({owner: this.params.id}).subscribe((data: any) => {
-      console.log(data);
       this.portfolio = data.portfolio;
       this.stylist = data.stylist;
-
-      console.log(data.stylist);
+      
+      var location = this.stylist.zip.replace('#', '%23');
+      let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
+      this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     })
   }
 }

@@ -10,14 +10,15 @@
     </div>
   </div>
   <div class="green-divider"></div>
-  <div class="container">
+  <div class="container" *ngIf="stylist">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <img class="img-fluid" [src]="stylist.image" />
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
         <h3>{{stylist.name}}</h3>
         <p>{{stylist.bio}}</p>
+        <p>Specialties: <span class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</span></p>
       </div>
     </div>
   </div>
@@ -41,4 +42,19 @@
       <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
     </div>
   </ngx-slick>  
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-12">
+        <h3>Schedule an Appointment</h3>
+      </div>
+      
+      <div class="col-12">StyleSeat / Vagaro / Contact Form</div>
+    </div>
+  </div>
+</div>
+<div class="section map">
+  <div style="width: 100%"><iframe width="100%" height="500" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a></iframe></div><br />
 </div>

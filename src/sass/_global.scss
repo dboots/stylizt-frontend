@@ -6,6 +6,21 @@ body {
   color: $green;
 }
 
+// TODO: Remove this after upgrading to ng-bootstrap 2.22 / Angular 6+
+.desktop-row {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.carousel {
+  display: none;
+  
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   @include body-font;
   font-weight: 700;

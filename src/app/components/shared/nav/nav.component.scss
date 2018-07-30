@@ -56,6 +56,10 @@ nav {
         a {
           cursor: pointer;
           color: $white;
+          border: none;
+          border-bottom: 1px solid;
+          background: transparent;
+          -webkit-appearance: none;
           
           &:hover {
             color: $green;

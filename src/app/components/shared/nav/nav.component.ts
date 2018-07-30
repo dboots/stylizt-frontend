@@ -90,4 +90,7 @@ export class NavComponent implements OnInit {
     );
   }
 
+  navigateTo(linkTo) {
+    this.router.navigate([linkTo]);
+  }
 }

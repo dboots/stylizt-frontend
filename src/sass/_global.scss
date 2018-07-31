@@ -55,3 +55,43 @@ section {
 .flex-fill {
   flex: 1 0 0;
 }
+
+.add-modal-component {
+  padding: 50px 0;
+
+  .black-diamond-font {
+    font-size: 45px;
+    padding: 0 70px;
+    margin-bottom: -15px;
+
+    @media (max-width: 414px) {
+      padding: 0 30px;
+    }
+  }
+
+  .main-content {
+    font-family: 'proxima_novalight';
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: $black;
+    padding: 0 70px;
+
+    @media (max-width: 414px) {
+      padding: 0 30px;
+    }
+
+    .form-group {
+      input {
+        &.form-control {
+          max-height: 30px;
+          border: 1px solid $green;
+        }
+      }
+    }
+
+    .common-gw-button {
+      width: 140px;
+      letter-spacing: 3px;
+    }
+  }
+}

@@ -1,10 +1,10 @@
 export class Talent {
   _id: string;
-  name: string;
+  talent: string;
 
   constructor(
-    name: string,
+    talent: string,
   ) {
-    this.name = name;
+    this.talent = talent;
   }
 }

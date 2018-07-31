@@ -36,7 +36,7 @@
       
       <div class="form-group">
         <label>YOUR TALENTS</label>
-        Talent not found? <button type="button" (click)="modal(addTalent)">Add your own</button>!
+        Talent not found? <a (click)="modal(addModal)">Add your own</a>!
         <app-talent-tags-input [talents]="talents"></app-talent-tags-input>
       </div>
       
@@ -47,24 +47,24 @@
 </div>
 </div>
 
-<ng-template #addTalent let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Add Talent</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group">
-      <label for="email">Talent</label>
-      <input type="text" class="form-control" id="talent">
+<ng-template #addModal let-c="close" let-d="dismiss">
+  <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
+    <div class="add-modal-component text-uppercase">
+      <div class="black-diamond-font">Add New Talent</div>
+      <div class="green-divider"></div>
+      <div class="main-content">
+        <div class="form-group">
+          <label>Talent</label>
+          <input type="text" formControlName="talent" class="form-control">
+        </div>
+        
+        <div>
+          <div class="pull-right">
+            <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+            <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="m-2">    
-    <div class="pull-right">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
-      <button type="button" class="btn btn-outline-primary">Add Talent</button>
-    </div>
-  </div>
+  </form>
 </ng-template>

@@ -123,6 +123,8 @@ header {
   }
   
   .name {
+    margin-bottom: 1rem;
+
     @media (max-width: 768px) {
       margin-top: 1rem;
     }
@@ -130,7 +132,9 @@ header {
   
   
   .bio {
-    line-height: 21px;
+    font-family: 'proxima_novaregular';
+    line-height: 1.2rem;
+    font-size: 0.8rem;
   }
   
   .talents {

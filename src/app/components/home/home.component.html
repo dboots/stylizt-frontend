@@ -97,13 +97,13 @@
     <div class="desktop-row row py-md-4 py-sm-1">
       <div class="col-md-6 mb-4" *ngFor="let stylist of stylists">
         <div class="row">
-          <div class="col-md-6 text-center position-relative">
+          <div class="col-md-5 text-center position-relative">
             <a [routerLink]="['/portfolio', stylist._id]">
-              <img class="img-fluid w-100" [src]="stylist.image" />
+              <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
             </a>
           </div>
-          <div class="col-md-6 text-white d-flex flex-column">
-            <p class="text-uppercase green font-weight-bold">{{stylist.name}}</p>
+          <div class="col-md-7 text-white d-flex flex-column">
+            <a class="name text-uppercase green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
             <p class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
             <p class="text-uppercase green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">
@@ -119,7 +119,7 @@
         <div class="col-md-6 text-white d-flex flex-column">
           <img class="img-fluid" [src]="stylist.image" />
           <p class="name text-uppercase green font-weight-bold">{{stylist.name}}</p>
-          <p class="bio flex-fill">{{ (stylist.bio.length > 100)? (stylist.bio | slice:0:100) + '...' : (stylist.bio) }}</p>
+          <p class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
           <p class="text-uppercase green font-weight-bold">Specializing in:</p>
           <div class="flex-row talents">
               <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>

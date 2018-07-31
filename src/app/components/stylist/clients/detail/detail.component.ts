@@ -64,7 +64,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
         this.detailForm.patchValue({
           name: result.data.name,
           zip: result.data.zip,
-          email: result.data.email
+          email: result.data.email,
+          phone: result.data.phone
         });
 
         this.clientProfileImage = result.data.image;
@@ -91,7 +92,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.detailForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       zip: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['']
     });
 
     this.formValuesChanged();
@@ -139,8 +141,10 @@ export class StylistClientsDetailPageComponent implements OnInit {
     const body: Client = {
       name: this.detailForm.get('name').value,
       email: this.detailForm.get('email').value,
-      zip: this.detailForm.get('zip').value
+      zip: this.detailForm.get('zip').value,
+      phone: this.detailForm.get('phone').value
     };
+
     this.clientService.update(this.clientId, body, this.authService.token).subscribe((result: any) => {
       let idx = this.clientService.clients.findIndex((x: Client) => {
         return x._id == result.data._id;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -20,13 +20,22 @@ export class NavComponent implements OnInit {
 
   loggedInUser: User;
 
+  newInnerWidth;
+
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.newInnerWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.newInnerWidth = event.target.innerWidth;
+  }
 
   ngOnInit() {
     this.router.events

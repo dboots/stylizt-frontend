@@ -93,7 +93,7 @@
           *ngFor="let item of clientPortfolios; index as idx"
           (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
           <img [src]="item.image || 'assets/img/placeholder.jpg'" />
-          <div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div>
+          <!--<div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div> -->
           <app-loading *ngIf="item.loading" ></app-loading>
         </div>
       </div>

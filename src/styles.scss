@@ -172,3 +172,51 @@ footer.footer {
   font-size: 16px;
   margin: 2px;
 }
+
+.item-preview-section {
+  background: $black;
+  letter-spacing: 3px;
+  
+  .title-row {
+    color: $white;
+    font-size: 45px;
+    font-weight: bold;
+    letter-spacing: 10px;
+    
+    @media (max-width: 992px) {
+      font-size: 25px;
+      letter-spacing: 10px;
+    }
+  }
+  
+  .name {
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+    }
+  }
+  
+  
+  .bio {
+    font-family: 'proxima_novaregular';
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+  }
+  
+  .talents {
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+    
+    .talent {
+      background: $white;
+      color: $black;
+      margin: 2px;
+      font-size: 14px;
+      padding: 2%;
+      float: left;
+      
+    }
+  }
+}

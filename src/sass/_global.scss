@@ -13,6 +13,20 @@ body {
   }
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, .5);
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.blur {
+  filter: blur(6px);
+}
+
 .carousel {
   display: none;
   

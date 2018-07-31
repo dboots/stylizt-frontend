@@ -1,19 +1,6 @@
 @import '../../../../../sass/_mixins';
 @import '../../../../../sass/_variables';
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(255, 255, 255, .5);
-  text-align: center;
-  width: 100%;
-  height: 100%;
-}
-.blur {
-  filter: blur(10px);
-}
-
 .fa {
   font-size: 50px;
 }

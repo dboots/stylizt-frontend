@@ -13,24 +13,24 @@
         *ngIf="!isLoggedIn()"
         class="navbar-nav ml-auto align-items-center text-uppercase">
         <li class="nav-item" [class.nav-login]="nav.name === 'Login'" *ngFor="let nav of navItems">
-          <a class="nav-link navbar-toggler" *ngIf="nav.name !== 'Login' && nav.scroll" [ngx-scroll-to]="nav.url" [ngx-scroll-to-offset]="-80" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link navbar-toggler" *ngIf="nav.name !== 'Login' && !nav.scroll" (click)="navigateTo(nav.url)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link navbar-toggler" *ngIf="nav.name === 'Login'" (click)="modal(login)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Login</a>
+          <a class="nav-link" *ngIf="nav.name !== 'Login' && nav.scroll" [ngx-scroll-to]="nav.url" [ngx-scroll-to-offset]="-80" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
+          <a class="nav-link" *ngIf="nav.name !== 'Login' && !nav.scroll" (click)="navigateTo(nav.url)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
+          <a class="nav-link" *ngIf="nav.name === 'Login'" (click)="modal(login)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Login</a>
         </li>
       </ul>
       
       <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
         <li class="nav-item">
-          <a class="nav-link navbar-toggler" (click)="navigateTo('/stylist/profile')" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Profile</a>
+          <a class="nav-link" (click)="navigateTo('/stylist/profile')" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navbar-toggler" (click)="navigateTo('/stylist/clients')" routerLink="/stylist/clients" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Clients</a>
+          <a class="nav-link" (click)="navigateTo('/stylist/clients')" routerLink="/stylist/clients" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Clients</a>
         </li>
         <li class="nav-item" *ngIf="loggedInUser">
-          <a class="nav-link navbar-toggler" (click)="navigateTo('/portfolio/' + loggedInUser._id)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Portfolio</a>
+          <a class="nav-link" (click)="navigateTo('/portfolio/' + loggedInUser._id)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Portfolio</a>
         </li>
         <li class="nav-item nav-login">
-          <a class="nav-link navbar-toggler" (click)="logout()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Logout</a>
+          <a class="nav-link" (click)="logout()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Logout</a>
         </li>
       </ul>
     </div>

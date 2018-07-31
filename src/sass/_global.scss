@@ -13,7 +13,13 @@ body {
   }
 }
 
-.overlay {
+a.link {
+  text-decoration: underline !important;
+  color: $white !important;
+  cursor: pointer;
+}
+
+.blur-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -104,7 +110,6 @@ section {
     }
 
     .common-gw-button {
-      width: 140px;
       letter-spacing: 3px;
     }
   }

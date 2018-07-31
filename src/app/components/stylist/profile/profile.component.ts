@@ -65,10 +65,9 @@ export class StylistProfilePageComponent implements OnInit {
   
   addTalent() {
     let talent: Talent = new Talent(this.talent.value);
-    console.log(talent);
     this.talentService.create(talent).subscribe((result: any) => {
       this.modalRef.close();
-      console.log(result);
+      this.talentService.itemList.push(result.result);
     }, (err) => {
     });
   }

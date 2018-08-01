@@ -512,14 +512,14 @@ module.exports = {
     }),
     // Reduces bundles total size
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      mangle: {
+      "compress": { "warnings": false },
+      "mangle": {
         // You can specify all variables that should not be mangled.
         // For example if your vendor dependency doesn't use modules
         // and relies on global variables. Most of angular modules relies on
         // angular global variable, so we should keep it unchanged
-        keep_fnames: true,
-        except: ['$super', '$', 'exports', 'require', 'angular', 'invoke']
+        "keep_fnames": true,
+        "except": ['$super', '$', 'exports', 'require', 'angular', 'invoke']
       }
     }),
     new NamedModulesPlugin({}),

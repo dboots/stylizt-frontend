@@ -513,6 +513,7 @@ module.exports = {
     // Reduces bundles total size
     new webpack.optimize.UglifyJsPlugin({
       "compress": { "warnings": false },
+      "parallel": true,
       "mangle": {
         // You can specify all variables that should not be mangled.
         // For example if your vendor dependency doesn't use modules

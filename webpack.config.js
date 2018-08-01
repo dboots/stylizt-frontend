@@ -143,6 +143,7 @@ module.exports = {
     ],
     "alias": rxPaths()
   },
+  "devtool": "cheap-module-source-map",
   "entry": {
     "main": [
       "./src/main.ts"

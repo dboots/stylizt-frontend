@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
   portfolio: Portfolio[];
   stylists: User[];
   posts: Post[];
-
+  
   slideConfig = {
     dots: true,
     infinite: true,
@@ -34,37 +34,44 @@ export class HomePageComponent implements OnInit {
     prevArrow: false,
     nextArrow: false
   };
-
+  
   constructor(
     private locationService: LocationService,
     private portfolioService: PortfolioService,
     private talentService: TalentService,
     private userService: UserService,
-    private postService: PostService
+    private postService: PostService,
+    private title: Title,
+    private meta: Meta
   ) { }
-
+  
   ngOnInit() {
+    this.title.setTitle('Hair to Chair - Test SSR Title');
+    this.meta.updateTag({
+      'description': 'Test SSR description'
+    });
+    
     this.talentService.read().then((result) => {
       this.dropdownOptions = result;
       this.currentOption = result[0];
     });
-
+    
     // TODO: Convert result to Portfolio models
     this.portfolioService.search({}).subscribe((result: any) => {
       this.portfolio = result.data;
     }, (err) => {
       console.log(err);
     });
-
+    
     this.userService.read().subscribe((result: any) => {
       this.stylists = result.data;
     });
-
+    
     this.postService.getBlogs().subscribe((posts: Post[]) => {
       this.posts = posts;
     });
   }
-
+  
   selectDropdown(option: any) {
     this.currentOption = option;
   }

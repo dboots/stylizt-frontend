@@ -19,6 +19,20 @@
   }
 }
 
+.about {
+  h3 {
+    margin: 15px 0;
+  }
+
+  .bio {
+    line-height: 1.4rem;
+  }
+
+  .specialties {
+    font-family: "proxima_novabold";
+  }
+}
+
 .talent {
   background: $green;
   color: $white;

@@ -3,6 +3,10 @@
 .profile-component {
   padding: 100px;
 
+  @media (max-width: 992px) {
+    padding: 50px 15px 15px;
+  }
+
   .container {
     .profile-title {
       font-size: 78px;
@@ -16,6 +20,10 @@
     .profile-row {
       padding: 50px 30px;
       background: $green;
+
+      @media (max-width: 992px) {
+        padding: 30px 15px;
+      }
 
       .photo-column {
         img {

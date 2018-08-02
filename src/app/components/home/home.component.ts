@@ -1,23 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from "@angular/platform-browser";
-import {
-  LocationService,
-  PortfolioService,
-  TalentService,
-  UserService,
-  PostService
-} from '../../services';
-import {
-  Portfolio,
-  User,
-  Post
-} from '../../models';
+import { LocationService, PortfolioService, TalentService, UserService, PostService } from '../../services';
+import { Portfolio, User, Post } from '../../models';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomePageComponent implements OnInit {
   dropdownOptions: any[];
   currentOption;
@@ -36,21 +26,13 @@ export class HomePageComponent implements OnInit {
   };
   
   constructor(
-    private locationService: LocationService,
     private portfolioService: PortfolioService,
     private talentService: TalentService,
     private userService: UserService,
-    private postService: PostService,
-    private title: Title,
-    private meta: Meta
+    private postService: PostService
   ) { }
   
-  ngOnInit() {
-    this.title.setTitle('Hair to Chair - Test SSR Title');
-    this.meta.updateTag({
-      'description': 'Test SSR description'
-    });
-    
+  ngOnInit() {    
     this.talentService.read().then((result) => {
       this.dropdownOptions = result;
       this.currentOption = result[0];
@@ -70,9 +52,5 @@ export class HomePageComponent implements OnInit {
     this.postService.getBlogs().subscribe((posts: Post[]) => {
       this.posts = posts;
     });
-  }
-  
-  selectDropdown(option: any) {
-    this.currentOption = option;
   }
 }

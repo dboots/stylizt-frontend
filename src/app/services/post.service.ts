@@ -16,7 +16,7 @@ export class PostService {
       item.title.rendered,
       item.excerpt.rendered,
       new Date(item.date),
-      item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
+      (item._embedded['wp:featuredmedia']) ? item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url : '',
       item.link
       ))
     );

@@ -72,8 +72,8 @@
     </div>
   </div>
   
-  <div class="row d-none d-md-flex justify-content-around">
-    <div *ngFor="let post of posts" class="col-sm-5 position-relative">
+  <div class="row">
+    <div *ngFor="let post of posts" class="col-md-6 position-relative">
       <app-post [post]="post"></app-post>
     </div>
   </div>
@@ -92,7 +92,7 @@
 
 <div class="thumbnail-section">
   <div class="container">
-    <div class="row d-none d-md-flex py-md-4 py-sm-1">
+    <div class="row py-md-4 py-sm-1">
       <div class="col-md-6 mb-4" *ngFor="let stylist of stylists">
         <div class="row">
           <div class="col-md-5 text-center position-relative">

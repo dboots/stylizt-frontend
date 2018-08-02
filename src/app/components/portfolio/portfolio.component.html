@@ -26,13 +26,16 @@
   </div>
 </div>
 
-<div id="portfolio" class="thumbnail-section text-center text-uppercase mt-4">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="title-row">Client Portfolio</div>
-      </div>
+<div class="container">
+  <div class="row mt-5" id="local-talent">
+    <div class="col-12 m-auto text-uppercase text-center text-white title-block">
+      PORTFOLIO
     </div>
+  </div>
+</div>
+
+<div id="portfolio" class="pt-2 thumbnail-section text-center text-uppercase">
+  <div class="container">
     <div class="row d-none d-md-flex">
       <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />

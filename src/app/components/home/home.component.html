@@ -49,7 +49,7 @@
 
 <div class="thumbnail-section">
   <div class="container">
-    <div class="row d-none d-md-flex">
+    <div class="row desktop d-md-flex">
       <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
         <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
         <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
@@ -73,7 +73,7 @@
   </div>
   
   <div class="row">
-    <div *ngFor="let post of posts" class="d-none col-md-6 position-relative">
+    <div *ngFor="let post of posts" class="desktop col-md-6 position-relative">
       <app-post [post]="post"></app-post>
     </div>
   </div>

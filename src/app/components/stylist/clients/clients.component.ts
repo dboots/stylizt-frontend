@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Client, User } from '../../../models';
-import { AuthService, ClientService } from '../../../services';
+import { ClientService } from '../../../services';
 
 @Component({
   selector: 'app-page-stylistclients',
@@ -20,8 +20,7 @@ export class StylistClientsPageComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private clientService: ClientService,
-    private authService: AuthService
+    private clientService: ClientService
   ) {}
 
   async ngOnInit() {
@@ -32,7 +31,7 @@ export class StylistClientsPageComponent implements OnInit {
     });
 
     try {
-      this.clients = await this.clientService.read(this.authService.token);
+      this.clients = await this.clientService.read();
     } catch (e) {
       console.log('exception', e);
     }
@@ -48,7 +47,8 @@ export class StylistClientsPageComponent implements OnInit {
 
   addClient() {
     const client: Client = new Client(this.clientName.value, '');
-    this.clientService.create(client, this.authService.token).subscribe((result: any) => {
+    this.clientService.create(client).subscribe((result: any) => {
+      this.clientService.clients.push(result.data);
       this.modalRef.close();
       this.router.navigate(['/stylist/clients/' + result.data._id]);
     }, (err) => {

@@ -31,6 +31,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
   uploadStatus: string;
   clientProfileImage: string;
+  updateStatus: string;
 
   portfolioImageUploadStatus: string;
   clientPortfolioImages: string[] = [];
@@ -59,8 +60,9 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.checkCache();
       this.clientId = params['id'];
-      this.clientService.detail(this.clientId, this.authService.token).subscribe((result: any) => {
+      this.clientService.detail(this.clientId).subscribe((result: any) => {
         this.detailForm.patchValue({
           name: result.data.name,
           zip: result.data.zip,
@@ -82,6 +84,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.initForm();
   }
 
+  async checkCache() {
+    if (!this.clientService.clients) {
+      await this.clientService.read();
+    }
+  }
+
   initForm() {
     this.detailFormErrors = {
       name: {},
@@ -91,8 +99,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.detailForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      zip: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      zip: [''],
+      email: [''],
       phone: ['']
     });
 
@@ -145,13 +153,14 @@ export class StylistClientsDetailPageComponent implements OnInit {
       phone: this.detailForm.get('phone').value
     };
 
-    this.clientService.update(this.clientId, body, this.authService.token).subscribe((result: any) => {
+    this.clientService.update(this.clientId, body).subscribe((result: any) => {
       let idx = this.clientService.clients.findIndex((x: Client) => {
         return x._id == result.data._id;
       });
 
       result.data.portfolio = this.clientPortfolios;
       this.clientService.clients[idx] = result.data;
+      this.updateStatus = 'Client Updated';
     }, (err) => {
       alert(err.error.messages[0]);
     });

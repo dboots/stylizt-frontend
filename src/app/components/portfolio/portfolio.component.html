@@ -26,24 +26,26 @@
   </div>
 </div>
 
-<div id="portfolio" class="item-preview-section container text-center text-uppercase mt-4">
-  <div class="row">
-    <div class="col">
-      <div class="portfolio-title">Client Portfolio</div>
+<div id="portfolio" class="thumbnail-section text-center text-uppercase mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="title-row">Client Portfolio</div>
+      </div>
     </div>
+    <div class="row d-none d-md-flex">
+      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+      </div>
+    </div>
+    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let p of portfolio">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+      </div>
+    </ngx-slick>
   </div>
-  <div class="desktop-row row">
-    <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
-      <img class="img-fluid w-100" [src]="p.image" />
-      <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-    </div>
-  </div>
-  <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
-    <div ngxSlickItem *ngFor="let p of portfolio">
-      <img class="img-fluid w-100" [src]="p.image" />
-      <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-    </div>
-  </ngx-slick>  
 </div>
 
 <div id="schedule" class="section">

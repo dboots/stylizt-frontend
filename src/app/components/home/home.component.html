@@ -17,15 +17,13 @@
     <div class="row">
       <div class="col">
         <div class="text-center">FIND YOUR NEXT
-          
           <app-custom-dropdown
-          [options]="dropdownOptions"
-          label="talent"
-          id="_id"
-          [selected]="currentOption"
-          (onselect)="selectDropdown($event)">
-        </app-custom-dropdown>
-        
+            [options]="dropdownOptions"
+            label="talent"
+            id="_id"
+            [selected]="currentOption"
+            (onselect)="selectDropdown($event)">
+          </app-custom-dropdown>
       </div>
     </div>
   </div>
@@ -49,9 +47,9 @@
   </div>
 -->
 
-<div class="find-salons-main-section">
+<div class="thumbnail-section">
   <div class="container">
-    <div class="desktop-row row">
+    <div class="row d-none d-md-flex">
       <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
         <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
         <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
@@ -74,7 +72,7 @@
     </div>
   </div>
   
-  <div class="desktop-row row justify-content-around">
+  <div class="row d-none d-md-flex justify-content-around">
     <div *ngFor="let post of posts" class="col-sm-5 position-relative">
       <app-post [post]="post"></app-post>
     </div>
@@ -92,9 +90,9 @@
   </div>
 </div>
 
-<div class="item-preview-section">
+<div class="thumbnail-section">
   <div class="container">
-    <div class="desktop-row row py-md-4 py-sm-1">
+    <div class="row d-none d-md-flex py-md-4 py-sm-1">
       <div class="col-md-6 mb-4" *ngFor="let stylist of stylists">
         <div class="row">
           <div class="col-md-5 text-center position-relative">
@@ -132,21 +130,21 @@
 
 <div class="container">
   <div class="row my-5 justify-content-md-center">
-    <div class="col-md-6 signup-component mb-4">
+    <div class="col-md-6 action-card mb-4">
       <!-- [ngStyle]="{'backgroundImage': 'url(' + 'http://via.placeholder.com/500x500' + ')'}" -->
-      <a routerLink="/stylist" class="image-div d-flex align-items-center justify-content-center text-white">
+      <a routerLink="/stylist" class="image-content d-flex align-items-center justify-content-center text-white">
         <span class="black-diamond-font mr-4">STYLIST</span> SIGN UP
       </a>
-      <div class="detail-text mt-4">
+      <div class="detail-content mt-4">
         <p>Woo potential clients with your talent portfolio! Keep them coming back to your chair with scheduling reminders via email, text or H2C chat!</p>
         <p><strong>COMING SOON</strong> - Let your clients know what's going on in your life! Keep clients updated on where you're working next, open appointments, and more!</p>
       </div>
     </div>
-    <div class="col-md-6 signup-component mb-4">
-      <a routerLink="/salon" class="image-div d-flex align-items-center justify-content-center text-white">
+    <div class="col-md-6 action-card mb-4">
+      <a routerLink="/salon" class="image-content d-flex align-items-center justify-content-center text-white">
         <span class="black-diamond-font mr-4">SALON</span> SIGN UP
       </a>
-      <div class="detail-text mt-4">
+      <div class="detail-content mt-4">
         <strong>COMING SOON!</strong> - Have empty chairs to fill? Get notified when talent relevant to your salon's needs becomes available. Browse their portfolio. No more empty chairs!
       </div>
     </div>

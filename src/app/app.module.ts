@@ -20,7 +20,8 @@ import {
   NotesService,
   TalentService,
   LocationService,
-  PostService
+  PostService,
+  ContactService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -94,6 +95,7 @@ import { PostComponent } from './components/shared/post/post.component';
     TalentService,
     LocationService,
     PostService,
+    ContactService,
     JwtHelper
   ],
   entryComponents: [

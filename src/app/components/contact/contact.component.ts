@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from '../../services';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +12,10 @@ export class ContactPageComponent implements OnInit {
   contactFormErrors: any;
   formSubmitted: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactService: ContactService
+  ) { }
 
   ngOnInit() {
     this.initForm();
@@ -21,13 +25,13 @@ export class ContactPageComponent implements OnInit {
     this.contactFormErrors = {
       name: {},
       email: {},
-      thoughts: {}
+      message: {}
     };
 
     this.contactForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      thoughts: ['', Validators.required]
+      message: ['', Validators.required]
     });
 
     this.formValuesChanged();
@@ -51,6 +55,15 @@ export class ContactPageComponent implements OnInit {
   }
 
   submit(event) {
-    this.formSubmitted = true;
+    let formControls = this.contactForm.controls;
+    let body = {
+      name: formControls.name.value,
+      email: formControls.email.value,
+      message: formControls.message.value
+    }
+
+    this.contactService.contact(body).subscribe((result) => {
+      this.formSubmitted = true;
+    });
   }
 }

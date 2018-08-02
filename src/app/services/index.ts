@@ -24,3 +24,5 @@ export { LocationService } from './location.service';
 
 import { PostService } from './post.service';
 export { PostService } from './post.service';
+
+export { ContactService } from './contact.service';

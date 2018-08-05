@@ -11,7 +11,7 @@ export class PostService {
   ) { }
 
   getBlogs() {
-    const url = 'https://blog.hairtochair.com/wp-json/wp/v2/posts?_embed';
+    const url = 'https://blog.hairtochair.com/wp-json/wp/v2/posts?_embed&per_page=4';
     return this.http.get<any[]>(url).map((res): Post[] => res.map((item): Post => new Post(
       item.title.rendered,
       item.excerpt.rendered,

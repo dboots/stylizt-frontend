@@ -1,12 +1,12 @@
 
 <!-- Masthead -->
-<header class="masthead text-white text-center">
+<header class="masthead text-white text-center" track-scroll>
   <div class="overlay"></div>
-  <div class="container">
+  <div class="hero-container">
     <div class="row">
-      <div class="col-md-6 mx-auto">
-        <h1>Fill Chairs With Talent</h1>
-        <p class="bigly">Hair To Chair keeps talented stylists connected with their clients and professional salons.</p>
+      <div class="title-content col-md-8 col-10 m-auto text-center">
+        <div class="text-uppercase">Fill Your Chair With <span class="black-diamond-font">Talent</span></div>
+        <div>Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
       </div>
     </div>
   </div>
@@ -75,63 +75,65 @@
     </div>
   </section>
   
-  <section class="pricing">
-    <div class="container">
-      <div class="row justify-content-center" >
-        <div class="col-12 text-center">
-          <h2 class="pb-3">Hair To Chair will be ready soon! Want to get a head start? Signup
-            today and get access to discounted rates, exclusive beta user giveaways, and free swag!</h2>
-          </div>
-          <div class="col-lg-4 col-xl-3 col-card">
-            <div class="card" [ngClass]="{'active': (plan == 1)}">
-              <div class="card-body">
-                <h2>Basic</h2>
-                <p class="bigly card-price text-center">FREE</p>
-                <ul class="text-left">
-                  <li>list available positions for up to 2 weeks</li>
-                  <li>browse stylists in your area</li>
-                </ul>
+  <!--
+    <section class="pricing">
+      <div class="container">
+        <div class="row justify-content-center" >
+          <div class="col-12 text-center">
+            <h2 class="pb-3">Hair To Chair will be ready soon! Want to get a head start? Signup
+              today and get access to discounted rates, exclusive beta user giveaways, and free swag!</h2>
+            </div>
+            <div class="col-lg-4 col-xl-3 col-card">
+              <div class="card" [ngClass]="{'active': (plan == 1)}">
+                <div class="card-body">
+                  <h2>Basic</h2>
+                  <p class="bigly card-price text-center">FREE</p>
+                  <ul class="text-left">
+                    <li>list available positions for up to 2 weeks</li>
+                    <li>browse stylists in your area</li>
+                  </ul>
+                </div>
+                <button (click)="plan = 1" class="btn btn-primary">SELECT THIS PLAN</button>
               </div>
-              <button (click)="plan = 1" class="btn btn-primary">SELECT THIS PLAN</button>
+            </div>
+            <div class="col-lg-4 col-xl-3 col-card">
+              <div class="card" [ngClass]="{'active': (plan == 2)}">
+                <div class="card-body">
+                  <h2>Pro</h2>
+                  <p class="bigly card-price text-center"><s>$14.99/mo</s></p>
+                  <p class="bigly card-price text-center">$9.99/mo</p>
+                  <ul class="text-left">
+                    <li>list available positions for up to 4 weeks</li>
+                    <li>24h stylist availability notifications</li>
+                  </ul>
+                </div>
+                <button (click)="plan = 2" class="btn btn-primary">SELECT THIS PLAN</button>
+              </div>
+            </div>
+            <div class="col-lg-4 col-xl-3 col-card">
+              <div class="card" [ngClass]="{'active': (plan == 3)}">
+                <div class="card-body">
+                  <h2>Elite</h2>
+                  <p class="bigly card-price text-center"><s>$29.99/mo</s></p>
+                  <p class="bigly card-price text-center">$29.99/mo</p>
+                  <ul class="text-left">
+                    <li>list available positions position filled/closed</li>
+                    <li>priority placement in search results</li>
+                    <li>immediate stylist availability notifications</li>
+                  </ul>
+                </div>
+                <button (click)="plan = 3" class="btn btn-primary">SELECT THIS PLAN</button>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4 col-xl-3 col-card">
-            <div class="card" [ngClass]="{'active': (plan == 2)}">
-              <div class="card-body">
-                <h2>Pro</h2>
-                <p class="bigly card-price text-center"><s>$14.99/mo</s></p>
-                <p class="bigly card-price text-center">$9.99/mo</p>
-                <ul class="text-left">
-                  <li>list available positions for up to 4 weeks</li>
-                  <li>24h stylist availability notifications</li>
-                </ul>
-              </div>
-              <button (click)="plan = 2" class="btn btn-primary">SELECT THIS PLAN</button>
-            </div>
-          </div>
-          <div class="col-lg-4 col-xl-3 col-card">
-            <div class="card" [ngClass]="{'active': (plan == 3)}">
-              <div class="card-body">
-                <h2>Elite</h2>
-                <p class="bigly card-price text-center"><s>$29.99/mo</s></p>
-                <p class="bigly card-price text-center">$29.99/mo</p>
-                <ul class="text-left">
-                  <li>list available positions position filled/closed</li>
-                  <li>priority placement in search results</li>
-                  <li>immediate stylist availability notifications</li>
-                </ul>
-              </div>
-              <button (click)="plan = 3" class="btn btn-primary">SELECT THIS PLAN</button>
+          <div class="row">
+            <div class="col">
+              <app-signup type="owner" [plan]="plan"></app-signup>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <app-signup type="owner" [plan]="plan"></app-signup>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    -->
     
     <!-- Testimonials -->
     <!--

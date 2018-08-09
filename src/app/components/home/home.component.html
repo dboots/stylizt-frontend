@@ -12,26 +12,28 @@
   </div>
 </header>
 
-<div class="bg-light">
-  <div class="find-salons-title-container container">
-    <div class="row">
-      <div class="col">
-        <div class="text-center">FIND YOUR NEXT
-          <app-custom-dropdown
+<!--
+  <div class="bg-light">
+    <div class="find-salons-title-container container">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">FIND YOUR NEXT
+            <app-custom-dropdown
             [options]="dropdownOptions"
             label="talent"
             id="_id"
             [selected]="currentOption"
             (onselect)="selectDropdown($event)">
           </app-custom-dropdown>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+-->
+
 
 <div class="empty-dark-section"></div>
-
 <!--
   <div class="bg-light">
     <div class="container">
@@ -50,18 +52,20 @@
 <div class="thumbnail-section">
   <div class="container">
     <div class="row desktop d-md-flex">
-      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
-        <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
-        <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
-        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-      </div>
+      <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
+      <!--
+        <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+          <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
+        </div>
+      -->
     </div>
-    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let p of portfolio">
-        <img class="img-fluid w-100" [src]="p.image" />
-        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-      </div>
-    </ngx-slick>  
+    <!--
+      <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let p of portfolio">
+          <img class="img-fluid w-100" [src]="p.image" />
+        </div>
+      </ngx-slick>
+    -->
   </div>
 </div>
 
@@ -93,38 +97,45 @@
 <div class="thumbnail-section">
   <div class="container">
     <div class="row py-md-4 py-sm-1">
-      <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
-        <div class="row">
-          <div class="col-md-5 text-center position-relative">
-            <a [routerLink]="['/portfolio', stylist._id]">
-              <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
-            </a>
+      <!--
+        <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
+          <div class="row">
+            <div class="col-md-5 text-center position-relative">
+              <a [routerLink]="['/portfolio', stylist._id]">
+                <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
+              </a>
+            </div>
+            <div class="col-md-7 text-white d-flex flex-column">
+              <a class="name text-uppercase green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
+              <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
+              <p class="text-uppercase green font-weight-bold">Specializing in:</p>
+              <div class="flex-row talents">
+                <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+              </div>
+            </div>
           </div>
-          <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
-            <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
+        </div>
+      -->
+      <div class="text-center text-white col-md-6 m-auto">
+        We are currently approving the first round of H2C talent. Sign up today to be one of the first!
+      </div>
+    </div>
+    
+    <!--
+      <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let stylist of stylists">
+          <div class="col-md-6 text-white d-flex flex-column">
+            <img class="img-fluid" [src]="stylist.image" />
+            <p class="name text-uppercase green font-weight-bold">{{stylist.name}}</p>
+            <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
             <p class="text-uppercase green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">
               <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    
-    <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let stylist of stylists">
-        <div class="col-md-6 text-white d-flex flex-column">
-          <img class="img-fluid" [src]="stylist.image" />
-          <p class="name text-uppercase green font-weight-bold">{{stylist.name}}</p>
-          <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
-          <p class="text-uppercase green font-weight-bold">Specializing in:</p>
-          <div class="flex-row talents">
-              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
-          </div>
-        </div>
-      </div>
-    </ngx-slick>
+      </ngx-slick>
+    -->
   </div>
 </div>
 

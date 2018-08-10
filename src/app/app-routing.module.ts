@@ -45,7 +45,12 @@ const routes: Routes = [
       { name: 'Schedule', url: '#schedule', scroll: true },
       { name: 'Login' }
     ]} },
-    { path: 'owner', component: OwnerPageComponent },
+    {
+      path: 'owner', component: OwnerPageComponent,
+      data: { navItems: [
+        { name: 'Login' }
+      ]}
+    },
     {
       path: 'contact',
       component: ContactPageComponent,

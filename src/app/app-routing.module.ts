@@ -10,8 +10,14 @@ import { StylistPortfolioPageComponent } from './components/portfolio/portfolio.
 import { OwnerPageComponent } from './components/owner/owner.component';
 import { ContactPageComponent } from './components/contact/contact.component';
 import { PasswordPageComponent } from './components/password/password.component';
+import { PrivacyPageComponent } from './components/privacy/privacy.component';
+import { TermsPageComponent } from './components/terms/terms.component';
 
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
+
+let defaultNav = [
+  { name: 'Login' }
+];
 
 const routes: Routes = [
   {
@@ -46,19 +52,22 @@ const routes: Routes = [
       { name: 'Login' }
     ]} },
     {
-      path: 'owner', component: OwnerPageComponent,
-      data: { navItems: [
-        { name: 'Login' }
-      ]}
-    },
-    {
+      path: 'owner',
+      component: OwnerPageComponent,
+      data: { navItems: defaultNav }
+    }, {
       path: 'contact',
       component: ContactPageComponent,
-      data: { navItems: [
-        { name: 'Login' }
-      ]}
-    },
-    { path: 'password/:token', component: PasswordPageComponent },
+      data: { navItems: defaultNav }
+    }, {
+      path: 'privacy-policy',
+      component: PrivacyPageComponent,
+      data: { navItems: defaultNav }
+    }, {
+      path: 'terms',
+      component: TermsPageComponent,
+      data: { navItems: defaultNav }
+    }, { path: 'password/:token', component: PasswordPageComponent },
   ];
   
   @NgModule({

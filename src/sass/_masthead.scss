@@ -4,7 +4,8 @@ header {
     padding: 8rem 0;
     position: relative;
     background-color: $gray-800;
-    background: url('../assets/img/bg-masthead.jpg') no-repeat center center;
+    background: url('../assets/img/header-home.jpg') no-repeat center center;
+    background-size: cover;
     @include background-cover;
     .overlay {
       position: absolute;

@@ -33,6 +33,8 @@ import { OwnerPageComponent } from './components/owner/owner.component';
 import { HomePageComponent } from './components/home/home.component';
 import { ContactPageComponent } from './components/contact/contact.component';
 import { PasswordPageComponent } from './components/password/password.component';
+import { TermsPageComponent } from './components/terms/terms.component';
+import { PrivacyPageComponent } from './components/privacy/privacy.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
@@ -70,7 +72,9 @@ import { PostComponent } from './components/shared/post/post.component';
     TalentTagsInputComponent,
     CustomDropdownComponent,
     LoadingComponent,
-    PostComponent
+    PostComponent,
+    TermsPageComponent,
+    PrivacyPageComponent
   ],
   imports: [
     BrowserModule,

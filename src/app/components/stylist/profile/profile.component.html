@@ -1,70 +1,77 @@
 <div class="profile-component content">
-  <div class="container">
+  <div class="container"> 
     <div class="row">
-      <div class="col">
-        <div class="profile-title black-diamond-font">PROFILE</div>
+      <div class="col-md-4 my-4 text-center">
+        <span class="circle text-white"><i class="fa fa-baseline fa-icon fa-users"></i></span>
+        <p>Add to your client book</p>
+        <a class="common-gw-button" routerLink="/stylist/clients">Create Client</a>
       </div>
+      <div class="col-md-4 my-4 text-center">
+        <span class="circle text-white"><i class="fa fa-icon fa-image"></i></span>
+        <p>Add portfolio images to a client</p>
+        <a class="common-gw-button" routerLink="/stylist/clients">View Clients</a>
+      </div>
+      <div class="col-md-4 my-4 text-center">
+          <span class="circle text-white"><i class="fa fa-icon fa-image"></i></span>
+          <p>Add talents to your profile</p>
+          <button class="common-gw-button" (click)="scrollToTalents()">View H2C Page</button>
+        </div>
     </div>
     <div class="profile-row row">
       <div class="photo-column col-md-6 text-center">
         <img *ngIf="user.image" [src]="user.image" />
-        <app-cloudinary-uploader
-        [folderName]="'profile'"
-        [buttonName]="'UPLOAD PHOTO'"
-        (completeItem)="profileImageUploadCompleted($event)">
-      </app-cloudinary-uploader>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>YOUR NAME</label>
-        <input [(ngModel)]="user.name" class="form-control" type="text" />
+        <app-cloudinary-uploader [folderName]="'profile'" [buttonName]="'UPLOAD PHOTO'"(completeItem)="profileImageUploadCompleted($event)"></app-cloudinary-uploader>
       </div>
-      
-      <div class="form-group">
-        <label>EMAIL ADDRESS</label>
-        <input [(ngModel)]="user.email" class="form-control" type="text" />
-      </div>
-      <div class="form-group">
-        <label>ZIP</label>
-        <input [(ngModel)]="user.zip" class="form-control" type="text" />
-      </div>
-      
-      <div class="bio-content form-group">
-        <label>BIO</label>
-        <textarea [(ngModel)]="user.bio" class="form-control"></textarea>
-      </div>
-      
-      <div class="form-group">
-        <label>YOUR TALENTS</label>
-        Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
-        <app-talent-tags-input [talents]="talents"></app-talent-tags-input>
-      </div>
-      
-      <button type="button" (click)="uploadAndUpdate()" class="btn btn-primary pull-right">UPDATE PROFILE</button>
-      {{ status }}
-    </div>
-  </div>
-</div>
-</div>
-
-<ng-template #addModal let-c="close" let-d="dismiss">
-  <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
-    <div class="add-modal-component text-uppercase">
-      <div class="black-diamond-font">Add New Talent</div>
-      <div class="green-divider"></div>
-      <div class="main-content">
+      <div class="col-md-6">
         <div class="form-group">
-          <label>Talent</label>
-          <input type="text" formControlName="talent" class="form-control">
+          <label>YOUR NAME</label>
+          <input [(ngModel)]="user.name" class="form-control" type="text" />
         </div>
         
-        <div>
-          <div class="pull-right">
-            <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-            <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+        <div class="form-group">
+          <label>EMAIL ADDRESS</label>
+          <input [(ngModel)]="user.email" class="form-control" type="text" />
+        </div>
+        <div class="form-group">
+          <label>ZIP</label>
+          <input [(ngModel)]="user.zip" class="form-control" type="text" />
+        </div>
+        
+        <div class="bio-content form-group">
+          <label>BIO</label>
+          <textarea [(ngModel)]="user.bio" class="form-control"></textarea>
+        </div>
+        
+        <div class="form-group" id="talents">
+          <label>YOUR TALENTS</label>
+          Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
+          <app-talent-tags-input [talents]="talents"></app-talent-tags-input>
+        </div>
+        
+        <button type="button" (click)="uploadAndUpdate()" class="common-gw-button pull-right">UPDATE PROFILE</button>
+        {{ status }}
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #addModal let-c="close" let-d="dismiss">
+    <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
+      <div class="add-modal-component text-uppercase">
+        <div class="black-diamond-font">Add New Talent</div>
+        <div class="green-divider"></div>
+        <div class="main-content">
+          <div class="form-group">
+            <label>Talent</label>
+            <input type="text" formControlName="talent" class="form-control">
+          </div>
+          
+          <div>
+            <div class="pull-right">
+              <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+              <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-</ng-template>
+    </form>
+  </ng-template>

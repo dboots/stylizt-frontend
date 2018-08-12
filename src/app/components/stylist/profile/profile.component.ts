@@ -1,8 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User, Talent } from '../../../models';
 import { AuthService, UserService, TalentService } from '../../../services';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-page-stylistprofile',
@@ -36,6 +36,14 @@ export class StylistProfilePageComponent implements OnInit {
     
     this.user = this.authService.decode();
     this.talents = this.user.talents;
+  }
+
+  scrollToTalents() {
+    try {
+      document.querySelector('#talents').scrollIntoView();
+    } catch(e) {
+      console.log(e);
+    }
   }
   
   profileImageUploadCompleted(response) {

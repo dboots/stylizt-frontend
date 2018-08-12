@@ -1,5 +1,17 @@
 @import '../../../../sass/variables';
 
+.circle {
+  background: $green;
+  padding: 20px;
+  width: 80px;
+  height: 80px;
+  display: block;
+  border-radius: 50px;
+  text-align: center;
+  margin: 25px auto;
+  font-weight: bold;
+  font-size: 30px;
+}
 .profile-component {
   padding: 100px;
 
@@ -60,19 +72,9 @@
           height: 160px;
         }
       }
-    }
 
-    button {
-      font-family: "proxima_novasemibold", Arial, sans-serif;
-      font-size: 20px;
-      letter-spacing: 2px;
-      padding: 0 20px;
-      background: $gray-900;
-      border-radius: 0;
-
-      @media (max-width: 992px) {
-        font-size: 17px;
-        margin-top: 14px;
+      button {
+        background: $gray-900;
       }
     }
   }

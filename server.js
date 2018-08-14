@@ -1,7 +1,7 @@
 //Install express server
 const express = require('express');
 const app = express();
-const port = 8188;
+const port = (process.env.PORT || 8188);
 const path = require('path');
 const prerender = require('prerender');
 

@@ -1,8 +1,12 @@
 //Install express server
 const express = require('express');
 const app = express();
-const port = (process.env.PORT || 8088);
+const port = (8188);
 const path = require('path');
+const prerender = require('prerender');
+
+// Start prerender server;
+prerender().start();
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));

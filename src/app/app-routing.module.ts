@@ -12,6 +12,7 @@ import { ContactPageComponent } from './components/contact/contact.component';
 import { PasswordPageComponent } from './components/password/password.component';
 import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { TermsPageComponent } from './components/terms/terms.component';
+import { LandingPageComponent } from './components/landing/landing.component';
 
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
@@ -20,6 +21,10 @@ let defaultNav = [
 ];
 
 const routes: Routes = [
+  {
+    path: 'stylists-near-me/:state/:city',
+    component: LandingPageComponent
+  },
   {
     path: '',
     component: HomePageComponent,

@@ -3,12 +3,6 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const path = require('path');
-const prerender = require('prerender');
-
-// Start prerender server;
-prerender({
-    chromeLocation: '/app/.apt/usr/bin/google-chrome'
-}).start();
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));

@@ -5,6 +5,11 @@ const port = (process.env.PORT || 8088);
 const path = require('path');
 
 // Serve only the static files form the dist directory
+app.use(
+  require('prerender-node')
+    .set('protocol', 'http')
+    .set('prerenderServiceUrl', 'https://h2c-prerender.herokuapp.com/')
+  );
 app.use(express.static(__dirname + '/dist'));
 
 app.get('*', (req, res) => {

@@ -1,9 +1,14 @@
 //Install express server
 const express = require('express');
 const app = express();
-const port = (8188);
+const port = 8188;
 const path = require('path');
-const prerender = require('prerender');
+const prerender = prerender({
+  chromeLocation: '/app/.apt/usr/bin/google-chrome-stable'
+});
+
+console.log(process.env.GOOGLE_CHROME_SHIM);
+console.log(process.env.GOOGLE_CHROME_BIN);
 
 // Start prerender server;
 prerender().start();
@@ -12,7 +17,7 @@ prerender().start();
 app.use(express.static(__dirname + '/dist'));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/dist/index.html'));
+  res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
 console.log('attempting to run server on ' + port);

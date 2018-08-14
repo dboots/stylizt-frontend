@@ -24,9 +24,7 @@ export class StylistPortfolioPageComponent implements OnInit {
     private title: Title
   ) {
     this.route.params.subscribe((params) => { this.params = params });
-  }
 
-  ngOnInit() {
     this.portfolioService.read({owner: this.params.id}).subscribe((data: any) => {
       this.portfolio = data.portfolio;
       this.stylist = data.stylist;
@@ -37,5 +35,8 @@ export class StylistPortfolioPageComponent implements OnInit {
       let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
       this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     })
+  }
+
+  ngOnInit() {
   }
 }

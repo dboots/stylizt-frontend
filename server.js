@@ -8,7 +8,7 @@ const path = require('path');
 app.use(
   require('prerender-node')
     .set('protocol', 'http')
-    .set('prerenderServiceUrl', '')
+    .set('prerenderServiceUrl', 'https://h2c-prerender.herokuapp.com/')
   );
 app.use(express.static(__dirname + '/dist'));
 

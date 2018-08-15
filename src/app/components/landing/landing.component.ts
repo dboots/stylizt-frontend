@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html'
@@ -32,5 +31,6 @@ export class LandingPageComponent {
       name: 'keywords',
       content: 'home mortgage loans,mortgages,mortgage loan,mortgage loans,home mortgage'
     });
+    window.prerenderReady = true;
   }
 }

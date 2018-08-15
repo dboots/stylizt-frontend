@@ -432,6 +432,14 @@ module.exports = {
           "glob": "favicon.ico",
           "dot": true
         }
+      },
+      {
+        "context": "src",
+        "to": "",
+        "from": {
+          "glob": "googlecc28b84af0333bac.html",
+          "dot": true
+        }
       }
     ], {
       "ignore": [

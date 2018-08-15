@@ -10,7 +10,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "googlecc28b84af0333bac.html"
       ],
       "index": "index.html",
       "main": "main.ts",

@@ -30,9 +30,9 @@ export class StylistPortfolioPageComponent implements OnInit {
       this.stylist = data.stylist;
 
       this.title.setTitle(this.stylist.name + ' Portfolio');
-      this.meta.addTags([
+      this.meta.updateTag(
         { name: 'description', content: this.stylist.name + ' is a stylist from ' + this.stylist.zip }
-      ]);
+      );
       
       var location = this.stylist.zip.replace('#', '%23');
       let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';

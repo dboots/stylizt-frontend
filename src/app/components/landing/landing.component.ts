@@ -28,5 +28,9 @@ export class LandingPageComponent {
       name: 'description',
       content: 'Stylists near me in ' + location
     });
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'home mortgage loans,mortgages,mortgage loan,mortgage loans,home mortgage'
+    });
   }
 }

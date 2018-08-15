@@ -18,9 +18,6 @@ export class LandingPageComponent {
       this.params = params
       this.updateMeta();
     });
-
-    console.log('PRErender ready status...', window.prerenderReady);
-    window.prerenderReady = true;
   }
 
   updateMeta() {
@@ -34,5 +31,8 @@ export class LandingPageComponent {
       name: 'keywords',
       content: 'home mortgage loans,mortgages,mortgage loan,mortgage loans,home mortgage'
     });
+
+    console.log('PRErender ready status...');
+    window.prerenderReady = true;
   }
 }

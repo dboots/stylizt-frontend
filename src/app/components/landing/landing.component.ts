@@ -33,6 +33,5 @@ export class LandingPageComponent {
     });
 
     console.log('PRErender ready status...');
-    window.prerenderReady = true;
   }
 }

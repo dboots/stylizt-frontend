@@ -45,7 +45,7 @@
         <div class="form-group" id="talents">
           <label>YOUR TALENTS</label>
           Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
-          <app-talent-tags-input [talents]="talents"></app-talent-tags-input>
+          <app-talent-tags-input [talents]="talents" [(selectedItems)]="selectedItems"></app-talent-tags-input>
         </div>
         
         <button type="button" (click)="uploadAndUpdate()" class="common-gw-button pull-right">UPDATE PROFILE</button>

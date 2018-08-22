@@ -17,7 +17,8 @@ export class StylistProfilePageComponent implements OnInit {
   modalRef: NgbModalRef;
   talentForm: FormGroup;
   talent: FormControl;
-  
+  selectedItems: Talent[] = [];
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -76,6 +77,7 @@ export class StylistProfilePageComponent implements OnInit {
     this.talentService.create(talent).subscribe((result: any) => {
       this.modalRef.close();
       this.talentService.itemList.push(result.result);
+      this.selectedItems.push(result.result);
     }, (err) => {
     });
   }

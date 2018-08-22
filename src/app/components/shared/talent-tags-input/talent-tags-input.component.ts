@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TalentService } from '../../../services';
 import { Talent } from '../../../models/talent.model';
 
@@ -10,7 +10,8 @@ import { Talent } from '../../../models/talent.model';
 export class TalentTagsInputComponent implements OnInit {
   itemList: Talent[];
   @Input() talents: Talent[] = [];
-  selectedItems: Talent[] = [];
+  @Input() selectedItems: Talent[] = [];
+  @Output() selectedItemsChange: EventEmitter<Talent[]> = new EventEmitter();
   settings = {};
 
   constructor(
@@ -37,6 +38,7 @@ export class TalentTagsInputComponent implements OnInit {
         const idx = getTalentIndex(talent, this.talents);
         return (idx !== -1);
       });
+      this.selectedItemsChange.emit(this.selectedItems);
     } catch (e) {
       console.log('exception', e);
     }

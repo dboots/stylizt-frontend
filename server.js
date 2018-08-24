@@ -3,13 +3,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
 const path = require('path');
+const prerender_token = process.env.PRERENDER_TOKEN || '';
 
 // app.use(
 //   require('prerender-node')
 //     .set('protocol', 'http')
 //     .set('prerenderServiceUrl', 'https://h2c-prerender.herokuapp.com/')
 // );
-app.use(require('prerender-node').set('prerenderToken', 'i9z8xrpqQdbFxjdUztkU'));
+app.use(require('prerender-node').set('prerenderToken', prerender_token));
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));

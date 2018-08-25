@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../services';
-import { User } from '../../models';
+import { UserService, PostService } from '../../services';
+import { User, Post } from '../../models';
 
 @Component({
   selector: 'app-landing',
@@ -11,12 +11,14 @@ import { User } from '../../models';
 export class LandingPageComponent implements OnInit {
   private params = null;
   private stylists: User[] = [];
+  private posts: Post[] = [];
 
   constructor(
     private meta: Meta,
     private title: Title,
     private route: ActivatedRoute,
     private userService: UserService,
+    private postService: PostService
   ) {
     this.route.params.subscribe((params) => {
       this.params = params
@@ -27,6 +29,10 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
     this.userService.read({state: this.params.state}).subscribe((result: any) => {
       this.stylists = result.data;
+    });
+
+    this.postService.getBlogs().subscribe((posts: Post[]) => {
+      this.posts = posts;
     });
   }
 

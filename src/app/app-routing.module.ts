@@ -17,6 +17,7 @@ import { LandingPageComponent } from './components/landing/landing.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
 let defaultNav = [
+  { name: 'Blog', url: '#featured-looks', scroll: true },
   { name: 'Contact', url: '/contact', scroll: false },
   { name: 'Login' }
 ];

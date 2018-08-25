@@ -43,6 +43,30 @@ a.link {
   }
 }
 
+.featured-look-container{
+  .featured-look-title {
+    margin-bottom: 50px;
+    
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+    }
+  }
+  
+  .carousel {
+    .black-diamond-font {
+      position: unset;
+    }
+  }
+  
+  .col-sm-5 {
+    margin-bottom: 100px;
+    
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   @include body-font;
   font-weight: 700;

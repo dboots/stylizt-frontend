@@ -54,49 +54,6 @@ header {
   }
 }
 
-.featured-look-container{
-  .featured-look-title {
-    margin-bottom: 100px;
-    
-    @media screen and (max-width: 768px) {
-      margin-bottom: 30px;
-    }
-  }
-  
-  .title {
-    position: absolute;
-    font-size: 90px;
-    right: 56px;
-    top: -66px;
-    
-    @media (max-width: 1200px) {
-      font-size: 70px;
-    }
-    
-    @media (max-width: 992px) {
-      font-size: 50px;
-    }
-    
-    @media (max-width: 768px) {
-      font-size: 40px;
-    }
-  }
-  
-  .carousel {
-    .black-diamond-font {
-      position: unset;
-    }
-  }
-  
-  .col-sm-5 {
-    margin-bottom: 100px;
-    
-    @media screen and (max-width: 768px) {
-      margin-bottom: 0;
-    }
-  }
-}
-
 .location_dd {
   width: 100%;
   font-size: 24px;

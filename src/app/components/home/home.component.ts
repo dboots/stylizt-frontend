@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
   portfolio: Portfolio[];
   stylists: User[];
   posts: Post[];
+  locations: any[] = [];
   
   slideConfig = {
     dots: true,
@@ -29,8 +30,19 @@ export class HomePageComponent implements OnInit {
     private portfolioService: PortfolioService,
     private talentService: TalentService,
     private userService: UserService,
-    private postService: PostService
-  ) { }
+    private postService: PostService,
+    private locationService: LocationService
+  ) {
+
+    this.locationService.states({}).subscribe((result: any) => {
+      for (var d in result.data) {
+        let item = result.data[d];
+        item['slug'] = item['name'].toLowerCase().replace(/\s/g, '-');
+      }
+
+      this.locations = result.data;
+    });
+  }
   
   ngOnInit() {    
     this.talentService.read().then((result) => {

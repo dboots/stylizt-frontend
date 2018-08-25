@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html'
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
   private params = null;
+  private stylists: User[] = [];
 
   constructor(
     private meta: Meta,
     private title: Title,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService,
   ) {
     this.route.params.subscribe((params) => {
       this.params = params
@@ -20,18 +24,22 @@ export class LandingPageComponent {
     });
   }
 
+  ngOnInit() {
+    this.userService.read({state: this.params.state}).subscribe((result: any) => {
+      this.stylists = result.data;
+    });
+  }
+
+
+
   updateMeta() {
-    let location = this.params.city + ', ' + this.params.state;
-    this.title.setTitle('Talented stylists near ' + location);
+    let state = this.params.state;
+    let location = state.toUpperCase()
+    
+    this.title.setTitle('Talented personal hair stylists in ' + location);
     this.meta.updateTag({
       name: 'description',
-      content: 'Stylists near me in ' + location
+      content: 'Personal hair stylists in ' + location
     });
-    this.meta.updateTag({
-      name: 'keywords',
-      content: 'home mortgage loans,mortgages,mortgage loan,mortgage loans,home mortgage'
-    });
-
-    console.log('PRErender ready status...');
   }
 }

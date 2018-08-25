@@ -171,3 +171,39 @@ section {
     }
   }
 }
+
+.thumbnail-section {
+  a {
+    color: $white;
+    letter-spacing: 2px;
+  }
+
+  .name {
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+    }
+  }
+  
+  .bio {
+    font-family: 'proxima_novaregular';
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+  }
+  
+  .talents {
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+    
+    .talent {
+      background: $white;
+      color: $black;
+      margin: 2px;
+      font-size: 14px;
+      padding: 2%;
+      float: left;
+    }
+  }
+}

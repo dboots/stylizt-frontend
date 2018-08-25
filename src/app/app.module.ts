@@ -21,7 +21,7 @@ import {
   TalentService,
   LocationService,
   PostService,
-  ContactService
+  ContactService,
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -36,6 +36,7 @@ import { PasswordPageComponent } from './components/password/password.component'
 import { TermsPageComponent } from './components/terms/terms.component';
 import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { LandingPageComponent } from './components/landing/landing.component';
+import { LandingVideoPageComponent } from './components/landing/video.component';
 
 import { SignupComponent } from './components/shared/signup/signup.component';
 import { NavComponent } from './components/shared/nav/nav.component';
@@ -76,7 +77,8 @@ import { PostComponent } from './components/shared/post/post.component';
     PostComponent,
     TermsPageComponent,
     PrivacyPageComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LandingVideoPageComponent
   ],
   imports: [
     BrowserModule,

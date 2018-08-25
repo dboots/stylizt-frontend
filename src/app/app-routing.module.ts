@@ -17,20 +17,23 @@ import { LandingPageComponent } from './components/landing/landing.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
 let defaultNav = [
+  { name: 'Contact', url: '/contact', scroll: false },
   { name: 'Login' }
 ];
 
 const routes: Routes = [
   {
-    path: 'stylists-near-me/:state/:city',
-    component: LandingPageComponent
+    path: 'stylists-near-me/:state',
+    component: LandingPageComponent,
+    data: { navItems: defaultNav }
   },
   {
     path: '',
     component: HomePageComponent,
     data: { navItems: [
-      { name: 'Featured Looks', url: '#featured-looks', scroll: true },
-      { name: 'Local Talent', url: '#local-talent', scroll: true },
+      { name: 'Blog', url: '#featured-looks', scroll: true },
+      { name: 'Featured Talent', url: '#local-talent', scroll: true },
+      { name: 'H2C Network', url: '#network', scroll: true },
       { name: 'Contact', url: '/contact', scroll: false },
       { name: 'Login' }
     ]}

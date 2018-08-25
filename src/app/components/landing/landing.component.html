@@ -3,9 +3,56 @@
   <div class="hero-container">
     <div class="row">
       <div class="title-content col-md-8 col-10 m-auto text-center">
-        <div class="text-uppercase">Talented Stylists Near {{params.city}}, {{params.state}}</div>
+        <div class="text-uppercase">Talented Stylists In {{params.state}}</div>
         <div>Whatever you're looking for. You can find a stylist specializing in it right here.</div>
       </div>
     </div>
   </div>
 </header>
+
+<div class="thumbnail-section">
+  <div class="container">
+    <div class="row py-md-4 py-sm-1">
+      <div class="col-10 m-auto mb-4 text-white text-center" *ngIf="!stylists.length">
+        <h3>Stylist are currently being approved in your area!</h3>
+        <!--<p>Want to be the first in their books? Get notified as they are approved</p>
+        <div class="row">
+          <div class="col-6 m-auto">
+            <input type="email" placeholder="Email Address" class="form-control my-2" />
+            <button class="btn common-gw-button" (click)="notify()">NOTIFY ME</button>
+          </div>
+        </div>-->
+      </div>
+      <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
+        <div class="row">
+          <div class="col-md-5 text-center position-relative">
+            <a [routerLink]="['/portfolio', stylist._id]">
+              <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
+            </a>
+          </div>
+          <div class="col-md-7 text-white d-flex flex-column">
+            <a class="name text-uppercase green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
+            <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
+            <p class="text-uppercase green font-weight-bold">Specializing in:</p>
+            <div class="flex-row talents">
+              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let stylist of stylists">
+          <div class="col-md-6 text-white d-flex flex-column">
+            <img class="img-fluid" [src]="stylist.image" />
+            <p class="name text-uppercase green font-weight-bold">{{stylist.name}}</p>
+            <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
+            <p class="text-uppercase green font-weight-bold">Specializing in:</p>
+            <div class="flex-row talents">
+              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+            </div>
+          </div>
+        </div>
+      </ngx-slick>
+    </div>
+  </div>

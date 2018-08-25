@@ -20,7 +20,8 @@
       <div class="col-md-8 about">
         <h3>{{stylist.name}}</h3>
         <p class="bio">{{stylist.bio}}</p>
-        <p class="specialties">Specialties: <span class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</span></p>
+        <p class="specialties">Specialties</p>
+        <div class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</div>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocationService, PortfolioService, TalentService, UserService, PostService } from '../../services';
 import { Portfolio, User, Post } from '../../models';
 
@@ -31,7 +32,8 @@ export class HomePageComponent implements OnInit {
     private talentService: TalentService,
     private userService: UserService,
     private postService: PostService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private router: Router
   ) {
 
     this.locationService.states({}).subscribe((result: any) => {
@@ -64,5 +66,9 @@ export class HomePageComponent implements OnInit {
     this.postService.getBlogs().subscribe((posts: Post[]) => {
       this.posts = posts;
     });
+  }
+
+  selectLocationDD(location) {
+    this.router.navigate(['/stylists-near-me/' + location]);
   }
 }

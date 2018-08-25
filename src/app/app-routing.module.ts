@@ -56,7 +56,6 @@ const routes: Routes = [
     data: { navItems: [
       { name: 'About', url: '#about', scroll: true },
       { name: 'Portfolio', url: '#portfolio', scroll: true },
-      { name: 'Schedule', url: '#schedule', scroll: true },
       { name: 'Login' }
     ]} },
     {

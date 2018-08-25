@@ -163,10 +163,16 @@
 
 <div class="thumbnail-section">
   <div class="container">
-    <div class="row py-md-4 py-sm-1 text-white">
+    <div class="row py-md-4 py-sm-1 text-white desktop">
       <div class="col-3 py-1" *ngFor="let location of locations">
         <a href="/stylists-near-me/{{location.slug}}">{{location.name}}</a>
       </div>
+    </div>
+    <div class="row carousel">
+      <select (change)="selectLocationDD($event.target.value)" class="location_dd">
+        <option>Select a State</option>
+        <option class="p-1" *ngFor="let location of locations" value="{{location.slug}}">{{location.name}}</option>
+      </select>
     </div>
   </div>
 </div>

@@ -57,7 +57,7 @@ export class HomePageComponent implements OnInit {
       console.log(err);
     });
     
-    this.userService.read().subscribe((result: any) => {
+    this.userService.read({}).subscribe((result: any) => {
       this.stylists = result.data;
     });
     

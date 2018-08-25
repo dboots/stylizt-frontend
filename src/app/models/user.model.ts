@@ -5,6 +5,8 @@ export class User {
   name: string;
   email: string;
   zip: string;
+  city: string;
+  state: string;
   bio: string;
   type: string;
   password: string;

@@ -124,6 +124,7 @@ export class StylistProfilePageComponent implements OnInit {
       this.modalRef.close();
       this.talentService.itemList.push(result.result);
       this.selectedItems.push(result.result);
+      this.talents.push(result.result);
     }, (err) => {
     });
   }

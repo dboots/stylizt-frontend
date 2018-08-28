@@ -12,6 +12,7 @@ export class LandingPageComponent implements OnInit {
   private params = null;
   private stylists: User[] = [];
   private posts: Post[] = [];
+  private state: string = '';
 
   constructor(
     private meta: Meta,
@@ -27,7 +28,8 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.read({state: this.params.state}).subscribe((result: any) => {
+    this.state = this.params.state.replace('-', ' ');
+    this.userService.read({state: this.state}).subscribe((result: any) => {
       this.stylists = result.data;
     });
 

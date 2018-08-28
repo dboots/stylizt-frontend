@@ -19,7 +19,8 @@ export class StylistProfilePageComponent implements OnInit {
   talent: FormControl;
   selectedItems: Talent[] = [];
   location: string = '';
-  
+  loading: boolean = false;
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -48,7 +49,10 @@ export class StylistProfilePageComponent implements OnInit {
   }
   
   getLocation(zip) {
+    this.loading = true;
+
     this.locationService.geocode(zip).subscribe((result: any) => {
+      this.loading = false;
       if (result.status == 'OK') {
         var city: string = '';
         var state: string = '';

@@ -17,6 +17,11 @@ import { LandingPageComponent } from './components/landing/landing.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
 let defaultNav = [
+  { name: 'Contact', url: '/contact', scroll: false },
+  { name: 'Login' }
+];
+
+let landingNav = [
   { name: 'Blog', url: '#featured-looks', scroll: true },
   { name: 'Contact', url: '/contact', scroll: false },
   { name: 'Login' }
@@ -26,7 +31,7 @@ const routes: Routes = [
   {
     path: 'stylists-near-me/:state',
     component: LandingPageComponent,
-    data: { navItems: defaultNav }
+    data: { navItems: landingNav }
   },
   {
     path: '',

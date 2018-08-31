@@ -36,13 +36,16 @@ export class HomePageComponent implements OnInit {
     private router: Router
   ) {
 
-    this.locationService.states({}).subscribe((result: any) => {
-      for (var d in result.data) {
-        let item = result.data[d];
-        item['slug'] = item['name'].toLowerCase().replace(/\s/g, '-');
-      }
+    this.locationService.network().subscribe((result: any) => {
+      for (var idx in result.data) {
+        let item = {};
+        let state = result.data[idx];
 
-      this.locations = result.data;
+        item['slug'] = state.toLowerCase().replace(/\s/g, '-');
+        item['state'] = state;
+
+        this.locations.push(item);
+      }
     });
   }
   

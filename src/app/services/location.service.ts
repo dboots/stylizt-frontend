@@ -30,6 +30,10 @@ export class LocationService {
   states(params: any) {
     return this.http.get(`${environment.rootApiUrl}/location/states`, {params: params});
   }
+
+  network() {
+    return this.http.get(`${environment.rootApiUrl}/location/network`);
+  }
   
   cities(params: any) {
     return this.http.get(`${environment.rootApiUrl}/location/states/cities`, {params: params});

@@ -18,10 +18,23 @@
         <img class="img-fluid" [src]="stylist.image" />
       </div>
       <div class="col-md-8 about">
-        <h3>{{stylist.name}}</h3>
+        <h2>{{stylist.name}}</h2>
+        <h4 class="location" *ngIf="stylist.city">{{stylist.city}}, {{stylist.state}}</h4>
         <p class="bio">{{stylist.bio}}</p>
-        <p class="specialties">Specialties</p>
-        <div class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</div>
+        <div class="row">
+          <div class="col-md-4" *ngIf="instagram || facebook || twitter">
+            <p class="specialties">Social Media</p>
+            <div class="social-media pb-2">
+              <a href="{{instagram}}" *ngIf="instagram" target="_blank"><i class="fa fa-fw color-instagram fa-3x fa-instagram"></i></a>
+              <a href="{{facebook}}" *ngIf="facebook" target="_blank"><i class="fa fa-fw color-fb fa-3x fa-facebook-square"></i></a>
+              <a href="{{twitter}}" *ngIf="twitter" target="_blank"><i class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i></a>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <p class="specialties">Specialties</p>
+            <div class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,8 +44,8 @@
   <div class="row mt-5" id="local-talent">
     <div class="col-12 m-auto text-uppercase text-center text-white title-block">
       PORTFOLIO
-    </div>
   </div>
+</div>
 </div>
 
 <div id="portfolio" class="pt-2 thumbnail-section text-center text-uppercase">
@@ -53,33 +66,33 @@
 </div>
 
 <!--
-<div id="schedule" class="section">
-  <div class="container">
-    <div class="row my-4">
-      <div class="col-12">
-        <h3>Schedule an Appointment</h3>
-      </div>
-      
-      <div class="col-12">
-        <div class="blur-overlay">
-          <h3>Coming Soon</h3>
-          <p>StyleSeat / Vagaro / Form Scheduling Options</p>
-        </div>
-        <div class="blur">
-          <div class="row text-center">
-            <div class="col-6">
-              <img class="img-fluid" src="/assets/img/styleseat.png" />
-            </div>
-            <div class="col-6">
-              <img class="img-flui" src="/assets/img/vagaro.png" />
-            </div>
-          </div>
+  <div id="schedule" class="section">
+    <div class="container">
+      <div class="row my-4">
+        <div class="col-12">
+          <h3>Schedule an Appointment</h3>
         </div>
         
+        <div class="col-12">
+          <div class="blur-overlay">
+            <h3>Coming Soon</h3>
+            <p>StyleSeat / Vagaro / Form Scheduling Options</p>
+          </div>
+          <div class="blur">
+            <div class="row text-center">
+              <div class="col-6">
+                <img class="img-fluid" src="/assets/img/styleseat.png" />
+              </div>
+              <div class="col-6">
+                <img class="img-flui" src="/assets/img/vagaro.png" />
+              </div>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
   </div>
-</div>
 -->
 <div class="section map" *ngIf="stylist">
   <div *ngIf="stylist.zip" style="width: 100%"><iframe width="100%" height="500" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a></iframe></div><br />

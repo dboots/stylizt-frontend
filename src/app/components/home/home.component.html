@@ -171,7 +171,7 @@
     <div class="row carousel">
       <select (change)="selectLocationDD($event.target.value)" class="location_dd">
         <option>Select a State</option>
-        <option class="p-1" *ngFor="let location of locations" value="{{location.slug}}">{{location.name}}</option>
+        <option class="p-1" *ngFor="let location of locations" value="{{location.slug}}">{{location.state}}</option>
       </select>
     </div>
   </div>

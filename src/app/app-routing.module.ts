@@ -13,6 +13,7 @@ import { PasswordPageComponent } from './components/password/password.component'
 import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { TermsPageComponent } from './components/terms/terms.component';
 import { LandingPageComponent } from './components/landing/landing.component';
+import { LandingVideoPageComponent } from './components/landing/video.component';
 
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: 'stylists-near-me/:state',
     component: LandingPageComponent,
     data: { navItems: landingNav }
+  },
+  {
+    path: 'video-chat',
+    component: LandingVideoPageComponent
   },
   {
     path: '',

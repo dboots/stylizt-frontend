@@ -29,7 +29,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.state = this.params.state.replace('-', ' ');
-    this.userService.read({}).subscribe((result: any) => {
+    this.userService.read({state: this.state}).subscribe((result: any) => {
       this.stylists = result.data;
     });
 

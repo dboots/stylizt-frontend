@@ -55,22 +55,23 @@
       </div>
     </ngx-slick>
   </div>
+</div>
   
-  <div id="featured-looks" class="featured-look-container container">
-    <div class="featured-look-title row">
-      <div class="col-8 m-auto text-center text-white title-block">
-        <span class="black-diamond-font green">H2C</span> BLOG
-      </div>
+<div id="featured-looks" class="featured-look-container container">
+  <div class="featured-look-title row">
+    <div class="col-8 m-auto text-center text-white title-block">
+      <span class="black-diamond-font green">H2C</span> BLOG
     </div>
-    
-    <div class="row">
-      <div *ngFor="let post of posts" class="desktop col-md-6 position-relative">
-        <app-post [post]="post"></app-post>
-      </div>
-    </div>
-    <ngx-slick *ngIf="posts && posts.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let post of posts" class="col-sm-5 position-relative">
-        <app-post [post]="post"></app-post>
-      </div>    
-    </ngx-slick>
   </div>
+  
+  <div class="row">
+    <div *ngFor="let post of posts" class="desktop col-md-6 position-relative">
+      <app-post [post]="post"></app-post>
+    </div>
+  </div>
+  <ngx-slick *ngIf="posts && posts.length" class="carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let post of posts" class="col-sm-5 position-relative">
+      <app-post [post]="post"></app-post>
+    </div>    
+  </ngx-slick>
+</div>

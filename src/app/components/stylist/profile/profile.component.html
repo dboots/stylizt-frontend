@@ -98,16 +98,18 @@
   
   <ng-template #addModal let-c="close" let-d="dismiss">
     <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
-      <div class="add-modal-component text-uppercase">
+      <div class="add-modal-component text-uppercase container">
         <div class="black-diamond-font">Add New Talent</div>
         <div class="green-divider"></div>
-        <div class="main-content">
-          <div class="form-group">
-            <label>Talent</label>
-            <input type="text" formControlName="talent" class="form-control">
+        <div class="main-content row">
+          <div class="col-12">
+            <div class="form-group">
+              <label>Talent</label>
+              <input type="text" formControlName="talent" class="form-control">
+            </div>
           </div>
           
-          <div>
+          <div class="col">
             <div class="pull-right">
               <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
               <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>

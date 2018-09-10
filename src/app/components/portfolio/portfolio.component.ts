@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from '../../services';
-import { Portfolio, User } from '../../models';
+import { PortfolioService, AuthService, TalentService } from '../../services';
+import { Portfolio, User, Talent } from '../../models';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, Meta, Title } from '@angular/platform-browser';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -11,21 +12,27 @@ import { DomSanitizer, SafeResourceUrl, Meta, Title } from '@angular/platform-br
 })
 
 export class StylistPortfolioPageComponent implements OnInit {
-  portfolio: Portfolio;
+  portfolio: Portfolio[];
   stylist: User;
   params;
   mapUrl: SafeResourceUrl;
+  modalRef: NgbModalRef;
+  portfolio_item: Portfolio = new Portfolio('');
+  talents: Talent[] = [];
 
   instagram: string = null;
   twitter: string = null;
   facebook: string = null;
 
   constructor(
+    private talentService: TalentService,
     private portfolioService: PortfolioService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private modalService: NgbModal,
   ) {
     this.route.params.subscribe((params) => { this.params = params });
 
@@ -49,6 +56,33 @@ export class StylistPortfolioPageComponent implements OnInit {
       this.portfolio = portfolio;
       this.stylist = stylist;
     })
+  }
+
+  loggedIn() {
+    if (this.stylist) {
+      return (this.stylist._id === this.authService.decode()._id);
+    }
+
+    return false;
+  }
+
+  imageUploadCompleted($event) {
+    this.portfolio_item.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
+  }
+
+  addToPortfolio() {
+    console.log(this.portfolio_item);
+    this.portfolioService.create(this.portfolio_item, this.authService.token)
+    .subscribe((result: any) => {
+      this.portfolio.push(this.portfolio_item);
+      this.modalRef.close();
+    }, (err) => {
+      console.log('unable to add to portfolio', err);
+    });
+  }
+
+  showModal(modal) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
   // Process social media url/handles

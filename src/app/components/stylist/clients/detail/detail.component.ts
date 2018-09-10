@@ -13,7 +13,8 @@ import {
   Client,
   Portfolio,
   Notes,
-  NotesMockData
+  NotesMockData,
+  Talent
 } from '../../../../models';
 
 @Component({
@@ -28,6 +29,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   detailForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
+  talents: Talent[] = [];
 
   uploadStatus: string;
   clientProfileImage: string;
@@ -44,6 +46,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   isPublicNotes: boolean;
   clientNotes: Notes[] = [];
   isNotesFormOpened: boolean;
+  portfolio_item: Portfolio = new Portfolio('');
 
   currentIndex = -1;
 
@@ -62,6 +65,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.checkCache();
       this.clientId = params['id'];
+      this.portfolio_item.clientId = this.clientId;
       this.clientService.detail(this.clientId).subscribe((result: any) => {
         this.detailForm.patchValue({
           name: result.data.name,
@@ -71,9 +75,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
 
         this.clientProfileImage = result.data.image;
-        this.clientPortfolios = result.data.portfolio.map((portfolio) =>
-          new Portfolio(portfolio.clientId, portfolio.image, portfolio.caption, portfolio.talents, portfolio.display, portfolio._id)
-        );
+        
+        this.clientPortfolios = result.data.portfolio.map((p) => {
+          console.log(p);
+          return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id)
+        });
+
         this.currentIndex = this.clientPortfolios.length - 1;
         this.clientNotes = result.data.notes;
         // For Test Only, should be removed
@@ -181,7 +188,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
   fileAdded() {
     const talents = [];
-    const portfolio: Portfolio = new Portfolio(this.clientId, '', '', talents, false);
+    const portfolio: Portfolio = new Portfolio(this.clientId, '', talents, false);
     portfolio.loading = true;
     this.clientPortfolios.push(portfolio);
   }
@@ -189,6 +196,25 @@ export class StylistClientsDetailPageComponent implements OnInit {
   openPortfolioDetailModal(portfolioDetailModal, portfolioItem) {
     this.selectedPortfolioItem = portfolioItem;
     this.modalRef = this.modalService.open(portfolioDetailModal, { windowClass: 'client-portfolio-modal', size: 'lg' });
+  }
+
+  imageUploadCompleted($event) {
+    this.portfolio_item.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
+  }
+
+  addToPortfolio() {
+    console.log(this.portfolio_item);
+    this.portfolioService.create(this.portfolio_item, this.authService.token)
+    .subscribe((result: any) => {
+      this.clientPortfolios.push(this.portfolio_item);
+      this.modalRef.close();
+    }, (err) => {
+      console.log('unable to add to portfolio', err);
+    });
+  }
+
+  showModal(modal) {
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
   deletePortfolio(portfolio: Portfolio) {
@@ -212,6 +238,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   updatePortfolio(portfolio: Portfolio) {
+    console.log(portfolio);
     this.portfolioService.update(portfolio, this.authService.token)
       .subscribe((result: any) => {
         portfolio.talents = result.data.talents;

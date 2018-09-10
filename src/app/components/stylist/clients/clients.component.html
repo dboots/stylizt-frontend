@@ -31,16 +31,18 @@
 
 <ng-template #addModal let-c="close" let-d="dismiss">
   <form novalidate [formGroup]="clientForm" (ngSubmit)="addClient()">
-    <div class="add-modal-component text-uppercase">
+    <div class="add-modal-component text-uppercase container">
       <div class="black-diamond-font">Add New Client</div>
       <div class="green-divider"></div>
-      <div class="main-content">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" formControlName="clientName" class="form-control">
+      <div class="main-content row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" formControlName="clientName" class="form-control">
+          </div>
         </div>
-        
-        <div>
+
+        <div class="col">
           <div class="pull-right">
             <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
             <button type="submit" [disabled]="!clientForm.valid" class="common-gw-button">Add Client</button>

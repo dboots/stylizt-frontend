@@ -20,7 +20,7 @@ export class TalentTagsInputComponent implements OnInit {
 
   async ngOnInit() {
     this.settings = {
-      text: 'YOUR TALENTS...',
+      text: 'SELECT TALENTS...',
       classes: 'myclass custom-class',
       primaryKey: '_id',
       labelKey: 'talent',

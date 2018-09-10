@@ -10,12 +10,13 @@ export class Portfolio {
   loading: boolean;
 
   constructor(
-    clientId: string,
     image: string,
-    caption: string,
-    talents: Talent[],
-    display: boolean,
+    caption?: string,
+    talents: Talent[] = [],
+    display: boolean = true,
+    clientId?: string,
     _id?: string
+
   ) {
     this.clientId = clientId;
     this.image = image;

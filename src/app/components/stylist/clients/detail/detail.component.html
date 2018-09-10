@@ -87,96 +87,93 @@
     </div>
     
     <div class="client-portfolio-container pb-4 container-fluid text-center text-uppercase">
-      <div class="row mb-4">
-        <div class="col">
-          <app-cloudinary-uploader
-          [folderName]="'client_portfolio'"
-          [buttonName]="'ADD IMAGES'"
-          (afterAddingFile)="fileAdded()"
-          (completeItem)="portfolioImageUploadCompleted($event)">
-        </app-cloudinary-uploader>
-      </div>
-    </div>
-    <div class="row px-4">
-      <div class="portfolio col-md-3 col-sm-12"
-      *ngFor="let item of clientPortfolios; index as idx"
-      (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
-      <img [src]="item.image || 'assets/img/placeholder.jpg'" />
-      <!--<div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div> -->
-      <app-loading *ngIf="item.loading" ></app-loading>
-    </div>
-  </div>
-</div>
-<!--
-  <div class="bg-light">
-    <div class="container text-center text-uppercase">
-      <div class="row">
-        <div class="col">
-          <div class="portfolio-title">Client Notes</div>
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col">
+            <button class="common-gw-button" (click)="showModal(addModal)">ADD TO PORTFOLIO</button>
+          </div>
+        </div>
+        <div class="row px-4">
+          <div class="portfolio col-md-3 col-sm-12"
+          *ngFor="let item of clientPortfolios; index as idx"
+          (click)="openPortfolioDetailModal(portfolioDetailModal, item)">
+          <img [src]="item.image || 'assets/img/placeholder.jpg'" />
+          <!--<div class="fixed-bottom position-absolute bg-white p-2">{{item.caption}}</div> -->
+          <app-loading *ngIf="item.loading" ></app-loading>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="bg-light">
-    <div class="client-notes-add-button-container container">
-      <div class="row text-center">
-        <div class="col">
-          <div class="notes-add-button d-flex align-items-center justify-content-center mx-auto" (click)="openNotesForm()">
-            <ng-container *ngIf="!isNotesFormOpened">
-              <i class="fa fa-plus-square" aria-hidden="true"></i>    
-              <div>ADD NOTE</div>
-            </ng-container>
-            <ng-container *ngIf="isNotesFormOpened">
-              <i class="fa fa-minus-square" aria-hidden="true"></i>    
-              <div>CANCEL</div>
-            </ng-container>  
+  <!--
+    <div class="bg-light">
+      <div class="container text-center text-uppercase">
+        <div class="row">
+          <div class="col">
+            <div class="portfolio-title">Client Notes</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="bg-green" [class.opened]="isNotesFormOpened">
-    <div class="client-notes-container container">
-      <div class="row">
-        <div class="notes-form col">
-          <label>NEW NOTE</label>
-          <textarea class="w-100" [class.public]="isPublicNotes" [(ngModel)]="clientNote" rows="5" cols="30"></textarea>
-          <div class="form-field-error" *ngIf="!clientNote">
-            Note is required!
+    
+    <div class="bg-light">
+      <div class="client-notes-add-button-container container">
+        <div class="row text-center">
+          <div class="col">
+            <div class="notes-add-button d-flex align-items-center justify-content-center mx-auto" (click)="openNotesForm()">
+              <ng-container *ngIf="!isNotesFormOpened">
+                <i class="fa fa-plus-square" aria-hidden="true"></i>    
+                <div>ADD NOTE</div>
+              </ng-container>
+              <ng-container *ngIf="isNotesFormOpened">
+                <i class="fa fa-minus-square" aria-hidden="true"></i>    
+                <div>CANCEL</div>
+              </ng-container>  
+            </div>
           </div>
         </div>
       </div>
-      <div class="button-row d-flex flex-column flex-md-row flex-sm-column align-items-start justify-content-between mt-4">
-        <div class="left-col d-flex align-items-start">
-          <app-cloudinary-uploader
-          [folderName]="'client_notes'"
-          [buttonName]="'ATTACH'"
-          (completeItem)="notesImageUploadCompleted($event)">
-        </app-cloudinary-uploader>
-        <div
-        class="note-image"
-        *ngFor="let image of clientNotesImages; index as idx">
-        <img [src]="image" />
-        <i class="fa fa-trash" (click)="removeNoteImage(idx)"></i>
-      </div>
-      <button class="btn btn-primary" (click)="cancelNote()">CANCEL</button>
     </div>
-    <div class="right-col d-flex align-items-center mt-md-0 mt-4">
-      <div class="public-checkbox d-flex justify-content-between align-items-center">
-        <input 
-        type="checkbox"
-        class="switch"
-        [checked]="isPublicNotes"
-        [(ngModel)]="isPublicNotes"/>
-        <div>PUBLIC?</div>
+    <div class="bg-green" [class.opened]="isNotesFormOpened">
+      <div class="client-notes-container container">
+        <div class="row">
+          <div class="notes-form col">
+            <label>NEW NOTE</label>
+            <textarea class="w-100" [class.public]="isPublicNotes" [(ngModel)]="clientNote" rows="5" cols="30"></textarea>
+            <div class="form-field-error" *ngIf="!clientNote">
+              Note is required!
+            </div>
+          </div>
+        </div>
+        <div class="button-row d-flex flex-column flex-md-row flex-sm-column align-items-start justify-content-between mt-4">
+          <div class="left-col d-flex align-items-start">
+            <app-cloudinary-uploader
+            [folderName]="'client_notes'"
+            [buttonName]="'ATTACH'"
+            (completeItem)="notesImageUploadCompleted($event)">
+          </app-cloudinary-uploader>
+          <div
+          class="note-image"
+          *ngFor="let image of clientNotesImages; index as idx">
+          <img [src]="image" />
+          <i class="fa fa-trash" (click)="removeNoteImage(idx)"></i>
+        </div>
+        <button class="btn btn-primary" (click)="cancelNote()">CANCEL</button>
       </div>
-      <button [disabled]="!clientNote" class="btn btn-primary" (click)="addClientNote()">ADD CLIENT NOTE</button>
+      <div class="right-col d-flex align-items-center mt-md-0 mt-4">
+        <div class="public-checkbox d-flex justify-content-between align-items-center">
+          <input 
+          type="checkbox"
+          class="switch"
+          [checked]="isPublicNotes"
+          [(ngModel)]="isPublicNotes"/>
+          <div>PUBLIC?</div>
+        </div>
+        <button [disabled]="!clientNote" class="btn btn-primary" (click)="addClientNote()">ADD CLIENT NOTE</button>
+      </div>
+    </div>
+    <div class="row mt-4">
     </div>
   </div>
-  <div class="row mt-4">
-  </div>
-</div>
 </div>
 <div class="bg-light">
   <div class="container">
@@ -192,6 +189,35 @@
 -->
 </div>
 </div>
+
+<ng-template #addModal let-c="close" let-d="dismiss">
+  <div class="add-modal-component text-uppercase container">
+    <div class="black-diamond-font">Add To Portfolio</div>
+    <div class="green-divider"></div>
+    <div class="main-content row">
+      <div class="col-6">
+        <img [src]="portfolio_item.image" class="img-fluid w-100" />
+        <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"(completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <textarea [(ngModel)]="portfolio_item.caption" class="form-control" placeholder="A description of this image..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>What talents were used on this?</label>
+          <app-talent-tags-input [talents]="talents" [(selectedItems)]="portfolio_item.talents"></app-talent-tags-input>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="pull-right">
+          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+          <button type="button" [disabled]="portfolio_item.image == ''" (click)="addToPortfolio()" class="common-gw-button">Add To Portfolio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 <ng-template #portfolioDetailModal let-c="close" let-d="dismiss">
   <div class="modal-header">

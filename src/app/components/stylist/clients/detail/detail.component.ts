@@ -30,6 +30,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   detailFormErrors: any;
   clientId: string;
   talents: Talent[] = [];
+  portfolioActionLabel = 'Add to Portfolio';
 
   uploadStatus: string;
   clientProfileImage: string;
@@ -46,7 +47,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   isPublicNotes: boolean;
   clientNotes: Notes[] = [];
   isNotesFormOpened: boolean;
-  portfolio_item: Portfolio = new Portfolio('');
+  portfolioItem: Portfolio = new Portfolio('');
 
   currentIndex = -1;
 
@@ -65,7 +66,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.checkCache();
       this.clientId = params['id'];
-      this.portfolio_item.clientId = this.clientId;
       this.clientService.detail(this.clientId).subscribe((result: any) => {
         this.detailForm.patchValue({
           name: result.data.name,
@@ -77,7 +77,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
         this.clientProfileImage = result.data.image;
         
         this.clientPortfolios = result.data.portfolio.map((p) => {
-          console.log(p);
+          console.log(p.talents);
           return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id)
         });
 
@@ -199,21 +199,38 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   imageUploadCompleted($event) {
-    this.portfolio_item.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
+    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
+  }
+
+  portfolioAction() {
+    if (this.portfolioItem._id) {
+      this.updatePortfolio();
+    } else {
+      this.addToPortfolio();
+    }
   }
 
   addToPortfolio() {
-    console.log(this.portfolio_item);
-    this.portfolioService.create(this.portfolio_item, this.authService.token)
+    this.portfolioItem.clientId = this.clientId;
+
+    this.portfolioService.create(this.portfolioItem, this.authService.token)
     .subscribe((result: any) => {
-      this.clientPortfolios.push(this.portfolio_item);
+      this.clientPortfolios.push(this.portfolioItem);
       this.modalRef.close();
     }, (err) => {
       console.log('unable to add to portfolio', err);
     });
   }
 
-  showModal(modal) {
+  showModal(modal, item) {
+    if (item && item._id) {
+      this.portfolioItem = item;
+      this.portfolioActionLabel = 'Update Portfolio';
+    } else {
+      this.portfolioItem = new Portfolio('');
+      this.portfolioActionLabel = 'Add to Portfolio';
+    }
+
     this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
@@ -229,19 +246,16 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
   
         this.clientService.clients[idx].portfolio = this.clientPortfolios;
-
-
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();
       });
   }
 
-  updatePortfolio(portfolio: Portfolio) {
-    console.log(portfolio);
-    this.portfolioService.update(portfolio, this.authService.token)
+  updatePortfolio() {
+    this.portfolioService.update(this.portfolioItem, this.authService.token)
       .subscribe((result: any) => {
-        portfolio.talents = result.data.talents;
+        //this.portfolioItem.talents = result.data.talents;
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();

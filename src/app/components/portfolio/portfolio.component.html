@@ -56,9 +56,9 @@
       </div>
     </div>
     <div class="row desktop d-md-flex">
-      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio" (click)="showModal(addModal, p)">
         <img class="img-fluid w-100" [src]="p.image" />
-        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+        <div class="fixed-bottom position-absolute bg-white p-2" *ngIf="loggedIn()">UPDATE</div>
       </div>
     </div>
     <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
@@ -109,22 +109,23 @@
     <div class="green-divider"></div>
     <div class="main-content row">
       <div class="col-6">
-        <img [src]="portfolio_item.image" class="img-fluid w-100" />
+        <img [src]="portfolioItem.image" class="img-fluid w-100" />
         <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"(completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
       </div>
       <div class="col-6">
         <div class="form-group">
-          <textarea [(ngModel)]="portfolio_item.caption" class="form-control" placeholder="A description of this image..."></textarea>
+          <textarea [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
         </div>
         <div class="form-group">
-          <app-talent-tags-input [talents]="talents" [(selectedItems)]="portfolio_item.talents"></app-talent-tags-input>
+          <label>What talents were used on this?</label>
+          <app-talent-tags-input [talents]="portfolioItem.talents"></app-talent-tags-input>
         </div>
       </div>
       
       <div class="col">
         <div class="pull-right">
           <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-          <button type="button" [disabled]="portfolio_item.image == ''" (click)="addToPortfolio()" class="common-gw-button">Add To Portfolio</button>
+          <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()" class="common-gw-button">{{portfolioActionLabel}}</button>
         </div>
       </div>
     </div>

@@ -60,7 +60,7 @@ export class StylistPortfolioPageComponent implements OnInit {
       }
       
       loggedIn() {
-        if (this.stylist) {
+        if (this.authService.isAuthenticated() && this.stylist) {
           return (this.stylist._id === this.authService.decode()._id);
         }
         

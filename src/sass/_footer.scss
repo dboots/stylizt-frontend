@@ -1,7 +1,7 @@
-footer.footer {
+.footer {
   background: $green;
-  padding-top: 4rem;
   padding-bottom: 4rem;
+  padding-top: 4rem;
 
   .icon-img {
     height: 100px;
@@ -14,7 +14,7 @@ footer.footer {
 
     @media (max-width: 414px) {
       height: 50px;
-      margin-right: 0px; 
+      margin-right: 0;
     }
   }
 

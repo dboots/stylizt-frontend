@@ -2,36 +2,36 @@
 .action-card {
   .image-content {
     background: rgba(0, 0, 0, .8);
-    text-decoration: none;
-    font-size: 30px;
     background-repeat: no-repeat;
-    height: 300px;
     background-size: cover;
-    
+    font-size: 30px;
+    height: 300px;
+    text-decoration: none;
+
     @media (max-width: 768px) {
       font-size: 22px;
       letter-spacing: 2px;
     }
-    
+
     span {
       font-size: 35px;
       letter-spacing: 8.3px;
-      
+
       @media (max-width: 768px) {
         font-size: 55px;
       }
-      
+
       @media (max-width: 414px) {
         font-size: 38px;
       }
     }
   }
-  
+
   .detail-content {
+    color: #231f20;
     font-family: 'proxima_novamedium';
     font-size: 17px;
+    letter-spacing: .7px;
     line-height: 1.59;
-    letter-spacing: 0.7px;
-    color: #231f20;
   }
 }

@@ -1,36 +1,37 @@
 .col-card {
-    @media (max-width: 1024px) {
-        margin: 1rem;
-    } 
+  @media (max-width: 1024px) {
+    margin: 1rem;
+  }
 }
+
 .card {
-    height: 100%;
-    
-    @media (max-width: 1024px) {
-        padding: 2%;
+  height: 100%;
+
+  @media (max-width: 1024px) {
+    padding: 2%;
+  }
+
+  &.active {
+    background: rgba(0, 0, 255, .6);
+    color: $white;
+  }
+
+  .card-price {
+    color: $blue;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  ul {
+    flex-grow: 1;
+    font-size: 14px;
+
+    li {
+      padding: 5px 0;
     }
-    
-    &.active {
-        background: rgba(0, 0, 255, .6);
-        color: white;
-    }
-    
-    .card-price {
-        font-size: 2rem;
-        color: #007bff;
-        font-weight: bold;
-    }
-    
-    button {
-        width: 100%;
-    }
-    
-    ul {
-        flex-grow: 1;
-        font-size: 14px;
-        
-        li {
-            padding: 5px 0;
-        }
-    }
+  }
 }

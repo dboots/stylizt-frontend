@@ -1,16 +1,12 @@
-body {
-  @include body-font;
-}
-
-.green {
-  color: $green;
-}
-
 // TODO: Remove this after upgrading to ng-bootstrap 2.22 / Angular 6+
 a.link {
-  text-decoration: underline !important;
   color: $white !important;
   cursor: pointer;
+  text-decoration: underline !important;
+}
+
+.blur {
+  filter: blur(6px);
 }
 
 .blur-overlay {
@@ -24,10 +20,6 @@ a.link {
   z-index: 1;
 }
 
-.blur {
-  filter: blur(6px);
-}
-
 .desktop {
   @media screen and (max-width: 768px) {
     display: none;
@@ -35,14 +27,13 @@ a.link {
 }
 
 .carousel {
-  padding: 15px 15px 30px 15px;
   display: none;
-  
+  padding: 15px 15px 30px 15px;
+
   @media screen and (max-width: 768px) {
     display: block;
   }
 }
-
 
 .color-fb {
   color: #3B5998;
@@ -56,62 +47,55 @@ a.link {
   color: #1da1f2;
 }
 
+.color-green {
+  color: $green;
+}
+
 .signup-container {
   background: $gray-200;
 }
 
-.featured-look-container{
+.featured-look-container {
   .featured-look-title {
     margin-bottom: 50px;
-    
+
     @media screen and (max-width: 768px) {
       margin-bottom: 30px;
     }
   }
-  
+
   .carousel {
     .black-diamond-font {
       position: unset;
     }
   }
-  
+
   .col-sm-5 {
     margin-bottom: 100px;
-    
+
     @media screen and (max-width: 768px) {
       margin-bottom: 0;
     }
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @include body-font;
-  font-weight: 700;
-}
-
-.error {
-  color: red;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
 .content {
-  margin: 50px 0 0 0;
+  margin: 50px 0 0;
   min-height: 500px;
 }
 
 .fixed-bottom {
-  z-index: 0;
   margin: 0 15px;
-  
+  z-index: 0;
+
   @media (max-width: 768px) {
     font-size: 30px;
   }
 }
 
 .empty-dark-section {
-  height: 36px;
   background: $black;
+  height: 36px;
 }
 
 .title-block {
@@ -119,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 45px;
   letter-spacing: 20px;
   padding: 15px;
-  
+
   @media (max-width: 992px) {
     font-size: 25px;
     letter-spacing: 10px;
@@ -127,26 +111,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .black-diamond-font {
-  font-family: "Black Diamond";
+  font-family: 'Black Diamond';
 }
- 
+
 .green-divider {
-  height: 16px;
   background: $green;
+  height: 16px;
   margin-bottom: 30px;
 }
 
 .common-gw-button {
+  background: $green;
+  border: 0;
+  border-radius: 0;
+  color: $white;
   cursor: pointer;
-  text-transform: uppercase;
-  background: #9ed5be;
   font-family: 'proxima_novamedium';
   font-size: 15px;
   letter-spacing: 2px;
-  color: $white;
-  border: none;
   padding: 5px 12px;
-  border-radius: 0;
+  text-transform: uppercase;
 }
 
 .form-field-error {
@@ -155,33 +139,18 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2px;
 }
 
-section {
-  &.padded {
-    padding: 2% 0;
-  }
-  
-  &.pricing {
-    background: #999999;
-    padding: 2% 0 2% 0;
-  }
-  
-  &.signup {
-    background: #DEDEDE;
-  }
-}
-
 .flex-fill {
   flex: 1 0 0;
 }
 
 .add-modal-component {
-  padding-top: 50px;
   padding-bottom: 50px;
+  padding-top: 50px;
 
   .black-diamond-font {
     font-size: 45px;
-    padding: 0 70px;
     margin-bottom: -15px;
+    padding: 0 70px;
 
     @media (max-width: 414px) {
       padding: 0 30px;
@@ -189,58 +158,22 @@ section {
   }
 
   .main-content {
+    color: $black;
     font-family: 'proxima_novalight';
     font-size: 11px;
     letter-spacing: 2.5px;
-    color: $black;
 
     .form-group {
       input {
         &.form-control {
-          max-height: 30px;
           border: 1px solid $green;
+          max-height: 30px;
         }
       }
     }
 
     .common-gw-button {
       letter-spacing: 3px;
-    }
-  }
-}
-
-.thumbnail-section {
-  a {
-    color: $white;
-    letter-spacing: 2px;
-  }
-
-  .name {
-    margin-bottom: 1rem;
-
-    @media (max-width: 768px) {
-      margin-top: 1rem;
-    }
-  }
-  
-  .bio {
-    font-family: 'proxima_novaregular';
-    line-height: 1.2rem;
-    font-size: 0.8rem;
-  }
-  
-  .talents {
-    @media (max-width: 768px) {
-      margin-bottom: 1rem;
-    }
-    
-    .talent {
-      background: $white;
-      color: $black;
-      margin: 2px;
-      font-size: 14px;
-      padding: 2%;
-      float: left;
     }
   }
 }

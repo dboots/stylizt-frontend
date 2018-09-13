@@ -1,78 +1,78 @@
-header {
-  &.masthead {
-    margin-top: 75px;
-    padding: 8rem 0;
-    position: relative;
-    background-color: $gray-800;
-    background: url('../assets/img/header-home.jpg') no-repeat center center;
-    background-size: cover;
-    @include background-cover;
-    .overlay {
-      position: absolute;
-      background-color: $gray-900;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      opacity: 0.7;
-    }
-    .hero-container {
-      padding: 0 15px;
-      .title-content {
-        border-left: 3px solid $green;
-        border-right: 3px solid $green;
+.masthead {
+  @include background-cover;
+  background: url('../assets/img/header-home.jpg') no-repeat center center;
+  background-color: $gray-800;
+  background-size: cover;
+  margin-top: 75px;
+  padding: 8rem 0;
+  position: relative;
 
-        > div {
-          font-size: 33px;
-          line-height: 1.25;
+  .overlay {
+    background-color: $gray-900;
+    height: 100%;
+    left: 0;
+    opacity: .7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .hero-container {
+    padding: 0 15px;
+
+    .title-content {
+      border-left: 3px solid $green;
+      border-right: 3px solid $green;
+
+      > div {
+        font-family: 'proxima_novalight';
+        font-size: 33px;
+        line-height: 1.25;
+
+        @media (max-width: 1200px) {
+          font-size: 22px;
+          letter-spacing: 7px;
+          line-height: 1.55;
+        }
+
+        &.text-uppercase {
           font-family: 'proxima_novalight';
+          font-size: 66px;
+          line-height: 1.2;
 
           @media (max-width: 1200px) {
-            font-size: 22px;
-            line-height: 1.55;
-            letter-spacing: 0.7px;
+            font-size: 40px;
           }
 
-          &.text-uppercase {
-            font-family: 'proxima_novalight';
-            font-size: 66px;
-            line-height: 1.2;
-
-            @media (max-width: 1200px) {
-              font-size: 40px;
-            }
-  
-            span {
-              color: $green;
-            }
+          span {
+            color: $green;
           }
         }
       }
     }
-    h1 {
-      font-size: 3rem;
-    }
-    
-    h3 {
-      font-size: 1.3rem;
-    }
-    
-    h5 {
-      font-size: 0.8rem;
-    }
-    
-    @media (max-width: 768px) {
-      padding: 8rem 0 !important;
-    }
-    
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+
     @media (min-width: 768px) {
-      h3 {
-        font-size: 1.5rem;
-      }
-      
-      h5 {
-        font-size: 1.25rem;
-      }
+      font-size: 1.5rem;
     }
+  }
+
+  h5 {
+    font-size: .8rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 8rem 0 !important;
   }
 }

@@ -1,42 +1,34 @@
 @import '../../../../../sass/_mixins';
 @import '../../../../../sass/_variables';
 
-.fa {
-  font-size: 50px;
-}
-
-.status {
-  background: $black;
-  color: $green;
-}
-
-.icon-title {
-  margin: 5%;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.icon-text {
-  font-size: 14px;
-  font-style: italic;
-}
-
 .detail-component {
   padding-top: 100px;
 
-  .profile-title {
-    font-size: 52px;
-    letter-spacing: 0.6px;
+  .fa {
+    font-size: 50px;
   }
 
-  .profile-row {
-    .photo-column {
-      img {
-        height: 88%;
-      }
-    }
+  .status {
+    background: $black;
+    color: $green;
   }
-  
+
+  .icon-title {
+    margin: 5%;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .icon-text {
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .profile-title {
+    font-size: 52px;
+    letter-spacing: .6px;
+  }
+
   .portfolio-title {
     display: inline-block;
     font-family: "proxima_novalight", Arial, sans-serif;
@@ -49,23 +41,10 @@
   .client-portfolio-container {
     background: $black;
 
-    app-cloudinary-uploader {
-      .cloudinary-uploader-component {
-        button {
-          font-family: "proxima_novasemibold", Arial, sans-serif;
-          font-size: 17px;
-          letter-spacing: 5.1px;  
-          background: $green;
-          color: $black;
-          padding: 5px 50px;
-        }  
-      }
-    }
-
     .portfolio {
       cursor: pointer;
       text-align: center;
-      
+
       img {
         width: 100%;
       }
@@ -74,104 +53,5 @@
 
   .client-notes-add-button-container {
     padding: 50px;
-
-    .notes-add-button {
-      width: 220px;
-      height: 43px;
-      font-family: "proxima_novalight", Arial, sans-serif;
-      font-size: 20px;
-      letter-spacing: 6px;
-      border: 1px solid $gray-300;
-      border-radius: 5px;
-      padding: 10px;
-      background: white;
-      color: #737370;
-      margin-bottom: 50px;
-      
-      i {
-        font-size: 30px;
-        color: $green;
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .bg-green {
-    background: $green;
-    transition: max-height ease 0.5s;
-    max-height: 0;
-    overflow: hidden;
-    padding-top: 0;
-
-    &.opened {
-      height: 550px;
-      max-height: 550px;
-      padding-top: 50px;
-
-      @media (max-width: 768px) {
-        height: 600px;
-        max-height: 600px;
-      }
-    }
-
-    .client-notes-container {
-      .notes-form {
-        label {
-          font-family: "proxima_novalight", Arial, sans-serif;
-          font-size: 12px;
-          letter-spacing: 3.6px;
-        }
-
-        textarea {
-          font-family: "proxima_novamedium", Arial, sans-serif;
-          font-size: 17px;
-          line-height: 2.06;
-          letter-spacing: 0.7px;
-          color: #231f20;
-          padding: 0 10px;
-
-          &.public {
-            border-color: $red;
-          }
-        }
-      }
-
-      .button-row {
-        app-cloudinary-uploader {
-          margin-right: 30px;
-        }
-
-        .right-col {
-          .public-checkbox {
-            padding: 10px;
-            background: white;
-            margin-right: 30px;
-
-            div {
-              margin-left: 15px;
-              font-size: 17px;
-              letter-spacing: 4px;
-            }
-          }
-        }
-      }
-        
-      .note-image {
-        position: relative;
-
-        // img {
-        //   width: 100%;
-        // }
-
-        i {
-          cursor: pointer;
-          position: absolute;
-          bottom: 7px;
-          left: 21px;
-          font-size: 30px;
-          color: $danger;
-        }
-      }
-    }  
   }
 }

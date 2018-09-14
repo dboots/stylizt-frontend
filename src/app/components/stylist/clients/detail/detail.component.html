@@ -86,7 +86,7 @@
       </div>
     </div>
     
-    <div class="client-portfolio-container pb-4 container-fluid text-center text-uppercase">
+    <div class="client-portfolio-container container-fluid text-center text-uppercase">
       <div class="container">
         <div class="row mb-4">
           <div class="col">
@@ -94,7 +94,10 @@
           </div>
         </div>
         <div class="row p-2">
-          <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx" (click)="showModal(addModal, item)">
+          <div
+            class="portfolio col-lg-3 col-sm-6 col-md-4 my-4"
+            *ngFor="let item of clientPortfolios; index as idx"
+            (click)="showModal(addModal, item)">
             <img [src]="item.image || 'assets/img/placeholder.jpg'" />
             <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
             <app-loading *ngIf="item.loading" ></app-loading>
@@ -102,90 +105,7 @@
         </div>
       </div>
     </div>
-    <!--
-      <div class="bg-light">
-        <div class="container text-center text-uppercase">
-          <div class="row">
-            <div class="col">
-              <div class="portfolio-title">Client Notes</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bg-light">
-        <div class="client-notes-add-button-container container">
-          <div class="row text-center">
-            <div class="col">
-              <div class="notes-add-button d-flex align-items-center justify-content-center mx-auto" (click)="openNotesForm()">
-                <ng-container *ngIf="!isNotesFormOpened">
-                  <i class="fa fa-plus-square" aria-hidden="true"></i>    
-                  <div>ADD NOTE</div>
-                </ng-container>
-                <ng-container *ngIf="isNotesFormOpened">
-                  <i class="fa fa-minus-square" aria-hidden="true"></i>    
-                  <div>CANCEL</div>
-                </ng-container>  
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-green" [class.opened]="isNotesFormOpened">
-        <div class="client-notes-container container">
-          <div class="row">
-            <div class="notes-form col">
-              <label>NEW NOTE</label>
-              <textarea class="w-100" [class.public]="isPublicNotes" [(ngModel)]="clientNote" rows="5" cols="30"></textarea>
-              <div class="form-field-error" *ngIf="!clientNote">
-                Note is required!
-              </div>
-            </div>
-          </div>
-          <div class="button-row d-flex flex-column flex-md-row flex-sm-column align-items-start justify-content-between mt-4">
-            <div class="left-col d-flex align-items-start">
-              <app-cloudinary-uploader
-              [folderName]="'client_notes'"
-              [buttonName]="'ATTACH'"
-              (completeItem)="notesImageUploadCompleted($event)">
-            </app-cloudinary-uploader>
-            <div
-            class="note-image"
-            *ngFor="let image of clientNotesImages; index as idx">
-            <img [src]="image" />
-            <i class="fa fa-trash" (click)="removeNoteImage(idx)"></i>
-          </div>
-          <button class="btn btn-primary" (click)="cancelNote()">CANCEL</button>
-        </div>
-        <div class="right-col d-flex align-items-center mt-md-0 mt-4">
-          <div class="public-checkbox d-flex justify-content-between align-items-center">
-            <input 
-            type="checkbox"
-            class="switch"
-            [checked]="isPublicNotes"
-            [(ngModel)]="isPublicNotes"/>
-            <div>PUBLIC?</div>
-          </div>
-          <button [disabled]="!clientNote" class="btn btn-primary" (click)="addClientNote()">ADD CLIENT NOTE</button>
-        </div>
-      </div>
-      <div class="row mt-4">
-      </div>
-    </div>
   </div>
-  <div class="bg-light">
-    <div class="container">
-      <div class="notes-content">
-        <div class="p-4" *ngFor="let note of clientNotes">
-          <app-note-card [note]="note"></app-note-card>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
--->
-</div>
 </div>
 
 <ng-template #addModal let-c="close" let-d="dismiss">
@@ -195,11 +115,19 @@
     <div class="main-content row">
       <div class="col-6">
         <img [src]="portfolioItem.image" class="img-fluid w-100" />
-        <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"(completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+        <app-cloudinary-uploader
+          [folderName]="'portfolio'"
+          [buttonName]="'UPLOAD IMAGE(S)'"
+          (completeItem)="imageUploadCompleted($event)">
+        </app-cloudinary-uploader>
       </div>
       <div class="col-6">
         <div class="form-group">
-          <textarea [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
+          <textarea
+            [(ngModel)]="portfolioItem.caption"
+            class="form-control"
+            placeholder="A description of this image...">
+          </textarea>
         </div>
         <div class="form-group">
           <label>What talents were used on this?</label>
@@ -209,8 +137,19 @@
       
       <div class="col">
         <div class="pull-right">
-          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-          <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()" class="common-gw-button">{{portfolioActionLabel}}</button>
+          <button
+            type="button"
+            class="common-gw-button"
+            (click)="c('Close click')">
+            Cancel
+          </button>
+          <button
+            type="button"
+            [disabled]="portfolioItem.image == ''"
+            (click)="portfolioAction()"
+            class="common-gw-button">
+            {{portfolioActionLabel}}
+          </button>
         </div>
       </div>
     </div>

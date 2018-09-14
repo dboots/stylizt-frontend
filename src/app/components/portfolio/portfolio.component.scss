@@ -17,28 +17,23 @@
       color: $gray-900;
     }
   }
-}
 
-.about {
-  h3 {
-    margin: 15px 0;
+  .about {
+    .bio {
+      line-height: 1.4rem;
+    }
+
+    .specialties {
+      font-family: "proxima_novabold";
+    }
   }
 
-  .bio {
-    line-height: 1.4rem;
-  }
-
-  .specialties {
-    font-family: "proxima_novabold";
+  .talent {
+    background: $green;
+    color: $white;
+    border: 1px solid $black;
+    padding: 1%;
+    margin: .5%;
+    float: left;
   }
 }
-
-.talent {
-  background: $green;
-  color: $white;
-  border: 1px solid $black;
-  padding: 1%;
-  margin: 0.5%;
-  float: left;
-}
-

@@ -24,16 +24,7 @@
     .location {
       text-transform: uppercase;
     }
-    
-    .profile-title {
-      font-size: 78px;
-      letter-spacing: 3px;
 
-      @media (max-width: 992px) {
-        font-size: 52px;
-      }
-    }
-    
     .profile-row {
       padding: 50px 30px;
       background: $green;

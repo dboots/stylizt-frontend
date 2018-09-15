@@ -1,17 +1,5 @@
 @import '../../../../sass/variables';
 
-.circle {
-  background: $green;
-  padding: 20px;
-  width: 80px;
-  height: 80px;
-  display: block;
-  border-radius: 50px;
-  text-align: center;
-  margin: 25px auto;
-  font-weight: bold;
-  font-size: 30px;
-}
 .profile-component {
   padding: 100px;
 
@@ -19,12 +7,20 @@
     padding: 50px 15px 15px;
   }
 
+  .circle {
+    background: $green;
+    padding: 20px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 50px;
+    text-align: center;
+    margin: 25px auto;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
   .container {
-
-    .location {
-      text-transform: uppercase;
-    }
-
     .profile-row {
       padding: 50px 30px;
       background: $green;

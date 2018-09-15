@@ -75,7 +75,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
 
         this.clientProfileImage = result.data.image;
-        
+
         this.clientPortfolios = result.data.portfolio.map((p) => {
           console.log(p.talents);
           return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id)
@@ -161,8 +161,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
     };
 
     this.clientService.update(this.clientId, body).subscribe((result: any) => {
-      let idx = this.clientService.clients.findIndex((x: Client) => {
-        return x._id == result.data._id;
+      const idx = this.clientService.clients.findIndex((x: Client) => {
+        return x._id === result.data._id;
       });
 
       result.data.portfolio = this.clientPortfolios;
@@ -242,9 +242,9 @@ export class StylistClientsDetailPageComponent implements OnInit {
         this.currentIndex--;
 
         idx = this.clientService.clients.findIndex((x: Client) => {
-          return x._id == this.clientId
+          return x._id === this.clientId;
         });
-  
+
         this.clientService.clients[idx].portfolio = this.clientPortfolios;
         this.modalRef.close();
       }, (err) => {

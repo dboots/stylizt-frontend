@@ -95,23 +95,10 @@ nav {
   }
 
   .main-content {
-    font-family: 'proxima_novalight';
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    color: $black;
     padding: 0 70px;
 
     @media (max-width: 414px) {
       padding: 0 30px;
-    }
-
-    .form-group {
-      input {
-        &.form-control {
-          max-height: 30px;
-          border: 1px solid $green;
-        }
-      }
     }
 
     .forgot-password-row {

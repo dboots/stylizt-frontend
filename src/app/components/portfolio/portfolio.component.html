@@ -1,13 +1,8 @@
-<div class="client-component content">
+<div class="portfolio-component content">
   <div class="container">
-    <div class="header-row">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="black-diamond-font">STYLIST PORTFOLIO</div>
-        </div>
-        <div class="col-md-6">
-          <div class="subtitle"></div>
-        </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="component-title black-diamond-font">STYLIST PORTFOLIO</div>
       </div>
     </div>
   </div>
@@ -32,7 +27,7 @@
           </div>
           <div class="col-md-8">
             <p class="specialties">Specialties</p>
-            <div class="talent" *ngFor="let talent of stylist.talents">{{talent.talent}}</div>
+            <div class="talent" *ngFor="let talent of stylist.talents">{{ talent.talent }}</div>
           </div>
         </div>
       </div>
@@ -48,7 +43,7 @@
   </div>
 </div>
 
-<div id="portfolio" class="pt-2 thumbnail-section text-center text-uppercase">
+<div id="portfolio" class="thumbnail-section text-center text-uppercase pt-2">
   <div class="container">
     <div class="row pb-4 pt-2" *ngIf="loggedIn()">
       <div class="col">

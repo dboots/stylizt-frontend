@@ -1,0 +1,34 @@
+.add-modal-component {
+  padding-bottom: 50px;
+  padding-top: 50px;
+
+  .black-diamond-font {
+    font-size: 45px;
+    margin-bottom: -15px;
+    padding: 0 70px;
+
+    @media (max-width: 414px) {
+      padding: 0 30px;
+    }
+  }
+
+  .main-content {
+    color: $black;
+    font-family: 'proxima_novalight';
+    font-size: 11px;
+    letter-spacing: 2.5px;
+
+    .form-group {
+      input {
+        &.form-control {
+          border: 1px solid $green;
+          max-height: 30px;
+        }
+      }
+    }
+
+    .common-gw-button {
+      letter-spacing: 3px;
+    }
+  }
+}

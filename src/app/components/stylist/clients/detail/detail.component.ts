@@ -77,7 +77,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
         this.clientProfileImage = result.data.image;
 
         this.clientPortfolios = result.data.portfolio.map((p) => {
-          console.log(p.talents);
           return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id)
         });
 
@@ -215,6 +214,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.portfolioService.create(this.portfolioItem, this.authService.token)
     .subscribe((result: any) => {
+      this.portfolioItem._id = result.data._id;
       this.clientPortfolios.push(this.portfolioItem);
       this.modalRef.close();
     }, (err) => {

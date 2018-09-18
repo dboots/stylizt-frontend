@@ -104,45 +104,65 @@
 </div>
 
 <ng-template #addModal let-c="close" let-d="dismiss">
-  <div class="add-modal-component text-uppercase container">
-    <div class="black-diamond-font">Add To Portfolio</div>
+  <div class="add-modal-component container">
+    <div class="black-diamond-font text-uppercase">Portfolio</div>
     <div class="green-divider"></div>
     <div class="main-content row">
       <div class="col-6">
         <img [src]="portfolioItem.image" class="img-fluid w-100" />
         <app-cloudinary-uploader
-          [folderName]="'portfolio'"
-          [buttonName]="'UPLOAD IMAGE(S)'"
-          (completeItem)="imageUploadCompleted($event)">
-        </app-cloudinary-uploader>
+        *ngIf="loggedIn()"
+        [folderName]="'portfolio'"
+        [buttonName]="'UPLOAD IMAGE(S)'"
+        (completeItem)="imageUploadCompleted($event)">
+      </app-cloudinary-uploader>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label class="text-uppercase">About this image:</label>
+        <span *ngIf="!loggedIn()">
+          <div class="caption">{{portfolioItem.caption}}</div>
+        </span>
+        <textarea *ngIf="loggedIn()" [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
       </div>
-      <div class="col-6">
-        <div class="form-group">
-          <textarea [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>What talents were used on this?</label>
-          <app-talent-tags-input [talents]="portfolioItem.talents"></app-talent-tags-input>
-        </div>
-      </div>
-      
-      <div class="col">
-        <div class="pull-right">
-          <button
-            type="button"
-            class="common-gw-button"
-            (click)="c('Close click')">
-            Cancel
-          </button>
-          <button 
-            type="button"
-            [disabled]="portfolioItem.image == ''"
-            (click)="portfolioAction()"
-            class="common-gw-button">
-            {{portfolioActionLabel}}
-          </button>
+      <div class="form-group">
+        <label class="text-uppercase">What talents were used on this?</label>
+        <app-talent-tags-input *ngIf="loggedIn()" [talents]="portfolioItem.talents"></app-talent-tags-input>
+        <div class="talents" *ngIf="!loggedIn()">
+          <div class="talent" *ngFor="let talent of portfolioItem.talents">{{ talent.talent }}</div>
         </div>
       </div>
     </div>
+    
+    <div class="col">
+      <div *ngIf="!loggedIn()">
+        <div class="text-center mt-4">
+          <button
+          type="button"
+          class="common-gw-button"
+          (click)="c('Close click')">
+          Close
+        </button>
+      </div>
+    </div>
+    <div *ngIf="loggedIn()">
+      <div class="pull-right">
+        <button
+        type="button"
+        class="common-gw-button"
+        (click)="c('Close click')">
+        Cancel
+      </button>
+      <button 
+      type="button"
+      [disabled]="portfolioItem.image == ''"
+      (click)="portfolioAction()"
+      class="common-gw-button">
+      {{portfolioActionLabel}}
+    </button>
   </div>
+</div>
+</div>
+</div>
+</div>
 </ng-template>

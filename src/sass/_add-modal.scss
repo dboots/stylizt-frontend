@@ -12,6 +12,23 @@
     }
   }
 
+  label { 
+    font-family: 'proxima_novamedium';
+  }
+
+  textarea {
+    resize: none;
+    height: 250px;
+    border: 1px solid;
+    font-size: 14px;
+  }
+
+  .caption {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 2.5px;
+  }
+
   .main-content {
     color: $black;
     font-family: 'proxima_novalight';

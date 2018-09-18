@@ -24,6 +24,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   twitter: string = null;
   facebook: string = null;
   portfolioActionLabel = 'Add To Portfolio';
+  portfolioTitle = 'Add To Portfolio';
   
   constructor(
     private talentService: TalentService,
@@ -75,7 +76,6 @@ export class StylistPortfolioPageComponent implements OnInit {
         this.portfolioService.update(this.portfolioItem, this.authService.token)
         .subscribe((result: any) => {
           //this.portfolioItem.talents = result.data.talents;
-          this.portfolioItem._id = null;
           this.modalRef.close();
         }, (err) => {
           this.modalRef.close();
@@ -83,7 +83,6 @@ export class StylistPortfolioPageComponent implements OnInit {
       }
       
       addToPortfolio() {
-        console.log(this.portfolioItem);
         this.portfolioService.create(this.portfolioItem, this.authService.token)
         .subscribe((result: any) => {
           this.portfolio.push(this.portfolioItem);

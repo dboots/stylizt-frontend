@@ -1,6 +1,6 @@
 .masthead {
   @include background-cover;
-  background: url('../assets/img/header-home.jpg') no-repeat center center;
+  background: url('https://res.cloudinary.com/drcvakvh3/image/upload/v1537535195/assets/header-home.jpg') no-repeat center center;
   background-color: $gray-800;
   background-size: cover;
   margin-top: 75px;

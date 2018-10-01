@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Talent } from '../../../models';
-import { AuthService, UserService, TalentService, LocationService } from '../../../services';
+import { User, Talent, Portfolio, Client } from '../../../models';
+import { AuthService, UserService, TalentService, LocationService, ClientService, PortfolioService } from '../../../services';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -20,13 +20,18 @@ export class StylistProfilePageComponent implements OnInit {
   selectedItems: Talent[] = [];
   location: string = '';
   loading: boolean = false;
+  clients: Client[] = [];
+  portfolio: Portfolio[] = [];
+  profileStrengths = {}
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private modalService: NgbModal,
     private talentService: TalentService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private clientService: ClientService,
+    private portfolioService: PortfolioService
   ) {
     this.responses = [];
   }
@@ -40,6 +45,21 @@ export class StylistProfilePageComponent implements OnInit {
     
     this.user = this.authService.decode();
     this.talents = this.user.talents;
+
+    this.portfolioService.read({}).subscribe((result: any) => {
+      this.portfolio = result.portfolio;
+      this.profileStrengths['portfolio']  = (this.portfolio.length >= 3);
+    });
+
+    this.clientService.read().then((result: any) => {
+      this.clients = result;
+      this.profileStrengths['clients']  = (this.clients.length >= 3);
+    });
+
+    this.profileStrengths['image']  = (this.user.image);
+    this.profileStrengths['zip']  = (this.user.zip);
+    
+
     
     this.logVisit();
   }

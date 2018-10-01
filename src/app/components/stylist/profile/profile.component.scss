@@ -1,5 +1,16 @@
 @import '../../../../sass/variables';
 
+.profile-strength {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  .title {
+    font-size: 18px;
+    color: $red;
+  }
+}
+
 .profile-component {
   padding: 100px;
 

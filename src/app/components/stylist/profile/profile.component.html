@@ -1,15 +1,17 @@
 <div class="profile-component content">
   <div class="container"> 
-    <!--
-      <div class="row">
-        <div class="col-6">
-          0 impressions
-        </div>
-        <div class="col-6">
-          0 views
-        </div>
+    <div class="row my-4 profile-strength">
+      <div class="col-md-6" *ngIf="!user.image || !user.zip">
+        <p class="title">Your profile is currently not being displayed</p>
+        <p *ngIf="!user.image">Upload Profile Image</p>
+        <p *ngIf="!user.zip">Enter Zip Code</p>
       </div>
-    -->
+      <div class="col-md-6" *ngIf="!profileStrengths.clients || !profileStrengths.portfolio">
+        <p class="title">Increase profile visibility</p>
+        <p *ngIf="!clients.length < 3"><a class="common-gw-button" href="/stylist/clients">Add Your Clients</a></p>
+        <p *ngIf="!portfolio.length < 3"><a class="common-gw-button" href="/portfolio/{{user._id}}">Create Your Portfolio</a></p>
+      </div>
+    </div>
     <div class="profile-row row">
       <div class="photo-column col-md-6">
         <span class="text-center">
@@ -77,45 +79,26 @@
       </div>
     </div>
     
-    <div class="row">
-      <div class="col-md-4 my-4 text-center">
-        <span class="circle text-white"><i class="fa fa-baseline fa-icon fa-users"></i></span>
-        <p>Add to your client book</p>
-        <a class="common-gw-button" routerLink="/stylist/clients">Create Client</a>
-      </div>
-      <div class="col-md-4 my-4 text-center">
-        <span class="circle text-white"><i class="fa fa-icon fa-image"></i></span>
-        <p>Add portfolio images to a client</p>
-        <a class="common-gw-button" routerLink="/stylist/clients">View Clients</a>
-      </div>
-      <div class="col-md-4 my-4 text-center">
-        <span class="circle text-white"><i class="fa fa-icon fa-image"></i></span>
-        <p>Add talents to your profile</p>
-        <button class="common-gw-button" (click)="scrollToTalents()">View H2C Page</button>
-      </div>
-    </div>
-  </div>
-  
-  <ng-template #addModal let-c="close" let-d="dismiss">
-    <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
-      <div class="add-modal-component text-uppercase container">
-        <div class="black-diamond-font">Add New Talent</div>
-        <div class="green-divider"></div>
-        <div class="main-content row">
-          <div class="col-12">
-            <div class="form-group">
-              <label>Talent</label>
-              <input type="text" formControlName="talent" class="form-control">
+    <ng-template #addModal let-c="close" let-d="dismiss">
+      <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
+        <div class="add-modal-component text-uppercase container">
+          <div class="black-diamond-font">Add New Talent</div>
+          <div class="green-divider"></div>
+          <div class="main-content row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Talent</label>
+                <input type="text" formControlName="talent" class="form-control">
+              </div>
             </div>
-          </div>
-          
-          <div class="col">
-            <div class="pull-right">
-              <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-              <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+            
+            <div class="col">
+              <div class="pull-right">
+                <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+                <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </ng-template>
+      </form>
+    </ng-template>

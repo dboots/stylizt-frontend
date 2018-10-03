@@ -109,7 +109,14 @@
             <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
             <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">
-              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+              <div *ngFor="let talent of stylist.talents; let idx = index">
+                <div class="talent text-uppercase" *ngIf="idx < maxTalentsToShow">
+                  {{talent.talent}}
+                </div>
+                <a class="p-3" [routerLink]="['/portfolio', stylist._id]" *ngIf="idx >= maxTalentsToShow">
+                  ..and X more
+                </a>
+              </div>      
             </div>
           </div>
         </div>
@@ -126,8 +133,15 @@
           <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
           <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
           <div class="flex-row talents">
-            <div class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</div>
-          </div>
+            <div *ngFor="let talent of stylist.talents; let idx = index">
+              <div class="talent text-uppercase" *ngIf="idx < maxTalentsToShow">
+                {{talent.talent}}
+              </div>
+              <a class="p-3" [routerLink]="['/portfolio', stylist._id]" *ngIf="idx >= maxTalentsToShow">
+                ..and X more
+              </a>
+            </div>
+          </div>  
         </div>
       </div>
     </ngx-slick>

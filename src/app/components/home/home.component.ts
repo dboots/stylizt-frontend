@@ -16,7 +16,8 @@ export class HomePageComponent implements OnInit {
   stylists: User[];
   posts: Post[];
   locations: any[] = [];
-  
+  maxTalentsToShow = 5;
+
   slideConfig = {
     dots: true,
     infinite: true,
@@ -26,7 +27,7 @@ export class HomePageComponent implements OnInit {
     prevArrow: false,
     nextArrow: false
   };
-  
+
   constructor(
     private portfolioService: PortfolioService,
     private talentService: TalentService,

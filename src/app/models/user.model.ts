@@ -13,4 +13,5 @@ export class User {
   plan: number;
   image: string;
   talents: Talent[];
+  stripeId: string;
 }

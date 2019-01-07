@@ -30,6 +30,18 @@ let landingNav = [
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomePageComponent,
+    data: {
+      navItems: [
+        { name: 'Features', url: '#features', scroll: true },
+        { name: 'Sign Up', url: '#signup', scroll: true },
+        { name: 'Contact', url: '/contact', scroll: false },
+        { name: 'Login' }
+      ]
+    }
+  },
+  {
     path: 'stylists-near-me/:state',
     component: LandingPageComponent,
     data: { navItems: landingNav }
@@ -39,59 +51,55 @@ const routes: Routes = [
     component: LandingVideoPageComponent
   },
   {
-    path: '',
-    component: HomePageComponent,
-    data: { navItems: [
-      { name: 'Blog', url: '#featured-looks', scroll: true },
-      { name: 'Featured Talent', url: '#local-talent', scroll: true },
-      { name: 'H2C Network', url: '#network', scroll: true },
-      { name: 'Contact', url: '/contact', scroll: false },
-      { name: 'Login' }
-    ]}
-  },
-  {
     path: 'stylist',
     component: StylistPageComponent,
-    data: { navItems: [
-      { name: 'How It Works', url: '#how-it-works', scroll: true },
-      { name: 'Sign Up', url: '#sign-up', scroll: true },
-      { name: 'Contact', url: '/contact', scroll: false },
-      { name: 'Login' }
-    ]}
+    data: {
+      navItems: [
+        { name: 'How It Works', url: '#how-it-works', scroll: true },
+        { name: 'Sign Up', url: '#sign-up', scroll: true },
+        { name: 'Contact', url: '/contact', scroll: false },
+        { name: 'Login' }
+      ]
+    }
   },
   { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'stylist/clients/:id', component: StylistClientsDetailPageComponent, canActivate: [AuthGuard] },
   { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },
   {
     path: 'portfolio/:id', component: StylistPortfolioPageComponent,
-    data: { navItems: [
-      { name: 'About', url: '#about', scroll: true },
-      { name: 'Portfolio', url: '#portfolio', scroll: true },
-      { name: 'Login' }
-    ]} },
-    {
-      path: 'owner',
-      component: OwnerPageComponent,
-      data: { navItems: defaultNav }
-    }, {
-      path: 'contact',
-      component: ContactPageComponent,
-      data: { navItems: defaultNav }
-    }, {
-      path: 'privacy-policy',
-      component: PrivacyPageComponent,
-      data: { navItems: defaultNav }
-    }, {
-      path: 'terms',
-      component: TermsPageComponent,
-      data: { navItems: defaultNav }
-    }, { path: 'password/:token', component: PasswordPageComponent },
-  ];
-  
-  @NgModule({
-    imports: [ RouterModule.forRoot(routes, {})],
-    exports: [ RouterModule ],
-  })
-  
-  export class AppRoutingModule { }
-  
+    data: {
+      navItems: [
+        { name: 'About', url: '#about', scroll: true },
+        { name: 'Portfolio', url: '#portfolio', scroll: true },
+        { name: 'Login' }
+      ]
+    }
+  },
+  {
+    path: 'owner',
+    component: OwnerPageComponent,
+    data: { navItems: defaultNav }
+  }, {
+    path: 'contact',
+    component: ContactPageComponent,
+    data: { navItems: defaultNav }
+  }, {
+    path: 'privacy-policy',
+    component: PrivacyPageComponent,
+    data: { navItems: defaultNav }
+  }, {
+    path: 'terms',
+    component: TermsPageComponent,
+    data: { navItems: defaultNav }
+  }, {
+    path: 'password/:token',
+    component: PasswordPageComponent
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+
+export class AppRoutingModule { }

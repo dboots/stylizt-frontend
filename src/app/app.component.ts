@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import { Router, NavigationEnd } from '@angular/router';
 
 export class AppComponent implements OnInit {
   constructor(
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {

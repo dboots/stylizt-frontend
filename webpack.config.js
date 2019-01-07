@@ -557,6 +557,7 @@ module.exports = {
     "setImmediate": false
   },
   "devServer": {
-    "historyApiFallback": true
+    "historyApiFallback": true,
+    "disableHostCheck": true
   },
 };

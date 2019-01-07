@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+
 import { Observable } from 'rxjs';
+import { Component, Input, NgZone } from '@angular/core';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import { Router } from '@angular/router';
@@ -26,7 +27,8 @@ export class SignupComponent {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private zone: NgZone
   ) {
     this.initForm();
   }
@@ -67,37 +69,45 @@ export class SignupComponent {
   }
 
   signup() {
-    this.model.type = this.type;
-    // TODO: Convert this to use FormValidators
-    /*
-    if (!this.plan) {
-      this.message = 'Please select a plan that interests you';
-      return false;
-    } else {
-      this.model.plan = this.plan;
-    }
-    */
-    this.model.name = this.signupForm.get('name').value;
-    this.model.email = this.signupForm.get('email').value;
-    this.model.password = this.signupForm.get('password').value;
+    var model = this.model;
+    model.type = this.type;
+    model.name = this.signupForm.get('name').value;
+    model.email = this.signupForm.get('email').value;
+    model.password = this.signupForm.get('password').value;
 
-    this.userService.signup(this.model).subscribe(
-      (data) => {
-        localStorage.setItem('token', data['token']);
-        this.router.navigate(['/stylist/profile']);
+    this.userService.signup(model).subscribe(
+      (data: User) => {
+        let token = data['token'];
+        localStorage.setItem('token', token);
+
+        stripe.open({
+          email: model.email,
+          name: 'Hair to Chair',
+          description: 'Hair to Chair - Basic',
+          amount: 499,
+          token: (source) => {
+            this.userService.createSubscription(token, source.id).subscribe(_ => {
+              this.zone.run(() => {
+                this.router.navigate(['stylist/profile']);
+              });
+            });
+          }
+        });
       }, (error) => {
         this.message = error.error;
         this.authService.logout();
         return Observable.throw(error);
-      }
-    );
+      });
   }
 
-  login() {
-    this.model.email = this.signupForm.get('email').value;
-    this.model.password = this.signupForm.get('password').value;
 
-    this.userService.login(this.model).subscribe(
+
+  login() {
+    let model = this.model;
+    model.email = this.signupForm.get('email').value;
+    model.password = this.signupForm.get('password').value;
+
+    this.userService.login(model).subscribe(
       (data) => {
         this.message = 'Thanks for logging in!';
         return true;
@@ -110,22 +120,22 @@ export class SignupComponent {
 }
 
 function confirmPassword(control: AbstractControl) {
-  if ( !control.parent || !control ) {
+  if (!control.parent || !control) {
     return;
   }
 
   const password = control.parent.get('password');
   const passwordRepeat = control.parent.get('passwordRepeat');
 
-  if ( !password || !passwordRepeat ) {
+  if (!password || !passwordRepeat) {
     return;
   }
 
-  if ( passwordRepeat.value === '' ) {
+  if (passwordRepeat.value === '') {
     return;
   }
 
-  if ( password.value !== passwordRepeat.value ) {
+  if (password.value !== passwordRepeat.value) {
     return {
       passwordsNotMatch: true
     };

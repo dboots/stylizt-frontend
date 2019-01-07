@@ -4,50 +4,14 @@
   <div class="hero-container">
     <div class="row">
       <div class="title-content col-md-8 col-10 m-auto text-center">
-        <div class="text-uppercase">We <span class="black-diamond-font">Connect</span></div>
-        <div class="text-uppercase">Salons &amp; Stylists</div>
-        <div>Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
+        <div class="text-uppercase">Stay <span class="black-diamond-font">Connected</span></div>
+        <div class="text-uppercase">With Your Clients</div>
+        <div>Hair To Chair gives you the tools you need to find new clients and keep existing clients engaged and
+          informed.</div>
       </div>
     </div>
   </div>
 </header>
-
-<!--
-  <div class="bg-light">
-    <div class="find-salons-title-container container">
-      <div class="row">
-        <div class="col">
-          <div class="text-center">FIND YOUR NEXT
-            <app-custom-dropdown
-            [options]="dropdownOptions"
-            label="talent"
-            id="_id"
-            [selected]="currentOption"
-            (onselect)="selectDropdown($event)">
-          </app-custom-dropdown>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-
-<div class="empty-dark-section"></div>
-<!--
-  <div class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="enter-search-here d-flex justify-content-center align-items-center">
-            <i class="fa fa-search"></i>
-            <input class="form-control bg-light" placeholder="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
--->
 
 <div class="thumbnail-section">
   <div class="container">
@@ -69,126 +33,76 @@
   </div>
 </div>
 
-<div id="featured-looks" class="featured-look-container container">
+<div id="features" class="featured-look-container container">
   <div class="featured-look-title row">
     <div class="col-8 m-auto text-center text-white title-block">
-      <span class="black-diamond-font color-green">H2C</span> BLOG
+      <span class="black-diamond-font color-green">H2C</span> FEATURES
     </div>
   </div>
-  
+
   <div class="row">
-    <div *ngFor="let post of posts" class="desktop col-md-6 position-relative">
-      <app-post [post]="post"></app-post>
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">CLIENT BOOK</div>
+          <div class="image" style="background-image: url('../assets/img/home-feature-client-book.jpg')"></div>
+          <div class="blog-content">Manage your clients contact information, their last haircut details, and their
+            individual portfolio.</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <ngx-slick *ngIf="posts && posts.length" class="carousel" [config]="slideConfig">
-    <div ngxSlickItem *ngFor="let post of posts" class="col-sm-5 position-relative">
-      <app-post [post]="post"></app-post>
-    </div>    
-  </ngx-slick>
-  
-  <div id="local-talent" class="row mt-5">
-    <div class="col-12 m-auto text-center text-white title-block">
-      FEATURED <span class="black-diamond-font color-green">H2C</span> TALENT
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">PORTFOLIO</div>
+          <div class="image" style="background-image: url('../assets/img/home-feature-portfolio.jpg')"></div>
+          <div class="blog-content">Display your latest hair creations on your own Hair to Chair portfolio page.</div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="thumbnail-section">
-  <div class="container">
-    <div class="row py-md-4 py-sm-1">
-      <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
-        <div class="row">
-          <div class="col-md-5 text-center position-relative">
-            <a [routerLink]="['/portfolio', stylist._id]">
-              <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
-            </a>
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">CUSTOM DOMAIN</div>
+          <div class="image custom-domain-title black-diamond-font">
+            <p class="bigly color-green">stylequeen.</p>
+            <p class="bigly">hairtochair.</p>
+            <p class="bigly">com</p>
           </div>
-          <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
-            <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
-            <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
-            <div class="flex-row talents">
-              <div *ngFor="let talent of stylist.talents; let idx = index">
-                <div class="talent text-uppercase" *ngIf="idx < maxTalentsToShow">
-                  {{talent.talent}}
-                </div>
-                <a class="p-3" [routerLink]="['/portfolio', stylist._id]" *ngIf="idx >= maxTalentsToShow">
-                  ..and X more
-                </a>
-              </div>      
-            </div>
+          <div class="blog-content">Skip the complex world of domain registration and renewals. Reserve your Hair to
+            Chair domain name today.
           </div>
         </div>
       </div>
     </div>
-    
-    <ngx-slick *ngIf="stylists && stylists.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let stylist of stylists">
-        <div class="col-md-6 text-white d-flex flex-column">
-          <a [routerLink]="['/portfolio', stylist._id]">
-            <img class="img-fluid" [src]="stylist.image" />
-          </a>
-          <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
-          <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
-          <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
-          <div class="flex-row talents">
-            <div *ngFor="let talent of stylist.talents; let idx = index">
-              <div class="talent text-uppercase" *ngIf="idx < maxTalentsToShow">
-                {{talent.talent}}
-              </div>
-              <a class="p-3" [routerLink]="['/portfolio', stylist._id]" *ngIf="idx >= maxTalentsToShow">
-                ..and X more
-              </a>
-            </div>
-          </div>  
+  </div>
+</div>
+
+<div class="container" id="signup">
+  <div class="header-row row">
+    <div class="col-md-6">
+      <div class="black-diamond-font">SIGN UP</div>
+    </div>
+  </div>
+</div>
+
+<div class="signup-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="plan">
+          <h3>Create your Hair to Chair account today!</h3>
+          <div class="price">$4.99/mo</div>
+          <ul>
+            <li>7 Day Trial</li>
+            <li>Cancel Anytime</li>
+            <li>Access To All Future Features Without Price Increase</li>
+          </ul>
         </div>
       </div>
-    </ngx-slick>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row my-5 justify-content-md-center">
-    <div class="col-md-6 action-card mb-4">
-      <!-- [ngStyle]="{'backgroundImage': 'url(' + 'http://via.placeholder.com/500x500' + ')'}" -->
-      <a routerLink="/stylist" class="image-content d-flex align-items-center justify-content-center text-white">
-        <span class="black-diamond-font mr-4">STYLIST</span> SIGN UP
-      </a>
-      <div class="detail-content mt-4">
-        <p>Woo potential clients with your talent portfolio! Keep them coming back to your chair with scheduling reminders via email, text or H2C chat!</p>
-        <p><strong>COMING SOON</strong> - Let your clients know what's going on in your life! Keep clients updated on where you're working next, open appointments, and more!</p>
+      <div class="col-6">
+        <app-signup type="stylist" [plan]="plan"></app-signup>
       </div>
-    </div>
-    <div class="col-md-6 action-card mb-4">
-      <a routerLink="/salon" class="image-content d-flex align-items-center justify-content-center text-white">
-        <span class="black-diamond-font mr-4">SALON</span> SIGN UP
-      </a>
-      <div class="detail-content mt-4">
-        <strong>COMING SOON!</strong> - Have empty chairs to fill? Get notified when talent relevant to your salon's needs becomes available. Browse their portfolio. No more empty chairs!
-      </div>
-    </div>
-  </div>
-  
-  <div id="network" class="row mt-5">
-    <div class="col-12 m-auto text-center text-white title-block">
-      <span class="black-diamond-font color-green">H2C</span> NETWORK
-    </div>
-  </div>
-</div>
-
-<div class="thumbnail-section">
-  <div class="container">
-    <div class="row py-md-4 py-sm-1 text-white desktop">
-      <div class="col-3 py-1" *ngFor="let location of locations">
-        <a href="/stylists-near-me/{{location.slug}}">{{location.state}}</a>
-      </div>
-    </div>
-    <div class="row carousel">
-      <select (change)="selectLocationDD($event.target.value)" class="location_dd">
-        <option>Select a State</option>
-        <option class="p-1" *ngFor="let location of locations" value="{{location.slug}}">{{location.state}}</option>
-      </select>
     </div>
   </div>
 </div>

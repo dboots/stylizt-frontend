@@ -4,6 +4,9 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-nav',

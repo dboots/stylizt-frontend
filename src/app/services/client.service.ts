@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -19,8 +21,8 @@ export class ClientService {
 
   async read(): Promise<any[]> {
     if (this.clients === undefined) {
-      const result = await this.http.get(environment.rootApiUrl + '/stylist/clients', AuthService.httpOptions(this.authService.token))
-        .map((res: any) => res['data'] as any[]).toPromise();
+      const result = await this.http.get(environment.rootApiUrl + '/stylist/clients', AuthService.httpOptions(this.authService.token)).pipe(
+        map((res: any) => res['data'] as any[])).toPromise();
       this.clients = result;
     }
     return new Promise<any[]>((resolve) => resolve(this.clients));

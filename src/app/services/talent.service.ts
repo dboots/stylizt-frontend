@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,8 +19,8 @@ export class TalentService {
   async read(): Promise<any[]> {
     const token = this.authService.token;
     if (this.itemList === undefined) {
-      const result = await this.http.get(environment.rootApiUrl + '/talents', AuthService.httpOptions(token))
-        .map((res: any) => res['data'] as any[]).toPromise();
+      const result = await this.http.get(environment.rootApiUrl + '/talents', AuthService.httpOptions(token)).pipe(
+        map((res: any) => res['data'] as any[])).toPromise();
       this.itemList = result;
     }
     return new Promise<any[]>((resolve) => resolve(this.itemList));

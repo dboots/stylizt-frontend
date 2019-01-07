@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class StylistProfilePageComponent implements OnInit {
-  user: User;
+  user: User = new User();
   responses: any[];
   status: string;
   talents: Talent[] = [];
@@ -24,6 +24,8 @@ export class StylistProfilePageComponent implements OnInit {
   portfolio: Portfolio[] = [];
   profileStrengths = {}
 
+  test: boolean = false;
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -31,43 +33,41 @@ export class StylistProfilePageComponent implements OnInit {
     private talentService: TalentService,
     private locationService: LocationService,
     private clientService: ClientService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
   ) {
-    this.responses = [];
+
   }
-  
+
   ngOnInit() {
     this.talent = new FormControl('', [Validators.required]),
-    
-    this.talentForm = new FormGroup({
-      talent: this.talent
-    });
-    
+
+      this.talentForm = new FormGroup({
+        talent: this.talent
+      });
+
     this.user = this.authService.decode();
     this.talents = this.user.talents;
 
     this.portfolioService.read({}).subscribe((result: any) => {
       this.portfolio = result.portfolio;
-      this.profileStrengths['portfolio']  = (this.portfolio.length >= 3);
+      this.profileStrengths['portfolio'] = (this.portfolio.length >= 3);
     });
 
     this.clientService.read().then((result: any) => {
       this.clients = result;
-      this.profileStrengths['clients']  = (this.clients.length >= 3);
+      this.profileStrengths['clients'] = (this.clients.length >= 3);
     });
 
-    this.profileStrengths['image']  = (this.user.image);
-    this.profileStrengths['zip']  = (this.user.zip);
-    
+    this.profileStrengths['image'] = (this.user.image);
+    this.profileStrengths['zip'] = (this.user.zip);
 
-    
     this.logVisit();
   }
-  
+
   logVisit() {
     console.log('logging visit');
   }
-  
+
   getLocation(zip) {
     this.loading = true;
 
@@ -85,7 +85,7 @@ export class StylistProfilePageComponent implements OnInit {
           city_idx = components.findIndex(c => {
             return (c.types.indexOf('postal_town') > -1);
           });
-          
+
           state_idx = components.findIndex(c => {
             return (c.types.indexOf('administrative_area_level_1') > -1);
           });
@@ -93,7 +93,7 @@ export class StylistProfilePageComponent implements OnInit {
           city_idx = components.findIndex(c => {
             return (c.types.indexOf('locality') > -1);
           });
-          
+
           state_idx = components.findIndex(c => {
             return (c.types.indexOf('administrative_area_level_1') > -1);
           });
@@ -108,24 +108,24 @@ export class StylistProfilePageComponent implements OnInit {
       }
     });
   }
-  
+
   scrollToTalents() {
     try {
       document.querySelector('#talents').scrollIntoView();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
-  
+
   profileImageUploadCompleted(response) {
     this.user.image = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
   }
-  
+
   uploadAndUpdate() {
     this.user.talents = this.talents;
     this.update();
   }
-  
+
   update() {
     this.userService.update(this.authService.token, this.user).subscribe((result: any) => {
       this.authService.token = result.token;
@@ -134,14 +134,14 @@ export class StylistProfilePageComponent implements OnInit {
       console.log('Error while updating user', err);
     });
   }
-  
+
   modal(content) {
     this.modalRef = this.modalService.open(content);
     this.modalRef.result.then((result) => {
     }, (reason) => {
     });
   }
-  
+
   addTalent() {
     let talent: Talent = new Talent(this.talent.value);
     this.talentService.create(talent).subscribe((result: any) => {
@@ -152,5 +152,5 @@ export class StylistProfilePageComponent implements OnInit {
     }, (err) => {
     });
   }
-  
+
 }

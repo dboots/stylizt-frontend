@@ -27,7 +27,7 @@ export class AuthService {
 
   constructor(
     private jwt: JwtHelper
-  ) {}
+  ) { }
 
   public isAuthenticated(): boolean {
     if (this.token) {
@@ -38,7 +38,9 @@ export class AuthService {
   }
 
   public decode(): User {
-    return this.jwt.decodeToken(this.token).data as User;
+    if (this.token) {
+      return this.jwt.decodeToken(this.token).data as User;
+    }
   }
 
   public logout() {

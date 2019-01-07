@@ -17,7 +17,15 @@ export class UserService {
   }
 
   read(params) {
-    return this.http.get(`${environment.rootApiUrl}/stylists`, {params: params});
+    return this.http.get(`${environment.rootApiUrl}/stylists`, { params: params });
+  }
+
+  createSubscription(token: string, sourceToken: string) {
+    let body = {
+      sourceToken: sourceToken
+    };
+
+    return this.http.post(`${environment.rootApiUrl}/user/subscribe`, body, AuthService.httpOptions(token));
   }
 
   update(token: string, body: User) {

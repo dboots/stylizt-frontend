@@ -75,32 +75,29 @@ export class SignupComponent {
     model.email = this.signupForm.get('email').value;
     model.password = this.signupForm.get('password').value;
 
-    this.userService.signup(model).subscribe(
-      (data: User) => {
-        let token = data['token'];
-        localStorage.setItem('token', token);
+    stripe.open({
+      email: model.email,
+      name: 'Hair to Chair',
+      description: 'Hair to Chair - Basic',
+      amount: 499,
+      token: (source) => {
+        this.userService.signup(model).subscribe((data: User) => {
+          let token = data['token'];
+          localStorage.setItem('token', token);
 
-        stripe.open({
-          email: model.email,
-          name: 'Hair to Chair',
-          description: 'Hair to Chair - Basic',
-          amount: 499,
-          token: (source) => {
-            this.userService.createSubscription(token, source.id).subscribe(_ => {
-              this.zone.run(() => {
-                this.router.navigate(['stylist/profile']);
-              });
+          this.userService.createSubscription(token, source.id).subscribe(_ => {
+            this.zone.run(() => {
+              this.router.navigate(['stylist/profile']);
             });
-          }
+          });
         });
-      }, (error) => {
-        this.message = error.error;
-        this.authService.logout();
-        return Observable.throw(error);
-      });
+      }
+    }, (error) => {
+      this.message = error.error;
+      this.authService.logout();
+      return Observable.throw(error);
+    });
   }
-
-
 
   login() {
     let model = this.model;

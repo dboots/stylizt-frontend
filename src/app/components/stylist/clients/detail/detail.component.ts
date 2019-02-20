@@ -222,6 +222,10 @@ export class StylistClientsDetailPageComponent implements OnInit {
     });
   }
 
+  noteImageUploadCompleted($event) {
+    console.log($event);
+  }
+
   showModal(modal, item) {
     if (item && item._id) {
       this.portfolioItem = item;

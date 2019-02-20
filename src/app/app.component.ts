@@ -16,6 +16,15 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let url = window.location.origin.split('://')[1];
+    let subdomain = url.split('.')[0];
+
+    if (subdomain && subdomain != 'www') {
+      console.log('doing things with subdomain', subdomain);
+      this.router.navigate(['portfolio/' + subdomain], {skipLocationChange: true });
+    }
+    
+
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

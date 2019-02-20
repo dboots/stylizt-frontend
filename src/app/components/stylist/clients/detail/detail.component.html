@@ -5,11 +5,14 @@
         <div class="col-md-6">
           <div class="profile-title black-diamond-font">CLIENT PROFILE</div>
         </div>
+        <div class="col-md-6">
+          <div class="profile-title black-diamond-font">LOG APPOINTMENT</div>
+        </div>
       </div>
     </div>
     <div class="green-divider"></div>
     <div class="container">
-      <div class="row align-items-end">
+      <div class="row">
         <div class="col-md-6">
           <div class="row">
             <div class="col">
@@ -49,28 +52,21 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="blur-overlay">
-            <h3>Coming Soon!</h3>
-            <p>Client Scheduling</p>
-          </div>
-          <div class="row text-center my-4 blur">
-            <div class="col-4">
-              <i class="fa fa-icon fa-calendar-check-o fa-xl"></i>
-              <div class="icon-title">Last Scheduled</div>
-              <div class="icon-text">Jun 03, 2018</div>
+          <div class="row">
+            <div class="col-12 pb-4">
+              <label>APPOINTMENT NOTES</label>
+              <textarea class="form-control noresize" rows="10" placeholder="What was done? Any special notes for next time?"></textarea>
             </div>
-            <div class="col-4">
-              <i class="fa fa-icon fa-calendar-plus-o fa-xl"></i>
-              <div class="icon-title">Next Scheduled</div>
-              <div class="icon-text">Jul 20, 2018<br />16 days</div>
-            </div>
-            <div class="col-4">
-              <i class="fa fa-icon fa-comments fa-xl"></i>
-              <div class="icon-title">Contact</div>
+            <div class="col-12 pb-4">
+              <label>SEND REMINDER FOR NEXT APPOINTMENT?</label>
+              <input class="form-control" type="number" placeholder="How many days?" />
             </div>
           </div>
-          <div class="row blur">
-            <div class="col">
+          <div class="row">
+            <div class="col-6">
+              <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'" (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
+            </div>
+            <div class="col-6">
               <button class="btn btn-primary btn-block">LOG APPOINTMENT</button>
             </div>
           </div>
@@ -94,14 +90,19 @@
           </div>
         </div>
         <div class="row p-2">
-          <div
-            class="portfolio col-lg-3 col-sm-6 col-md-4 my-4"
-            *ngFor="let item of clientPortfolios; index as idx"
-            (click)="showModal(addModal, item)">
+          <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx" (click)="showModal(addModal, item)">
             <img [src]="item.image || 'assets/img/placeholder.jpg'" />
             <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
             <app-loading *ngIf="item.loading" ></app-loading>
           </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container text-center text-uppercase mt-4">
+      <div class="row">
+        <div class="col">
+          <div class="portfolio-title p-4">Client Notes</div>
         </div>
       </div>
     </div>
@@ -115,19 +116,11 @@
     <div class="main-content row">
       <div class="col-6">
         <img [src]="portfolioItem.image" class="img-fluid w-100" />
-        <app-cloudinary-uploader
-          [folderName]="'portfolio'"
-          [buttonName]="'UPLOAD IMAGE(S)'"
-          (completeItem)="imageUploadCompleted($event)">
-        </app-cloudinary-uploader>
+        <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'" (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
       </div>
       <div class="col-6">
         <div class="form-group">
-          <textarea
-            [(ngModel)]="portfolioItem.caption"
-            class="form-control"
-            placeholder="A description of this image...">
-          </textarea>
+          <textarea [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
         </div>
         <div class="form-group">
           <label>What talents were used on this?</label>
@@ -137,19 +130,8 @@
       
       <div class="col">
         <div class="pull-right">
-          <button
-            type="button"
-            class="common-gw-button"
-            (click)="c('Close click')">
-            Cancel
-          </button>
-          <button
-            type="button"
-            [disabled]="portfolioItem.image == ''"
-            (click)="portfolioAction()"
-            class="common-gw-button">
-            {{portfolioActionLabel}}
-          </button>
+          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+          <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()" class="common-gw-button">{{portfolioActionLabel}}</button>
         </div>
       </div>
     </div>

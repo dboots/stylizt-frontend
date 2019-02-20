@@ -3,32 +3,37 @@
 
 .detail-component {
   padding-top: 100px;
-
+  
+  textarea {
+    resize: none;
+    height: 177px;
+  }
+  
   .fa {
     font-size: 50px;
   }
-
+  
   .status {
     background: $black;
     color: $green;
   }
-
+  
   .icon-title {
     margin: 5%;
     font-size: 16px;
     font-weight: bold;
   }
-
+  
   .icon-text {
     font-size: 14px;
     font-style: italic;
   }
-
+  
   .profile-title {
-    font-size: 52px;
+    font-size: 42px;
     letter-spacing: .6px;
   }
-
+  
   .portfolio-title {
     display: inline-block;
     font-family: "proxima_novalight", Arial, sans-serif;
@@ -37,14 +42,14 @@
     color: $white;
     background: $black;
   }
-
+  
   .client-portfolio-container {
     background: $black;
-
+    
     .portfolio {
       cursor: pointer;
       text-align: center;
-
+      
       img {
         width: 100%;
       }

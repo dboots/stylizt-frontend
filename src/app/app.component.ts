@@ -17,11 +17,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     let url = window.location.origin.split('://')[1];
-    let subdomain = url.split('.')[0];
+    let parts = url.split('.');
+    let subdomain = (parts.length == 3) ? parts[0] : null;
 
-    if (subdomain && subdomain != 'www') {
+    if (environment.production && subdomain && subdomain != 'www') {
       console.log('doing things with subdomain', subdomain);
-      this.router.navigate(['portfolio/' + subdomain], {skipLocationChange: true });
+      this.router.navigate(['portfolio/' + subdomain]);
     }
     
 

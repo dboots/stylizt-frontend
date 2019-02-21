@@ -52,22 +52,26 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="row">
-            <div class="col-12 pb-4">
+          <div class="row pb-4">
+            <div class="col-12">
               <label>APPOINTMENT NOTES</label>
               <textarea class="form-control noresize" rows="10" placeholder="What was done? Any special notes for next time?"></textarea>
             </div>
-            <div class="col-12 pb-4">
-              <label>SEND REMINDER FOR NEXT APPOINTMENT?</label>
-              <input class="form-control" type="number" placeholder="How many days?" />
+            <!--
+              <div class="col-12 pb-4">
+                <label>SEND REMINDER FOR NEXT APPOINTMENT?</label>
+                <input class="form-control" type="number" placeholder="How many days?" />
+              </div>
+            -->
+          </div>
+          <div class="row pb-4">
+            <div class="col-12">
+              <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'" (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
             </div>
           </div>
           <div class="row">
-            <div class="col-6">
-              <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'" (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
-            </div>
-            <div class="col-6">
-              <button class="btn btn-primary btn-block">LOG APPOINTMENT</button>
+            <div class="col-12">
+              <button class="btn btn-primary btn-block">ADD CLIENT NOTES</button>
             </div>
           </div>
         </div>

@@ -26,16 +26,16 @@
       <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
         <div class="row">
           <div class="col-md-5 text-center position-relative">
-            <a [routerLink]="['/portfolio', stylist._id]">
-              <a [routerLink]="['/portfolio', stylist._id]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
+            <a [routerLink]="['/portfolio', stylist.url]">
+              <a [routerLink]="['/portfolio', stylist.url]"><img class="img-fluid w-100" [src]="stylist.image" /></a>
             </a>
           </div>
           <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
+            <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist.url]">{{stylist.name}}</a>
             <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
             <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">
-              <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+              <a [routerLink]="['/portfolio', stylist.url]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 150)? (stylist.bio | slice:0:150) + '...' : (stylist.bio) }}</p>
           <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
           <div class="flex-row talents">
-            <a [routerLink]="['/portfolio', stylist._id]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
+            <a [routerLink]="['/portfolio', stylist.url]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
           </div>
         </div>
       </div>

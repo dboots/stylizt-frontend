@@ -1,65 +1,44 @@
 @import '../../../../sass/_mixins';
 @import '../../../../sass/_variables';
 
-.note-card-component {
-  .note-card {
-    @media (max-width: 992px) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
 
-    .image-container {
-      padding-right: 18px;
-      margin-bottom: 30px;
+.text-container {
+  border-left: 3px solid $green;
   
-      img {
-        width: 300px;
-      }  
+  .top-info {
+    font-family: "proxima_novabold", Arial, sans-serif;
+    
+    .public-badge {
+      font-size: 30px;
+      letter-spacing: 9px;
+      background: $green;
     }
-  
-    .text-container {
-      padding-left: 18px;
-      border-left: 3px solid $green;
-  
-      .top-info {
-        font-family: "proxima_novabold", Arial, sans-serif;
-        margin-bottom: 40px;
     
-        .public-badge {
-          font-size: 30px;
-          letter-spacing: 9px;
-          background: $green;
-          padding: 5px 20px;
-          margin-right: 23px;
-        }
+    .date-badge {
+      font-size: 22px;
+      letter-spacing: 0.9px;
+      color: $green;
+    }
     
-        .date-badge {
-          font-size: 22px;
-          letter-spacing: 0.9px;
-          color: $green;
-        }
-    
-        &.private {
-          color: $red;
-  
-          .public-badge {
-            background: $black;
-            color: $white;
-          }
-  
-          .date-badge {
-            color: $black;
-          }
-        }
+    &.private {
+      color: $red;
+      
+      .public-badge {
+        background: $black;
+        color: $white;
       }
-  
-      .note-content {
-        font-family: "proxima_novamedium", Arial, sans-serif;
-        font-size: 17px;
-        line-height: 2.06;
-        letter-spacing: 0.7px;
-        color: #231f20;
+      
+      .date-badge {
+        color: $black;
       }
     }
+  }
+  
+  .note-content {
+    font-family: "proxima_novamedium", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 2.06;
+    letter-spacing: 0.7px;
+    color: #231f20;
   }
 }

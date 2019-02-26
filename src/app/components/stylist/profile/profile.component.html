@@ -3,9 +3,10 @@
   <div class="container"> 
     <div class="row my-4 profile-strength">
       <div class="col-md-6" *ngIf="!user.image || !user.zip">
-        <p class="title">Your profile is currently not being displayed</p>
+        <p class="title">Next steps for your H2C profile</p>
         <p *ngIf="!user.image">Upload Profile Image</p>
         <p *ngIf="!user.zip">Enter Zip Code</p>
+        <p *ngIf="!user.url">Enter your H2C profile name</p>
       </div>
       <div class="col-md-6" *ngIf="!profileStrengths.clients || !profileStrengths.portfolio">
         <p class="title">Increase profile visibility</p>
@@ -39,7 +40,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label>YOUR URL</label>
+          <label>PROFILE NAME</label>
           <div class="row">
             <div class="col-sm-6">
               <input [(ngModel)]="user.url" class="form-control" type="text" />

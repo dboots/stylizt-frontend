@@ -1,14 +1,12 @@
-<div class="note-card-component">
-  <div class="note-card d-flex">
-    <div *ngIf="note.images" class="image-container">
-      <img class="" [src]="note.images[0]" />
+
+<div class="row pb-4">
+  <div class="image-container col-md-1">
+    <img *ngIf="note.images" class="" [src]="note.images[0]" />
+  </div>
+  <div class="text-container col-md-11">
+    <div class="top-info d-flex align-items-center" [class.private]="!note.isPublic">
+      <div class="date-badge">{{ note.postDate | date:'EEEE, MMMM d, y' }}</div>
     </div>
-    <div class="text-container d-flex flex-column justify-content-between">
-      <div class="top-info d-flex align-items-center" [class.private]="!note.isPublic">
-        <div class="public-badge">{{ note.isPublic ? 'PUBLIC' : 'PRIVATE' }}</div>
-        <div class="date-badge">{{ note.postDate | date:'EEEE, MMMM d, y' }}</div>
-      </div>
-      <div class="note-content">{{ note.notes }}</div>
-    </div>
+    <div class="note-content">{{ note.notes }}</div>
   </div>
 </div>

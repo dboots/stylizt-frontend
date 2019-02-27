@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     let parts = url.split('.');
     let subdomain = (parts.length == 3) ? parts[0] : null;
 
+    console.log(environment.production, subdomain);
     if (environment.production && subdomain && subdomain != 'www') {
       console.log('doing things with subdomain', subdomain);
       this.router.navigate(['portfolio/' + subdomain]);

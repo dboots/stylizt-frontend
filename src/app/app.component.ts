@@ -13,26 +13,30 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private location: Location
-  ) { }
-
-  ngOnInit() {
-    let url = window.location.origin.split('://')[1];
-    let parts = url.split('.');
-    let subdomain = (parts.length == 3) ? parts[0] : null;
-
-    console.log(environment.production, subdomain);
-    if (environment.production && subdomain && subdomain != 'www') {
-      console.log('doing things with subdomain', subdomain);
-      this.router.navigate(['portfolio/' + subdomain]);
+    ) {
+      if (environment.production) {
+        window.location.protocol = 'https';
+      }
     }
     
-
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
+    ngOnInit() {
+      let url = window.location.origin.split('://')[1];
+      let parts = url.split('.');
+      let subdomain = (parts.length == 3) ? parts[0] : null;
+      
+      if (environment.production && subdomain && subdomain != 'www') {
+        console.log('doing things with subdomain', subdomain);
+        this.router.navigate(['portfolio/' + subdomain]);
       }
-
-      window.scrollTo(0, 0);
-    });
+      
+      
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+          return;
+        }
+        
+        window.scrollTo(0, 0);
+      });
+    }
   }
-}
+  

@@ -15,7 +15,9 @@ export class AppComponent implements OnInit {
     private location: Location
     ) {
       if (environment.production) {
-        window.location.protocol = 'https';
+        if (window.location.protocol.indexOf('https') == -1) {
+          window.location.protocol = 'https';
+        }
       }
     }
     

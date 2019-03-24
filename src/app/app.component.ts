@@ -10,16 +10,7 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private location: Location
-    ) {
-      if (environment.production) {
-        if (window.location.protocol.indexOf('https') == -1) {
-          window.location.protocol = 'https';
-        }
-      }
-    }
+  constructor(private router: Router) {}
     
     ngOnInit() {
       let url = window.location.origin.split('://')[1];

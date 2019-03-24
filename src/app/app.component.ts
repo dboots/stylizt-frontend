@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       console.log(production, url, parts, subdomain);
       
       if (subdomain && subdomain != 'www') {
-        this.router.navigate(['portfolio/' + subdomain]);
+        this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
       }
 
       this.router.events.subscribe((evt) => {

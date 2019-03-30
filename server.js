@@ -17,7 +17,9 @@ const forceSSL = function() {
   }
 }
 
+console.log('production status: ', production);
 if (production === true) {
+  console.log('using SSL');
   app.use(forceSSL());
 }
 

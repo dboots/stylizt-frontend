@@ -48,13 +48,15 @@ export class StylistPortfolioPageComponent implements OnInit {
         let stylist = data.stylist;
         
         this.title.setTitle(stylist.name + ' Portfolio');
-        this.meta.updateTag({
-          name: 'description', content: stylist.name + ' is a stylist from ' + stylist.zip
-        });
-        
-        var location = stylist.zip.replace('#', '%23');
-        let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
-        this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        if (stylist && stylist.name && stylist.zip) {
+          this.meta.updateTag({
+            name: 'description', content: stylist.name + ' is a stylist from ' + stylist.zip
+          });
+          
+          var location = stylist.zip.replace('#', '%23');
+          let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
+          this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        }
         
         this.twitter = (stylist.twitter) ? this.getUrl(stylist.twitter, 'http://www.twitter.com/') : null;
         this.facebook = (stylist.facebook) ? this.getUrl(stylist.facebook, 'http://www.facebook.com/') : null;

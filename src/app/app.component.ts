@@ -14,12 +14,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
       let production = environment.production;
       let url = window.location.origin.split('://')[1];
-
       let parts = url.split('.');
       let subdomain = (parts.length == 3) ? parts[0] : null;
 
-      console.log(production, url, parts, subdomain);
-      
       if (subdomain && subdomain != 'www') {
         this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
       }

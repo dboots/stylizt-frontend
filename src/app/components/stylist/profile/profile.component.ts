@@ -23,6 +23,7 @@ export class StylistProfilePageComponent implements OnInit {
   clients: Client[] = [];
   portfolio: Portfolio[] = [];
   profileStrengths = {}
+  formGroup: FormGroup;
 
   test: boolean = false;
 
@@ -33,14 +34,24 @@ export class StylistProfilePageComponent implements OnInit {
     private talentService: TalentService,
     private locationService: LocationService,
     private clientService: ClientService,
-    private portfolioService: PortfolioService,
+    private portfolioService: PortfolioService
   ) {
+    this.formGroup = this.getFormGroup(this.user);
+    console.log(this.formGroup);
+  }
 
+  getFormGroup(model: any) {
+    let formGroup: FormGroup = new FormGroup({});
+    
+    Object.keys(model).map(key => {
+      formGroup.addControl(key, new FormControl());
+    });
+    
+    return formGroup;
   }
 
   ngOnInit() {
     this.talent = new FormControl('', [Validators.required]),
-
       this.talentForm = new FormGroup({
         talent: this.talent
       });
@@ -60,6 +71,7 @@ export class StylistProfilePageComponent implements OnInit {
 
     this.profileStrengths['image'] = (this.user.image);
     this.profileStrengths['zip'] = (this.user.zip);
+    this.formGroup.patchValue(this.user);
 
     this.logVisit();
   }
@@ -102,8 +114,8 @@ export class StylistProfilePageComponent implements OnInit {
         city = components[city_idx].long_name;
         state = components[state_idx].long_name;
 
-        this.user.city = city;
-        this.user.state = state;
+        this.formGroup.controls['city'].setValue(city);
+        this.formGroup.controls['state'].setValue(state);
         this.location = city + ', ' + state;
       }
     });
@@ -122,12 +134,14 @@ export class StylistProfilePageComponent implements OnInit {
   }
 
   uploadAndUpdate() {
-    this.user.talents = this.talents;
+    this.formGroup.controls.talents.setValue(this.talents);
     this.update();
   }
 
   update() {
-    this.userService.update(this.authService.token, this.user).subscribe((result: any) => {
+    let body = this.formGroup.value as User;
+    console.log(body);
+    this.userService.update(this.authService.token, body).subscribe((result: any) => {
       this.authService.token = result.token;
       this.status = 'Profile updated!';
     }, (err) => {

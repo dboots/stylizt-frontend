@@ -25,6 +25,12 @@ a.link {
   filter: blur(6px);
 }
 
+.form-control {  
+  &.ng-invalid {
+    border: 1px solid red;
+  }
+}
+
 .blur-overlay {
   position: absolute;
   top: 0;
@@ -46,7 +52,7 @@ a.link {
 .carousel {
   display: none;
   padding: 15px 15px 30px 15px;
-
+  
   @media screen and (max-width: 768px) {
     display: block;
   }
@@ -60,7 +66,7 @@ a.link {
 .fixed-bottom {
   margin: 0 15px;
   z-index: 0;
-
+  
   @media (max-width: 768px) {
     font-size: 30px;
   }
@@ -76,7 +82,7 @@ a.link {
   font-size: 45px;
   letter-spacing: 20px;
   padding: 15px;
-
+  
   @media (max-width: 992px) {
     font-size: 25px;
     letter-spacing: 10px;
@@ -145,21 +151,21 @@ a.link {
 .featured-look-container {
   .featured-look-title {
     margin-bottom: 50px;
-
+    
     @media screen and (max-width: 768px) {
       margin-bottom: 30px;
     }
   }
-
+  
   .carousel {
     .black-diamond-font {
       position: unset;
     }
   }
-
+  
   .col-sm-5 {
     margin-bottom: 100px;
-
+    
     @media screen and (max-width: 768px) {
       margin-bottom: 0;
     }

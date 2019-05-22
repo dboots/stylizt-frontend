@@ -1,5 +1,5 @@
 
-<div class="profile-component content">
+<div class="profile-component content" *ngIf="formGroup">
   <div class="container"> 
     <div class="row my-4 profile-strength">
       <div class="col-md-6" *ngIf="!user.image || !user.zip">
@@ -14,81 +14,83 @@
         <p *ngIf="!portfolio.length < 3"><a class="common-gw-button" [routerLink]="['/portfolio/' + user.url]">Create Your Portfolio</a></p>
       </div>
     </div>
-    <div class="profile-row row">
-      <div class="photo-column col-md-6">
-        <span class="text-center">
-          <img *ngIf="user.image" [src]="user.image" />
-          <app-cloudinary-uploader [folderName]="'profile'" [buttonName]="'UPLOAD PHOTO'"(completeItem)="profileImageUploadCompleted($event)"></app-cloudinary-uploader>
-        </span>
-        
-        <span>
-          <div class="form-group">
-            <label>FACEBOOK</label>
-            <input [(ngModel)]="user.facebook" class="form-control" type="text" placeholder="http://" />
-          </div>
+    <form [formGroup]="formGroup">
+      <div class="profile-row row">
+        <div class="photo-column col-md-6">
+          <span class="text-center">
+            <img *ngIf="user.image" [src]="user.image" />
+            <app-cloudinary-uploader [folderName]="'profile'" [buttonName]="'UPLOAD PHOTO'"(completeItem)="profileImageUploadCompleted($event)"></app-cloudinary-uploader>
+          </span>
           
-          <div class="form-group">
-            <label>INSTAGRAM</label>
-            <input [(ngModel)]="user.instagram" class="form-control" type="text" placeholder="@handle" />
-          </div>
-          
-          <div class="form-group">
-            <label>TWITTER</label>
-            <input [(ngModel)]="user.twitter" class="form-control" type="text" placeholder="@handle" />
-          </div>
-        </span>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>PROFILE NAME</label>
-          <div class="row">
-            <div class="col-sm-6">
-              <input [(ngModel)]="user.url" class="form-control" type="text" />
+          <span>
+            <div class="form-group">
+              <label>FACEBOOK</label>
+              <input formControlName="facebook" class="form-control" type="text" placeholder="http://" />
             </div>
-            <div class="py-3 col-sm-6 label-url">.hairtochair.com</div>
+            
+            <div class="form-group">
+              <label>INSTAGRAM</label>
+              <input formControlName="instagram" class="form-control" type="text" placeholder="@handle" />
+            </div>
+            
+            <div class="form-group">
+              <label>TWITTER</label>
+              <input formControlName="twitter" class="form-control" type="text" placeholder="@handle" />
+            </div>
+          </span>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>PROFILE NAME</label>
+            <div class="row">
+              <div class="col-sm-6">
+                <input pattern="[a-zA-Z0-9]*" required formControlName="url" class="form-control" type="text" />
+              </div>
+              <div class="py-3 col-sm-6 label-url">.hairtochair.com</div>
+            </div>
           </div>
+          <div class="form-group">
+            <label>YOUR NAME</label>
+            <input formControlName="name" required class="form-control" type="text" />
+          </div>
+          
+          <div class="form-group">
+            <label>EMAIL ADDRESS</label>
+            <input formControlName="email" required class="form-control" type="text" />
+          </div>
+          
+          <div class="form-group">
+            <label>ZIP</label>
+            <input formControlName="zip" required (blur)="getLocation($event.target.value)" class="form-control" type="text" />
+            <span class="text-uppercase" *ngIf="loading">getting location...</span>
+          </div>
+          
+          <div class="form-group">
+            <label>CITY</label>
+            <input formControlName="city" required class="form-control" type="text" />
+          </div>
+          
+          <div class="form-group">
+            <label>STATE</label>
+            <input formControlName="state" required class="form-control" type="text" />
+          </div>
+          
+          <div class="bio-content form-group">
+            <label>BIO</label>
+            <textarea formControlName="bio" class="form-control"></textarea>
+          </div>
+          
+          <div class="form-group" id="talents">
+            <label>YOUR TALENTS</label>
+            Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
+            <app-talent-tags-input [talents]="talents" [(selectedItems)]="selectedItems"></app-talent-tags-input>
+          </div>
+          
+          <button [disabled]="!formGroup.valid" type="button" (click)="uploadAndUpdate()" class="common-gw-button pull-right">UPDATE PROFILE</button>
+          {{ status }}
         </div>
-        <div class="form-group">
-          <label>YOUR NAME</label>
-          <input [(ngModel)]="user.name" class="form-control" type="text" />
-        </div>
-        
-        <div class="form-group">
-          <label>EMAIL ADDRESS</label>
-          <input [(ngModel)]="user.email" class="form-control" type="text" />
-        </div>
-        
-        <div class="form-group">
-          <label>ZIP</label>
-          <input [(ngModel)]="user.zip" (blur)="getLocation($event.target.value)" class="form-control" type="text" />
-          <span class="text-uppercase" *ngIf="loading">getting location...</span>
-        </div>
-        
-        <div class="form-group">
-          <label>CITY</label>
-          <input [(ngModel)]="user.city" class="form-control" type="text" />
-        </div>
-        
-        <div class="form-group">
-          <label>STATE</label>
-          <input [(ngModel)]="user.state" class="form-control" type="text" />
-        </div>
-        
-        <div class="bio-content form-group">
-          <label>BIO</label>
-          <textarea [(ngModel)]="user.bio" class="form-control"></textarea>
-        </div>
-        
-        <div class="form-group" id="talents">
-          <label>YOUR TALENTS</label>
-          Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
-          <app-talent-tags-input [talents]="talents" [(selectedItems)]="selectedItems"></app-talent-tags-input>
-        </div>
-        
-        <button type="button" (click)="uploadAndUpdate()" class="common-gw-button pull-right">UPDATE PROFILE</button>
-        {{ status }}
       </div>
-    </div>
+    </form> 
     
     <ng-template #addModal let-c="close" let-d="dismiss">
       <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">

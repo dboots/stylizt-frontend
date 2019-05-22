@@ -29,6 +29,7 @@ export class UserService {
   }
 
   update(token: string, body: User) {
+    body.url = body.url.toLowerCase().replace(' ', '').trim();
     return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }
 

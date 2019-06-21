@@ -3,7 +3,7 @@ import { PortfolioService, AuthService, TalentService } from '../../services';
 import { Portfolio, User, Talent } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, Meta, Title } from '@angular/platform-browser';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -35,7 +35,8 @@ export class StylistPortfolioPageComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private sanitization: DomSanitizer
     ) {
       this.route.params.subscribe((params) => { this.params = params });
       
@@ -65,6 +66,11 @@ export class StylistPortfolioPageComponent implements OnInit {
         this.portfolio = portfolio;
         this.stylist = stylist;
       })
+    }
+
+    getBackgroundImage() {
+      let random = Math.floor(Math.random() * Math.floor(100000));
+      return this.sanitization.bypassSecurityTrustStyle('url(https://placeimg.com/320/240/any?' + random);
     }
     
     loggedIn() {

@@ -14,6 +14,7 @@ import { TermsPageComponent } from './components/terms/terms.component';
 import { LandingPageComponent } from './components/landing/landing.component';
 import { LandingVideoPageComponent } from './components/landing/video.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
+import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 
 let defaultNav = [
   { name: 'Contact', url: '/contact', scroll: false },
@@ -60,6 +61,7 @@ const routes: Routes = [
       ]
     }
   },
+  { path: 'stylist/home', component: StylistHomePageComponent, canActivate: [AuthGuard] },
   { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'stylist/clients/:id', component: StylistClientsDetailPageComponent, canActivate: [AuthGuard] },
   { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },

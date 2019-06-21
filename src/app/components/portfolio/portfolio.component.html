@@ -32,6 +32,63 @@
         </div>
       </div>
     </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="component-title black-diamond-font">SERVICES</div>
+      </div>
+    </div>
+  </div>
+  <div class="green-divider"></div>
+  
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-3 p-2 service">
+        <div class="d-flex align-items-end justify-content-end" [style.background]="getBackgroundImage()"></div>
+      </div>
+      
+      <div class="col-3 service-desc">
+        <h5>Haircut</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non volutpat libero nibh in nisi.</p>
+        <strong>$24.99</strong>
+        <button class="common-gw-button">BOOK</button>
+      </div>
+      
+      <div class="col-3 p-2 service">
+        <div class="d-flex align-items-end justify-content-end" [style.background]="getBackgroundImage()"></div>
+      </div>
+      
+      <div class="col-3 service-desc">
+        <h5>Haircut</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non volutpat libero nibh in nisi.</p>
+        <strong>$24.99</strong>
+        <button class="common-gw-button">BOOK</button>
+      </div>
+      
+      <div class="col-3 p-2 service">
+        <div class="d-flex align-items-end justify-content-end" [style.background]="getBackgroundImage()"></div>
+      </div>
+      
+      <div class="col-3 service-desc">
+        <h5>Haircut</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non volutpat libero nibh in nisi.</p>
+        <strong>$24.99</strong>
+        <button class="common-gw-button">BOOK</button>
+      </div>
+      
+      <div class="col-3 p-2 service">
+        <div class="d-flex align-items-end justify-content-end" [style.background]="getBackgroundImage()"></div>
+      </div>
+      
+      <div class="col-3 service-desc">
+        <h5>Haircut</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non volutpat libero nibh in nisi.</p>
+        <strong>$24.99</strong>
+        <button class="common-gw-button">BOOK</button>
+      </div>
+      
+    </div>
   </div>
 </div>
 
@@ -93,15 +150,15 @@
       </div>
     </div>
   </div>
--->
-<div *ngIf="stylist && mapUrl">
-  <div *ngIf="stylist.zip" class="w-100">
-    <iframe width="100%" height="500" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-      <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
-    </iframe>
+  <div *ngIf="stylist && mapUrl">
+    <div *ngIf="stylist.zip" class="w-100">
+      <iframe width="100%" height="500" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+        <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+      </iframe>
+    </div>
+    <br />
   </div>
-  <br />
-</div>
+-->
 
 <ng-template #addModal let-c="close" let-d="dismiss">
   <div class="add-modal-component container">
@@ -137,32 +194,16 @@
     <div class="col">
       <div *ngIf="!loggedIn()">
         <div class="text-center mt-4">
-          <button
-          type="button"
-          class="common-gw-button"
-          (click)="c('Close click')">
-          Close
-        </button>
+          <button type="button" class="common-gw-button" (click)="c('Close click')">Close</button>
+        </div>
+      </div>
+      <div *ngIf="loggedIn()">
+        <div class="pull-right">
+          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+          <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()"class="common-gw-button">{{portfolioActionLabel}}</button>
+        </div>
       </div>
     </div>
-    <div *ngIf="loggedIn()">
-      <div class="pull-right">
-        <button
-        type="button"
-        class="common-gw-button"
-        (click)="c('Close click')">
-        Cancel
-      </button>
-      <button 
-      type="button"
-      [disabled]="portfolioItem.image == ''"
-      (click)="portfolioAction()"
-      class="common-gw-button">
-      {{portfolioActionLabel}}
-    </button>
   </div>
-</div>
-</div>
-</div>
 </div>
 </ng-template>

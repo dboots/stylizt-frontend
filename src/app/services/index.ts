@@ -1,28 +1,11 @@
-import { AuthService } from './auth.service';
-export { AuthService } from './auth.service';
-
-import { ClientService } from './client.service';
-export { ClientService } from './client.service';
-
-import { AuthGuardService } from './route-guard.service';
-export { AuthGuardService } from './route-guard.service';
-
-import { UserService } from './user.service';
-export { UserService } from './user.service';
-
-import { PortfolioService } from './portfolio.service';
-export { PortfolioService } from './portfolio.service';
-
-import { NotesService } from './notes.service';
-export { NotesService } from './notes.service';
-
-import { TalentService } from './talent.service';
-export { TalentService } from './talent.service';
-
-import { LocationService } from './location.service';
-export { LocationService } from './location.service';
-
-import { PostService } from './post.service';
-export { PostService } from './post.service';
-
-export { ContactService } from './contact.service';
+export { AuthService } from "./auth.service";
+export { ClientService } from "./client.service";
+export { AuthGuardService } from "./route-guard.service";
+export { UserService } from "./user.service";
+export { PortfolioService } from "./portfolio.service";
+export { NotesService } from "./notes.service";
+export { TalentService } from "./talent.service";
+export { BrandService } from "./brand.service";
+export { LocationService } from "./location.service";
+export { PostService } from "./post.service";
+export { ContactService } from "./contact.service";

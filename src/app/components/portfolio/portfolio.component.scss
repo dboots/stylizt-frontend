@@ -2,12 +2,12 @@
 
 .portfolio-component {
   padding-top: 100px;
-
+  
   .about {
     .bio {
       line-height: 1.4rem;
     }
-
+    
     .specialties {
       font-family: "proxima_novabold";
     }
@@ -21,4 +21,19 @@
   padding: 1%;
   margin: .5%;
   float: left;
+}
+
+.service {
+  div {
+    background-size: cover;
+    height: 250px;
+    color: #FFFFFF;
+    width: 100%;
+  }
+  
+  span {
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+    font-size: 18px;
+  }
 }

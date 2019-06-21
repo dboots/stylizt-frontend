@@ -1,6 +1,5 @@
-
 <div class="profile-component content" *ngIf="formGroup">
-  <div class="container"> 
+  <div class="container">
     <div class="row my-4 profile-strength">
       <div class="col-md-6" *ngIf="!user.image || !user.zip">
         <p class="title">Next steps for your H2C profile</p>
@@ -8,10 +7,21 @@
         <p *ngIf="!user.zip">Enter Zip Code</p>
         <p *ngIf="!user.url">Enter your H2C profile name</p>
       </div>
-      <div class="col-md-6" *ngIf="!profileStrengths.clients || !profileStrengths.portfolio">
+      <div
+        class="col-md-6"
+        *ngIf="!profileStrengths.clients || !profileStrengths.portfolio"
+      >
         <p class="title">Increase profile visibility</p>
-        <p *ngIf="!clients.length < 3"><a class="common-gw-button" [routerLink]="['/stylist/clients']">Add Your Clients</a></p>
-        <p *ngIf="!portfolio.length < 3"><a class="common-gw-button" [routerLink]="['/portfolio/' + user.url]">Create Your Portfolio</a></p>
+        <p *ngIf="!clients.length < 3">
+          <a class="common-gw-button" [routerLink]="['/stylist/clients']"
+            >Add Your Clients</a
+          >
+        </p>
+        <p *ngIf="!portfolio.length < 3">
+          <a class="common-gw-button" [routerLink]="['/portfolio/' + user.url]"
+            >Create Your Portfolio</a
+          >
+        </p>
       </div>
     </div>
     <form [formGroup]="formGroup">
@@ -19,23 +29,42 @@
         <div class="photo-column col-md-6">
           <span class="text-center">
             <img *ngIf="user.image" [src]="user.image" />
-            <app-cloudinary-uploader [folderName]="'profile'" [buttonName]="'UPLOAD PHOTO'"(completeItem)="profileImageUploadCompleted($event)"></app-cloudinary-uploader>
+            <app-cloudinary-uploader
+              [folderName]="'profile'"
+              [buttonName]="'UPLOAD PHOTO'"
+              (completeItem)="profileImageUploadCompleted($event)"
+            ></app-cloudinary-uploader>
           </span>
-          
+
           <span>
             <div class="form-group">
               <label>FACEBOOK</label>
-              <input formControlName="facebook" class="form-control" type="text" placeholder="http://" />
+              <input
+                formControlName="facebook"
+                class="form-control"
+                type="text"
+                placeholder="http://"
+              />
             </div>
-            
+
             <div class="form-group">
               <label>INSTAGRAM</label>
-              <input formControlName="instagram" class="form-control" type="text" placeholder="@handle" />
+              <input
+                formControlName="instagram"
+                class="form-control"
+                type="text"
+                placeholder="@handle"
+              />
             </div>
-            
+
             <div class="form-group">
               <label>TWITTER</label>
-              <input formControlName="twitter" class="form-control" type="text" placeholder="@handle" />
+              <input
+                formControlName="twitter"
+                class="form-control"
+                type="text"
+                placeholder="@handle"
+              />
             </div>
           </span>
         </div>
@@ -44,55 +73,110 @@
             <label>PROFILE NAME</label>
             <div class="row">
               <div class="col-sm-6">
-                <input pattern="[a-zA-Z0-9]*" required formControlName="url" class="form-control" type="text" />
+                <input
+                  pattern="[a-zA-Z0-9]*"
+                  required
+                  formControlName="url"
+                  class="form-control"
+                  type="text"
+                />
               </div>
               <div class="py-3 col-sm-6 label-url">.hairtochair.com</div>
             </div>
           </div>
           <div class="form-group">
             <label>YOUR NAME</label>
-            <input formControlName="name" required class="form-control" type="text" />
+            <input
+              formControlName="name"
+              required
+              class="form-control"
+              type="text"
+            />
           </div>
-          
+
           <div class="form-group">
             <label>EMAIL ADDRESS</label>
-            <input formControlName="email" required class="form-control" type="text" />
+            <input
+              formControlName="email"
+              required
+              class="form-control"
+              type="text"
+            />
           </div>
-          
+
           <div class="form-group">
             <label>ZIP</label>
-            <input formControlName="zip" required (blur)="getLocation($event.target.value)" class="form-control" type="text" />
-            <span class="text-uppercase" *ngIf="loading">getting location...</span>
+            <input
+              formControlName="zip"
+              required
+              (blur)="getLocation($event.target.value)"
+              class="form-control"
+              type="text"
+            />
+            <span class="text-uppercase" *ngIf="loading"
+              >getting location...</span
+            >
           </div>
-          
+
           <div class="form-group">
             <label>CITY</label>
-            <input formControlName="city" required class="form-control" type="text" />
+            <input
+              formControlName="city"
+              required
+              class="form-control"
+              type="text"
+            />
           </div>
-          
+
           <div class="form-group">
             <label>STATE</label>
-            <input formControlName="state" required class="form-control" type="text" />
+            <input
+              formControlName="state"
+              required
+              class="form-control"
+              type="text"
+            />
           </div>
-          
+
           <div class="bio-content form-group">
             <label>BIO</label>
             <textarea formControlName="bio" class="form-control"></textarea>
           </div>
-          
+
           <div class="form-group" id="talents">
             <label>YOUR TALENTS</label>
-            Talent not found? <a class="link" (click)="modal(addModal)">Add your own</a>!
-            <app-talent-tags-input [talents]="talents" [(selectedItems)]="selectedItems"></app-talent-tags-input>
+            Talent not found?
+            <a class="link" (click)="modal(addTalentModal)">Add your own</a>!
+            <app-talent-tags-input
+              [talents]="talents"
+              [(selectedItems)]="selectedTalents"
+            ></app-talent-tags-input>
           </div>
-          
-          <button [disabled]="!formGroup.valid" type="button" (click)="uploadAndUpdate()" class="common-gw-button pull-right">UPDATE PROFILE</button>
+
+          <div class="form-group" id="talents">
+            <label>YOUR BRANDS</label>
+            Brand not found?
+            <a class="link" (click)="modal(addBrandModal)">Add your own</a>!
+            <app-brand-tags-input
+              [items]="brands"
+              [(selectedItems)]="selectedBrands"
+            ></app-brand-tags-input>
+          </div>
+
+          <button
+            [disabled]="!formGroup.valid"
+            type="button"
+            (click)="uploadAndUpdate()"
+            class="common-gw-button pull-right"
+          >
+            UPDATE PROFILE
+          </button>
           {{ status }}
         </div>
       </div>
-    </form> 
-    
-    <ng-template #addModal let-c="close" let-d="dismiss">
+    </form>
+
+    <ng-template #addTalentModal let-c="close" let-d="dismiss">
       <form novalidate [formGroup]="talentForm" (ngSubmit)="addTalent()">
         <div class="add-modal-component text-uppercase container">
           <div class="black-diamond-font">Add New Talent</div>
@@ -101,17 +185,75 @@
             <div class="col-12">
               <div class="form-group">
                 <label>Talent</label>
-                <input type="text" formControlName="talent" class="form-control">
+                <input
+                  type="text"
+                  formControlName="talent"
+                  class="form-control"
+                />
               </div>
             </div>
-            
+
             <div class="col">
               <div class="pull-right">
-                <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-                <button type="submit" [disabled]="!talentForm.valid" class="common-gw-button">Add Talent</button>
+                <button
+                  type="button"
+                  class="common-gw-button"
+                  (click)="c('Close click')"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  [disabled]="!talentForm.valid"
+                  class="common-gw-button"
+                >
+                  Add Talent
+                </button>
               </div>
             </div>
           </div>
         </div>
       </form>
     </ng-template>
+
+    <ng-template #addBrandModal let-c="close" let-d="dismiss">
+      <form novalidate [formGroup]="brandForm" (ngSubmit)="addBrand()">
+        <div class="add-modal-component text-uppercase container">
+          <div class="black-diamond-font">Add New Brand</div>
+          <div class="green-divider"></div>
+          <div class="main-content row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Brand</label>
+                <input
+                  type="text"
+                  formControlName="brand"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="pull-right">
+                <button
+                  type="button"
+                  class="common-gw-button"
+                  (click)="c('Close click')"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  [disabled]="!brandForm.valid"
+                  class="common-gw-button"
+                >
+                  Add Brand
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

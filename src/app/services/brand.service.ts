@@ -2,12 +2,12 @@ import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { Talent } from "../models";
+import { Brand } from "../models";
 import { AuthService } from "./auth.service";
 
 @Injectable()
-export class TalentService {
-  itemList: Talent[];
+export class BrandService {
+  itemList: Brand[];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -16,7 +16,7 @@ export class TalentService {
     if (this.itemList === undefined) {
       const result = await this.http
         .get(
-          environment.rootApiUrl + "/talents",
+          environment.rootApiUrl + "/brands",
           AuthService.httpOptions(token)
         )
         .pipe(map((res: any) => res["data"] as any[]))
@@ -26,9 +26,9 @@ export class TalentService {
     return new Promise<any[]>(resolve => resolve(this.itemList));
   }
 
-  create(body: Talent) {
+  create(body: Brand) {
     return this.http.post(
-      environment.rootApiUrl + "/talent",
+      environment.rootApiUrl + "/brand",
       body,
       AuthService.httpOptions(this.authService.token)
     );

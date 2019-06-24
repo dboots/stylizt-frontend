@@ -1,310 +1,136 @@
 @import '../../../sass/variables';
 
-header {
-  &.masthead {
-    padding: 11rem 0;
-    background: url('https://res.cloudinary.com/drcvakvh3/image/upload/v1537535195/assets/header-stylist.jpg') no-repeat center center;
-    background-size: cover;
-
-    .hero-container {
-      .title {
-        font-family: "Black Diamond";
-        font-size: 55px;
-        letter-spacing: 1.9px;
-        color: $black;
-
-        @media (max-width: 414px) {
-          font-size: 45px;
-          // line-height: 1.94;
-          // letter-spacing: 0.7px;
-        }
-      }
-
-      .subtitle {
-        font-family: 'proxima_novamedium';
-        font-size: 16px;
-        line-height: 1.38;
-        letter-spacing: 0.6px;
-        color: #231f20;
-        
-        @media (max-width: 1200px) {
-          // font-size: 40px;
-        }
-      }
-
-      .select-box {
-        font-family: 'proxima_novalight';
-        font-size: 17px;
-        letter-spacing: 5.1px;
-        color: $black;
-
-        .title {
-          display: inline-block;
-          background: $white;
-          padding: 0 22px;
-          
-          span {
-            font-family: 'proxima_novabold';
-          }
-        }
-        
-        .options {
-          padding-left: 130px;
-          
-          select {
-            text-transform: uppercase;
-            font-family: 'proxima_novabold';
-            font-size: 17px;
-            letter-spacing: 5.1px;
-            color: $black;
-            width: 131px;
-            height: 25px;
-            
-            @media (max-width: 768px) {
-              height: 40px;
-            }
-          }
-        }
-      }
-      // .signup-form-content {
-        //   margin-top: 100px;
-        // }
-      }
-    }
+.find-salons-title-container {
+  font-size: 40px;
+  letter-spacing: 20px;
+  padding: 2% 15px;
+  
+  @media (max-width: 1200px) {
+    letter-spacing: 10px;
   }
   
-  .info-container {
-    font-size: 16px;
-    line-height: 2;
-    letter-spacing: 0.6px;
-    margin: 50px auto;
-    
-    i {
-      font-size: 60px;
-      padding: 25px;
-      border-radius: 50%;
-      border: 5px solid $gray-400;
-      color: $green;
-    }
-    
-    .info-title {
-      font-family: 'proxima_novabold';
-      margin-top: 34px;
-    }
-    
-    .info-sub-text {
-      
-    }
+  @media (max-width: 992px) {
+    font-size: 32px;
+    letter-spacing: 5px;
   }
   
-  .how-it-works {
+  @media (max-width: 768px) {
+    font-size: 27px;
+    letter-spacing: 3px;
+  }
+}
+
+ul {
+  li {
+    margin: 0 0 20px;
+  }
+}
+
+.enter-search-here {
+  font-size: 27px;
+  
+  input {
+    font-size: 27px;
+    color: $gray-700;
+    letter-spacing: 7px;
+    margin-left: 20px;
+    padding: 19px 0;
+    border: none;
+    
+    @media (max-width: 414px) {
+      font-size: 17px;
+      letter-spacing: 4px;
+    }
+    
+    &:focus {
+      box-shadow: none;
+    }  
+  }
+  
+  i {
+    color: $green;
+  }
+}
+
+.location_dd {
+  width: 100%;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.plan {
+  margin: 18% 0 0;
+  font-size: 18px;
+  font-family: 'proxima_novalight';
+
+  .price {
+    font-size: 35px;
+    padding: 5%;
+    font-family: 'proxima_novamedium';
+  }
+}
+
+.post-component {
+  text-decoration: none;
+  color: $black;
+    .custom-domain-title {
+      text-align: center;
+      padding: 10% 5%;
+      p {
+        font-size: 80px;
+        margin: 0;
+      }
+    }
+    
+    .image {
+      width: 100%;
+      height: 350px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
     .title {
-      font-family: 'proxima_novalight';
-      font-size: 30px;
-      letter-spacing: 9px;
-      display: inline-block;
-      background: $gray-200;
-      padding: 18px 200px 5px;
-      
-      @media (max-width: 768px) {
-        padding: 18px 30px 5px;
-      }
-    }
-    
-    .bg-grey {
-      background: $gray-200;
-      
-      .how-it-works-container {
-        position: relative;
-        padding: 50px 15px;
-        
-        .row {
-          position: relative;
-          z-index: 1;
-        }
-        
-        img {
-          margin-bottom: 30px;
-        }
-        
-        .description {
-          font-family: 'proxima_novalight';
-          font-size: 14px;
-          letter-spacing: 0.4px;
-          color: #231f20;
-          
-          span {
-            font-family: 'proxima_novabold';
-          }
-        }
-        
-        .top-line-box {
-          position: absolute;
-          top: 147px;
-          left: 237px;
-          width: 79%;
-          height: 200px;
-          border-top-right-radius: 35px;
-          border-bottom-right-radius: 35px;
-          border: 5px solid #d1d2d4;
-          border-left: none;
-          
-          @media (max-width: 1100px) {
-            width: 77%;
-          }
-          @media (max-width: 992px) {
-            left: 203px;
-            width: 73%;
-            height: 229px;
-          }
-          @media (max-width: 768px) {
-            display: none;
-          }
-        }
-        
-        .bottom-line-box {
-          position: absolute;
-          top: 342px;
-          left: 190px;
-          width: 47%;
-          height: 129px;
-          border-top-left-radius: 35px;
-          border-bottom-left-radius: 35px;
-          border: 5px solid #d1d2d4;
-          border-right: none;
-          
-          @media (max-width: 992px) {
-            top: 371px;
-            left: 100px;
-          }
-          @media (max-width: 768px) {
-            display: none;
-          }
-        }
-        
-        .vertical-line {
-          display: none;
-          
-          @media (max-width: 768px) {
-            display: block;
-            position: absolute;
-            width: 5px;
-            height: 76%;
-            top: 148px;
-            left: 50%;
-            background: #d1d2d4;
-          }
-        }
-      }
-    }
-  }
-  
-  .sign-up-component {
-    .header-row {
-      .black-diamond-font {
-        font-size: 52px;
-        letter-spacing: 0.8px;
-      }
-      
-      .subtitle {
-        font-family: "proxima_novalight", Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-        letter-spacing: 0.6px;
-        color: $gray-900;
-      }
-    }
-    
-    .card-row {
-      .card {
-        border: none;
-        
-        .card-body {
-          padding: 0;
-          
-          .price-body {
-            height: 170px;
-            background: $black;
-            
-            > div {
-              &:first-child {
-                font-family: "Black Diamond";
-                font-size: 35px;
-                font-weight: 900;
-                letter-spacing: 1.9px;
-                color: $white;
-                margin-bottom: 10px;
-              }
-              
-              &.price1 {
-                font-family: "proxima_novalight", Arial, sans-serif;
-                font-size: 19px;
-                letter-spacing: 0.7px;
-                color: $white;
-                text-decoration: line-through;
-              }
-              
-              &.price2 {
-                font-family: "proxima_novabold", Arial, sans-serif;
-                font-size: 19px;
-                letter-spacing: 0.8px;
-                color: $green;
-              }
-            }
-          }
-          
-          .detail-body {
-            font-family: "proxima_novamedium", Arial, sans-serif;
-            font-size: 17px;
-            letter-spacing: 0.7px;
-            color: #231f20;
-            
-            > div {
-              padding: 0 50px;
-              height: 65px;
-              
-              &:nth-child(odd) {
-                background: $gray-200;
-              }
-              
-              &:nth-child(even) {
-                background: $gray-400;
-              }
-            }
-          }
-          
-          button {
-            font-family: "proxima_novasemibold", Arial, sans-serif;
-            font-size: 17px;
-            letter-spacing: 5.1px;
-            background: $green;
-            border-radius: 0;
-            margin: auto;
-            margin-top: 16px;
-          }
-        }
-      }
-    }
-  }
-  
-  .title-block {
-    background: $black;
-    font-size: 45px;
-    letter-spacing: 20px;
-    padding: 15px 0;
-    
-    @media (max-width: 992px) {
-      font-size: 25px;
+      font-family: 'proxima_novamedium';
+      font-size: 20px;
       letter-spacing: 10px;
+      padding: 10px 0;
+      border-bottom: 2px solid $green;
     }
-  }
-  
-  .fixed-bottom {
-    z-index: 0;
-    margin: 0 15px;
     
-    @media (max-width: 768px) {
-      font-size: 30px;
+    .date {
+      letter-spacing: 3px;
+      padding: 10px 20px;
+      background: #d2e8da;
+      margin-bottom: 20px;
+    }
+    
+    .blog-content {
+      font-family: 'proxima_novamedium';
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 5% 0;
+
+      p {
+        display: none;
+      }
     }
   }
-  
+
+  .header-row {
+    border-bottom: 5px solid $green;
+    padding: 20px 0;
+    
+    .black-diamond-font {
+      font-size: 52px;
+      letter-spacing: 0.8px;
+    }
+    
+    .subtitle {
+      font-family: "proxima_novalight", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0.6px;
+      color: $gray-900;
+    }
+  }

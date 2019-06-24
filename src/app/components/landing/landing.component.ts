@@ -22,14 +22,14 @@ export class LandingPageComponent implements OnInit {
     private postService: PostService
   ) {
     this.route.params.subscribe((params) => {
-      this.params = params
+      this.params = params;
       this.updateMeta();
     });
   }
 
   ngOnInit() {
     this.state = this.params.state.replace('-', ' ');
-    this.userService.read({state: this.state}).subscribe((result: any) => {
+    this.userService.read({ state: this.state }).subscribe((result: any) => {
       this.stylists = result.data;
     });
 
@@ -38,12 +38,10 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-
-
   updateMeta() {
     let state = this.params.state;
-    let location = state.toUpperCase()
-    
+    let location = state.toUpperCase();
+
     this.title.setTitle('Talented personal hair stylists in ' + location);
     this.meta.updateTag({
       name: 'description',

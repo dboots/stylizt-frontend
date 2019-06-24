@@ -25,7 +25,12 @@ a.link {
   filter: blur(6px);
 }
 
-.form-control {  
+textarea {
+  resize: none;
+  height: 250px;
+}
+
+.form-control {
   &.ng-invalid {
     border: 1px solid red;
   }

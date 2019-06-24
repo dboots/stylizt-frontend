@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services';
 
 @Component({
-  selector: 'app-page-stylist',
+  selector: 'app-home',
   templateUrl: './stylist.component.html',
   styleUrls: ['./stylist.component.scss']
 })
 export class StylistPageComponent implements OnInit {
-  plan: number;
-  salon: string;
-  salonOptions: string[];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-    this.salonOptions = ['Bangs', 'Bangs1', 'Bangs2'];
-    this.salon = 'Bangs';
-  }
-
+  ngOnInit() {}
 }

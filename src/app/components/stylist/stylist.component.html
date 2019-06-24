@@ -4,165 +4,121 @@
   <div class="hero-container">
     <div class="row">
       <div class="title-content col-md-8 col-10 m-auto text-center">
-        <div class="text-uppercase">Claim. <span class="black-diamond-font">Your</span>. Chair.</div>
-        <div>Hair To Chair keeps talented stylists connected with their clients and professional salons.</div>
+        <div class="text-uppercase">
+          Stay <span class="black-diamond-font">Connected</span>
+        </div>
+        <div class="text-uppercase">With Your Clients</div>
+        <div>
+          Giving you the tools you need to keep your clients engaged and
+          informed.
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<div class="info-container container text-center">
-  <div class="row align-items-top mb-4">
-    <div class="col-md-3">
-      <i class="fa fa-camera-retro" aria-hidden="true"></i>
-      <div class="info-title">TALENT PORTFOLIO</div>
-      <div class="info-sub-text">Showcase every snip and every curl. Highlight your latest style conquests.</div>
-    </div>
-    <div class="col-md-3">
-      <i class="fa fa-check" aria-hidden="true"></i>
-      <div class="info-title">CLIENT MANAGEMENT</div>
-      <div class="info-sub-text">Keep track of your available clients and let your clients keep track of your availability.</div>
-    </div>
-    <div class="col-md-3">
-      <i class="fa fa-users" aria-hidden="true"></i>
-      <div class="info-title"><strong>COMING SOON</strong><br />NEW CLIENTS</div>
-      <div class="info-sub-text">Get notified when new clients in your area are looking for your talents.</div>
-    </div>
-    <div class="col-md-3">
-      <i class="fa fa-eye" aria-hidden="true"></i>
-      <div class="info-title"><strong>COMING SOON</strong><br />SALON AVAILABILITY</div>
-      <div class="info-sub-text">Are you looking to make a move? Keep tabs on which salons are hiring or have open chairs.</div>
-    </div>
-  </div>
-</div>
-
-<div id="how-it-works" class="how-it-works text-center">
-  <div class="title">HOW IT WORKS</div>
-  <div class="bg-grey">
-    <div class="how-it-works-container container">
-      <div class="row mb-4">
-        <div class="col-md-4 mb-4 text-center">
-          <img src="assets/img/howitworks-avatar-1.png" />
-          <div class="description">
-            A potential client is searching for a stylist that specializes in <span>unicorn hair</span>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 text-center">
-          <img src="assets/img/howitworks-avatar-2.png" />
-          <div class="description">
-            This style is one of your areas of expertise and the client is able to ﬁnd you based on your <span>talents</span>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 text-center">
-          <img src="assets/img/howitworks-avatar-3.png" />
-          <div class="description">
-            A <span>match</span> is made! The client loves your portfolio and you have an open seat.
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 mb-4 offset-md-2 text-center">
-          <img src="assets/img/howitworks-avatar-4.png" />
-          <div class="description">
-            Once the job has been done, show your killer work by posting a photo to your 
-            <span> client feed</span>
-            and your
-            <span> portfolio</span>.
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 text-center">
-          <img src="assets/img/howitworks-avatar-5.png" />
-          <div class="description">
-            Keep your new client coming back with <span>scheduled appointment notifications</span> via web, email or text.
-          </div>
-        </div>
-      </div>
-      <div class="top-line-box"></div>
-      <div class="bottom-line-box"></div>
-      <!-- <div class="vertical-line"></div> -->
-    </div>
-  </div>
-</div>
-
-<div id="sign-up" class="sign-up-component content">
+<div class="thumbnail-section">
   <div class="container">
-    <div class="header-row row">
-      <div class="col-md-6">
-        <div class="black-diamond-font">SIGN UP NOW</div>
-      </div>
+    <div class="row desktop d-md-flex">
+      <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
       <!--
-        <div class="col-md-6">
-          <div class="subtitle">Sign up today and get access to discounted rates, exclusive beta user giveaways, and free swag!</div>
-        </div>
+          <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
+            <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
+          </div>
+        -->
+    </div>
+    <!--
+        <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let p of portfolio">
+            <img class="img-fluid w-100" [src]="p.image" />
+          </div>
+        </ngx-slick>
       -->
+  </div>
+</div>
+
+<div id="features" class="featured-look-container container">
+  <div class="featured-look-title row">
+    <div class="col-8 m-auto text-center text-white title-block">
+      <span class="black-diamond-font color-green">H2C</span> FEATURES
     </div>
   </div>
-  
-  <div class="green-divider"></div>
-  <!--
-    <div class="container">
-      <div class="card-row row">
-        <div class="col-md-4">
-          <div class="card text-center" [ngClass]="{'actived': (plan == 1)}">
-            <div class="card-body">
-              <div class="price-body d-flex flex-column align-items-center justify-content-center">
-                <div>BASIC</div>
-                <div class="price2">FREE</div>
-              </div>
-              <div class="detail-body">
-                <div class="d-flex justify-content-center align-items-center">Manage up to 5 clients</div>
-                <div class="d-flex justify-content-center align-items-center">Browse area salons</div>
-                <div class="d-flex justify-content-center align-items-center">Browse potential  matching clients</div>
-              </div>
-              <button (click)="plan = 1" class="">SELECT</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card text-center" [ngClass]="{'actived': (plan == 2)}">
-            <div class="card-body">
-              <div class="price-body d-flex flex-column align-items-center justify-content-center">
-                <div>PRO</div>
-                <div class="price1">$14.99/mo</div>
-                <div class="price2">$9.99/mo</div>
-              </div>
-              <div class="detail-body">
-                <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
-                <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
-                <div class="d-flex justify-content-center align-items-center">Salon seat notifications</div>
-                <div class="d-flex justify-content-center align-items-center">Matching client notifications</div>
-              </div>
-              <button (click)="plan = 2" class="">SELECT</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card text-center" [ngClass]="{'actived': (plan == 3)}">
-            <div class="card-body">
-              <div class="price-body d-flex flex-column align-items-center justify-content-center">
-                <div>ELITE</div>
-                <div class="price1">$39.99/mo</div>
-                <div class="price2">$29.99/mo</div>
-              </div>
-              <div class="detail-body">
-                <div class="d-flex justify-content-center align-items-center">Unlimited client management</div>
-                <div class="d-flex justify-content-center align-items-center">Client email messaging</div>
-                <div class="d-flex justify-content-center align-items-center">Client text messaging</div>
-                <div class="d-flex justify-content-center align-items-center">Priority salon seat notifications</div>
-                <div class="d-flex justify-content-center align-items-center">Priority matching client notifications </div>
-                <div class="d-flex justify-content-center align-items-center">Featured in talent search</div>
-              </div>
-              <button (click)="plan = 3" class="">SELECT</button>
-            </div>
+
+  <div class="row">
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">CLIENT BOOK</div>
+          <div
+            class="image"
+            style="background-image: url('../assets/img/home-feature-client-book.jpg')"
+          ></div>
+          <div class="blog-content">
+            Manage your clients contact information, their last haircut details,
+            and their individual portfolio.
           </div>
         </div>
       </div>
     </div>
-  -->
-  
-  <div class="signup-container">
-    <div class="container">
-      <app-signup type="stylist" [plan]="plan"></app-signup>
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">PORTFOLIO</div>
+          <div
+            class="image"
+            style="background-image: url('../assets/img/home-feature-portfolio.jpg')"
+          ></div>
+          <div class="blog-content">
+            Display your latest hair creations on your own Hair to Chair
+            portfolio page.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 position-relative">
+      <div class="post-component">
+        <div>
+          <div class="title text-uppercase">CUSTOM DOMAIN</div>
+          <div class="image custom-domain-title black-diamond-font">
+            <p class="bigly color-green">stylequeen.</p>
+            <p class="bigly">hairtochair.</p>
+            <p class="bigly">com</p>
+          </div>
+          <div class="blog-content">
+            Skip the complex world of domain registration and renewals. Reserve
+            your Hair to Chair domain name today.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="signup">
+  <div class="header-row row">
+    <div class="col-md-6">
+      <div class="black-diamond-font">SIGN UP</div>
+    </div>
+  </div>
+</div>
+
+<div class="signup-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="plan">
+          <h3>Create your Hair to Chair account today!</h3>
+          <div class="price">$4.99/mo</div>
+          <ul>
+            <li>7 Day Trial</li>
+            <li>Cancel Anytime</li>
+            <li>Access To All Future Features Without Price Increase</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <app-signup type="stylist" [plan]="plan"></app-signup>
+      </div>
     </div>
   </div>
 </div>

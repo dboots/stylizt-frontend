@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PortfolioService, AuthService, TalentService } from '../../services';
 import { Portfolio, User, Talent } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl, Meta, Title } from '@angular/platform-browser';
+import {
+  DomSanitizer,
+  SafeResourceUrl,
+  Meta,
+  Title
+} from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,7 +15,6 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-
 export class StylistPortfolioPageComponent implements OnInit {
   portfolio: Portfolio[];
   stylist: User;
@@ -19,13 +23,13 @@ export class StylistPortfolioPageComponent implements OnInit {
   modalRef: NgbModalRef;
   portfolioItem: Portfolio = new Portfolio('');
   talents: Talent[] = [];
-  
+
   instagram: string = null;
   twitter: string = null;
   facebook: string = null;
   portfolioActionLabel = 'Add To Portfolio';
   portfolioTitle = 'Add To Portfolio';
-  
+
   constructor(
     private talentService: TalentService,
     private portfolioService: PortfolioService,
@@ -37,115 +41,139 @@ export class StylistPortfolioPageComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private sanitization: DomSanitizer
-    ) {
-      this.route.params.subscribe((params) => { this.params = params });
-      
-      this.portfolioService.read({url: this.params.id}).subscribe((data: any) => {
+  ) {
+    this.route.params.subscribe((params) => {
+      this.params = params;
+    });
+
+    this.portfolioService
+      .read({ url: this.params.id })
+      .subscribe((data: any) => {
         if (!data.stylist) {
           this.router.navigate(['/']);
         }
-        
+
         let portfolio = data.portfolio;
         let stylist = data.stylist;
-        
+
         this.title.setTitle(stylist.name + ' Portfolio');
         if (stylist && stylist.name && stylist.zip) {
           this.meta.updateTag({
-            name: 'description', content: stylist.name + ' is a stylist from ' + stylist.zip
+            name: 'description',
+            content: stylist.name + ' is a stylist from ' + stylist.zip
           });
-          
-          var location = stylist.zip.replace('#', '%23');
-          let url = 'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' + encodeURI(location) + '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
+
+          let location = stylist.zip.replace('#', '%23');
+          let url =
+            'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' +
+            encodeURI(location) +
+            '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
           this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         }
-        
-        this.twitter = (stylist.twitter) ? this.getUrl(stylist.twitter, 'http://www.twitter.com/') : null;
-        this.facebook = (stylist.facebook) ? this.getUrl(stylist.facebook, 'http://www.facebook.com/') : null;
-        this.instagram = (stylist.instagram) ? this.getUrl(stylist.instagram, 'http://www.instagram.com/') : null;
-        
+
+        this.twitter = stylist.twitter
+          ? this.getUrl(stylist.twitter, 'http://www.twitter.com/')
+          : null;
+        this.facebook = stylist.facebook
+          ? this.getUrl(stylist.facebook, 'http://www.facebook.com/')
+          : null;
+        this.instagram = stylist.instagram
+          ? this.getUrl(stylist.instagram, 'http://www.instagram.com/')
+          : null;
+
         this.portfolio = portfolio;
         this.stylist = stylist;
-      })
+      });
+  }
+
+  getBackgroundImage() {
+    const random = Math.floor(Math.random() * Math.floor(100000));
+    return this.sanitization.bypassSecurityTrustStyle(
+      'url(https://placeimg.com/320/240/any?' + random
+    );
+  }
+
+  loggedIn() {
+    if (this.authService.isAuthenticated() && this.stylist) {
+      return this.stylist._id === this.authService.decode()._id;
     }
 
-    getBackgroundImage() {
-      let random = Math.floor(Math.random() * Math.floor(100000));
-      return this.sanitization.bypassSecurityTrustStyle('url(https://placeimg.com/320/240/any?' + random);
-    }
-    
-    loggedIn() {
-      if (this.authService.isAuthenticated() && this.stylist) {
-        return (this.stylist._id === this.authService.decode()._id);
-      }
-      
-      return false;
-    }
-    
-    imageUploadCompleted($event) {
-      this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
-    }
-    
-    updatePortfolio() {
-      this.portfolioService.update(this.portfolioItem, this.authService.token)
-      .subscribe((result: any) => {
-        //this.portfolioItem.talents = result.data.talents;
-        this.modalRef.close();
-      }, (err) => {
-        this.modalRef.close();
-      });
-    }
-    
-    addToPortfolio() {
-      this.portfolioService.create(this.portfolioItem, this.authService.token)
-      .subscribe((result: any) => {
-        this.portfolio.push(this.portfolioItem);
-        this.modalRef.close();
-      }, (err) => {
-        console.log('unable to add to portfolio', err);
-      });
-    }
-    
-    portfolioAction() {
-      if (this.portfolioItem._id) {
-        this.updatePortfolio();
-      } else {
-        this.addToPortfolio();
-      }
-    }
-    
-    showModal(modal, item) {
-      if (item && item._id) {
-        this.portfolioItem = item;
-        this.portfolioActionLabel = 'Update Portfolio';
-      } else {
-        this.portfolioItem = new Portfolio('');
-        this.portfolioActionLabel = 'Add to Portfolio';
-      }
-      
-      this.modalRef = this.modalService.open(modal, { size: 'lg' });
-    }
-    
-    // Process social media url/handles
-    // handle could be valid url, username, @username
-    // return url should be close to http://www.[social].com/[handle]
-    getUrl(handle: string, url: string): string {
-      let hasHttp = (handle.indexOf('http') > -1);
-      let hasHttps = (handle.indexOf('https') > -1);
-      let hasWww = (handle.indexOf('www') > -1);
-      let isUrl = (hasHttp || hasHttps || hasWww);
-      
-      if ((!hasHttp && !hasHttps) && hasWww) {
-        handle = 'https://' + handle;
-      }
-      
-      if (isUrl) {
-        return handle;
-      }
-      
-      return url + handle.replace('@', '');
-    }
-    
-    ngOnInit() {
+    return false;
+  }
+
+  imageUploadCompleted($event) {
+    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${
+      $event['public_id']
+    }.jpg`;
+  }
+
+  updatePortfolio() {
+    this.portfolioService
+      .update(this.portfolioItem, this.authService.token)
+      .subscribe(
+        (result: any) => {
+          // this.portfolioItem.talents = result.data.talents;
+          this.modalRef.close();
+        },
+        (err) => {
+          this.modalRef.close();
+        }
+      );
+  }
+
+  addToPortfolio() {
+    this.portfolioService
+      .create(this.portfolioItem, this.authService.token)
+      .subscribe(
+        (result: any) => {
+          this.portfolio.push(this.portfolioItem);
+          this.modalRef.close();
+        },
+        (err) => {
+          console.log('unable to add to portfolio', err);
+        }
+      );
+  }
+
+  portfolioAction() {
+    if (this.portfolioItem._id) {
+      this.updatePortfolio();
+    } else {
+      this.addToPortfolio();
     }
   }
-  
+
+  showModal(modal, item) {
+    if (item && item._id) {
+      this.portfolioItem = item;
+      this.portfolioActionLabel = 'Update Portfolio';
+    } else {
+      this.portfolioItem = new Portfolio('');
+      this.portfolioActionLabel = 'Add to Portfolio';
+    }
+
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
+  }
+
+  // Process social media url/handles
+  // handle could be valid url, username, @username
+  // return url should be close to http://www.[social].com/[handle]
+  getUrl(handle: string, url: string): string {
+    let hasHttp = handle.indexOf('http') > -1;
+    let hasHttps = handle.indexOf('https') > -1;
+    let hasWww = handle.indexOf('www') > -1;
+    let isUrl = hasHttp || hasHttps || hasWww;
+
+    if (!hasHttp && !hasHttps && hasWww) {
+      handle = 'https://' + handle;
+    }
+
+    if (isUrl) {
+      return handle;
+    }
+
+    return url + handle.replace('@', '');
+  }
+
+  ngOnInit() {}
+}

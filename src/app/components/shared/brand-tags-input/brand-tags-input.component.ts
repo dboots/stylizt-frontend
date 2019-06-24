@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { BrandService } from "../../../services";
-import { Brand } from "../../../models/brand.model";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BrandService } from '../../../services';
+import { Brand } from '../../../models/brand.model';
 
 @Component({
-  selector: "app-brand-tags-input",
-  templateUrl: "./brand-tags-input.component.html",
-  styleUrls: ["./brand-tags-input.component.scss"]
+  selector: 'app-brand-tags-input',
+  templateUrl: './brand-tags-input.component.html',
+  styleUrls: ['./brand-tags-input.component.scss']
 })
 export class BrandagsInputComponent implements OnInit {
   itemList: Brand[]; // TODO: PARAM (type)
@@ -18,10 +18,10 @@ export class BrandagsInputComponent implements OnInit {
 
   async ngOnInit() {
     this.settings = {
-      text: "SELECT BRANDS...",
-      classes: "myclass custom-class",
-      primaryKey: "_id",
-      labelKey: "brand", // TODO: PARAM
+      text: 'SELECT BRANDS...',
+      classes: 'myclass custom-class',
+      primaryKey: '_id',
+      labelKey: 'brand', // TODO: PARAM
       enableSearchFilter: true,
       enableCheckAll: false
       // noDataLabel: 'Search for brand to add...',
@@ -38,7 +38,7 @@ export class BrandagsInputComponent implements OnInit {
       });
       this.selectedItemsChange.emit(this.selectedItems);
     } catch (e) {
-      console.log("exception", e);
+      console.log('exception', e);
     }
   }
 

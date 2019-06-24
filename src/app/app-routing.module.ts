@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './components/home/home.component';
 import { StylistPageComponent } from './components/stylist/stylist.component';
 import { StylistProfilePageComponent } from './components/stylist/profile/profile.component';
 import { StylistClientsPageComponent } from './components/stylist/clients/clients.component';
@@ -15,6 +14,8 @@ import { LandingPageComponent } from './components/landing/landing.component';
 import { LandingVideoPageComponent } from './components/landing/video.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
+import { StylistServicesPageComponent } from './components/stylist/services/services.component';
+import { HomePageComponent } from './components/home/home.component';
 
 let defaultNav = [
   { name: 'Contact', url: '/contact', scroll: false },
@@ -61,12 +62,34 @@ const routes: Routes = [
       ]
     }
   },
-  { path: 'stylist/home', component: StylistHomePageComponent, canActivate: [AuthGuard] },
-  { path: 'stylist/profile', component: StylistProfilePageComponent, canActivate: [AuthGuard] },
-  { path: 'stylist/clients/:id', component: StylistClientsDetailPageComponent, canActivate: [AuthGuard] },
-  { path: 'stylist/clients', component: StylistClientsPageComponent, canActivate: [AuthGuard] },
   {
-    path: 'portfolio/:id', component: StylistPortfolioPageComponent,
+    path: 'stylist/home',
+    component: StylistHomePageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stylist/services',
+    component: StylistServicesPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stylist/profile',
+    component: StylistProfilePageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stylist/clients/:id',
+    component: StylistClientsDetailPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stylist/clients',
+    component: StylistClientsPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'portfolio/:id',
+    component: StylistPortfolioPageComponent,
     data: {
       navItems: [
         { name: 'About', url: '#about', scroll: true },
@@ -79,27 +102,30 @@ const routes: Routes = [
     path: 'owner',
     component: OwnerPageComponent,
     data: { navItems: defaultNav }
-  }, {
+  },
+  {
     path: 'contact',
     component: ContactPageComponent,
     data: { navItems: defaultNav }
-  }, {
+  },
+  {
     path: 'privacy-policy',
     component: PrivacyPageComponent,
     data: { navItems: defaultNav }
-  }, {
+  },
+  {
     path: 'terms',
     component: TermsPageComponent,
     data: { navItems: defaultNav }
-  }, {
+  },
+  {
     path: 'password/:token',
     component: PasswordPageComponent
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,37 +1,112 @@
-
-<nav class="fixed-top navbar navbar-expand-lg navbar-light" [class.full]="isFullNav">
+<nav
+  class="fixed-top navbar navbar-expand-lg navbar-light"
+  [class.full]="isFullNav"
+>
   <div class="container align-items-center">
     <a class="navbar-brand" routerLink="">
       <img src="assets/img/logo.png" />
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <div class="collapse navbar-collapse" [id]="newInnerWidth < 992 && 'navbarSupportedContent'">
+
+    <div
+      class="collapse navbar-collapse"
+      [id]="newInnerWidth < 992 && 'navbarSupportedContent'"
+    >
       <ul
         *ngIf="!isLoggedIn()"
-        class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item" [class.nav-login]="nav.name === 'Login'" *ngFor="let nav of navItems">
-          <a class="nav-link" *ngIf="nav.name !== 'Login' && nav.scroll" [ngx-scroll-to]="nav.url" [ngx-scroll-to-offset]="-80" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link" *ngIf="nav.name !== 'Login' && !nav.scroll" (click)="navigateTo(nav.url)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link" *ngIf="nav.name === 'Login'" (click)="modal(login)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Login</a>
+        class="navbar-nav ml-auto align-items-center text-uppercase"
+      >
+        <li
+          class="nav-item"
+          [class.nav-login]="nav.name === 'Login'"
+          *ngFor="let nav of navItems"
+        >
+          <a
+            class="nav-link"
+            *ngIf="nav.name !== 'Login' && nav.scroll"
+            [ngx-scroll-to]="nav.url"
+            [ngx-scroll-to-offset]="-80"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >{{ nav.name }}</a
+          >
+          <a
+            class="nav-link"
+            *ngIf="nav.name !== 'Login' && !nav.scroll"
+            (click)="navigateTo(nav.url)"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >{{ nav.name }}</a
+          >
+          <a
+            class="nav-link"
+            *ngIf="nav.name === 'Login'"
+            (click)="modal(login)"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >Login</a
+          >
         </li>
       </ul>
-      
-      <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateTo('/stylist/profile')" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Profile</a>
+
+      <ul
+        *ngIf="isLoggedIn()"
+        class="navbar-nav ml-auto align-items-center text-uppercase"
+      >
+        <li class="nav-item nav-highlight" *ngIf="loggedInUser">
+          <a
+            class="nav-link"
+            (click)="navigateTo('/portfolio/' + loggedInUser.url)"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >My H2C Site</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="navigateTo('/stylist/clients')" routerLink="/stylist/clients" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Clients</a>
+          <a
+            class="nav-link"
+            (click)="navigateTo('/stylist/home')"
+            routerLink="/stylist/home"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >Dashboard</a
+          >
         </li>
-        <li class="nav-item" *ngIf="loggedInUser">
-          <a class="nav-link" (click)="navigateTo('/portfolio/' + loggedInUser.url)" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Portfolio</a>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="navigateTo('/stylist/profile')"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            >Account</a
+          >
         </li>
-        <li class="nav-item nav-login">
-          <a class="nav-link" (click)="logout()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">Logout</a>
-        </li>
+        <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="logout()"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              >Logout</a
+            >
+          </li>
       </ul>
     </div>
   </div>
@@ -45,32 +120,62 @@
       <div class="text-center mb-4 text-danger">
         {{ message }}
       </div>
-      
+
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" [(ngModel)]="model.email" class="form-control" id="name">
+        <input
+          type="email"
+          [(ngModel)]="model.email"
+          class="form-control"
+          id="name"
+        />
       </div>
-      
+
       <div class="form-group" *ngIf="!forgotPassword">
         <label for="password">Password</label>
-        <input type="password" [(ngModel)]="model.password" class="form-control" id="password">
+        <input
+          type="password"
+          [(ngModel)]="model.password"
+          class="form-control"
+          id="password"
+        />
       </div>
-    
+
       <div class="" *ngIf="forgotPassword">
         <div class="mt-3 pull-right">
-          <button type="button" class="common-gw-button" (click)="forgotPassword = false">Cancel</button>
-          <button type="button" class="common-gw-button" (click)="doResetPassword()">Reset</button>
+          <button
+            type="button"
+            class="common-gw-button"
+            (click)="forgotPassword = false"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="common-gw-button"
+            (click)="doResetPassword()"
+          >
+            Reset
+          </button>
         </div>
       </div>
-      
+
       <div class="" *ngIf="!forgotPassword">
         <div class="forgot-password-row">
-          <a (click)="forgotPassword = true">Forgot Password?</a>  
+          <a (click)="forgotPassword = true">Forgot Password?</a>
         </div>
-        
+
         <div class="pull-right">
-          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-          <button type="button" class="common-gw-button" (click)="doLogin()">Login</button>
+          <button
+            type="button"
+            class="common-gw-button"
+            (click)="c('Close click')"
+          >
+            Cancel
+          </button>
+          <button type="button" class="common-gw-button" (click)="doLogin()">
+            Login
+          </button>
         </div>
       </div>
     </div>

@@ -2,106 +2,46 @@
 <header class="masthead text-white text-center" track-scroll>
   <div class="overlay"></div>
   <div class="hero-container">
-    <div class="row">
-      <div class="title-content col-md-8 col-10 m-auto text-center">
-        <div class="text-uppercase">Find Your Hair's</div>
-        <div class="text-uppercase">Next <span class="black-diamond-font">Best Friend</span></div>
-        <div>Giving you the tools you need to keep your clients engaged and informed.</div>
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="title-content col-md-8 col-10 m-auto text-center">
+          <div class="text-uppercase">Find Your Next</div>
+          <div class="text-uppercase">
+            <span class="black-diamond-font">Great</span> Hair Day
+          </div>
+          <div class="row pt-4">
+            <div class="col-10 d-flex m-auto">
+              <input type="text" class="form-control" placeholder="Search by talent, location, or inspiration"
+                formControlName="query" (input)="doSearch($event)" />
+              <button type="button" (click)="doSearch($event)" class="common-gw-button">Search</button>
+
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </header>
 
 <div class="thumbnail-section">
   <div class="container">
-    <div class="row desktop d-md-flex">
-      <!-- [queryParams]="{'talent': talent._id}" == dropdown result -->
-      <!--
-        <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio">
-          <a [routerLink]="['/portfolio', p.owner._id]"><img class="img-fluid w-100" [src]="p.image" /></a>
+    <div class="row py-4">
+      <div class="col-md-6 mb-4" *ngFor="let result of results">
+        <div class="row">
+          <div class="col-md-5 text-center position-relative">
+            <img class="img-fluid w-100"
+              [src]="result.image" />
+          </div>
+          <div class="col-md-7 text-white d-flex flex-column">
+            <a class="name text-uppercase color-green font-weight-bold"
+              href="/portfolio/{{result.url}}">{{result.name}}</a>
+            <p class="text-uppercase color-green font-weight-bold">
+              Specializing in:
+            </p>
+            <div class="flex-row talents"></div>
+          </div>
         </div>
-      -->
+      </div>
     </div>
-    <!--
-      <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
-        <div ngxSlickItem *ngFor="let p of portfolio">
-          <img class="img-fluid w-100" [src]="p.image" />
-        </div>
-      </ngx-slick>
-    -->
   </div>
 </div>
-
-<div id="features" class="featured-look-container container">
-  <div class="featured-look-title row">
-    <div class="col-10 m-auto text-center text-white title-block">
-      SEARCH BY TALENT, LOCATION
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-4 position-relative">
-      <div class="post-component">
-        <div>
-          <div class="title text-uppercase">CLIENT BOOK</div>
-          <div class="image" style="background-image: url('../assets/img/home-feature-client-book.jpg')"></div>
-          <div class="blog-content">Manage your clients contact information, their last haircut details, and their
-            individual portfolio.</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 position-relative">
-        <div class="post-component">
-          <div>
-            <div class="title text-uppercase">PORTFOLIO</div>
-            <div class="image" style="background-image: url('../assets/img/home-feature-portfolio.jpg')"></div>
-            <div class="blog-content">Display your latest hair creations on your own Hair to Chair portfolio page.</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 position-relative">
-        <div class="post-component">
-          <div>
-            <div class="title text-uppercase">CUSTOM DOMAIN</div>
-            <div class="image custom-domain-title black-diamond-font">
-              <p class="bigly color-green">stylequeen.</p>
-              <p class="bigly">hairtochair.</p>
-              <p class="bigly">com</p>
-            </div>
-            <div class="blog-content">Skip the complex world of domain registration and renewals. Reserve your Hair to
-              Chair domain name today.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container" id="signup">
-    <div class="header-row row">
-      <div class="col-md-6">
-        <div class="black-diamond-font">SIGN UP</div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="signup-container">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="plan">
-            <h3>Create your Hair to Chair account today!</h3>
-            <div class="price">$4.99/mo</div>
-            <ul>
-              <li>7 Day Trial</li>
-              <li>Cancel Anytime</li>
-              <li>Access To All Future Features Without Price Increase</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <app-signup type="stylist" [plan]="plan"></app-signup>
-        </div>
-      </div>
-    </div>
-  </div>

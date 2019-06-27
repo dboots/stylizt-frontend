@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
@@ -12,17 +12,22 @@ export class UserService {
     return this.http.post(environment.rootApiUrl + '/signup', body, AuthService.httpOptions());
   }
 
+  search(query: string) {
+    let httpParams = new HttpParams().set('query', query);
+    return this.http.get(environment.rootApiUrl + '/search', { params: httpParams });
+  }
+
   login(body) {
     return this.http.post(environment.rootApiUrl + '/login', body, AuthService.httpOptions());
   }
 
   read(params) {
-    return this.http.get(`${environment.rootApiUrl}/stylists`, { params: params });
+    return this.http.get(`${environment.rootApiUrl}/stylists`, { params });
   }
 
   createSubscription(token: string, sourceToken: string) {
     let body = {
-      sourceToken: sourceToken
+      sourceToken
     };
 
     return this.http.post(`${environment.rootApiUrl}/user/subscribe`, body, AuthService.httpOptions(token));

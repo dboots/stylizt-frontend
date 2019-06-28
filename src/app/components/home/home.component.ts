@@ -25,6 +25,10 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  getStylistBio(bio: string) {
+    return (bio && bio.length > 100) ? bio.slice(0, 100) + '...' : (bio);
+  }
+
   doSearch($event) {
     let query = this.formGroup.get('query').value;
 

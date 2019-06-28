@@ -29,16 +29,18 @@
       <div class="col-md-6 mb-4" *ngFor="let result of results">
         <div class="row">
           <div class="col-md-5 text-center position-relative">
-            <img class="img-fluid w-100"
-              [src]="result.image" />
+            <img class="img-fluid w-100" [src]="result.image" />
           </div>
           <div class="col-md-7 text-white d-flex flex-column">
             <a class="name text-uppercase color-green font-weight-bold"
-              href="/portfolio/{{result.url}}">{{result.name}}</a>
+              href="/portfolio/{{(result.url) ? result.url : result._id}}">{{result.name}}</a>
+            <p>{{ getStylistBio(result.bio) }}</p>
             <p class="text-uppercase color-green font-weight-bold">
               Specializing in:
             </p>
-            <div class="flex-row talents"></div>
+            <div class="flex-row talents">
+              <div class="talent" *ngFor="let talent of result.talents">{{talent.talent}}</div>
+            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export class StylistServicesPageComponent implements OnInit {
   ADD_LABEL: string = 'Add New Service';
   UPDATE_LABEL: string = 'Update New Service';
   services: Service[] = [];
-  label: string = 'Add New Service';
+  label: string;
 
   formGroup: FormGroup = new FormGroup({
     _id: new FormControl(),
@@ -21,7 +21,9 @@ export class StylistServicesPageComponent implements OnInit {
     description: new FormControl()
   });
 
-  constructor(private servicesService: ServicesService) { }
+  constructor(private servicesService: ServicesService) {
+    this.label = this.ADD_LABEL;
+  }
 
   ngOnInit() {
     this.servicesService.read().subscribe((result) => {
@@ -36,18 +38,15 @@ export class StylistServicesPageComponent implements OnInit {
 
     if (id) {
       this.servicesService.update(service).subscribe((result) => {
-        console.log(result);
-        this.formGroup.reset();
         const index = this.services.findIndex((s) => s._id === service._id);
         this.services[index] = service;
-        this.label = this.ADD_LABEL;
+        this.cancel();
       });
     } else {
       this.servicesService.create(service).subscribe((result) => {
-        console.log(result);
-        this.formGroup.reset();
+        console.log(result['result']);
         this.services.push(result['result']);
-        this.label = this.ADD_LABEL;
+        this.cancel();
       });
     }
   }
@@ -60,7 +59,19 @@ export class StylistServicesPageComponent implements OnInit {
   delete(service: Service) {
     this.servicesService.delete(service).subscribe((result) => {
       const index = this.services.findIndex((s) => s._id === service._id);
+      console.log(service, index, this.services);
       this.services.splice(index, 1);
+      console.log(this.services);
+      this.cancel();
     });
+  }
+
+  cancel() {
+    this.formGroup.reset();
+    this.label = this.ADD_LABEL;
+  }
+
+  isUpdating() {
+    return this.formGroup.get('_id').value;
   }
 }

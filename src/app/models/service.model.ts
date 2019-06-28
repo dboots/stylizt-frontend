@@ -1,6 +1,8 @@
 export class Service {
   _id: string;
   description: string;
+  name: string;
+  price: string;
 
-  constructor(private service: string, private price: string) {}
+  constructor() { }
 }

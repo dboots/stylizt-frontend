@@ -1,15 +1,12 @@
 <div class="stylist-services justify-content-md-center py-4 row">
   <div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-12">
         <form [formGroup]="formGroup">
-
           <div class="row">
-            <div>
+            <div class="col-12">
               <h3>Add New Service</h3>
             </div>
-          </div>
-          <div class="row">
             <div class="py-2 col-12 col-md-6">
               <input type="text" class="form-control" formControlName="name" placeholder="Service Name" />
             </div>
@@ -24,19 +21,19 @@
           </div>
           <div class="row">
             <div class="col-12 text-right">
+                <button type="button" (click)="cancel()" *ngIf="isUpdating()" class="common-gw-button">Cancel</button>
               <button type="button" (click)="save()" class="common-gw-button">{{label}}</button>
+
             </div>
           </div>
         </form>
       </div>
 
-      <div class="col-6">
+      <div class="col-md-6 col-12">
         <div class="row">
-          <div>
-            <h3>Existing Services</h3>
+          <div class="col-12">
+            <h3>Add New Service</h3>
           </div>
-        </div>
-        <div class="row">
           <div class="header col-5 col-md-6">Service</div>
           <div class="header col-5 col-md-2">Price</div>
           <div class="header col-2 col-md-2"></div>

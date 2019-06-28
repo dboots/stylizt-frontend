@@ -2,29 +2,32 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <div class="row">
-          <div>
-            <h3>Add New Service</h3>
+        <form [formGroup]="formGroup">
+
+          <div class="row">
+            <div>
+              <h3>Add New Service</h3>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="py-2 col-12 col-md-6">
-            <input type="text" class="form-control" placeholder="Service Name" />
+          <div class="row">
+            <div class="py-2 col-12 col-md-6">
+              <input type="text" class="form-control" formControlName="name" placeholder="Service Name" />
+            </div>
+            <div class="py-2 col-12 col-md-6">
+              <input type="text" class="form-control" formControlName="price" placeholder="Price" />
+            </div>
           </div>
-          <div class="py-2 col-12 col-md-6">
-            <input type="text" class="form-control" placeholder="Price" />
+          <div class="row">
+            <div class="col-12 py-2">
+              <textarea placeholder="Service Description" formControlName="description" class="form-control"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 py-2">
-            <textarea placeholder="Service Description" class="form-control"></textarea>
+          <div class="row">
+            <div class="col-12 text-right">
+              <button type="button" (click)="save()" class="common-gw-button">{{label}}</button>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-right">
-            <button class="common-gw-button">Add New Service</button>
-          </div>
-        </div>
+        </form>
       </div>
 
       <div class="col-6">
@@ -42,10 +45,10 @@
           <div class="col-5 col-md-6">{{ service.name }}</div>
           <div class="col-5 col-md-2">{{ service.price }}</div>
           <div class="col-2 col-md-2">
-            <i class="px-1 fa fa-pencil"></i><i class="px-1 fa fa-trash"></i>
+            <i (click)="edit(service)" class="px-1 fa fa-pencil"></i>
+            <i (click)="delete(service)" class="px-1 fa fa-trash"></i>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

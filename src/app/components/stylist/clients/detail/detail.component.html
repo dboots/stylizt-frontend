@@ -19,11 +19,11 @@
               <form novalidate [formGroup]="detailForm" (ngSubmit)="onUpdate()">
                 <div class="form-group">
                   <label>CLIENT NAME</label>
-                  <input class="form-control" type="text" formControlName="name"  placeholder="Name" />
+                  <input class="form-control" type="text" formControlName="name" placeholder="Name" />
                   <div class="form-field-error" *ngIf="detailFormErrors.name.required">
                     Name is required
                   </div>
-                </div>              
+                </div>
                 <div class="form-group">
                   <label>ZIPCODE</label>
                   <input class="form-control" type="text" formControlName="zip" placeholder="Zipcode" />
@@ -41,11 +41,12 @@
                   <div class="form-field-error" *ngIf="detailFormErrors.email.required">
                     Email is required
                   </div>
-                  <div class="form-field-error" *ngIf="!detailFormErrors.email.required && detailFormErrors.email.email">
+                  <div class="form-field-error"
+                    *ngIf="!detailFormErrors.email.required && detailFormErrors.email.email">
                     Enter a valid email
                   </div>
                 </div>
-                <button [disabled]="detailForm.invalid" class="btn btn-primary btn-block">UPDATE PROFILE</button>
+                <button [disabled]="detailForm.invalid" class="pull-right common-gw-button">UPDATE CLIENT</button>
               </form>
               <div class="p-2 my-2 text-uppercase status" *ngIf="updateStatus">{{updateStatus}}</div>
             </div>
@@ -75,7 +76,7 @@
           </div>
         </div>-->
       </div>
-      
+
       <div class="container text-center text-uppercase mt-4">
         <div class="row">
           <div class="col">
@@ -83,25 +84,27 @@
           </div>
         </div>
       </div>
-      
-      <div class="client-portfolio-container container-fluid text-center text-uppercase">
-        <div class="container">
-          <div class="row mb-4">
-            <div class="col">
-              <button class="common-gw-button" (click)="showModal(addModal)">ADD TO PORTFOLIO</button>
-            </div>
+    </div>
+
+    <div class="client-portfolio-container container-fluid text-center text-uppercase">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col">
+            <button class="common-gw-button" (click)="showModal(addModal)">ADD TO PORTFOLIO</button>
           </div>
-          <div class="row p-2">
-            <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx" (click)="showModal(addModal, item)">
-              <img [src]="item.image || 'assets/img/placeholder.jpg'" />
-              <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
-              <app-loading *ngIf="item.loading" ></app-loading>
-            </div>
+        </div>
+        <div class="row p-2">
+          <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx"
+            (click)="showModal(addModal, item)">
+            <img [src]="item.image || 'assets/img/placeholder.jpg'" />
+            <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
+            <app-loading *ngIf="item.loading"></app-loading>
           </div>
         </div>
       </div>
-      
-      <!--
+    </div>
+
+    <!--
         <div class="container text-center text-uppercase mt-4">
           <div class="row">
             <div class="col">
@@ -117,34 +120,37 @@
             </ng-container>
           </div>
         </div>-->
+  </div>
+</div>
+
+<ng-template #addModal let-c="close" let-d="dismiss">
+  <div class="add-modal-component text-uppercase container">
+    <div class="black-diamond-font">Add To Portfolio</div>
+    <div class="green-divider"></div>
+    <div class="main-content row">
+      <div class="col-6">
+        <img [src]="portfolioItem.image" class="img-fluid w-100" />
+        <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+          (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
       </div>
-    </div>
-    
-    <ng-template #addModal let-c="close" let-d="dismiss">
-      <div class="add-modal-component text-uppercase container">
-        <div class="black-diamond-font">Add To Portfolio</div>
-        <div class="green-divider"></div>
-        <div class="main-content row">
-          <div class="col-6">
-            <img [src]="portfolioItem.image" class="img-fluid w-100" />
-            <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'" (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <textarea [(ngModel)]="portfolioItem.caption" class="form-control" placeholder="A description of this image..."></textarea>
-            </div>
-            <div class="form-group">
-              <label>What talents were used on this?</label>
-              <app-talent-tags-input [talents]="portfolioItem.talents"></app-talent-tags-input>
-            </div>
-          </div>
-          
-          <div class="col">
-            <div class="pull-right">
-              <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
-              <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()" class="common-gw-button">{{portfolioActionLabel}}</button>
-            </div>
-          </div>
+      <div class="col-6">
+        <div class="form-group">
+          <textarea [(ngModel)]="portfolioItem.caption" class="form-control"
+            placeholder="A description of this image..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>What talents were used on this?</label>
+          <app-talent-tags-input [talents]="portfolioItem.talents"></app-talent-tags-input>
         </div>
       </div>
-    </ng-template>
+
+      <div class="col">
+        <div class="pull-right">
+          <button type="button" class="common-gw-button" (click)="c('Close click')">Cancel</button>
+          <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()"
+            class="common-gw-button">{{portfolioActionLabel}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

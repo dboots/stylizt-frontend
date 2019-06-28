@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <div class="component-title black-diamond-font">{{ stylist.name }}</div>
+        <div class="component-title text-uppercase">{{ stylist.name }}</div>
       </div>
     </div>
   </div>
@@ -13,9 +13,6 @@
         <img class="img-fluid" [src]="stylist.image" />
       </div>
       <div class="col-md-8 about">
-        <h4 class="location" *ngIf="stylist.city">
-          {{ stylist.city }}, {{ stylist.state }}
-        </h4>
         <p class="bio">{{ stylist.bio }}</p>
         <div class="row">
           <div class="col-md-4" *ngIf="instagram || facebook || twitter">
@@ -46,8 +43,8 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
-        <div class="component-title black-diamond-font">SERVICES</div>
+      <div class="col-md-6 pt-4">
+        <div class="component-title text-uppercase">SERVICES</div>
       </div>
     </div>
   </div>
@@ -56,11 +53,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-3 service-desc" *ngFor="let service of services">
-        <h5>{{service.name}}</h5>
-        <p>{{service.description}}</p>
-        <strong>${{service.price}}</strong>
-        <button (click)="doLogin()" class="common-gw-button">BOOK!</button>
+      <div class="col-4" *ngFor="let service of services">
+        <div class="service-desc p-4 m-2">
+          <h5>{{service.name}}</h5>
+          <p>{{service.description}}</p>
+          <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
+          <button (click)="doLogin()" class="common-gw-button">BOOK!</button>
+        </div>
       </div>
     </div>
   </div>
@@ -104,7 +103,7 @@
 <div class="container">
   <div class="row pt-4">
     <div class="col-md-6">
-      <div class="component-title black-diamond-font">CONTACT </div>
+      <div class="component-title text-uppercase">CONTACT </div>
     </div>
   </div>
 </div>
@@ -178,7 +177,7 @@
 
   <ng-template #addModal let-c="close" let-d="dismiss">
     <div class="add-modal-component container">
-      <div class="black-diamond-font text-uppercase">Portfolio</div>
+      <div class="text-uppercase">Portfolio</div>
       <div class="green-divider"></div>
       <div class="main-content row">
         <div class="col-6">

@@ -3,15 +3,13 @@
     <div class="row">
       <div class="col-6">
         <div class="row">
-          <div><h3>Add New Service</h3></div>
+          <div>
+            <h3>Add New Service</h3>
+          </div>
         </div>
         <div class="row">
           <div class="py-2 col-12 col-md-6">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Service Name"
-            />
+            <input type="text" class="form-control" placeholder="Service Name" />
           </div>
           <div class="py-2 col-12 col-md-6">
             <input type="text" class="form-control" placeholder="Price" />
@@ -19,10 +17,7 @@
         </div>
         <div class="row">
           <div class="col-12 py-2">
-            <textarea
-              placeholder="Service Description"
-              class="form-control"
-            ></textarea>
+            <textarea placeholder="Service Description" class="form-control"></textarea>
           </div>
         </div>
         <div class="row">
@@ -34,7 +29,9 @@
 
       <div class="col-6">
         <div class="row">
-          <div><h3>Existing Services</h3></div>
+          <div>
+            <h3>Existing Services</h3>
+          </div>
         </div>
         <div class="row">
           <div class="header col-5 col-md-6">Service</div>
@@ -42,7 +39,7 @@
           <div class="header col-2 col-md-2"></div>
         </div>
         <div class="row py-1" *ngFor="let service of services">
-          <div class="col-5 col-md-6">{{ service.service }}</div>
+          <div class="col-5 col-md-6">{{ service.name }}</div>
           <div class="col-5 col-md-2">{{ service.price }}</div>
           <div class="col-2 col-md-2">
             <i class="px-1 fa fa-pencil"></i><i class="px-1 fa fa-trash"></i>

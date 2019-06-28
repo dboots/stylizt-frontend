@@ -18,6 +18,7 @@ import {
   PortfolioService,
   NotesService,
   TalentService,
+  ServicesService,
   BrandService,
   LocationService,
   PostService,
@@ -115,9 +116,10 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
     LocationService,
     PostService,
     ContactService,
+    ServicesService,
     JwtHelper
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

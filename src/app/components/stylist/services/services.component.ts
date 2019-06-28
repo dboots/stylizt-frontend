@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models';
+import { ServicesService } from '../../../services';
 
 @Component({
   selector: 'app-page-stylist-services',
@@ -8,12 +9,11 @@ import { Service } from '../../../models';
 })
 export class StylistServicesPageComponent implements OnInit {
   services: Service[] = [];
-  constructor() {}
+  constructor(private servicesService: ServicesService) { }
 
   ngOnInit() {
-    for (let i = 0; i < 12; i++) {
-      let price = Math.floor(Math.random() * 99) + '.99';
-      this.services.push(new Service('Demo Service ' + i, price));
-    }
+    this.servicesService.read().subscribe((result) => {
+      this.services = result['data'];
+    })
   }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { User, Talent, Portfolio, Client } from "../../../models";
+import { Component, OnInit } from '@angular/core';
+import { User, Talent, Portfolio, Client } from '../../../models';
 import {
   AuthService,
   UserService,
@@ -8,15 +8,15 @@ import {
   ClientService,
   PortfolioService,
   BrandService
-} from "../../../services";
-import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Brand } from "../../../models/brand.model";
+} from '../../../services';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Brand } from '../../../models/brand.model';
 
 @Component({
-  selector: "app-page-stylistprofile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"]
+  selector: 'app-page-stylistprofile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
 export class StylistProfilePageComponent implements OnInit {
   user: User = new User();
@@ -31,7 +31,7 @@ export class StylistProfilePageComponent implements OnInit {
   brand: FormControl;
   selectedTalents: Talent[] = [];
   selectedBrands: Brand[] = [];
-  location: string = "";
+  location: string = '';
   loading: boolean = false;
   clients: Client[] = [];
   portfolio: Portfolio[] = [];
@@ -63,8 +63,8 @@ export class StylistProfilePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.talent = new FormControl("", [Validators.required]);
-    this.brand = new FormControl("", [Validators.required]);
+    this.talent = new FormControl('', [Validators.required]);
+    this.brand = new FormControl('', [Validators.required]);
     this.talentForm = new FormGroup({
       talent: this.talent
     });
@@ -81,23 +81,23 @@ export class StylistProfilePageComponent implements OnInit {
 
     this.portfolioService.read({}).subscribe((result: any) => {
       this.portfolio = result.portfolio;
-      this.profileStrengths["portfolio"] = this.portfolio.length >= 3;
+      this.profileStrengths['portfolio'] = this.portfolio.length >= 3;
     });
 
     this.clientService.read().then((result: any) => {
       this.clients = result;
-      this.profileStrengths["clients"] = this.clients.length >= 3;
+      this.profileStrengths['clients'] = this.clients.length >= 3;
     });
 
-    this.profileStrengths["image"] = this.user.image;
-    this.profileStrengths["zip"] = this.user.zip;
+    this.profileStrengths['image'] = this.user.image;
+    this.profileStrengths['zip'] = this.user.zip;
     this.formGroup.patchValue(this.user);
 
     this.logVisit();
   }
 
   logVisit() {
-    console.log("logging visit");
+    console.log('logging visit');
   }
 
   getLocation(zip) {
@@ -105,9 +105,9 @@ export class StylistProfilePageComponent implements OnInit {
 
     this.locationService.geocode(zip).subscribe((result: any) => {
       this.loading = false;
-      if (result.status == "OK") {
-        var city: string = "";
-        var state: string = "";
+      if (result.status == 'OK') {
+        var city: string = '';
+        var state: string = '';
         var city_idx: number = -1;
         var state_idx: number = -1;
         let components = result.results[0].address_components;
@@ -115,35 +115,35 @@ export class StylistProfilePageComponent implements OnInit {
         // if it has letters in the zip, it's not USA?
         if (isNaN(zip)) {
           city_idx = components.findIndex(c => {
-            return c.types.indexOf("postal_town") > -1;
+            return c.types.indexOf('postal_town') > -1;
           });
 
           state_idx = components.findIndex(c => {
-            return c.types.indexOf("administrative_area_level_1") > -1;
+            return c.types.indexOf('administrative_area_level_1') > -1;
           });
         } else {
           city_idx = components.findIndex(c => {
-            return c.types.indexOf("locality") > -1;
+            return c.types.indexOf('locality') > -1;
           });
 
           state_idx = components.findIndex(c => {
-            return c.types.indexOf("administrative_area_level_1") > -1;
+            return c.types.indexOf('administrative_area_level_1') > -1;
           });
         }
 
         city = components[city_idx].long_name;
         state = components[state_idx].long_name;
 
-        this.formGroup.controls["city"].setValue(city);
-        this.formGroup.controls["state"].setValue(state);
-        this.location = city + ", " + state;
+        this.formGroup.controls['city'].setValue(city);
+        this.formGroup.controls['state'].setValue(state);
+        this.location = city + ', ' + state;
       }
     });
   }
 
   scrollToTalents() {
     try {
-      document.querySelector("#talents").scrollIntoView();
+      document.querySelector('#talents').scrollIntoView();
     } catch (e) {
       console.log(e);
     }
@@ -151,9 +151,9 @@ export class StylistProfilePageComponent implements OnInit {
 
   profileImageUploadCompleted(response) {
     let image =
-      "http://res.cloudinary.com/drcvakvh3/image/upload/w_400/" +
-      response["public_id"] +
-      ".jpg";
+      'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' +
+      response['public_id'] +
+      '.jpg';
     this.user.image = image;
     this.formGroup.patchValue(this.user);
   }
@@ -170,17 +170,17 @@ export class StylistProfilePageComponent implements OnInit {
     this.userService.update(this.authService.token, body).subscribe(
       (result: any) => {
         this.authService.token = result.token;
-        this.status = "Profile updated!";
+        this.status = 'Profile updated!';
       },
       err => {
-        console.log("Error while updating user", err);
+        console.log('Error while updating user', err);
       }
     );
   }
 
   modal(content) {
     this.modalRef = this.modalService.open(content);
-    this.modalRef.result.then(result => {}, reason => {});
+    this.modalRef.result.then(result => { }, reason => { });
   }
 
   addTalent() {
@@ -192,7 +192,7 @@ export class StylistProfilePageComponent implements OnInit {
         this.selectedTalents.push(result.result);
         this.talents.push(result.result);
       },
-      err => {}
+      err => { }
     );
   }
 
@@ -205,7 +205,7 @@ export class StylistProfilePageComponent implements OnInit {
         this.selectedBrands.push(result.result);
         this.brands.push(result.result);
       },
-      err => {}
+      err => { }
     );
   }
 }

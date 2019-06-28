@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService, AuthService, TalentService } from '../../services';
-import { Portfolio, User, Talent } from '../../models';
+import { PortfolioService, AuthService, TalentService, ServicesService } from '../../services';
+import { Portfolio, User, Talent, Service } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   DomSanitizer,
@@ -23,6 +23,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   modalRef: NgbModalRef;
   portfolioItem: Portfolio = new Portfolio('');
   talents: Talent[] = [];
+  services: Service[] = [];
 
   instagram: string = null;
   twitter: string = null;
@@ -40,10 +41,15 @@ export class StylistPortfolioPageComponent implements OnInit {
     private title: Title,
     private modalService: NgbModal,
     private router: Router,
-    private sanitization: DomSanitizer
+    private sanitization: DomSanitizer,
+    private servicesService: ServicesService
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
+    });
+
+    this.servicesService.read().subscribe((result) => {
+      this.services = result['data'];
     });
 
     this.portfolioService
@@ -104,7 +110,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   imageUploadCompleted($event) {
     this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${
       $event['public_id']
-    }.jpg`;
+      }.jpg`;
   }
 
   updatePortfolio() {
@@ -175,5 +181,5 @@ export class StylistPortfolioPageComponent implements OnInit {
     return url + handle.replace('@', '');
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

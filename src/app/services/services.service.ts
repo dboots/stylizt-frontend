@@ -7,20 +7,35 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ServicesService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  create(body: Service): Observable<Service> {
+    return this.http.post<Service>(
+      environment.rootApiUrl + '/stylist/service',
+      body,
+      AuthService.httpOptions(this.authService.token)
+    );
+  }
 
   read(): Observable<Service[]> {
     const token = this.authService.token;
     return this.http.get<Service[]>(
-      environment.rootApiUrl + '/talents',
+      environment.rootApiUrl + '/stylist/services',
       AuthService.httpOptions(token)
     );
   }
 
-  create(body: Service): Observable<Service> {
-    return this.http.post<Service>(
-      environment.rootApiUrl + '/talent',
+  update(body: Service): Observable<Service> {
+    return this.http.patch<Service>(
+      environment.rootApiUrl + '/stylist/service/' + body._id,
       body,
+      AuthService.httpOptions(this.authService.token)
+    );
+  }
+
+  delete(body: Service): Observable<Service> {
+    return this.http.delete<Service>(
+      environment.rootApiUrl + '/stylist/service/' + body._id,
       AuthService.httpOptions(this.authService.token)
     );
   }

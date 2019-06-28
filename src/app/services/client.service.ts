@@ -1,5 +1,5 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -13,7 +13,7 @@ export class ClientService {
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) {}
+  ) { }
 
   create(body: Client) {
     return this.http.post(environment.rootApiUrl + '/stylist/clients', body, AuthService.httpOptions(this.authService.token));

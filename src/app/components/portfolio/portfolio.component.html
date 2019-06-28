@@ -21,15 +21,12 @@
           <div class="col-md-4" *ngIf="instagram || facebook || twitter">
             <p class="specialties">Social Media</p>
             <div class="social-media pb-2">
-              <a href="{{ instagram }}" *ngIf="instagram" target="_blank"
-                ><i class="fa fa-fw color-instagram fa-3x fa-instagram"></i
-              ></a>
-              <a href="{{ facebook }}" *ngIf="facebook" target="_blank"
-                ><i class="fa fa-fw color-fb fa-3x fa-facebook-square"></i
-              ></a>
-              <a href="{{ twitter }}" *ngIf="twitter" target="_blank"
-                ><i class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i
-              ></a>
+              <a href="{{ instagram }}" *ngIf="instagram" target="_blank"><i
+                  class="fa fa-fw color-instagram fa-3x fa-instagram"></i></a>
+              <a href="{{ facebook }}" *ngIf="facebook" target="_blank"><i
+                  class="fa fa-fw color-fb fa-3x fa-facebook-square"></i></a>
+              <a href="{{ twitter }}" *ngIf="twitter" target="_blank"><i
+                  class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i></a>
             </div>
           </div>
           <div class="col-md-8">
@@ -48,134 +45,22 @@
       </div>
     </div>
 
-    <div class="row pt-4">
-      <div class="col-md-6">
-        <div class="component-title black-diamond-font">CONTACT</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="green-divider"></div>
-
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-6 pt-4">
-        <div *ngIf="stylist && mapUrl">
-          <div *ngIf="stylist.zip" class="w-100">
-            <iframe
-              width="100%"
-              height="250"
-              [src]="mapUrl"
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
-            >
-              <a href="https://www.maps.ie/create-google-map/"
-                >Google Maps iframe generator</a
-              >
-            </iframe>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="my-2">
-          <h3>Send Me a Message!</h3>
-          <div class="py-1">
-            <input class="form-control" type="text" placeholder="Your Name" />
-          </div>
-          <div class="py-1">
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Your Contact (phone, email"
-            />
-          </div>
-          <div class="py-1"><textarea class="form-control"></textarea></div>
-        </div>
-        <button class="common-gw-button">Send</button>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="component-title black-diamond-font">SERVICES</div>
       </div>
     </div>
   </div>
+
   <div class="green-divider"></div>
 
   <div class="container">
     <div class="row">
-      <div class="col-3 p-2 service">
-        <div
-          class="d-flex align-items-end justify-content-end"
-          [style.background]="getBackgroundImage()"
-        ></div>
-      </div>
-
-      <div class="col-3 service-desc">
-        <h5>Haircut</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non
-          volutpat libero nibh in nisi.
-        </p>
-        <strong>$24.99</strong>
+      <div class="col-3 service-desc" *ngFor="let service of services">
+        <h5>{{service.name}}</h5>
+        <p>{{service.description}}</p>
+        <strong>${{service.price}}</strong>
         <button (click)="doLogin()" class="common-gw-button">BOOK!</button>
-      </div>
-
-      <div class="col-3 p-2 service">
-        <div
-          class="d-flex align-items-end justify-content-end"
-          [style.background]="getBackgroundImage()"
-        ></div>
-      </div>
-
-      <div class="col-3 service-desc">
-        <h5>Haircut</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non
-          volutpat libero nibh in nisi.
-        </p>
-        <strong>$24.99</strong>
-        <button class="common-gw-button">BOOK</button>
-      </div>
-
-      <div class="col-3 p-2 service">
-        <div
-          class="d-flex align-items-end justify-content-end"
-          [style.background]="getBackgroundImage()"
-        ></div>
-      </div>
-
-      <div class="col-3 service-desc">
-        <h5>Haircut</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non
-          volutpat libero nibh in nisi.
-        </p>
-        <strong>$24.99</strong>
-        <button class="common-gw-button">BOOK</button>
-      </div>
-
-      <div class="col-3 p-2 service">
-        <div
-          class="d-flex align-items-end justify-content-end"
-          [style.background]="getBackgroundImage()"
-        ></div>
-      </div>
-
-      <div class="col-3 service-desc">
-        <h5>Haircut</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          pharetra, arcu eget iaculis congue, nulla enim faucibus quam, non
-          volutpat libero nibh in nisi.
-        </p>
-        <strong>$24.99</strong>
-        <button class="common-gw-button">BOOK</button>
       </div>
     </div>
   </div>
@@ -183,9 +68,7 @@
 
 <div class="container">
   <div class="row mt-5" id="local-talent">
-    <div
-      class="col-12 m-auto text-uppercase text-center text-white title-block"
-    >
+    <div class="col-12 m-auto text-uppercase text-center text-white title-block">
       PORTFOLIO
     </div>
   </div>
@@ -201,25 +84,15 @@
       </div>
     </div>
     <div class="row desktop d-md-flex">
-      <div
-        class="col-md-3 text-center position-relative my-4 mt-md-0"
-        *ngFor="let p of portfolio"
-        (click)="showModal(addModal, p)"
-      >
+      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio"
+        (click)="showModal(addModal, p)">
         <img class="img-fluid w-100" [src]="p.image" />
-        <div
-          class="fixed-bottom position-absolute bg-white p-2"
-          *ngIf="loggedIn()"
-        >
+        <div class="fixed-bottom position-absolute bg-white p-2" *ngIf="loggedIn()">
           UPDATE
         </div>
       </div>
     </div>
-    <ngx-slick
-      *ngIf="portfolio && portfolio.length"
-      class="carousel"
-      [config]="slideConfig"
-    >
+    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
       <div ngxSlickItem *ngFor="let p of portfolio">
         <img class="img-fluid w-100" [src]="p.image" />
         <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
@@ -228,7 +101,44 @@
   </div>
 </div>
 
-<!--
+<div class="container">
+  <div class="row pt-4">
+    <div class="col-md-6">
+      <div class="component-title black-diamond-font">CONTACT </div>
+    </div>
+  </div>
+</div>
+
+<div class="green-divider"></div>
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-6 pt-4">
+      <div *ngIf="stylist && mapUrl">
+        <div *ngIf="stylist.zip" class="w-100">
+          <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
+            marginwidth="0">
+            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="my-2">
+        <h3>Send Me a Message!</h3>
+        <div class="py-1">
+          <input class="form-control" type="text" placeholder="Your Name" />
+        </div>
+        <div class="py-1">
+          <input class="form-control" type="text" placeholder="Your Contact (phone, email" />
+        </div>
+        <div class="py-1"><textarea class="form-control"></textarea></div>
+      </div>
+      <button class="common-gw-button">Send</button>
+    </div>
+  </div>
+
+  <!--
   <div id="schedule" class="section">
     <div class="container">
       <div class="row my-4">
@@ -266,80 +176,57 @@
   </div>
 -->
 
-<ng-template #addModal let-c="close" let-d="dismiss">
-  <div class="add-modal-component container">
-    <div class="black-diamond-font text-uppercase">Portfolio</div>
-    <div class="green-divider"></div>
-    <div class="main-content row">
-      <div class="col-6">
-        <img [src]="portfolioItem.image" class="img-fluid w-100" />
-        <app-cloudinary-uploader
-          *ngIf="loggedIn()"
-          [folderName]="'portfolio'"
-          [buttonName]="'UPLOAD IMAGE(S)'"
-          (completeItem)="imageUploadCompleted($event)"
-        >
-        </app-cloudinary-uploader>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label class="text-uppercase">About this image:</label>
-          <span *ngIf="!loggedIn()">
-            <div class="caption">{{ portfolioItem.caption }}</div>
-          </span>
-          <textarea
-            *ngIf="loggedIn()"
-            [(ngModel)]="portfolioItem.caption"
-            class="form-control"
-            placeholder="A description of this image..."
-          ></textarea>
+  <ng-template #addModal let-c="close" let-d="dismiss">
+    <div class="add-modal-component container">
+      <div class="black-diamond-font text-uppercase">Portfolio</div>
+      <div class="green-divider"></div>
+      <div class="main-content row">
+        <div class="col-6">
+          <img [src]="portfolioItem.image" class="img-fluid w-100" />
+          <app-cloudinary-uploader *ngIf="loggedIn()" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+            (completeItem)="imageUploadCompleted($event)">
+          </app-cloudinary-uploader>
         </div>
-        <div class="form-group">
-          <label class="text-uppercase">What talents were used on this?</label>
-          <app-talent-tags-input
-            *ngIf="loggedIn()"
-            [talents]="portfolioItem.talents"
-          ></app-talent-tags-input>
-          <div class="talents" *ngIf="!loggedIn()">
-            <div class="talent" *ngFor="let talent of portfolioItem.talents">
-              {{ talent.talent }}
+        <div class="col-6">
+          <div class="form-group">
+            <label class="text-uppercase">About this image:</label>
+            <span *ngIf="!loggedIn()">
+              <div class="caption">{{ portfolioItem.caption }}</div>
+            </span>
+            <textarea *ngIf="loggedIn()" [(ngModel)]="portfolioItem.caption" class="form-control"
+              placeholder="A description of this image..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="text-uppercase">What talents were used on this?</label>
+            <app-talent-tags-input *ngIf="loggedIn()" [talents]="portfolioItem.talents"></app-talent-tags-input>
+            <div class="talents" *ngIf="!loggedIn()">
+              <div class="talent" *ngFor="let talent of portfolioItem.talents">
+                {{ talent.talent }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div *ngIf="!loggedIn()">
+            <div class="text-center mt-4">
+              <button type="button" class="common-gw-button" (click)="c('Close click')">
+                Close
+              </button>
+            </div>
+          </div>
+          <div *ngIf="loggedIn()">
+            <div class="pull-right">
+              <button type="button" class="common-gw-button" (click)="c('Close click')">
+                Cancel
+              </button>
+              <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()"
+                class="common-gw-button">
+                {{ portfolioActionLabel }}
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col">
-        <div *ngIf="!loggedIn()">
-          <div class="text-center mt-4">
-            <button
-              type="button"
-              class="common-gw-button"
-              (click)="c('Close click')"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-        <div *ngIf="loggedIn()">
-          <div class="pull-right">
-            <button
-              type="button"
-              class="common-gw-button"
-              (click)="c('Close click')"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              [disabled]="portfolioItem.image == ''"
-              (click)="portfolioAction()"
-              class="common-gw-button"
-            >
-              {{ portfolioActionLabel }}
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>

@@ -77,7 +77,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
         this.clientProfileImage = result.data.image;
 
         this.clientPortfolios = result.data.portfolio.map((p) => {
-          return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id)
+          return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id);
         });
 
         this.currentIndex = this.clientPortfolios.length - 1;
@@ -144,7 +144,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
     this.addPortfolio(image);
     // Temp solution. Should be removed.
-    //this.clientPortfolioImages.push(image);
+    // this.clientPortfolioImages.push(image);
   }
 
   onUpdate() {
@@ -259,7 +259,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   updatePortfolio() {
     this.portfolioService.update(this.portfolioItem, this.authService.token)
       .subscribe((result: any) => {
-        //this.portfolioItem.talents = result.data.talents;
+        // this.portfolioItem.talents = result.data.talents;
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();

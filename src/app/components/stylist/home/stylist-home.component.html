@@ -1,15 +1,26 @@
 <div class="stylist-home justify-content-md-center py-4 row">
   <div class="container">
-    <div class="row justify-content-center">
-      <div [routerLink]="['/stylist/profile']" class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center" >
-        <h4>Update Profile</h4>
-        <p class="py-2 px-4">
-          Let clients know where to find you and what you do.
-        </p>
-        <i class="fa fa-user-circle fa-4x"></i>
-      </div>
+    <div class="row justify-content-center d-flex">
+      <div class="flex-column col-md-3 col-11 m-1">
+        <div [routerLink]="['/stylist/profile']" class="d-flex flex-column justify-content-center feature p-2 text-center">
+          <h4>Update Profile</h4>
+          <p class="py-2 px-4">
+            Let clients know where to find you and what you do.
+          </p>
+          <i class="fa fa-user-circle fa-4x"></i>
+        </div>
 
-      <div [routerLink]="['/stylist/services']" class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
+        <div *ngIf="!user.image || !user.zip || !user.url">
+          <p class="title">Complete Profile</p>
+          <ol>
+            <li *ngIf="!user.image">Upload an image to start showing up in client searches</li>
+            <li *ngIf="!user.zip">Enter your zip code so potential clients can start finding you</li>
+            <li *ngIf="!user.url">Enter your H2C profile name and share it on social media</li>
+          </ol>
+        </div>
+      </div>
+      <div [routerLink]="['/stylist/services']"
+        class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
         <h4>Manage Services</h4>
         <p class="py-2 px-4">
           Add, update your available services &amp; pricing.
@@ -17,7 +28,8 @@
         <i class="fa fa-bell fa-4x"></i>
       </div>
 
-      <div [routerLink]="['/stylist/clients']" class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
+      <div [routerLink]="['/stylist/clients']"
+        class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
         <h4>Client Book</h4>
         <p class="py-2 px-4">
           Add new clients or add photos &amp; notes to existing clients.

@@ -49,13 +49,12 @@ export class StylistProfilePageComponent implements OnInit {
     private portfolioService: PortfolioService
   ) {
     this.formGroup = this.getFormGroup(this.user);
-    console.log(this.formGroup);
   }
 
   getFormGroup(model: any) {
     let formGroup: FormGroup = new FormGroup({});
 
-    Object.keys(model).map(key => {
+    Object.keys(model).map((key) => {
       formGroup.addControl(key, new FormControl());
     });
 
@@ -63,8 +62,8 @@ export class StylistProfilePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.talent = new FormControl('', [Validators.required]);
-    this.brand = new FormControl('', [Validators.required]);
+    this.talent = new FormControl();
+    this.brand = new FormControl();
     this.talentForm = new FormGroup({
       talent: this.talent
     });
@@ -76,8 +75,6 @@ export class StylistProfilePageComponent implements OnInit {
     this.user = this.authService.decode();
     this.talents = this.user.talents;
     this.brands = this.user.brands;
-
-    console.log(this.user);
 
     this.portfolioService.read({}).subscribe((result: any) => {
       this.portfolio = result.portfolio;
@@ -105,34 +102,34 @@ export class StylistProfilePageComponent implements OnInit {
 
     this.locationService.geocode(zip).subscribe((result: any) => {
       this.loading = false;
-      if (result.status == 'OK') {
-        var city: string = '';
-        var state: string = '';
-        var city_idx: number = -1;
-        var state_idx: number = -1;
+      if (result.status === 'OK') {
+        let city: string = '';
+        let state: string = '';
+        let cityIndex: number = -1;
+        let stateIndex: number = -1;
         let components = result.results[0].address_components;
 
         // if it has letters in the zip, it's not USA?
         if (isNaN(zip)) {
-          city_idx = components.findIndex(c => {
+          cityIndex = components.findIndex((c) => {
             return c.types.indexOf('postal_town') > -1;
           });
 
-          state_idx = components.findIndex(c => {
+          stateIndex = components.findIndex((c) => {
             return c.types.indexOf('administrative_area_level_1') > -1;
           });
         } else {
-          city_idx = components.findIndex(c => {
+          cityIndex = components.findIndex((c) => {
             return c.types.indexOf('locality') > -1;
           });
 
-          state_idx = components.findIndex(c => {
+          stateIndex = components.findIndex((c) => {
             return c.types.indexOf('administrative_area_level_1') > -1;
           });
         }
 
-        city = components[city_idx].long_name;
-        state = components[state_idx].long_name;
+        city = components[cityIndex].long_name;
+        state = components[stateIndex].long_name;
 
         this.formGroup.controls['city'].setValue(city);
         this.formGroup.controls['state'].setValue(state);
@@ -166,13 +163,12 @@ export class StylistProfilePageComponent implements OnInit {
 
   update() {
     let body = this.formGroup.value as User;
-    console.log(body);
     this.userService.update(this.authService.token, body).subscribe(
       (result: any) => {
         this.authService.token = result.token;
         this.status = 'Profile updated!';
       },
-      err => {
+      (err) => {
         console.log('Error while updating user', err);
       }
     );
@@ -180,7 +176,7 @@ export class StylistProfilePageComponent implements OnInit {
 
   modal(content) {
     this.modalRef = this.modalService.open(content);
-    this.modalRef.result.then(result => { }, reason => { });
+    this.modalRef.result.then((result) => { }, (reason) => { });
   }
 
   addTalent() {
@@ -192,7 +188,7 @@ export class StylistProfilePageComponent implements OnInit {
         this.selectedTalents.push(result.result);
         this.talents.push(result.result);
       },
-      err => { }
+      (err) => { }
     );
   }
 
@@ -205,7 +201,7 @@ export class StylistProfilePageComponent implements OnInit {
         this.selectedBrands.push(result.result);
         this.brands.push(result.result);
       },
-      err => { }
+      (err) => { }
     );
   }
 }

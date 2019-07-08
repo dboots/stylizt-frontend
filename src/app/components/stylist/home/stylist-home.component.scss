@@ -11,3 +11,22 @@
     cursor: pointer;
   }
 }
+
+.title {
+  font-family: 'proxima_novamedium';
+  text-transform: uppercase;
+  font-size: 18px;
+  color: $red;
+  margin: 0;
+}
+
+ol {
+  margin: 0;
+  padding: 3%;
+
+  li {
+    font-family: 'proxima_novalight';
+    margin: 2% 0;
+    font-size: 14px;
+  }
+}

@@ -34,8 +34,6 @@ const routes: Routes = [
     component: HomePageComponent,
     data: {
       navItems: [
-        { name: 'Features', url: '#features', scroll: true },
-        { name: 'Sign Up', url: '#signup', scroll: true },
         { name: 'Contact', url: '/contact', scroll: false },
         { name: 'Login' }
       ]
@@ -55,8 +53,8 @@ const routes: Routes = [
     component: StylistPageComponent,
     data: {
       navItems: [
-        { name: 'How It Works', url: '#how-it-works', scroll: true },
-        { name: 'Sign Up', url: '#sign-up', scroll: true },
+        { name: 'Features', url: '#features', scroll: true },
+        { name: 'Sign Up', url: '#signup', scroll: true },
         { name: 'Contact', url: '/contact', scroll: false },
         { name: 'Login' }
       ]

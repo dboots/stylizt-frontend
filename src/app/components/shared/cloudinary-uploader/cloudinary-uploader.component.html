@@ -1,7 +1,15 @@
-<div class="cloudinary-uploader-component text-center">
-  <button (click)="fileInput.click()" class="btn btn-primary">{{ buttonName }}</button>
-  <span>
-    <input (change)="onFileChange($event)" type="file" multiple #fileInput ng2FileSelect [uploader]="uploader" />
-  </span>
+<div class="col-12">
+  <div class="row cloudinary-uploader-component p-2">
+    <div class="col-7 status">
+      <div *ngIf="loadingProgress > 0">{{currentFile}}/{{fileCount}} images uploaded. {{loadingProgress}}%</div>
+      <div *ngIf="currentFile > 0">{{currentFile}} images uploaded.</div>
+    </div>
+    <div class="col-5 text-right">
+      <button (click)="fileInput.click()" class="common-gw-button">{{ buttonName }}</button>
+    </div>
+    <span class="upload">
+      <input (change)="onFileChange($event)" type="file" [attr.multiple]="(allowMultiple) ? true : null" #fileInput
+        ng2FileSelect [uploader]="uploader" />
+    </span>
+  </div>
 </div>
-<app-loading *ngIf="showLoadingScreen" [progress]="loadingProgress/100"></app-loading>

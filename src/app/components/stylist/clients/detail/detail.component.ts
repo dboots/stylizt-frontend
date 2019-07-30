@@ -49,6 +49,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   portfolioItem: Portfolio = new Portfolio('');
 
   currentIndex = -1;
+  disableNoteAdd: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -88,7 +89,8 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.noteForm = new FormGroup({
       body: new FormControl(),
-      clientId: new FormControl(this.clientId)
+      clientId: new FormControl(this.clientId),
+      images: new FormControl()
     });
 
     this.initForm();
@@ -138,10 +140,13 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
   }
 
-  notesImageUploadCompleted(response) {
+  noteImageUploadCompleted(response) {
+    const uploaded = (this.noteForm.controls['images'].value) ? this.noteForm.controls['images'].value : [];
     const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
-    // Temp solution. Should be removed.
-    this.clientNotesImages.push(image);
+
+    uploaded.push(image);
+    this.noteForm.controls['images'].setValue(uploaded);
+    console.log(this.noteForm.value);
   }
 
   portfolioImageUploadCompleted(response) {
@@ -226,10 +231,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
       });
   }
 
-  noteImageUploadCompleted($event) {
-    console.log($event);
-  }
-
   showModal(modal, item) {
     if (item && item._id) {
       this.portfolioItem = item;
@@ -300,12 +301,19 @@ export class StylistClientsDetailPageComponent implements OnInit {
     }
   }
 
+  toggleClientNote(disabled: boolean) {
+    console.log('toggling client note', disabled);
+    this.disableNoteAdd = disabled;
+  }
+
   postNote() {
     // const notes: Notes = new Notes(this.clientId, this.clientNote, new Date(), true, this.clientNotesImages);
     const note: Note = this.noteForm.value;
+    console.log(note);
 
     this.notesService.create(note)
       .subscribe((result: any) => {
+        this.noteForm.reset();
         this.clientNotes.unshift(result.data);
       }, (err) => {
 

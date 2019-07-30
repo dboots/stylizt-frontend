@@ -64,10 +64,10 @@
             <div class="row pb-4">
               <div class="col-12">
                 <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'"
-                  (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
+                  (completeItem)="noteImageUploadCompleted($event)" (uploadComplete)="toggleClientNote(false)" (startUpload)="toggleClientNote(true)"></app-cloudinary-uploader>
               </div>
             </div>
-            <button (click)="postNote()" class="common-gw-button pull-right">ADD CLIENT NOTE</button>
+            <button (click)="postNote()" [disabled]="disableNoteAdd" class="common-gw-button pull-right">ADD CLIENT NOTE</button>
           </form>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
-import { Cloudinary } from '@cloudinary/angular-5.x';
 
 @Component({
   selector: 'app-cloudinary-uploader',
@@ -15,8 +14,11 @@ export class CloudinaryUploaderComponent implements OnInit {
   @Output() afterAddingFile: EventEmitter<any> = new EventEmitter();
   @Output() whenAddingFileFailed: EventEmitter<any> = new EventEmitter();
   @Output() progressItem: EventEmitter<any> = new EventEmitter();
+  @Output() uploadComplete: EventEmitter<any> = new EventEmitter();
+  @Output() startUpload: EventEmitter<any> = new EventEmitter();
   showLoadingScreen: boolean;
   loadingProgress: any;
+  fileCount: number = 0;
 
   constructor() { }
 
@@ -51,14 +53,21 @@ export class CloudinaryUploaderComponent implements OnInit {
       // TODO: delete old file
       response = JSON.parse(response);
       this.completeItem.emit(response);
-      this.showLoadingScreen = false;
       this.loadingProgress = 0;
+      this.fileCount--;
+
+      if (this.fileCount === 0) {
+        this.showLoadingScreen = false;
+        this.uploadComplete.emit();
+      }
     };
 
     this.uploader.onAfterAddingFile = (item: FileItem) => {
+      this.fileCount++;
       this.uploader.uploadAll();
       this.afterAddingFile.emit();
       this.showLoadingScreen = true;
+      this.startUpload.emit();
     };
 
     this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
@@ -66,8 +75,13 @@ export class CloudinaryUploaderComponent implements OnInit {
     };
 
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
+      console.log('onProgressItem', fileItem, progress);
       this.loadingProgress = progress;
       this.progressItem.emit();
     };
+  }
+
+  onFileChange($event) {
+    console.log('onFileChange', $event.target.files.length);
   }
 }

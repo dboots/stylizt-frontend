@@ -25,6 +25,10 @@ h6 {
   font-family: 'proxima_novabold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.img-responsive {
+  width: 100%
+}
+
 section {
   &.padded {
     padding: 2% 0;

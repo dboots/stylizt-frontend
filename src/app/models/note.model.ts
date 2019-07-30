@@ -4,7 +4,7 @@ export class Note {
   body: string;
   dateCreated: Date;
   isPublic: boolean;
-  images?: string[];
+  images: string[];
   owner: string;
 
   constructor() {}

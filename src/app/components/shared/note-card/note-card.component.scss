@@ -1,6 +1,10 @@
 @import '../../../../sass/_mixins';
 @import '../../../../sass/_variables';
 
+.note-image {
+  max-width: 200px;
+  padding: 2%;
+}
 
 .text-container {
   border-left: 3px solid $green;

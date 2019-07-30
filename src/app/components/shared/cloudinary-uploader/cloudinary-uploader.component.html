@@ -1,10 +1,7 @@
 <div class="cloudinary-uploader-component text-center">
   <button (click)="fileInput.click()" class="btn btn-primary">{{ buttonName }}</button>
   <span>
-    <input type="file" multiple #fileInput ng2FileSelect [uploader]="uploader" />
+    <input (change)="onFileChange($event)" type="file" multiple #fileInput ng2FileSelect [uploader]="uploader" />
   </span>
 </div>
-<app-loading
-*ngIf="showLoadingScreen"
-[progress]="loadingProgress/100">
-</app-loading>
+<app-loading *ngIf="showLoadingScreen" [progress]="loadingProgress/100"></app-loading>

@@ -5,9 +5,9 @@
         <div class="col-md-6">
           <div class="profile-title black-diamond-font">CLIENT PROFILE</div>
         </div>
-        <!--<div class="col-md-6">
+        <div class="col-md-6">
           <div class="profile-title black-diamond-font">CLIENT NOTES</div>
-        </div>-->
+        </div>
       </div>
     </div>
     <div class="green-divider"></div>
@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="row">
-            <div class="col">
+            <div class="col-12">
               <form novalidate [formGroup]="detailForm" (ngSubmit)="onUpdate()">
                 <div class="form-group">
                   <label>CLIENT NAME</label>
@@ -52,74 +52,68 @@
             </div>
           </div>
         </div>
-        <!--
-        <div class="col-md-6 d-flex flex-column text-center justify-content-center align-items-center">
-          <h1>COMING MAY 2019</h1>
-          <p>As a first wave H2C user, you'll get access to this upcoming feature FREE!</p>
-          
+        <div class="col-md-6 justify-content-center align-items-center">
+          <form [formGroup]="noteForm">
             <div class="row pb-4">
               <div class="col-12">
                 <label>CLIENT NOTES</label>
-                <textarea class="form-control noresize" rows="10" placeholder="What was done? Any special notes for next time?"></textarea>
+                <textarea formControlName="body" class="form-control noresize" rows="10"
+                  placeholder="What was done? Any special notes for next time?"></textarea>
               </div>
             </div>
             <div class="row pb-4">
               <div class="col-12">
-                <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'" (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
+                <app-cloudinary-uploader [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'"
+                  (completeItem)="noteImageUploadCompleted($event)"></app-cloudinary-uploader>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <button class="btn btn-primary btn-block">ADD CLIENT NOTE</button>
-              </div>
-            </div>
-          </div>
-        </div>-->
-      </div>
-
-      <div class="container text-center text-uppercase mt-4">
-        <div class="row">
-          <div class="col">
-            <div class="portfolio-title p-4">Client Portfolio</div>
-          </div>
+            <button (click)="postNote()" class="common-gw-button pull-right">ADD CLIENT NOTE</button>
+          </form>
         </div>
       </div>
     </div>
 
-    <div class="client-portfolio-container container-fluid text-center text-uppercase">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col">
-            <button class="common-gw-button" (click)="showModal(addModal)">ADD TO PORTFOLIO</button>
-          </div>
-        </div>
-        <div class="row p-2">
-          <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx"
-            (click)="showModal(addModal, item)">
-            <img [src]="item.image || 'assets/img/placeholder.jpg'" />
-            <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
-            <app-loading *ngIf="item.loading"></app-loading>
-          </div>
+    <div class="container text-center text-uppercase mt-4">
+      <div class="row">
+        <div class="col">
+          <div class="portfolio-title p-4">Client Portfolio</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!--
-        <div class="container text-center text-uppercase mt-4">
-          <div class="row">
-            <div class="col">
-              <div class="portfolio-title p-4">Client Notes</div>
-            </div>
-          </div>
+  <div class="client-portfolio-container container-fluid text-center text-uppercase">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col">
+          <button class="common-gw-button" (click)="showModal(addModal)">ADD TO PORTFOLIO</button>
         </div>
-        
-        <div class="container">
-          <div class="notes-content pt-4">
-            <ng-container *ngFor="let note of clientNotes">
-              <app-note-card [note]="note"></app-note-card>
-            </ng-container>
-          </div>
-        </div>-->
+      </div>
+      <div class="row p-2">
+        <div class="portfolio col-lg-3 col-sm-6 col-md-4 my-4" *ngFor="let item of clientPortfolios; index as idx"
+          (click)="showModal(addModal, item)">
+          <img [src]="item.image || 'assets/img/placeholder.jpg'" />
+          <div class="fixed-bottom position-absolute bg-white p-2">UPDATE</div>
+          <app-loading *ngIf="item.loading"></app-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center text-uppercase mt-4">
+    <div class="row">
+      <div class="col">
+        <div class="portfolio-title p-4">Client Notes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="notes-content pt-4">
+      <ng-container *ngFor="let note of clientNotes">
+        <app-note-card [note]="note"></app-note-card>
+      </ng-container>
+    </div>
   </div>
 </div>
 

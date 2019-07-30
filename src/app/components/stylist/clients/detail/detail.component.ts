@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
@@ -12,21 +12,20 @@ import {
 import {
   Client,
   Portfolio,
-  Notes,
-  NotesMockData,
+  Note,
   Talent
 } from '../../../../models';
 
 @Component({
   selector: 'app-page-stylistclientsdetail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./detail.component.scss']
 })
 
 export class StylistClientsDetailPageComponent implements OnInit {
   modalRef: NgbModalRef;
   detailForm: FormGroup;
+  noteForm: FormGroup;
   detailFormErrors: any;
   clientId: string;
   talents: Talent[] = [];
@@ -45,14 +44,13 @@ export class StylistClientsDetailPageComponent implements OnInit {
   clientNotesImages: string[] = [];
   clientNote: string;
   isPublicNotes: boolean;
-  clientNotes: Notes[] = [];
+  clientNotes: Note[] = [];
   isNotesFormOpened: boolean;
   portfolioItem: Portfolio = new Portfolio('');
 
   currentIndex = -1;
 
   constructor(
-    private router: Router,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -81,10 +79,16 @@ export class StylistClientsDetailPageComponent implements OnInit {
         });
 
         this.currentIndex = this.clientPortfolios.length - 1;
-        this.clientNotes = result.data.notes;
-        // For Test Only, should be removed
-        this.clientNotes = NotesMockData;
       });
+
+      this.notesService.read(this.clientId).subscribe((result) => {
+        this.clientNotes = result['data'];
+      });
+    });
+
+    this.noteForm = new FormGroup({
+      body: new FormControl(),
+      clientId: new FormControl(this.clientId)
     });
 
     this.initForm();
@@ -213,13 +217,13 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.portfolioItem.clientId = this.clientId;
 
     this.portfolioService.create(this.portfolioItem, this.authService.token)
-    .subscribe((result: any) => {
-      this.portfolioItem._id = result.data._id;
-      this.clientPortfolios.push(this.portfolioItem);
-      this.modalRef.close();
-    }, (err) => {
-      console.log('unable to add to portfolio', err);
-    });
+      .subscribe((result: any) => {
+        this.portfolioItem._id = result.data._id;
+        this.clientPortfolios.push(this.portfolioItem);
+        this.modalRef.close();
+      }, (err) => {
+        console.log('unable to add to portfolio', err);
+      });
   }
 
   noteImageUploadCompleted($event) {
@@ -283,7 +287,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
   addClientNote() {
     if (this.isPublicNotes === true) {
-      const modalRef = this.modalService.open(ConfirmDialogComponent, {centered: true});
+      const modalRef = this.modalService.open(ConfirmDialogComponent, { centered: true });
       modalRef.componentInstance.confirmMessage = 'Are you sure to post a public note?';
       modalRef.result.then((result) => {
         if (result === 'Confirm click') {
@@ -297,11 +301,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   postNote() {
-    const postDate = new Date();
-    const notes: Notes = new Notes(this.clientId, this.clientNote, new Date(), this.isPublicNotes, this.clientNotesImages);
-    this.notesService.create(notes.clientId, notes, this.authService.token)
+    // const notes: Notes = new Notes(this.clientId, this.clientNote, new Date(), true, this.clientNotesImages);
+    const note: Note = this.noteForm.value;
+
+    this.notesService.create(note)
       .subscribe((result: any) => {
-        this.clientNotes.push(result);
+        this.clientNotes.unshift(result.data);
       }, (err) => {
 
       });

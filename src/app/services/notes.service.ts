@@ -1,33 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Notes } from '../models';
+import { Note } from '../models';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class NotesService {
+  baseUrl: string = environment.rootApiUrl + '/stylist/client';
+  httpHeaders: any;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) { }
-
-  create(clientId: string, body: Notes, token: string) {
-    return this.http.post(`${environment.rootApiUrl}/stylist/clients/${clientId}/notes`, body, AuthService.httpOptions(token));
+  ) {
+    this.httpHeaders = AuthService.httpOptions(this.authService.token);
   }
 
-  read(clientId: string, token: string) {
-    return this.http.get(`${environment.rootApiUrl}/stylist/clients/${clientId}/notes`, AuthService.httpOptions(token));
+  create(body: Note) {
+    return this.http.post(this._getEndpoint(body.clientId), body, this.httpHeaders);
   }
 
-  update(clientId: string, notesId: string, body: Notes, token: string) {
-    return this.http.patch(`${environment.rootApiUrl}/stylist/clients/${clientId}/notes/${notesId}`, body, AuthService.httpOptions(token));
+  read(clientId: string) {
+    return this.http.get(this._getEndpoint(clientId), this.httpHeaders);
   }
 
-  detail(clientId: string, notesId: string, token: string) {
-    return this.http.get(`${environment.rootApiUrl}/stylist/clients/${clientId}/notes/${notesId}`, AuthService.httpOptions(token));
+  update(body: Note) {
+    return this.http.patch(this._getEndpoint(body.clientId), body, this.httpHeaders);
   }
 
-  delete(clientId: string, notesId: string, token: string) {
-    return this.http.delete(`${environment.rootApiUrl}/stylist/clients/${clientId}/notes/${notesId}`, AuthService.httpOptions(token));
+  delete(clientId: string, noteId: string) {
+    return this.http.delete(this._getEndpoint(clientId, noteId), this.httpHeaders);
+  }
+
+  _getEndpoint(clientId: string, noteId?: string) {
+    let url = this.baseUrl + '/' + clientId + '/note';
+
+    if (noteId) {
+      url += '/' + noteId;
+    }
+
+    return url;
   }
 }

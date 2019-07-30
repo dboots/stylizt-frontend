@@ -1,12 +1,11 @@
-
 <div class="row pb-4">
   <div class="image-container col-md-1">
     <img *ngIf="note.images" class="" [src]="note.images[0]" />
   </div>
   <div class="text-container col-md-11">
-    <div class="top-info d-flex align-items-center" [class.private]="!note.isPublic">
-      <div class="date-badge">{{ note.postDate | date:'EEEE, MMMM d, y' }}</div>
+    <div class="top-info d-flex align-items-center">
+      <div class="date-badge">{{ note.dateCreated | date:'EEEE, MMMM d, y' }}</div>
     </div>
-    <div class="note-content">{{ note.notes }}</div>
+    <div class="note-content">{{ note.body }}</div>
   </div>
 </div>

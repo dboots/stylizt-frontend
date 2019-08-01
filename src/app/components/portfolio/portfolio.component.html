@@ -48,16 +48,16 @@
             </div>
           </div>
           
-          <div class="row">
+          <div class="row" *ngIf="services.length">
             <div class="col-md-6 pt-4">
               <div class="component-title text-uppercase">SERVICES</div>
             </div>
           </div>
         </div>
         
-        <div class="green-divider"></div>
+        <div *ngIf="services.length" class="green-divider"></div>
         
-        <div class="container">
+        <div *ngIf="services.length" class="container">
           <div class="row">
             <div class="col-md-4" *ngFor="let service of services">
               <div class="service-desc p-4 m-2">
@@ -75,7 +75,7 @@
         </div>
       </div>
       
-      <div class="container">
+      <div class="container" *ngIf="portfolio.length">
         <div class="row mt-5" id="local-talent">
           <div class="col-12 m-auto text-uppercase text-center text-white title-block">
             PORTFOLIO

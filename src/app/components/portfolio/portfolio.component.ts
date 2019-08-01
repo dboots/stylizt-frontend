@@ -55,10 +55,6 @@ export class StylistPortfolioPageComponent implements OnInit {
       this.params = params;
     });
 
-    this.servicesService.read().subscribe((result) => {
-      this.services = result['data'];
-    });
-
     this.portfolioService
       .read({ url: this.params.id })
       .subscribe((data: any) => {
@@ -67,7 +63,14 @@ export class StylistPortfolioPageComponent implements OnInit {
         }
 
         let portfolio = data.portfolio;
-        let stylist = data.stylist;
+        let stylist: User = data.stylist;
+
+        console.log(stylist);
+
+        this.servicesService.read(stylist._id).subscribe((result) => {
+          console.log(result);
+          this.services = result['data'];
+        });
 
         this.title.setTitle(stylist.name + ' Portfolio');
         if (stylist && stylist.name && stylist.zip) {

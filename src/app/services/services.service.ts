@@ -17,10 +17,10 @@ export class ServicesService {
     );
   }
 
-  read(): Observable<Service[]> {
+  read(ownerId: string): Observable<Service[]> {
     const token = this.authService.token;
     return this.http.get<Service[]>(
-      environment.rootApiUrl + '/stylist/services',
+      environment.rootApiUrl + '/stylist/' + ownerId + '/services',
       AuthService.httpOptions(token)
     );
   }

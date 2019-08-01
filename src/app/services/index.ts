@@ -10,3 +10,4 @@ export { LocationService } from './location.service';
 export { PostService } from './post.service';
 export { ContactService } from './contact.service';
 export { ServicesService } from './services.service';
+export { ScheduleService } from './schedule.service';

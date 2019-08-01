@@ -7,3 +7,4 @@ export * from './location.model';
 export * from './post';
 export * from './brand.model';
 export * from './service.model';
+export * from './schedule.model';

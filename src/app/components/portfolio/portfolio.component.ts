@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService, AuthService, TalentService, ServicesService } from '../../services';
-import { Portfolio, User, Talent, Service } from '../../models';
+import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService } from '../../services';
+import { Portfolio, User, Talent, Service, Schedule } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   DomSanitizer,
@@ -9,6 +9,8 @@ import {
   Title
 } from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Lengths } from '../../models/length.model';
+import { Time } from '../../models/time.model';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -31,6 +33,10 @@ export class StylistPortfolioPageComponent implements OnInit {
   portfolioActionLabel = 'Add To Portfolio';
   portfolioTitle = 'Add To Portfolio';
 
+  availableTimes: Time[] = [];
+  lengths: string[] = Lengths.lengths;
+  scheduledTimes: string[] = [];
+
   constructor(
     private talentService: TalentService,
     private portfolioService: PortfolioService,
@@ -42,7 +48,8 @@ export class StylistPortfolioPageComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private sanitization: DomSanitizer,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private scheduleService: ScheduleService
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
@@ -92,6 +99,59 @@ export class StylistPortfolioPageComponent implements OnInit {
       });
   }
 
+  parseSchedule(schedule: Schedule[]) {
+    this.scheduledTimes = [];
+    schedule.map((slot) => {
+      let scheduledStartTime = new Date(slot.start_datetime);
+      let scheduledEndTime = new Date(slot.end_datetime);
+      while (scheduledStartTime < scheduledEndTime) {
+        this.scheduledTimes.push(this.getTimeString(scheduledStartTime));
+        scheduledStartTime.setMinutes(scheduledStartTime.getMinutes() + 30);
+      }
+    });
+  }
+
+  selectServiceDate($event) {
+    this.availableTimes = [];
+    let dateString = $event.month + '/' + $event.day + '/' + $event.year;
+    let startDateTime = new Date(dateString);
+    let endDateTime = new Date(dateString);
+    startDateTime.setHours(9);
+    startDateTime.setMinutes(0);
+    endDateTime.setHours(startDateTime.getHours() + 8);
+
+    this.scheduleService.read(dateString).subscribe((result) => {
+      this.parseSchedule(result['data']);
+
+      while (startDateTime < endDateTime) {
+        let timeString = this.getTimeString(startDateTime);
+        startDateTime.setMinutes(startDateTime.getMinutes() + 30);
+        this.availableTimes.push(new Time(timeString, (this.scheduledTimes.indexOf(timeString) === -1)));
+      }
+    });
+  }
+
+  getDateFromTimeString(dateTimeString: string) {
+    let date = new Date(dateTimeString);
+    return date;
+  }
+
+  getTimeString(date: Date) {
+    let minutes = date.getMinutes().toString();
+    let hours = date.getHours();
+    let formattedHours = ((hours > 12) ? (hours % 12) : hours).toString();
+
+    if (formattedHours.length === 1) {
+      formattedHours = '0' + formattedHours;
+    }
+
+    if (minutes.length === 1) {
+      minutes = '0' + minutes;
+    }
+
+    return formattedHours + ':' + minutes;
+  }
+
   getBackgroundImage() {
     const random = Math.floor(Math.random() * Math.floor(100000));
     return this.sanitization.bypassSecurityTrustStyle(
@@ -136,7 +196,7 @@ export class StylistPortfolioPageComponent implements OnInit {
           this.modalRef.close();
         },
         (err) => {
-          console.log('unable to add to portfolio', err);
+        console.log('unable to add to portfolio', err);
         }
       );
   }

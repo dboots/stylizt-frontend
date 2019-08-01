@@ -1,16 +1,13 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Post } from '../models';
 
 @Injectable()
 export class PostService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getBlogs() {
     const url = 'https://blog.hairtochair.com/wp-json/wp/v2/posts?_embed&per_page=4';
@@ -21,6 +18,6 @@ export class PostService {
       (item._embedded['wp:featuredmedia']) ? item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url : '',
       item.link
       ))
-    ));
+      ));
+    }
   }
-}

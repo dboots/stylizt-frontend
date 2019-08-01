@@ -8,9 +8,22 @@
               <h3>Add New Service</h3>
             </div>
             <div class="py-2 col-12 col-md-6">
-              <input type="text" class="form-control" formControlName="name" placeholder="Service Name" />
+              <label for="name">Service Name</label>
+              <input id="name" type="text" class="form-control" formControlName="name" />
             </div>
             <div class="py-2 col-12 col-md-6">
+              <label for="name">How long does this take?</label>
+              <select class="form-control" formControlName="time">
+                <option value="1">30 mins</option>
+                <option value="2">1 hour</option>
+                <option value="3">1 hour 30 mins</option>
+                <option value="4">2 hours</option>
+                <option value="5">2 hours 30 mins</option>
+                <option value="6">3 hours</option>
+              </select>
+            </div>
+            <div class="py-2 col-12 col-md-6">
+              <label for="name">Service Price</label>
               <input type="text" class="form-control" formControlName="price" placeholder="Price" />
             </div>
           </div>
@@ -21,26 +34,28 @@
           </div>
           <div class="row">
             <div class="col-12 text-right">
-                <button type="button" (click)="cancel()" *ngIf="isUpdating()" class="common-gw-button">Cancel</button>
+              <button type="button" (click)="cancel()" *ngIf="isUpdating()" class="common-gw-button">Cancel</button>
               <button type="button" (click)="save()" class="common-gw-button">{{label}}</button>
-
+              
             </div>
           </div>
         </form>
       </div>
-
+      
       <div class="col-md-6 col-12">
         <div class="row">
           <div class="col-12">
-            <h3>Add New Service</h3>
+            <h3>Available Services</h3>
           </div>
           <div class="header col-5 col-md-6">Service</div>
           <div class="header col-5 col-md-2">Price</div>
+          <div class="header col-5 col-md-2">Time</div>
           <div class="header col-2 col-md-2"></div>
         </div>
         <div class="row py-1" *ngFor="let service of services">
           <div class="col-5 col-md-6">{{ service.name }}</div>
           <div class="col-5 col-md-2">{{ service.price }}</div>
+          <div class="col-5 col-md-2">{{ lengths[service.time] }}</div>
           <div class="col-2 col-md-2">
             <i (click)="edit(service)" class="px-1 fa fa-pencil"></i>
             <i (click)="delete(service)" class="px-1 fa fa-trash"></i>

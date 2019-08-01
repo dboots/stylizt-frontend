@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models';
 import { ServicesService } from '../../../services';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Lengths } from '../../../models/length.model';
 
 @Component({
   selector: 'app-page-stylist-services',
@@ -13,11 +14,13 @@ export class StylistServicesPageComponent implements OnInit {
   UPDATE_LABEL: string = 'Update New Service';
   services: Service[] = [];
   label: string;
+  lengths: string[] = Lengths.lengths;
 
   formGroup: FormGroup = new FormGroup({
     _id: new FormControl(),
     name: new FormControl(),
     price: new FormControl(),
+    time: new FormControl(1),
     description: new FormControl()
   });
 
@@ -54,6 +57,7 @@ export class StylistServicesPageComponent implements OnInit {
   edit(service: Service) {
     this.label = this.UPDATE_LABEL;
     this.formGroup.patchValue(service);
+    console.log(this.formGroup.value, service);
   }
 
   delete(service: Service) {

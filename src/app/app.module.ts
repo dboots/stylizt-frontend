@@ -22,7 +22,8 @@ import {
   BrandService,
   LocationService,
   PostService,
-  ContactService
+  ContactService,
+  ScheduleService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -117,6 +118,7 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
     PostService,
     ContactService,
     ServicesService,
+    ScheduleService,
     JwtHelper
   ],
   entryComponents: [ConfirmDialogComponent],

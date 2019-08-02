@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from '../../../models';
-import { ServicesService } from '../../../services';
+import { Service, User } from '../../../models';
+import { ServicesService, AuthService } from '../../../services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Lengths } from '../../../models/length.model';
 
@@ -15,6 +15,7 @@ export class StylistServicesPageComponent implements OnInit {
   services: Service[] = [];
   label: string;
   lengths: string[] = Lengths.lengths;
+  user: User;
 
   formGroup: FormGroup = new FormGroup({
     _id: new FormControl(),
@@ -24,13 +25,13 @@ export class StylistServicesPageComponent implements OnInit {
     description: new FormControl()
   });
 
-  constructor(private servicesService: ServicesService) {
+  constructor(private servicesService: ServicesService, private authService: AuthService) {
     this.label = this.ADD_LABEL;
+    this.user = this.authService.decode();
   }
 
   ngOnInit() {
-    this.servicesService.read().subscribe((result) => {
-      console.log(result);
+    this.servicesService.read(this.user._id).subscribe((result) => {
       this.services = result['data'];
     });
   }
@@ -47,7 +48,6 @@ export class StylistServicesPageComponent implements OnInit {
       });
     } else {
       this.servicesService.create(service).subscribe((result) => {
-        console.log(result['result']);
         this.services.push(result['result']);
         this.cancel();
       });

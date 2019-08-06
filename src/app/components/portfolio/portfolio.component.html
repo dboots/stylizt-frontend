@@ -19,135 +19,136 @@
             <p class="specialties">Social Media</p>
             <div class="social-media pb-2">
               <a href="{{ instagram }}" *ngIf="instagram" target="_blank"><i
-                class="fa fa-fw color-instagram fa-3x fa-instagram"></i></a>
-                <a href="{{ facebook }}" *ngIf="facebook" target="_blank"><i
+                  class="fa fa-fw color-instagram fa-3x fa-instagram"></i></a>
+              <a href="{{ facebook }}" *ngIf="facebook" target="_blank"><i
                   class="fa fa-fw color-fb fa-3x fa-facebook-square"></i></a>
-                  <a href="{{ twitter }}" *ngIf="twitter" target="_blank"><i
-                    class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i></a>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <p class="specialties">Specialties</p>
-                  <div class="talent" *ngFor="let talent of stylist.talents">
-                    {{ talent.talent }}
-                  </div>
-                </div>
-                <div class="col-md-8 pt-2">
-                  <p class="specialties">Brands Used</p>
-                  <div class="talent" *ngFor="let brand of stylist.brands">
-                    {{ brand.brand }}
-                  </div>
-                </div>
-                
-                <div class="col-md-8">
-                  <div class="row">
-                    <div class="m-1 text-center px-2 py-1 col-1 time" [ngClass]="{'scheduled': !time.available}" *ngFor="let time of availableTimes">{{time.time}}</div>
-                  </div>
-                </div>
-              </div>
+              <a href="{{ twitter }}" *ngIf="twitter" target="_blank"><i
+                  class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i></a>
             </div>
           </div>
-          
-          <div class="row" *ngIf="services.length">
-            <div class="col-md-6 pt-4">
-              <div class="component-title text-uppercase">SERVICES</div>
+          <div class="col-md-8">
+            <p class="specialties">Specialties</p>
+            <div class="talent" *ngFor="let talent of stylist.talents">
+              {{ talent.talent }}
             </div>
           </div>
-        </div>
-        
-        <div *ngIf="services.length" class="green-divider"></div>
-        
-        <div *ngIf="services.length" class="container">
-          <div class="row">
-            <div class="col-md-4" *ngFor="let service of services">
-              <div class="service-desc p-4 m-2">
-                <h5>{{service.name}}</h5>
-                <p>{{service.description}}</p>
-                <p>Time: {{lengths[service.time]}}</p>
-                <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
-                <div class="d-flex">
-                  <input class="form-control" placeholder="Select a date" name="dp" (dateSelect)="selectServiceDate($event)" ngbDatepicker #d="ngbDatepicker">
-                  <button class="common-gw-button" (click)="d.toggle()" type="button">SELECT DATE</button>
-                </div>
-              </div>
+          <div class="col-md-8 pt-2">
+            <p class="specialties">Brands Used</p>
+            <div class="talent" *ngFor="let brand of stylist.brands">
+              {{ brand.brand }}
             </div>
           </div>
-        </div>
-      </div>
-      
-      <div class="container" *ngIf="portfolio.length">
-        <div class="row mt-5" id="local-talent">
-          <div class="col-12 m-auto text-uppercase text-center text-white title-block">
-            PORTFOLIO
-          </div>
-        </div>
-      </div>
-      
-      <div id="portfolio" class="thumbnail-section text-center text-uppercase pt-2">
-        <div class="container">
-          <div class="row pb-4 pt-2" *ngIf="loggedIn()">
-            <div class="col">
-              <button class="common-gw-button" (click)="showModal(addModal)">
-                ADD TO PORTFOLIO
-              </button>
-            </div>
-          </div>
-          <div class="row desktop d-md-flex">
-            <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio"
-            (click)="showModal(addModal, p)">
-            <img class="img-fluid w-100" [src]="p.image" />
-            <div class="fixed-bottom position-absolute bg-white p-2" *ngIf="loggedIn()">
-              UPDATE
-            </div>
-          </div>
-        </div>
-        <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
-          <div ngxSlickItem *ngFor="let p of portfolio">
-            <img class="img-fluid w-100" [src]="p.image" />
-            <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-          </div>
-        </ngx-slick>
-      </div>
-    </div>
-    
-    <div class="container">
-      <div class="row pt-4">
-        <div class="col-md-6">
-          <div class="component-title text-uppercase">CONTACT </div>
         </div>
       </div>
     </div>
-    
-    <div class="green-divider"></div>
-    
-    <div class="container">
-      <div class="row mb-4">
-        <div class="col-6 pt-4">
-          <div *ngIf="stylist && mapUrl">
-            <div *ngIf="stylist.zip" class="w-100">
-              <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
-              marginwidth="0">
-              <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
-            </iframe>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="my-2">
-          <h3>Send Me a Message!</h3>
-          <div class="py-1">
-            <input class="form-control" type="text" placeholder="Your Name" />
-          </div>
-          <div class="py-1">
-            <input class="form-control" type="text" placeholder="Your Contact (phone, email" />
-          </div>
-          <div class="py-1"><textarea class="form-control"></textarea></div>
-        </div>
-        <button class="common-gw-button">Send</button>
+
+    <div class="row" *ngIf="services && services.length">
+      <div class="col-md-6 pt-4">
+        <div class="component-title text-uppercase">SERVICES</div>
       </div>
     </div>
-    
-    <!--
+  </div>
+
+  <div *ngIf="services.length" class="green-divider"></div>
+
+  <div *ngIf="services.length" class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let service of services">
+        <div class="service-desc p-4 m-2">
+          <h5>{{service.name}}</h5>
+          <p>{{service.description}}</p>
+          <p>Time: {{lengths[service.time]}}</p>
+          <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
+          <div><strong>Book Service:</strong></div>
+          <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
+          <div class="input-group">
+            <ngb-datepicker #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
+              (select)="selectServiceDate($event)">
+            </ngb-datepicker>
+          </div>
+          <select (change)="selectServiceTime($event)" *ngIf="availableTimes.length">
+            <option [value]="time.time" *ngFor="let time of availableTimes" [attr.disabled]="time.available ? null : true">{{time.formattedTime}}</option>
+          </select>
+          <button *ngIf="showBookButton" class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="portfolio && portfolio.length">
+  <div class="row mt-5" id="local-talent">
+    <div class="col-12 m-auto text-uppercase text-center text-white title-block">
+      PORTFOLIO
+    </div>
+  </div>
+</div>
+
+<div id="portfolio" class="thumbnail-section text-center text-uppercase pt-2">
+  <div class="container">
+    <div class="row pb-4 pt-2" *ngIf="loggedIn()">
+      <div class="col">
+        <button class="common-gw-button" (click)="showModal(addModal)">
+          ADD TO PORTFOLIO
+        </button>
+      </div>
+    </div>
+    <div class="row desktop d-md-flex">
+      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio"
+        (click)="showModal(addModal, p)">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <div class="fixed-bottom position-absolute bg-white p-2" *ngIf="loggedIn()">
+          UPDATE
+        </div>
+      </div>
+    </div>
+    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let p of portfolio">
+        <img class="img-fluid w-100" [src]="p.image" />
+        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
+      </div>
+    </ngx-slick>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row pt-4">
+    <div class="col-md-6">
+      <div class="component-title text-uppercase">CONTACT </div>
+    </div>
+  </div>
+</div>
+
+<div class="green-divider"></div>
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-6 pt-4">
+      <div *ngIf="stylist && mapUrl">
+        <div *ngIf="stylist.zip" class="w-100">
+          <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
+            marginwidth="0">
+            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="my-2">
+        <h3>Send Me a Message!</h3>
+        <div class="py-1">
+          <input class="form-control" type="text" placeholder="Your Name" />
+        </div>
+        <div class="py-1">
+          <input class="form-control" type="text" placeholder="Your Contact (phone, email" />
+        </div>
+        <div class="py-1"><textarea class="form-control"></textarea></div>
+      </div>
+      <button class="common-gw-button">Send</button>
+    </div>
+  </div>
+
+  <!--
       <div id="schedule" class="section">
         <div class="container">
           <div class="row my-4">
@@ -184,15 +185,15 @@
         <br />
       </div>
     -->
-    
-    <ng-template #addModal let-c="close" let-d="dismiss">
-      <div class="add-modal-component container">
-        <div class="text-uppercase">Portfolio</div>
-        <div class="green-divider"></div>
-        <div class="main-content row">
-          <div class="col-6">
-            <img [src]="portfolioItem.image" class="img-fluid w-100" />
-            <app-cloudinary-uploader *ngIf="loggedIn()" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+
+  <ng-template #addModal let-c="close" let-d="dismiss">
+    <div class="add-modal-component container">
+      <div class="text-uppercase">Portfolio</div>
+      <div class="green-divider"></div>
+      <div class="main-content row">
+        <div class="col-6">
+          <img [src]="portfolioItem.image" class="img-fluid w-100" />
+          <app-cloudinary-uploader *ngIf="loggedIn()" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
             (completeItem)="imageUploadCompleted($event)">
           </app-cloudinary-uploader>
         </div>
@@ -203,7 +204,7 @@
               <div class="caption">{{ portfolioItem.caption }}</div>
             </span>
             <textarea *ngIf="loggedIn()" [(ngModel)]="portfolioItem.caption" class="form-control"
-            placeholder="A description of this image..."></textarea>
+              placeholder="A description of this image..."></textarea>
           </div>
           <div class="form-group">
             <label class="text-uppercase">What talents were used on this?</label>
@@ -215,7 +216,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col">
           <div *ngIf="!loggedIn()">
             <div class="text-center mt-4">
@@ -230,12 +231,12 @@
                 Cancel
               </button>
               <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()"
-              class="common-gw-button">
-              {{ portfolioActionLabel }}
-            </button>
+                class="common-gw-button">
+                {{ portfolioActionLabel }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>

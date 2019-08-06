@@ -302,14 +302,12 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   toggleClientNote(disabled: boolean) {
-    console.log('toggling client note', disabled);
     this.disableNoteAdd = disabled;
   }
 
   postNote() {
     // const notes: Notes = new Notes(this.clientId, this.clientNote, new Date(), true, this.clientNotesImages);
     const note: Note = this.noteForm.value;
-    console.log(note);
 
     this.notesService.create(note)
       .subscribe((result: any) => {

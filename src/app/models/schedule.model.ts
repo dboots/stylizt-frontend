@@ -1,7 +1,7 @@
 export class Schedule {
   _id: string;
-  start_datetime: Date;
-  end_datetime: Date;
+  startDateTime: Date;
+  endDateTime: Date;
   client: string;
   description: string;
 }

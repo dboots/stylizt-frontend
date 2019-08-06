@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService } from '../../services';
 import { Portfolio, User, Talent, Service, Schedule } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,6 +36,9 @@ export class StylistPortfolioPageComponent implements OnInit {
   availableTimes: Time[] = [];
   lengths: string[] = Lengths.lengths;
   scheduledTimes: string[] = [];
+  showDatePicker: boolean = false;
+  selectedSchedule: Schedule = new Schedule();
+  showBookButton: boolean = false;
 
   constructor(
     private talentService: TalentService,
@@ -65,10 +68,7 @@ export class StylistPortfolioPageComponent implements OnInit {
         let portfolio = data.portfolio;
         let stylist: User = data.stylist;
 
-        console.log(stylist);
-
         this.servicesService.read(stylist._id).subscribe((result) => {
-          console.log(result);
           this.services = result['data'];
         });
 
@@ -105,12 +105,24 @@ export class StylistPortfolioPageComponent implements OnInit {
   parseSchedule(schedule: Schedule[]) {
     this.scheduledTimes = [];
     schedule.map((slot) => {
-      let scheduledStartTime = new Date(slot.start_datetime);
-      let scheduledEndTime = new Date(slot.end_datetime);
+      let scheduledStartTime = new Date(slot.startDateTime);
+      let scheduledEndTime = new Date(slot.endDateTime);
       while (scheduledStartTime < scheduledEndTime) {
-        this.scheduledTimes.push(this.getTimeString(scheduledStartTime));
+        this.scheduledTimes.push(this.getTimeString(scheduledStartTime, false));
         scheduledStartTime.setMinutes(scheduledStartTime.getMinutes() + 30);
       }
+    });
+  }
+
+  bookService(service: Service) {
+    let schedule = this.selectedSchedule;
+    let endDateTime = schedule.endDateTime;
+    endDateTime = new Date(schedule.startDateTime);
+    endDateTime.setMinutes(endDateTime.getMinutes() + (30 * service.time));
+
+    schedule.endDateTime = endDateTime;
+
+    this.scheduleService.create(schedule).subscribe((result) => {
     });
   }
 
@@ -123,15 +135,31 @@ export class StylistPortfolioPageComponent implements OnInit {
     startDateTime.setMinutes(0);
     endDateTime.setHours(startDateTime.getHours() + 8);
 
+    this.selectedSchedule.startDateTime = new Date(dateString);
+
     this.scheduleService.read(dateString).subscribe((result) => {
       this.parseSchedule(result['data']);
 
       while (startDateTime < endDateTime) {
-        let timeString = this.getTimeString(startDateTime);
+        let timeString = this.getTimeString(startDateTime, false);
+        let formattedTimeString = this.getTimeString(startDateTime, true);
         startDateTime.setMinutes(startDateTime.getMinutes() + 30);
-        this.availableTimes.push(new Time(timeString, (this.scheduledTimes.indexOf(timeString) === -1)));
+        this.availableTimes.push(new Time(timeString, formattedTimeString, (this.scheduledTimes.indexOf(timeString) === -1)));
       }
+
+      this.showDatePicker = false;
+      this.showBookButton = false;
     });
+  }
+
+  selectServiceTime($event, service: Service) {
+    let time = $event.target.value;
+    let timeParts = time.split(':');
+    let hour = timeParts[0];
+    let minute = timeParts[1];
+    this.selectedSchedule.startDateTime.setHours(hour);
+    this.selectedSchedule.startDateTime.setMinutes(minute);
+    this.showBookButton = true;
   }
 
   getDateFromTimeString(dateTimeString: string) {
@@ -139,10 +167,14 @@ export class StylistPortfolioPageComponent implements OnInit {
     return date;
   }
 
-  getTimeString(date: Date) {
+  getTimeString(date: Date, returnFormatted: boolean) {
     let minutes = date.getMinutes().toString();
     let hours = date.getHours();
     let formattedHours = ((hours > 12) ? (hours % 12) : hours).toString();
+
+    if (!returnFormatted) {
+      formattedHours = hours.toString();
+    }
 
     if (formattedHours.length === 1) {
       formattedHours = '0' + formattedHours;

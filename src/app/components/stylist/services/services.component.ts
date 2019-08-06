@@ -10,8 +10,8 @@ import { Lengths } from '../../../models/length.model';
   styleUrls: ['./services.component.scss']
 })
 export class StylistServicesPageComponent implements OnInit {
-  ADD_LABEL: string = 'Add New Service';
-  UPDATE_LABEL: string = 'Update New Service';
+  ADD_LABEL: string = 'Add Service';
+  UPDATE_LABEL: string = 'Update Service';
   services: Service[] = [];
   label: string;
   lengths: string[] = Lengths.lengths;
@@ -57,15 +57,12 @@ export class StylistServicesPageComponent implements OnInit {
   edit(service: Service) {
     this.label = this.UPDATE_LABEL;
     this.formGroup.patchValue(service);
-    console.log(this.formGroup.value, service);
   }
 
   delete(service: Service) {
     this.servicesService.delete(service).subscribe((result) => {
       const index = this.services.findIndex((s) => s._id === service._id);
-      console.log(service, index, this.services);
       this.services.splice(index, 1);
-      console.log(this.services);
       this.cancel();
     });
   }

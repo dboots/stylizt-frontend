@@ -24,7 +24,6 @@ export class ScheduleService {
   }
 
   read(date: string) {
-    console.log('date', date);
     this.httpHeaders['params'] = { date };
     return this.http.get(this.baseUrl, this.httpHeaders);
   }

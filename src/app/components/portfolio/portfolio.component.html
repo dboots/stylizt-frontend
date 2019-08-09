@@ -60,16 +60,33 @@
           <p>Time: {{lengths[service.time]}}</p>
           <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
           <div><strong>Book Service:</strong></div>
+
+          <!-- date -->
           <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
           <div class="input-group">
             <ngb-datepicker #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
-              (select)="selectServiceDate($event)">
+              (select)="selectServiceDate($event)" [minDate]="minDate">
             </ngb-datepicker>
           </div>
-          <select (change)="selectServiceTime($event)" *ngIf="availableTimes.length">
-            <option [value]="time.time" *ngFor="let time of availableTimes" [attr.disabled]="time.available ? null : true">{{time.formattedTime}}</option>
+
+          <!-- time -->
+          <select (change)="selectServiceTime($event, service)" *ngIf="availableTimes.length">
+            <option>Select Time</option>
+            <option [value]="time.time" *ngFor="let time of availableTimes"
+              [attr.disabled]="time.available ? null : true">{{time.formattedTime}}</option>
           </select>
-          <button *ngIf="showBookButton" class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
+
+          
+          <div>
+            <!-- name, phone -->
+            <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name"><br />
+            <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone"><br />
+            
+            <!-- book button -->
+            <button
+              [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
+              class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
+          </div>
         </div>
       </div>
     </div>

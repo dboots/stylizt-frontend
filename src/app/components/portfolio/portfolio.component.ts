@@ -41,6 +41,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   showBookButton: boolean = false;
   currentDate: Date = new Date();
   minDate: any = {};
+  message: string;
 
   constructor(
     private talentService: TalentService,
@@ -127,7 +128,17 @@ export class StylistPortfolioPageComponent implements OnInit {
     schedule.description = schedule.service.name;
     schedule.owner = this.stylist._id;
     this.scheduleService.create(schedule).subscribe((result) => {
+      this.selectedSchedule = new Schedule();
+      this.message = 'Your appointment is booked!';
     });
+  }
+
+  clearBooking() {
+    this.selectedSchedule.startDateTime = null;
+    this.selectedSchedule.endDateTime = null;
+    this.selectedSchedule.datePicker = null;
+    this.availableTimes = [];
+    this.message = '';
   }
 
   selectServiceDate($event) {
@@ -135,6 +146,8 @@ export class StylistPortfolioPageComponent implements OnInit {
     let dateString = $event.month + '/' + $event.day + '/' + $event.year;
     let startDateTime = new Date(dateString);
     let endDateTime = new Date(dateString);
+    let schedule = this.selectedSchedule;
+    let service = schedule.service;
     startDateTime.setHours(9);
     startDateTime.setMinutes(0);
     endDateTime.setHours(startDateTime.getHours() + 8);
@@ -148,10 +161,32 @@ export class StylistPortfolioPageComponent implements OnInit {
         let timeString = this.getTimeString(startDateTime, false);
         let formattedTimeString = this.getTimeString(startDateTime, true);
         let active = (this.scheduledTimes.indexOf(timeString) === -1) && (startDateTime > this.currentDate);
+
+        let checkDateTime = new Date(startDateTime);
+        let checkTimeString = this.getTimeString(checkDateTime, false);
+
+        if (active) {
+          for (let i = 0; i < service.time; i++) {
+            checkDateTime.setMinutes(checkDateTime.getMinutes() + (30 * i));
+            checkTimeString = this.getTimeString(checkDateTime, false);
+            let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
+            active = (checkTimeIndex === -1);
+            if (!active) {
+              break;
+            }
+          }
+        }
+
         startDateTime.setMinutes(startDateTime.getMinutes() + 30);
 
         this.availableTimes.push(new Time(timeString, formattedTimeString, active));
       }
+
+      this.availableTimes.map((time, index) => {
+        if ((index + service.time) > this.availableTimes.length) {
+          time.available = false;
+        }
+      });
 
       this.showDatePicker = false;
       this.showBookButton = false;
@@ -247,7 +282,7 @@ export class StylistPortfolioPageComponent implements OnInit {
           this.modalRef.close();
         },
         (err) => {
-        console.log('unable to add to portfolio', err);
+          console.log('unable to add to portfolio', err);
         }
       );
   }

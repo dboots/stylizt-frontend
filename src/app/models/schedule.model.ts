@@ -9,4 +9,5 @@ export class Schedule {
   phone: string;
   owner: string;
   service: Service;
+  datePicker: any;
 }

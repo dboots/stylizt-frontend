@@ -2,12 +2,12 @@
 
 .portfolio-component {
   padding-top: 100px;
-  
+
   .about {
     .bio {
       line-height: 1.4rem;
     }
-    
+
     .specialties {
       font-family: 'proxima_novabold';
     }
@@ -33,11 +33,18 @@
     background: $teal;
     color: $black;
   }
-  
+
   background: $green;
   color: $white;
-  
+
   &.scheduled {
     background: red;
+  }
+}
+
+div {
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

@@ -54,26 +54,27 @@
   <div *ngIf="services.length" class="container">
     <div class="row">
       <div class="col-12">
+        {{selectedSchedule | json}}
         <h3>Book Service:</h3>
       </div>
 
-      <div class="col-2">
-        <select [(ngModel)]="selectedSchedule.service">
+      <div class="col-lg-3">
+        <div class="header">1. Select a Service</div>
+        <select (change)="clearBooking()" [(ngModel)]="selectedSchedule.service">
           <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
         </select>
       </div>
 
-      <div class="col-2">
+      <div class="col-lg-3" [ngClass]="{'disabled': !selectedSchedule.service }">
+        <div class="header">2. Select a Date/Time</div>
+
         <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
         <div class="input-group">
-          <ngb-datepicker #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
+          <ngb-datepicker [(ngModel)]="selectedSchedule.datePicker" #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
             (select)="selectServiceDate($event)" [minDate]="minDate">
           </ngb-datepicker>
         </div>
-      </div>
-
-      <div class="col-2">
-        <select (change)="selectServiceTime($event)" *ngIf="availableTimes.length">
+        <select (change)="selectServiceTime($event)" *ngIf="selectedSchedule.datePicker">
           <option selected>Select Time</option>
           <option [value]="time.time" *ngFor="let time of availableTimes"
             [attr.disabled]="time.available ? null : true">
@@ -81,15 +82,18 @@
         </select>
       </div>
 
-      <div class="col-4">
+
+      <div class="col-lg-3" [ngClass]="{'disabled': !selectedSchedule.endDateTime}">
+        <div class="header">3. Enter Your Contact Details</div>
         <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name">
         <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone">
       </div>
 
-      <div class="col-2">
+      <div class="col-lg-3">
         <button
           [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
           class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
+          {{message}}
       </div>
     </div>
     <div class="row">

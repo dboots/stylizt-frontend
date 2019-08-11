@@ -18,11 +18,7 @@ export class ServicesService {
   }
 
   read(ownerId: string): Observable<Service[]> {
-    const token = this.authService.token;
-    return this.http.get<Service[]>(
-      environment.rootApiUrl + '/stylist/' + ownerId + '/services',
-      AuthService.httpOptions(token)
-    );
+    return this.http.get<Service[]>(environment.rootApiUrl + '/stylist/' + ownerId + '/services');
   }
 
   update(body: Service): Observable<Service> {

@@ -124,7 +124,7 @@ export class StylistPortfolioPageComponent implements OnInit {
 
   bookService(service: Service) {
     let schedule = this.selectedSchedule;
-    schedule.description = service.name;
+    schedule.description = schedule.service.name;
     schedule.owner = this.stylist._id;
     this.scheduleService.create(schedule).subscribe((result) => {
     });
@@ -158,12 +158,15 @@ export class StylistPortfolioPageComponent implements OnInit {
     });
   }
 
-  selectServiceTime($event, service: Service) {
+  selectServiceTime($event) {
     let schedule = this.selectedSchedule;
+    let service = schedule.service;
     let time = $event.target.value;
     let timeParts = time.split(':');
     let hour = timeParts[0];
     let minute = timeParts[1];
+
+    console.log(service);
 
     schedule.startDateTime.setHours(hour);
     schedule.startDateTime.setMinutes(minute);

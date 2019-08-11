@@ -53,40 +53,52 @@
 
   <div *ngIf="services.length" class="container">
     <div class="row">
+      <div class="col-12">
+        <h3>Book Service:</h3>
+      </div>
+
+      <div class="col-2">
+        <select [(ngModel)]="selectedSchedule.service">
+          <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-2">
+        <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
+        <div class="input-group">
+          <ngb-datepicker #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
+            (select)="selectServiceDate($event)" [minDate]="minDate">
+          </ngb-datepicker>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <select (change)="selectServiceTime($event)" *ngIf="availableTimes.length">
+          <option selected>Select Time</option>
+          <option [value]="time.time" *ngFor="let time of availableTimes"
+            [attr.disabled]="time.available ? null : true">
+            {{time.formattedTime}}</option>
+        </select>
+      </div>
+
+      <div class="col-4">
+        <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name">
+        <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone">
+      </div>
+
+      <div class="col-2">
+        <button
+          [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
+          class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-4" *ngFor="let service of services">
         <div class="service-desc p-4 m-2">
           <h5>{{service.name}}</h5>
           <p>{{service.description}}</p>
           <p>Time: {{lengths[service.time]}}</p>
           <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
-          <div><strong>Book Service:</strong></div>
-
-          <!-- date -->
-          <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
-          <div class="input-group">
-            <ngb-datepicker #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
-              (select)="selectServiceDate($event)" [minDate]="minDate">
-            </ngb-datepicker>
-          </div>
-
-          <!-- time -->
-          <select (change)="selectServiceTime($event, service)" *ngIf="availableTimes.length">
-            <option>Select Time</option>
-            <option [value]="time.time" *ngFor="let time of availableTimes"
-              [attr.disabled]="time.available ? null : true">{{time.formattedTime}}</option>
-          </select>
-
-          
-          <div>
-            <!-- name, phone -->
-            <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name"><br />
-            <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone"><br />
-            
-            <!-- book button -->
-            <button
-              [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
-              class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
-          </div>
         </div>
       </div>
     </div>

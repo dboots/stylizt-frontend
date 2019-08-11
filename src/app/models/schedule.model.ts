@@ -1,3 +1,5 @@
+import { Service } from './service.model';
+
 export class Schedule {
   _id: string;
   startDateTime: Date;
@@ -6,4 +8,5 @@ export class Schedule {
   name: string;
   phone: string;
   owner: string;
+  service: Service;
 }

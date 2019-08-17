@@ -166,12 +166,17 @@ export class StylistPortfolioPageComponent implements OnInit {
         let checkTimeString = this.getTimeString(checkDateTime, false);
 
         if (active) {
-          for (let i = 0; i < service.time; i++) {
-            checkDateTime.setMinutes(checkDateTime.getMinutes() + (30 * i));
+          console.log('checking time', timeString);
+          for (let i = 1; i < service.time; i++) {
             checkTimeString = this.getTimeString(checkDateTime, false);
             let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
             active = (checkTimeIndex === -1);
+
+            console.log('-- ', checkTimeString, i, checkDateTime.getMinutes() + (30 * i));
+            checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
+
             if (!active) {
+              console.log('slot n/a', timeString);
               break;
             }
           }
@@ -181,6 +186,8 @@ export class StylistPortfolioPageComponent implements OnInit {
 
         this.availableTimes.push(new Time(timeString, formattedTimeString, active));
       }
+
+      console.log(this.availableTimes, this.scheduledTimes);
 
       this.availableTimes.map((time, index) => {
         if ((index + service.time) > this.availableTimes.length) {

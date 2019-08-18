@@ -9,7 +9,7 @@ declare var Peer: any;
   templateUrl: './video.component.html'
 })
 export class LandingVideoPageComponent implements OnInit {
-  @ViewChild('myvideo') myVideo: any;
+  @ViewChild('myvideo', { static: true }) myVideo: any;
 
   peer;
   anotherid;

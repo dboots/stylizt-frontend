@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve --port=4222",
-    "postinstall": "ng build --aot --prod && node server.js"
+    "start": "node server.js",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {

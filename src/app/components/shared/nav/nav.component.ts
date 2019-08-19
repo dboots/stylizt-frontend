@@ -43,6 +43,7 @@ export class NavComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof ActivationEnd && event.snapshot.children.length == 0))
       .subscribe((event: ActivationEnd) => {
+        this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
         this.navItems = event.snapshot.data.navItems;
       });
   }

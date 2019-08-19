@@ -5,7 +5,7 @@ const path = require('path');
 
 const port = process.env.PORT || 8080;
 const prerender_token = process.env.PRERENDER_TOKEN || '';
-const production = process.env.PRODUCTION;
+const production = (process.env.PRODUCTION === 'true');
 
 const forceSSL = function() {
   return function (req, res, next) {
@@ -19,7 +19,7 @@ const forceSSL = function() {
 
 console.log('production status: ', production, process.env.PRODUCTION);
 if (production) {
-  console.log('using SSL');
+  console.log('using SSL', production);
   app.use(forceSSL());
 }
 

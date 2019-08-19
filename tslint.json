@@ -12,7 +12,7 @@
       "check-semicolon"
     ],
     "arrow-return-shorthand": true,
-    "banana-in-box": true,
+    "template-banana-in-box": true,
     "callable-types": true,
     "class-name": true,
     "component-class-suffix": [
@@ -68,7 +68,7 @@
       ]}
     ],
     "no-arg": true,
-    "no-attribute-parameter-decorator": true,
+    "no-attribute-decorator": true,
     "no-bitwise": false,
     "no-conditional-assignment": false,
     "no-console": [
@@ -148,12 +148,12 @@
       }
     ],
     "unified-signatures": true,
-    "use-host-property-decorator": true,
-    "use-input-property-decorator": true,
-    "use-life-cycle-interface": true,
-    "use-output-property-decorator": true,
+    "no-host-metadata-property": true,
+    "no-inputs-metadata-property": true,
+    "use-lifecycle-interface": true,
+    "no-outputs-metadata-property": true,
     "use-pipe-transform-interface": true,
-    "use-view-encapsulation": false,
+    "use-component-view-encapsulation": false,
     "variable-name": [
       true,
       "allow-leading-underscore",

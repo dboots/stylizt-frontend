@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { SlickModule } from 'ngx-slick';
@@ -92,7 +92,7 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -119,7 +119,7 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
     ContactService,
     ServicesService,
     ScheduleService,
-    JwtHelper
+    JwtHelperService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

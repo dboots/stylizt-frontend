@@ -6,6 +6,7 @@ import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import 'rxjs/operators';
 
 
 @Component({
@@ -41,24 +42,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .map(() => this.activatedRoute)
-      .map((route) => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-      })
-      .filter((route) => route.outlet === 'primary')
-      .mergeMap((route) => route.data)
-      .subscribe((event) => {
-        this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
-        this.navItems = event.navItems || [
-          {name: 'Featured Looks', url: '#featured-looks', scroll: true},
-          {name: 'Local Talent', url: '#local-talent', scroll: true},
-          {name: 'Contact', url: '/contact', scroll: false},
-          {name: 'Login'}
-        ];
-      });
+    this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
   }
 
   isLoggedIn() {

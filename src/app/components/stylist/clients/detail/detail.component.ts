@@ -231,7 +231,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
       });
   }
 
-  showModal(modal, item) {
+  showModal(modal, item: Portfolio = null) {
     if (item && item._id) {
       this.portfolioItem = item;
       this.portfolioActionLabel = 'Update Portfolio';

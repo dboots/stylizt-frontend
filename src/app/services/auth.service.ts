@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { User } from '../models/user.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
+  jwt = new JwtHelperService();
   get token(): string {
     return localStorage.getItem('token');
   }
@@ -24,10 +25,6 @@ export class AuthService {
 
     return { headers: new HttpHeaders(headers) };
   }
-
-  constructor(
-    private jwt: JwtHelper
-  ) { }
 
   public isAuthenticated(): boolean {
     if (this.token) {

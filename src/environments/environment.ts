@@ -1,4 +1,4 @@
 export const environment = {
-  production: __PROD__,
-  rootApiUrl: '__APIURL__'
+  production: false,
+  rootApiUrl: 'http://localhost:3333/api'
 };

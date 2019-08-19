@@ -9,10 +9,10 @@ import { User, Post } from '../../models';
   templateUrl: './landing.component.html'
 })
 export class LandingPageComponent implements OnInit {
-  private params = null;
-  private stylists: User[] = [];
-  private posts: Post[] = [];
-  private state: string = '';
+  params = null;
+  stylists: User[] = [];
+  posts: Post[] = [];
+  state: string = '';
 
   constructor(
     private meta: Meta,

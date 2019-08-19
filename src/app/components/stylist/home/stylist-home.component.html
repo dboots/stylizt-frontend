@@ -37,5 +37,14 @@
         <i class="fa fa-users fa-4x"></i>
       </div>
     </div>
+
+    <div class="row">
+      <h1 class="black-diamond-font">Your Schedule</h1>
+      <div class="col-12" *ngFor="let event of schedule">
+        {{ event.description }}
+        {{ event.startDateTime | date: 'short' }} - {{ event.endDateTime | date: 'short' }}
+        {{ event.name }}, {{ event.phone }}
+      </div>
+    </div>
   </div>
 </div>

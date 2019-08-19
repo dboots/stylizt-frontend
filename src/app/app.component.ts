@@ -9,25 +9,24 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
-    
-    ngOnInit() {
-      let production = environment.production;
-      let url = window.location.origin.split('://')[1];
-      let parts = url.split('.');
-      let subdomain = (parts.length == 3) ? parts[0] : null;
+  constructor(private router: Router) { }
 
-      if (production && subdomain && subdomain != 'www') {
-        this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
+  ngOnInit() {
+    let production = environment.production;
+    let url = window.location.origin.split('://')[1];
+    let parts = url.split('.');
+    let subdomain = (parts.length == 3) ? parts[0] : null;
+
+    if (production && subdomain && subdomain != 'www') {
+      this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
+    }
+
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
       }
 
-      this.router.events.subscribe((evt) => {
-        if (!(evt instanceof NavigationEnd)) {
-          return;
-        }
-        
-        window.scrollTo(0, 0);
-      });
-    }
+      window.scrollTo(0, 0);
+    });
   }
-  
+}

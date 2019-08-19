@@ -1,12 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, ActivationEnd } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -37,12 +35,16 @@ export class NavComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      this.newInnerWidth = event.target.innerWidth;
+  onResize(event) {
+    this.newInnerWidth = event.target.innerWidth;
   }
 
   ngOnInit() {
-    this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
+    this.router.events.pipe(
+      filter(event => event instanceof ActivationEnd && event.snapshot.children.length == 0))
+      .subscribe((event: ActivationEnd) => {
+        this.navItems = event.snapshot.data.navItems;
+      });
   }
 
   isLoggedIn() {

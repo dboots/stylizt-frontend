@@ -33,10 +33,7 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
     data: {
-      navItems: [
-        { name: 'Contact', url: '/contact', scroll: false },
-        { name: 'Login' }
-      ]
+      navItems: defaultNav
     }
   },
   {

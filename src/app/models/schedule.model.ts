@@ -10,4 +10,5 @@ export class Schedule {
   owner: string;
   service: Service;
   datePicker: any;
+  approved: boolean;
 }

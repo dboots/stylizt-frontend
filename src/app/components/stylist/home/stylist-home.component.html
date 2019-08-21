@@ -48,11 +48,15 @@
           <div class="col-2"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button></div>
         </div>
       </div>
-      <div class="col-3 schedule m-2 p-2" *ngFor="let event of schedule">
+      <div class="col-12  text-center" *ngIf="!schedule.length"><h3>You have no bookings</h3></div>
+      <div class="col-3 schedule m-2 p-2" [ngClass]="{ pending: !event.approved }" *ngFor="let event of schedule; let index = index">
         <strong>Service:</strong> {{ event.description }}<br />
         <strong>Time:</strong> {{ event.startDateTime | date: 'hh:mm' }} -
         {{ event.endDateTime | date: 'hh:mm' }}<br />
-        <strong>Client:</strong>{{ event.name }}, {{ event.phone }}
+        <strong>Client:</strong>{{ event.name }}, {{ event.phone }}<br />
+        <strong>Status: </strong>{{ event.approved ? 'Approved' : 'Pending' }}
+        <button (click)="confirm(event, index, true)" *ngIf="!event.approved" class="common-gw-button">Confirm Booking</button>
+        <button (click)="confirm(event, index, false)" *ngIf="event.approved" class="common-gw-button">Cancel Booking</button>
       </div>
     </div>
   </div>

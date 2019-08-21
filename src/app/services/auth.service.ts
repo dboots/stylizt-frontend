@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../models/user.model';
 import { HttpHeaders } from '@angular/common/http';
 

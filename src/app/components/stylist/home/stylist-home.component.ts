@@ -35,6 +35,13 @@ export class StylistHomePageComponent implements OnInit {
     this.loadSchedule();
   }
 
+  confirm(event: Schedule, index: number, approved: boolean) {
+    event.approved = approved;
+    this.scheduleService.update(event).subscribe((result) => {
+      this.schedule[index] = result['data'];
+    });
+  }
+
   prevScheduleDay() {
     let date = new Date(this.scheduleDay);
     date.setHours(date.getHours() - 24);

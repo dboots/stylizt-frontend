@@ -32,6 +32,11 @@ ol {
 }
 
 .schedule {
+  
+  &.pending {
+    border: 1px solid red;
+  }
+
   border: 1px solid $green;
   border-radius: 10px;
 }

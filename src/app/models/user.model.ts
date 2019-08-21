@@ -20,4 +20,5 @@ export class User {
   facebook: string = '';
   twitter: string = '';
   instagram: string = '';
+  requireApproval: boolean = false;
 }

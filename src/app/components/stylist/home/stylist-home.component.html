@@ -1,15 +1,36 @@
 <div class="stylist-home justify-content-md-center py-4 row">
   <div class="container">
-    <div class="row justify-content-center d-flex">
-      <div class="flex-column col-md-3 col-11 m-1">
-        <div [routerLink]="['/stylist/profile']" class="d-flex flex-column justify-content-center feature text-center">
-          <h4>Update Profile</h4>
-          <p class="py-2 px-4">
-            Let clients know where to find you and what you do.
-          </p>
-          <i class="fa fa-user-circle fa-4x"></i>
-        </div>
+    <div class="row justify-content-center d-flex p-2">
+      <div [routerLink]="['/stylist/profile']"
+        class="d-flex justify-content-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
+        <h4>Update Profile</h4>
+        <p class="py-2 px-4">
+          Let clients know where to find you and what you do.
+        </p>
+        <i class="fa fa-user-circle fa-4x"></i>
+      </div>
 
+      <div [routerLink]="['/stylist/services']"
+        class="d-flex justify-content-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
+        <h4>Manage Services</h4>
+        <p class="py-2 px-4">
+          Add, update your available services &amp; pricing.
+        </p>
+        <i class="fa fa-bell fa-4x"></i>
+      </div>
+
+      <div [routerLink]="['/stylist/clients']"
+        class="d-flex justify-content-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
+        <h4>Client Book</h4>
+        <p class="py-2 px-4">
+          Add new clients or add photos &amp; notes to existing clients.
+        </p>
+        <i class="fa fa-users fa-4x"></i>
+      </div>
+    </div>
+
+    <div class="row justify-content-center d-flex p-2">
+      <div class="col-lg-3 col-11 m-1 p-d">
         <div *ngIf="!user.image || !user.zip || !user.url">
           <p class="title">Complete Profile</p>
           <ol>
@@ -19,23 +40,8 @@
           </ol>
         </div>
       </div>
-      <div [routerLink]="['/stylist/services']"
-        class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
-        <h4>Manage Services</h4>
-        <p class="py-2 px-4">
-          Add, update your available services &amp; pricing.
-        </p>
-        <i class="fa fa-bell fa-4x"></i>
-      </div>
-
-      <div [routerLink]="['/stylist/clients']"
-        class="d-flex justify-content-center flex-column feature col-md-3 col-11 m-1 p-2 text-center">
-        <h4>Client Book</h4>
-        <p class="py-2 px-4">
-          Add new clients or add photos &amp; notes to existing clients.
-        </p>
-        <i class="fa fa-users fa-4x"></i>
-      </div>
+      <div class="col-lg-3 col-11 m-1 p-d"></div>
+      <div class="col-lg-3 col-11 m-1 p-d"></div>
     </div>
 
     <div class="row">
@@ -43,20 +49,26 @@
         <div class="row">
           <div class="col-2"><button class="common-gw-button" (click)="prevScheduleDay()">Previous Day</button></div>
           <div class="col-8">
-            <div class="text-center text-bold text-uppercase">Appointments for {{ scheduleDay | date: 'EE LLL dd' }}</div>
+            <div class="text-center text-bold text-uppercase">Appointments for {{ scheduleDay | date: 'EE LLL dd' }}
+            </div>
           </div>
           <div class="col-2"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button></div>
         </div>
       </div>
-      <div class="col-12  text-center" *ngIf="!schedule.length"><h3>You have no bookings</h3></div>
-      <div class="col-3 schedule m-2 p-2" [ngClass]="{ pending: !event.approved }" *ngFor="let event of schedule; let index = index">
+      <div class="col-12  text-center" *ngIf="!schedule.length">
+        <h3>You have no bookings</h3>
+      </div>
+      <div class="col-3 schedule m-2 p-2" [ngClass]="{ pending: !event.approved }"
+        *ngFor="let event of schedule; let index = index">
         <strong>Service:</strong> {{ event.description }}<br />
         <strong>Time:</strong> {{ event.startDateTime | date: 'hh:mm' }} -
         {{ event.endDateTime | date: 'hh:mm' }}<br />
         <strong>Client:</strong>{{ event.name }}, {{ event.phone }}<br />
         <strong>Status: </strong>{{ event.approved ? 'Approved' : 'Pending' }}
-        <button (click)="confirm(event, index, true)" *ngIf="!event.approved" class="common-gw-button">Confirm Booking</button>
-        <button (click)="confirm(event, index, false)" *ngIf="event.approved" class="common-gw-button">Cancel Booking</button>
+        <button (click)="confirm(event, index, true)" *ngIf="!event.approved" class="common-gw-button">Confirm
+          Booking</button>
+        <button (click)="confirm(event, index, false)" *ngIf="event.approved" class="common-gw-button">Cancel
+          Booking</button>
       </div>
     </div>
   </div>

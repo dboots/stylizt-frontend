@@ -60,7 +60,7 @@ export class ContactPageComponent implements OnInit {
       name: formControls.name.value,
       email: formControls.email.value,
       message: formControls.message.value
-    }
+    };
 
     this.contactService.contact(body).subscribe((result) => {
       this.formSubmitted = true;

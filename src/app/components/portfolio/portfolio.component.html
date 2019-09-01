@@ -1,7 +1,7 @@
 <div class="portfolio-component content" *ngIf="stylist">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-12">
         <div class="component-title text-uppercase">{{ stylist.name }}</div>
       </div>
     </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="row" *ngIf="services && services.length">
-      <div class="col-md-6 pt-4">
+      <div class="col-12 pt-4">
         <div class="component-title text-uppercase">SERVICES</div>
       </div>
     </div>
@@ -57,20 +57,20 @@
         <h3>Book Service:</h3>
       </div>
 
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-6 mb-2">
         <div class="header">1. Select a Service</div>
         <select (change)="clearBooking()" [(ngModel)]="selectedSchedule.service">
           <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
         </select>
       </div>
 
-      <div class="col-lg-3" [ngClass]="{'disabled': !selectedSchedule.service }">
+      <div class="col-lg-3 col-6 mb-2" [ngClass]="{'disabled': !selectedSchedule.service }">
         <div class="header">2. Select a Date/Time</div>
 
         <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
         <div class="input-group">
-          <ngb-datepicker [(ngModel)]="selectedSchedule.datePicker" #datePicker class="dropdown-menu show p-0" [class.d-none]="!showDatePicker"
-            (select)="selectServiceDate($event)" [minDate]="minDate">
+          <ngb-datepicker [(ngModel)]="selectedSchedule.datePicker" #datePicker class="dropdown-menu show p-0"
+            [class.d-none]="!showDatePicker" (select)="selectServiceDate($event)" [minDate]="minDate">
           </ngb-datepicker>
         </div>
         <select (change)="selectServiceTime($event)" *ngIf="selectedSchedule.datePicker">
@@ -82,17 +82,17 @@
       </div>
 
 
-      <div class="col-lg-3" [ngClass]="{'disabled': !selectedSchedule.endDateTime}">
+      <div class="col-lg-3 col-6 mb-2" [ngClass]="{'disabled': !selectedSchedule.endDateTime}">
         <div class="header">3. Enter Your Contact Details</div>
         <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name">
         <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone">
       </div>
 
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-6 mb-2">
         <button
           [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
           class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
-          {{message}}
+        {{message}}
       </div>
     </div>
     <div class="row">
@@ -145,7 +145,7 @@
 
 <div class="container">
   <div class="row pt-4">
-    <div class="col-md-6">
+    <div class="col-12">
       <div class="component-title text-uppercase">CONTACT </div>
     </div>
   </div>
@@ -155,17 +155,7 @@
 
 <div class="container">
   <div class="row mb-4">
-    <div class="col-6 pt-4">
-      <div *ngIf="stylist && mapUrl">
-        <div *ngIf="stylist.zip" class="w-100">
-          <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
-            marginwidth="0">
-            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
-          </iframe>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-12">
       <div class="my-2">
         <h3>Send Me a Message!</h3>
         <div class="py-1">
@@ -177,6 +167,16 @@
         <div class="py-1"><textarea class="form-control"></textarea></div>
       </div>
       <button class="common-gw-button">Send</button>
+    </div>
+    <div class="col-lg-6 col-12 pt-4">
+      <div *ngIf="stylist && mapUrl">
+        <div *ngIf="stylist.zip" class="w-100">
+          <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
+            marginwidth="0">
+            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+          </iframe>
+        </div>
+      </div>
     </div>
   </div>
 

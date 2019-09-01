@@ -1,11 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Router, ActivatedRoute, NavigationEnd, ActivationEnd } from '@angular/router';
+import { Router, ActivationEnd } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import { filter } from 'rxjs/operators';
-
+import 'rxjs/add/observable/throw';
 
 @Component({
   selector: 'app-nav',
@@ -28,8 +28,7 @@ export class NavComponent implements OnInit {
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private router: Router
   ) {
     this.newInnerWidth = window.innerWidth;
   }
@@ -41,7 +40,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.pipe(
-      filter(event => event instanceof ActivationEnd && event.snapshot.children.length == 0))
+      filter((event) => event instanceof ActivationEnd && event.snapshot.children.length === 0))
       .subscribe((event: ActivationEnd) => {
         this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
         this.navItems = event.snapshot.data.navItems;

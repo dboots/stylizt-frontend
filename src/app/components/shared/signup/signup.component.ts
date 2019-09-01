@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import { Component, Input, NgZone } from '@angular/core';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import {
   Router,
   ActivatedRoute,
-  RouterStateSnapshot,
   Params
 } from '@angular/router';
 import {

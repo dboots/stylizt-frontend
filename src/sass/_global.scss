@@ -21,6 +21,10 @@ a.link {
   color: $green;
 }
 
+.color-grey {
+  color: $gray;
+}
+
 .blur {
   filter: blur(6px);
 }
@@ -102,6 +106,23 @@ textarea {
   font-size: 1.3rem;
 }
 
+.content-fix {
+  margin-top: 76px;
+  min-height: 800px;
+}
+
+.bg-container {
+  .bg {
+    background-size: cover;
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+
+.content-title {
+  font-size: 116px;
+}
+
 .component-title {
   font-size: 52px;
   letter-spacing: 0.8px;
@@ -147,6 +168,10 @@ textarea {
   padding: 5px;
   position: absolute;
   top: 55px;
+}
+
+.bold {
+  font-family: 'proxima_novabold';
 }
 
 .flex-fill {

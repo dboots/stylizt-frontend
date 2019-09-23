@@ -59,6 +59,7 @@ import { PostComponent } from './components/shared/post/post.component';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 import { BrandagsInputComponent } from './components/shared/brand-tags-input/brand-tags-input.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
+import { LandingOnboardingComponent } from './components/landing/onboarding/onboarding.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
     TermsPageComponent,
     PrivacyPageComponent,
     LandingPageComponent,
+    LandingOnboardingComponent,
     LandingVideoPageComponent
   ],
   imports: [

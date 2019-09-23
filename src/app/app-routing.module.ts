@@ -16,6 +16,7 @@ import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
 import { HomePageComponent } from './components/home/home.component';
+import { LandingOnboardingComponent } from './components/landing/onboarding/onboarding.component';
 
 let defaultNav = [
   { name: 'Contact', url: '/contact', scroll: false },
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'stylists-near-me/:state',
     component: LandingPageComponent,
+    data: { navItems: landingNav }
+  },
+  {
+    path: 'landing',
+    component: LandingOnboardingComponent,
     data: { navItems: landingNav }
   },
   {

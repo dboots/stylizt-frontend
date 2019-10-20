@@ -11,12 +11,11 @@ import { PasswordPageComponent } from './components/password/password.component'
 import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { TermsPageComponent } from './components/terms/terms.component';
 import { LandingPageComponent } from './components/landing/landing.component';
-import { LandingVideoPageComponent } from './components/landing/video.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
 import { HomePageComponent } from './components/home/home.component';
-import { LandingOnboardingComponent } from './components/landing/onboarding/onboarding.component';
+import { LayoutDefaultComponent } from './layouts/default/default.component';
 
 let defaultNav = [
   { name: 'Contact', url: '/contact', scroll: false },
@@ -32,96 +31,83 @@ let landingNav = [
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent,
+    component: LayoutDefaultComponent,
+    children: [{
+      path: '',
+      component: HomePageComponent
+    }, {
+      path: 'stylists-near-me/:state',
+      component: LandingPageComponent,
+      data: { navItems: landingNav }
+    }, {
+      path: 'stylist',
+      component: StylistPageComponent,
+      children: [{
+        path: 'home',
+        component: StylistHomePageComponent,
+        canActivate: [AuthGuard]
+      }, {
+        path: 'services',
+        component: StylistServicesPageComponent,
+        canActivate: [AuthGuard]
+      }, {
+        path: 'profile',
+        component: StylistProfilePageComponent,
+        canActivate: [AuthGuard]
+      }, {
+        path: 'clients/:id',
+        component: StylistClientsDetailPageComponent,
+        canActivate: [AuthGuard]
+      }, {
+        path: 'clients',
+        component: StylistClientsPageComponent,
+        canActivate: [AuthGuard]
+      }],
+      data: {
+        navItems: [
+          { name: 'Features', url: '#features', scroll: true },
+          { name: 'Sign Up', url: '#signup', scroll: true },
+          { name: 'Contact', url: '/contact', scroll: false },
+          { name: 'Login' }
+        ]
+      }
+    }, {
+      path: 'portfolio/:id',
+      component: StylistPortfolioPageComponent,
+      data: {
+        navItems: [
+          { name: 'About', url: '#about', scroll: true },
+          { name: 'Portfolio', url: '#portfolio', scroll: true },
+          { name: 'Login' }
+        ]
+      }
+    }, {
+      path: 'owner',
+      component: OwnerPageComponent,
+      data: { navItems: defaultNav }
+    },
+    {
+      path: 'contact',
+      component: ContactPageComponent,
+      data: { navItems: defaultNav }
+    },
+    {
+      path: 'privacy-policy',
+      component: PrivacyPageComponent,
+      data: { navItems: defaultNav }
+    },
+    {
+      path: 'terms',
+      component: TermsPageComponent,
+      data: { navItems: defaultNav }
+    },
+    {
+      path: 'password/:token',
+      component: PasswordPageComponent
+    }],
     data: {
       navItems: defaultNav
     }
-  },
-  {
-    path: 'stylists-near-me/:state',
-    component: LandingPageComponent,
-    data: { navItems: landingNav }
-  },
-  {
-    path: 'landing',
-    component: LandingOnboardingComponent,
-    data: { navItems: landingNav }
-  },
-  {
-    path: 'video-chat',
-    component: LandingVideoPageComponent
-  },
-  {
-    path: 'stylist',
-    component: StylistPageComponent,
-    data: {
-      navItems: [
-        { name: 'Features', url: '#features', scroll: true },
-        { name: 'Sign Up', url: '#signup', scroll: true },
-        { name: 'Contact', url: '/contact', scroll: false },
-        { name: 'Login' }
-      ]
-    }
-  },
-  {
-    path: 'stylist/home',
-    component: StylistHomePageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'stylist/services',
-    component: StylistServicesPageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'stylist/profile',
-    component: StylistProfilePageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'stylist/clients/:id',
-    component: StylistClientsDetailPageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'stylist/clients',
-    component: StylistClientsPageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'portfolio/:id',
-    component: StylistPortfolioPageComponent,
-    data: {
-      navItems: [
-        { name: 'About', url: '#about', scroll: true },
-        { name: 'Portfolio', url: '#portfolio', scroll: true },
-        { name: 'Login' }
-      ]
-    }
-  },
-  {
-    path: 'owner',
-    component: OwnerPageComponent,
-    data: { navItems: defaultNav }
-  },
-  {
-    path: 'contact',
-    component: ContactPageComponent,
-    data: { navItems: defaultNav }
-  },
-  {
-    path: 'privacy-policy',
-    component: PrivacyPageComponent,
-    data: { navItems: defaultNav }
-  },
-  {
-    path: 'terms',
-    component: TermsPageComponent,
-    data: { navItems: defaultNav }
-  },
-  {
-    path: 'password/:token',
-    component: PasswordPageComponent
   }
 ];
 
@@ -129,4 +115,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss']
 })
-export class LandingOnboardingComponent {
-}
+export class LandingOnboardingComponent { }

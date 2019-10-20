@@ -2,11 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-import { SlickModule } from 'ngx-slick';
+import { SlickModule, SlickComponent } from 'ngx-slick';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -40,8 +39,7 @@ import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { LandingPageComponent } from './components/landing/landing.component';
 import { LandingVideoPageComponent } from './components/landing/video.component';
 import { SignupComponent } from './components/shared/signup/signup.component';
-import { NavComponent } from './components/shared/nav/nav.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+
 import { CloudinaryUploaderComponent } from './components/shared/cloudinary-uploader/cloudinary-uploader.component';
 import { ConfirmDialogComponent } from './components/shared/dialogs/confirm-dialog/confirm-dialog.component';
 
@@ -59,7 +57,11 @@ import { PostComponent } from './components/shared/post/post.component';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 import { BrandagsInputComponent } from './components/shared/brand-tags-input/brand-tags-input.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
-import { LandingOnboardingComponent } from './components/landing/onboarding/onboarding.component';
+import { LayoutModule } from './layouts/layout.module';
+import { OnboardingModule } from './components/landing/onboarding/onboarding.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -73,8 +75,6 @@ import { LandingOnboardingComponent } from './components/landing/onboarding/onbo
     StylistServicesPageComponent,
     StylistPortfolioPageComponent,
     OwnerPageComponent,
-    NavComponent,
-    FooterComponent,
     CloudinaryUploaderComponent,
     HomePageComponent,
     ContactPageComponent,
@@ -89,23 +89,25 @@ import { LandingOnboardingComponent } from './components/landing/onboarding/onbo
     TermsPageComponent,
     PrivacyPageComponent,
     LandingPageComponent,
-    LandingOnboardingComponent,
     LandingVideoPageComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     AppRoutingModule,
+    LayoutModule,
+    OnboardingModule,
     HttpClientModule,
-    FormsModule,
     CloudinaryModule.forRoot({ Cloudinary }, {
       cloud_name: 'your_cloud_name'
     } as CloudinaryConfiguration),
     FileUploadModule,
-    ReactiveFormsModule,
     AngularMultiSelectModule,
     ScrollToModule.forRoot(),
-    SlickModule.forRoot()
+    SlickModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,
@@ -123,6 +125,7 @@ import { LandingOnboardingComponent } from './components/landing/onboarding/onbo
     ScheduleService,
     JwtHelperService
   ],
+  exports: [CommonModule, SlickModule, ScrollToModule],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })

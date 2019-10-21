@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { SlickModule } from 'ngx-slick';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SlickModule } from 'ngx-slick';
     FooterComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     CommonModule,
     FormsModule,

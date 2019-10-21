@@ -17,11 +17,6 @@ import { StylistServicesPageComponent } from './components/stylist/services/serv
 import { HomePageComponent } from './components/home/home.component';
 import { LayoutDefaultComponent } from './layouts/default/default.component';
 
-let defaultNav = [
-  { name: 'Contact', url: '/contact', scroll: false },
-  { name: 'Login' }
-];
-
 let landingNav = [
   { name: 'Blog', url: '#featured-looks', scroll: true },
   { name: 'Contact', url: '/contact', scroll: false },
@@ -41,8 +36,10 @@ const routes: Routes = [
       data: { navItems: landingNav }
     }, {
       path: 'stylist',
-      component: StylistPageComponent,
       children: [{
+        path: '',
+        component: StylistPageComponent
+      }, {
         path: 'home',
         component: StylistHomePageComponent,
         canActivate: [AuthGuard]
@@ -83,31 +80,21 @@ const routes: Routes = [
       }
     }, {
       path: 'owner',
-      component: OwnerPageComponent,
-      data: { navItems: defaultNav }
-    },
-    {
+      component: OwnerPageComponent
+    }, {
       path: 'contact',
-      component: ContactPageComponent,
-      data: { navItems: defaultNav }
+      component: ContactPageComponent
     },
     {
       path: 'privacy-policy',
-      component: PrivacyPageComponent,
-      data: { navItems: defaultNav }
-    },
-    {
+      component: PrivacyPageComponent
+    }, {
       path: 'terms',
-      component: TermsPageComponent,
-      data: { navItems: defaultNav }
-    },
-    {
+      component: TermsPageComponent
+    }, {
       path: 'password/:token',
       component: PasswordPageComponent
-    }],
-    data: {
-      navItems: defaultNav
-    }
+    }]
   }
 ];
 

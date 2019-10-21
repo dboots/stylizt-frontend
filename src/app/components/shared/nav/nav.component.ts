@@ -1,11 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Router, ActivationEnd } from '@angular/router';
+import { Router, ActivationEnd, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
 import { filter } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-nav',
@@ -18,17 +20,19 @@ export class NavComponent implements OnInit {
   message: string = '';
   forgotPassword: boolean = false;
   isFullNav: boolean = true;
-  navItems: any[];
-
+  navItems = [
+    { name: 'Contact', url: '/contact', scroll: false },
+    { name: 'Login' }
+  ];
   loggedInUser: User;
-
   newInnerWidth;
 
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.newInnerWidth = window.innerWidth;
   }
@@ -39,11 +43,24 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter((event) => event instanceof ActivationEnd && event.snapshot.children.length === 0))
-      .subscribe((event: ActivationEnd) => {
+    console.log('ngOnInit');
+    this.router.events.filter((event) => event instanceof NavigationEnd)
+      .map(() => {
+        let child = this.activatedRoute.firstChild;
+        console.log('here', child);
+        while (child) {
+          if (child.firstChild) {
+            child = child.firstChild;
+          } else if (child.snapshot.data && child.snapshot.data['navItems']) {
+            return child.snapshot.data['navItems'];
+          } else {
+            return null;
+          }
+        }
+        return null;
+      }).subscribe((data: any) => {
+        this.navItems = (data) ? data : this.navItems;
         this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
-        this.navItems = event.snapshot.data.navItems;
       });
   }
 

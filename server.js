@@ -5,14 +5,14 @@ const path = require('path');
 
 const port = process.env.PORT || 8080;
 const prerender_token = process.env.PRERENDER_TOKEN || '';
-const production = (process.env.PRODUCTION === 'true');
+const production = (process.env.PRODUCTION === 'TRUE' || process.env.PRODUCTION);
 
 const forceSSL = function() {
   return function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
       return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
-
+    
     next();
   }
 }

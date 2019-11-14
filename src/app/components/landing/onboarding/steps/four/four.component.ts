@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-step-four',
   templateUrl: './four.component.html',
-  styleUrls: ['./four.component.scss'],
-  viewProviders: [{
-    provide: ControlContainer, useExisting: FormGroupDirective
-  }],
+  styleUrls: ['./four.component.scss']
 })
 export class StepFourComponent implements OnInit {
-  constructor(private fgd: FormGroupDirective) {}
+  constructor() {}
   ngOnInit() { }
 }

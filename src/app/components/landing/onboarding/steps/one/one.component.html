@@ -1,26 +1,52 @@
-<div class="row justify-content-md-center mb-4">
-  <div class="col-8">
-    <h3 class="steps-title">Let's organize your business the right way</h3>
-    <p>Start by setting up your account</p>
+<form [formGroup]="formGroup">
+  <div class="row justify-content-md-center mb-4">
+    <div class="col-8">
+      <h3 class="steps-title">Let's organize your business the right way</h3>
+      <p>Start by setting up your account</p>
+    </div>
   </div>
-</div>
-<div class="row text-left justify-content-md-center mb-4">
-  <div class="col-4">
-    <label>First & Last Name</label>
-    <input type="text" formControlName="name" />
+  <div class="row text-left justify-content-md-center mb-4">
+    <div class="col-4">
+      <label>First & Last Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="col-4">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email" />
+      <ng-container *ngIf="formGroup.controls['email'].errors">
+        <span class="form-error" *ngIf="formGroup.controls['email'].errors['email']">Please enter a valid email</span>
+      </ng-container>
+    </div>
   </div>
-  <div class="col-4">
-    <label>Email</label>
-    <input type="text" formControlName="email" />
+  <div class="row text-left justify-content-md-center mb-4">
+    <div class="col-4">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" />
+      <ng-container *ngIf="formGroup.controls['password'].errors">
+        <span class="form-error" *ngIf="formGroup.controls['password'].errors['minlength']">Please enter at least 8
+          characters</span>
+      </ng-container>
+    </div>
+    <div class="col-4">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword" />
+      <ng-container *ngIf="formGroup.controls['confirmPassword'].errors">
+        <span class="form-error" *ngIf="formGroup.controls['confirmPassword'].errors['minlength']">Please enter at least
+          8 characters</span>
+      </ng-container>
+    </div>
   </div>
-</div>
-<div class="row text-left justify-content-md-center">
-  <div class="col-4">
-    <label>Password</label>
-    <input type="password" formControlName="password" />
+  <div class="justify-content-md-center row">
+    <div class="col-8">
+      <ng-container *ngIf="formGroup.errors">
+        <div class="form-error text-center" *ngIf="formGroup.errors['passwordsNotSame']">Passwords do not match</div>
+      </ng-container>
+      By clicking "Create Account", you agree to Hair to Chair's <a href="#">Terms & conditions</a>
+      & <a href="#">Privacy Policy</a>.
+
+      <ng-container *ngIf="formGroup.errors">
+        <div class="form-error" *ngIf="formGroup.errors['error']">{{formGroup.errors['error']}}</div>
+      </ng-container>
+    </div>
   </div>
-  <div class="col-4">
-    <label>Confirm Password</label>
-    <input type="password" formControlName="confirmPassword" />
-  </div>
-</div>
+</form>

@@ -11,37 +11,35 @@
   <div class="row">
     <div class="form-body col-12 text-center pt-4">
       <mat-progress-bar mode="determinate" [value]="progressBarValue"></mat-progress-bar>
-      <form [formGroup]="formGroup">
-        <mat-horizontal-stepper (selectionChange)="selectionChange($event)" #stepper>
-          <ng-template matStepperIcon="edit">
-            <mat-icon>check</mat-icon>
-          </ng-template>
-          <mat-step>
-            <ng-template matStepLabel>About</ng-template>
-            <app-step-one></app-step-one>
-          </mat-step>
-          
-          <mat-step>
-            <ng-template matStepLabel>Address</ng-template>
-            <app-step-two></app-step-two>
-          </mat-step>
-          
-          <mat-step>
-            <ng-template matStepLabel>Services</ng-template>
-            <app-step-three></app-step-three>
-          </mat-step>  
-          
-          <mat-step>
-            <ng-template matStepLabel>Brands</ng-template>
-            <app-step-four></app-step-four>
-          </mat-step>
-          
-          <mat-step>
-            <ng-template matStepLabel>Clients</ng-template>
-            <app-step-five></app-step-five>
-          </mat-step>  
-        </mat-horizontal-stepper>
-      </form>
+      <mat-horizontal-stepper (selectionChange)="selectionChange($event)" #stepper>
+        <ng-template matStepperIcon="edit">
+          <mat-icon>check</mat-icon>
+        </ng-template>
+        <mat-step>
+          <ng-template matStepLabel>Create Account</ng-template>
+          <app-step-one (formStatusChange)="formStatusChange($event)"></app-step-one>
+        </mat-step>
+        
+        <mat-step>
+          <ng-template matStepLabel>Location</ng-template>
+          <app-step-two></app-step-two>
+        </mat-step>
+        
+        <mat-step>
+          <ng-template matStepLabel>Services</ng-template>
+          <app-step-three></app-step-three>
+        </mat-step>  
+        
+        <mat-step>
+          <ng-template matStepLabel>Brands</ng-template>
+          <app-step-four></app-step-four>
+        </mat-step>
+        
+        <mat-step>
+          <ng-template matStepLabel>Clients</ng-template>
+          <app-step-five></app-step-five>
+        </mat-step>  
+      </mat-horizontal-stepper>
     </div>
   </div>
   <div class="row">
@@ -52,7 +50,8 @@
       <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
     </div>
     <div class="col-4 text-right">
-      <button mat-button (click)="next()" class="next-button">{{nextLabel}}</button>
+      <button type="button" *ngIf="currentStep > 2" class="btn btn-link">Skip</button>
+      <button mat-button [attr.disabled]="isFormValid ? null : 'disabled'" (click)="next()" class="next-button">{{nextLabel}}</button>
     </div>
   </div>
 </div>

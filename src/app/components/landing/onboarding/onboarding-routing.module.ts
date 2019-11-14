@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutOnboardingComponent } from '../../../layouts/onboarding/onboarding.component';
 import { LandingOnboardingComponent } from './onboarding.component';
 import { LandingStepsComponent } from './steps/steps.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -17,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forChild(routes)],
   exports: [RouterModule]
 })

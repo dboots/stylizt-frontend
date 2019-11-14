@@ -6,7 +6,8 @@ import { User, Post } from '../../models';
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html'
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.scss']
 })
 export class LandingPageComponent implements OnInit {
   params = null;

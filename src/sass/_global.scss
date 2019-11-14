@@ -34,10 +34,14 @@ textarea {
   height: 250px;
 }
 
-.form-control {
-  &.ng-invalid {
+input[type="text"], input[type="password"] {
+  &.ng-touched.ng-invalid {
     border: 1px solid red;
   }
+}
+
+input[type="checkbox"].ng-touched.ng-invalid {
+  outline: 2px solid red;
 }
 
 .blur-overlay {
@@ -128,8 +132,7 @@ textarea {
   opacity: 0.5;
   border-radius: 4px;
   background-color: #5ab7bb;
-  color: #FFFFFF;
-  
+  color: #FFFFFF;  
 }
 
 label {

@@ -8,9 +8,11 @@ import { StepTwoComponent } from './two/two.component';
 import { StepThreeComponent } from './three/three.component';
 import { StepFourComponent } from './four/four.component';
 import { StepFiveComponent } from './five/five.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],

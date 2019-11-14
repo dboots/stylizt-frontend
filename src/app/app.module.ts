@@ -22,7 +22,8 @@ import {
   LocationService,
   PostService,
   ContactService,
-  ScheduleService
+  ScheduleService,
+  StepService
 } from './services';
 
 import { StylistPageComponent } from './components/stylist/stylist.component';
@@ -123,7 +124,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContactService,
     ServicesService,
     ScheduleService,
-    JwtHelperService
+    JwtHelperService,
+    StepService
   ],
   exports: [CommonModule, SlickModule, ScrollToModule],
   entryComponents: [ConfirmDialogComponent],

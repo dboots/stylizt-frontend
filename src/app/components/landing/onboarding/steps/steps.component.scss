@@ -38,6 +38,10 @@ button {
   color: #FFFFFF;
 }
 
+.next-button:disabled {
+  background-color: #DEDEDE;
+}
+
 .status {
   font-size: 24px;
   font-weight: 600;
@@ -47,7 +51,7 @@ button {
   letter-spacing: normal;
   text-align: center;
   color: #6c1f45;
-
+  
   .filled {
     font-size: 16px;
   }

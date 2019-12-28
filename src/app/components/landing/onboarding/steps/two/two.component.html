@@ -6,17 +6,20 @@
     </div>
   </div>
   <div class="row text-left justify-content-md-center mb-4">
+    <div class="col-2">
+      <label>Zip</label>
+      <input (change)="updateLocation($event)" type="text" formControlName="zip" />
+    </div>
     <div class="col-3">
       <label>City</label>
-      <input type="text" formControlName="city" />
+      <input [attr.disabled]="(loading) ? 'disabled' : null" type="text" formControlName="city" />
     </div>
     <div class="col-3">
       <label>State</label>
-      <input type="text" formControlName="state" />
+      <input [attr.disabled]="(loading) ? 'disabled' : null" type="text" formControlName="state" />
     </div>
-    <div class="col-2">
-      <label>Zip</label>
-      <input type="password" formControlName="zip" />
+    <div class="col-12" *ngIf="loading">
+      Retrieving location..
     </div>
   </div>
   <div class="row text-left justify-content-md-center">

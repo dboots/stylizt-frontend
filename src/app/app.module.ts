@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-import { SlickModule, SlickComponent } from 'ngx-slick';
+import { SlickModule } from 'ngx-slick';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -40,29 +40,20 @@ import { PrivacyPageComponent } from './components/privacy/privacy.component';
 import { LandingPageComponent } from './components/landing/landing.component';
 import { LandingVideoPageComponent } from './components/landing/video.component';
 import { SignupComponent } from './components/shared/signup/signup.component';
-
-import { CloudinaryUploaderComponent } from './components/shared/cloudinary-uploader/cloudinary-uploader.component';
 import { ConfirmDialogComponent } from './components/shared/dialogs/confirm-dialog/confirm-dialog.component';
-
-import {
-  CloudinaryModule,
-  CloudinaryConfiguration
-} from '@cloudinary/angular-5.x';
-import { Cloudinary } from 'cloudinary-core';
-import { FileUploadModule } from 'ng2-file-upload';
 import { NoteCardComponent } from './components/shared/note-card/note-card.component';
 import { TalentTagsInputComponent } from './components/shared/talent-tags-input/talent-tags-input.component';
 import { CustomDropdownComponent } from './components/shared/custom-dropdown/custom-dropdown.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { PostComponent } from './components/shared/post/post.component';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
-import { BrandagsInputComponent } from './components/shared/brand-tags-input/brand-tags-input.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
 import { LayoutModule } from './layouts/layout.module';
 import { OnboardingModule } from './components/landing/onboarding/onboarding.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -76,14 +67,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StylistServicesPageComponent,
     StylistPortfolioPageComponent,
     OwnerPageComponent,
-    CloudinaryUploaderComponent,
     HomePageComponent,
     ContactPageComponent,
     PasswordPageComponent,
     ConfirmDialogComponent,
     NoteCardComponent,
     TalentTagsInputComponent,
-    BrandagsInputComponent,
     CustomDropdownComponent,
     LoadingComponent,
     PostComponent,
@@ -101,14 +90,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LayoutModule,
     OnboardingModule,
     HttpClientModule,
-    CloudinaryModule.forRoot({ Cloudinary }, {
-      cloud_name: 'your_cloud_name'
-    } as CloudinaryConfiguration),
-    FileUploadModule,
     AngularMultiSelectModule,
     ScrollToModule.forRoot(),
     SlickModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     UserService,
@@ -127,7 +113,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     JwtHelperService,
     StepService
   ],
-  exports: [CommonModule, SlickModule, ScrollToModule],
+  exports: [CommonModule, SlickModule, ScrollToModule, SharedModule],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })

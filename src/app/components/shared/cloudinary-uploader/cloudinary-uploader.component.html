@@ -1,11 +1,14 @@
 <div class="col-12">
   <div class="row cloudinary-uploader-component p-2">
-    <div class="col-7 status">
+    <div *ngIf="showStatus" class="col-7 status">
       <div *ngIf="loadingProgress > 0">{{currentFile}}/{{fileCount}} images uploaded. {{loadingProgress}}%</div>
       <div *ngIf="currentFile > 0">{{currentFile}} images uploaded.</div>
     </div>
+  </div>
+  <div class="row">
     <div class="col-5 text-right">
-      <button (click)="fileInput.click()" class="common-gw-button">{{ buttonName }}</button>
+      <button (click)="fileInput.click()" class="button-updated">{{ buttonName }}</button>
+      <div *ngIf="loadingProgress > 0">{{loadingProgress}}%</div>
     </div>
     <span class="upload">
       <input (change)="onFileChange($event)" type="file" [attr.multiple]="(allowMultiple) ? true : null" #fileInput

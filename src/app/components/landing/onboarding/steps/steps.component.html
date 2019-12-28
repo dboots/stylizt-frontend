@@ -8,50 +8,61 @@
       <img src="assets/img/logo_updated.png" />
     </div>
   </div>
-  <div class="row">
+  <div class="row content-row">
     <div class="form-body col-12 text-center pt-4">
       <mat-progress-bar mode="determinate" [value]="progressBarValue"></mat-progress-bar>
-      <mat-horizontal-stepper (selectionChange)="selectionChange($event)" #stepper>
-        <ng-template matStepperIcon="edit">
-          <mat-icon>check</mat-icon>
+      <mat-horizontal-stepper [linear]="true" (selectionChange)="selectionChange($event)" #stepper>
+        <ng-template matStepperIcon="edit" let-index="index">
+          {{index+1}}
+        </ng-template>
+
+        <ng-template matStepperIcon="edit" let-index="index">
+          {{index+1}}
+        </ng-template>
+
+        <ng-template matStepperIcon="number" let-index="index">
+          {{index+1}}
         </ng-template>
         <mat-step>
           <ng-template matStepLabel>Create Account</ng-template>
           <app-step-one (formStatusChange)="formStatusChange($event)"></app-step-one>
         </mat-step>
-        
+
         <mat-step>
           <ng-template matStepLabel>Location</ng-template>
-          <app-step-two></app-step-two>
+          <app-step-two (formStatusChange)="formStatusChange($event)"></app-step-two>
         </mat-step>
-        
+
         <mat-step>
           <ng-template matStepLabel>Services</ng-template>
           <app-step-three></app-step-three>
-        </mat-step>  
-        
+        </mat-step>
+
         <mat-step>
           <ng-template matStepLabel>Brands</ng-template>
           <app-step-four></app-step-four>
         </mat-step>
-        
+
         <mat-step>
           <ng-template matStepLabel>Clients</ng-template>
           <app-step-five></app-step-five>
-        </mat-step>  
+        </mat-step>
       </mat-horizontal-stepper>
     </div>
   </div>
-  <div class="row">
-    <div class="col-4">
-      <button mat-button (click)="prev()" class="prev-button" *ngIf="currentStep > 1">Back</button>
-    </div>
-    <div class="col-4 d-flex justify-content-center">
-      <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
-    </div>
-    <div class="col-4 text-right">
-      <button type="button" *ngIf="currentStep > 2" class="btn btn-link">Skip</button>
-      <button mat-button [attr.disabled]="isFormValid ? null : 'disabled'" (click)="next()" class="next-button">{{nextLabel}}</button>
+  <div class="fixed-bottom bg-white" style="border-top: 1px solid green">
+    <div class="container">
+      <div class="row py-4">
+        <div class="col-4">
+          <button mat-button (click)="prev()" class="prev-button" *ngIf="currentStep > 1">Back</button>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+          <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
+        </div>
+        <div class="col-4 text-right">
+          <button mat-button [attr.disabled]="!isFormValid ? 'disabled' : null" (click)="next()" class="next-button">{{nextLabel}}</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

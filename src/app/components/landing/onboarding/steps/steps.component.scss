@@ -8,6 +8,10 @@
   }
 }
 
+.content-row {
+  margin: 0 0 100px 0;
+}
+
 mat-horizontal-stepper {
   background: transparent;
   font-family: 'proxima_novaregular';
@@ -15,10 +19,6 @@ mat-horizontal-stepper {
 
 button {
   cursor: pointer;
-}
-
-.form-body {
-  min-height: 600px;
 }
 
 .prev-button {
@@ -55,4 +55,11 @@ button {
   .filled {
     font-size: 16px;
   }
+}
+
+.mat-step-icon-not-touched::after,
+.mat-step-icon-content::after {
+content: 'add_circle' !important; /* name of the material icon */
+font-family: 'Material Icons' !important;
+font-feature-settings: 'liga' 1;
 }

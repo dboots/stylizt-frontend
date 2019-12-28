@@ -9,12 +9,15 @@ import { StepThreeComponent } from './three/three.component';
 import { StepFourComponent } from './four/four.component';
 import { StepFiveComponent } from './five/five.component';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../../components/shared/shared.module';
+import { CloudinaryUploaderComponent } from '../../../../components/shared/cloudinary-uploader/cloudinary-uploader.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -25,7 +28,8 @@ import { CommonModule } from '@angular/common';
     StepTwoComponent,
     StepThreeComponent,
     StepFourComponent,
-    StepFiveComponent
+    StepFiveComponent,
+    CloudinaryUploaderComponent
   ],
   declarations: [
     StepOneComponent,

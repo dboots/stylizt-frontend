@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { BrandService } from '../../../services';
 import { Brand } from '../../../models/brand.model';
 
@@ -7,7 +7,7 @@ import { Brand } from '../../../models/brand.model';
   templateUrl: './brand-tags-input.component.html',
   styleUrls: ['./brand-tags-input.component.scss']
 })
-export class BrandagsInputComponent implements OnInit {
+export class BrandTagsInputComponent implements OnInit, OnChanges {
   itemList: Brand[]; // TODO: PARAM (type)
   @Input() items: Brand[] = []; // TODO: PARAM (type)
   @Input() selectedItems: Brand[] = []; // TODO: PARAM (type)
@@ -18,8 +18,8 @@ export class BrandagsInputComponent implements OnInit {
 
   async ngOnInit() {
     this.settings = {
-      text: 'SELECT BRANDS...',
-      classes: 'myclass custom-class',
+      text: 'Search for brand...',
+      classes: 'brand-tags-input',
       primaryKey: '_id',
       labelKey: 'brand', // TODO: PARAM
       enableSearchFilter: true,
@@ -42,6 +42,10 @@ export class BrandagsInputComponent implements OnInit {
     }
   }
 
+  ngOnChanges(changes) {
+    console.log(changes);
+  }
+
   onItemSelect(item: any) {
     this.items.push(item._id);
   }
@@ -50,20 +54,10 @@ export class BrandagsInputComponent implements OnInit {
     const idx = getBrandIndex(item as Brand, this.items);
     this.items.splice(idx, 1);
   }
-
-  onSearch(evt: any) {
-    // console.log(evt.target.value);
-    // this.http.get('https://restcountries.eu/rest/v2/name/'+evt.target.value+'?fulltext=true')
-    //     .subscribe((res) => {
-    //         console.log(res);
-    //         this.itemList = res;
-    //     }, (error) => {
-    //     });
-  }
 }
 
 function getBrandIndex(needle: Brand, haystack: Brand[]): number {
   return haystack.findIndex((t: Brand) => {
-    return t._id === needle._id;
+    return t.brand === needle.brand;
   });
 }

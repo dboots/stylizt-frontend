@@ -163,7 +163,7 @@ export class StylistProfilePageComponent implements OnInit {
 
   update() {
     let body = this.formGroup.value as User;
-    this.userService.update(this.authService.token, body).subscribe(
+    this.userService.update(body).subscribe(
       (result: any) => {
         this.authService.token = result.token;
         this.status = 'Profile updated!';

@@ -6,7 +6,10 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   signup(body: User) {
     return this.http.post(environment.rootApiUrl + '/signup', body, AuthService.httpOptions());
@@ -33,7 +36,8 @@ export class UserService {
     return this.http.post(`${environment.rootApiUrl}/user/subscribe`, body, AuthService.httpOptions(token));
   }
 
-  update(token: string, body: User) {
+  update(body: User) {
+    let token = this.authService.token;
     body.url = (body.url) ? body.url.toLowerCase().replace(' ', '').trim() : null;
     return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }

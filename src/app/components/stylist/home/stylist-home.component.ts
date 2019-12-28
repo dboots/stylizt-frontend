@@ -21,7 +21,6 @@ export class StylistHomePageComponent implements OnInit {
   }
 
   loadSchedule() {
-    console.log('getting schedule for', this.scheduleDay.getMonth(), this.scheduleDay.getDay(), this.scheduleDay.getFullYear());
     this.scheduleService.read(this.user._id, this.scheduleDay.getTime()).subscribe((result) => {
       this.schedule = result['data'];
     });

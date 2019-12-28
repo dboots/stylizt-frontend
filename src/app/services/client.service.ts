@@ -35,4 +35,8 @@ export class ClientService {
   detail(id: string) {
     return this.http.get(environment.rootApiUrl + '/stylist/clients/' + id, AuthService.httpOptions(this.authService.token));
   }
+
+  delete(id: string) {
+    return this.http.delete(environment.rootApiUrl + '/stylist/clients/' + id, AuthService.httpOptions(this.authService.token));
+  }
 }

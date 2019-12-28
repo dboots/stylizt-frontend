@@ -9,8 +9,17 @@ $fa-font-path: '../node_modules/font-awesome/fonts';
 @import './sass/variables';
 @import './sass/fonts';
 
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+@import './sass/theme.scss';
+
 body {
   @include body-font;
+  @include angular-material-theme($theme);
   font-family: "proxima_novalight", Arial, sans-serif;
   letter-spacing: normal;
   line-height: normal;

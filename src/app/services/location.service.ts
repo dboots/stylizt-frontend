@@ -42,7 +42,7 @@ export class LocationService {
   geocode(zip) {
     let params = {
       key: 'AIzaSyDCLogJN6E_s1uNso1FDiB90qGFHVOjd9w',
-      components: 'postal_code:' + zip
+      components: 'country:US|postal_code:' + zip
     };
 
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json', { params });
@@ -64,6 +64,7 @@ export class LocationService {
           currentLocation.fullAddress = res.results[0].formatted_address;
           if (res.results[0] && res.results[0].address_components) {
             res.results[0].address_components.forEach((x) => {
+              console.log(x.types[0])
               if (x.types[0] === 'street_number') {
                 currentLocation.streetNumber = x.long_name;
               } else if (x.types[0] === 'route') {
@@ -82,6 +83,8 @@ export class LocationService {
           if (currentLocation) {
             this.currentLocation = currentLocation;
           }
+
+          console.log(currentLocation);
         },
         (err) => {
           console.log(err);

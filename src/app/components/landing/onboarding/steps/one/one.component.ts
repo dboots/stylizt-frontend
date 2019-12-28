@@ -1,8 +1,7 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StepService, UserService } from '../../../../../services';
+import { StepService, UserService, AuthService } from '../../../../../services';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-step-one',
@@ -13,6 +12,7 @@ export class StepOneComponent {
   @Output() formStatusChange: Subject<any> = new Subject();
 
   formGroup: FormGroup = new FormGroup({
+    _id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -21,14 +21,14 @@ export class StepOneComponent {
 
   constructor(
     private stepService: StepService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {
     let nextAction = () => {
       return new Promise((resolve, reject) => {
-        this.userService.signup(this.formGroup.value).subscribe((user) => {
-          resolve(user);
+        this.userService.signup(this.formGroup.value).subscribe((result) => {
+          resolve(result);
         }, (error) => {
-          console.log(error);
           this.formGroup.setErrors({ error: 'An error has occurred' });
           reject(error);
         });

@@ -166,17 +166,14 @@ export class StylistPortfolioPageComponent implements OnInit {
         let checkTimeString = this.getTimeString(checkDateTime, false);
 
         if (active) {
-          console.log('checking time', timeString);
           for (let i = 1; i < service.time; i++) {
             checkTimeString = this.getTimeString(checkDateTime, false);
             let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
             active = (checkTimeIndex === -1);
 
-            console.log('-- ', checkTimeString, i, checkDateTime.getMinutes() + (30 * i));
             checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
 
             if (!active) {
-              console.log('slot n/a', timeString);
               break;
             }
           }

@@ -1,9 +1,5 @@
 <div class="brand-tags-input-component">
-  <angular2-multiselect
-    [data]="itemList"
-    [(ngModel)]="selectedItems"
-    [settings]="settings"
-    (onSelect)="onItemSelect($event)"
-    (onDeSelect)="onItemDeSelect($event)"
-  ></angular2-multiselect>
+  <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" [settings]="settings"
+    (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+  </angular2-multiselect>
 </div>

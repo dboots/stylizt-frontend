@@ -1,20 +1,16 @@
 @import '../../../../sass/variables';
 
-.cloudinary-uploader-component {
-  border: 1px solid $green;
+.status {
+  font-size: 14px;
+}
 
-  .status {
-    font-size: 14px;
-  }
-
-  span.upload {
-    visibility: hidden;
-    position: absolute;
-    overflow: hidden;
-    width: 0;
-    height: 0;
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
+span.upload {
+  visibility: hidden;
+  position: absolute;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }

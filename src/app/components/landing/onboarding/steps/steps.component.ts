@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
-import { StepService } from '../../../../services/step.service';
+import { MatStepper, MatHorizontalStepper, MatStep } from '@angular/material/stepper';
+import { AuthService, StepService } from '../../../../services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-steps',
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss']
 })
-export class LandingStepsComponent implements OnInit {
+export class LandingStepsComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
   steps: number = 5;
   currentStep: number = 1;
@@ -17,7 +18,11 @@ export class LandingStepsComponent implements OnInit {
   filledProgressValue: number;
   isFormValid: boolean = false;
 
-  constructor(private stepService: StepService) { }
+  constructor(
+    private stepService: StepService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.updateProgressBarValue();
@@ -26,15 +31,34 @@ export class LandingStepsComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.stepper.selectedIndex = 2;
+  }
+
   formStatusChange($event) {
     this.isFormValid = ($event === 'VALID');
   }
 
   next() {
     this.stepService.nextActions[(this.currentStep - 1)]().then((result) => {
-      console.log('result', result);
-      this.stepper.next();
-      this.updateProgressBarValue();
+      this.stepper.selected.completed = true;
+
+      if (this.currentStep < 2) {
+        this.isFormValid = false;
+      } else {
+        this.stepper.steps.map((step) => step.completed = true);
+      }
+
+      if (result && result['token']) {
+        this.authService.token = result['token'];
+      }
+
+      if (this.currentStep === this.steps) {
+        this.router.navigate(['stylist/home']);
+      } else {
+        this.stepper.next();
+        this.updateProgressBarValue();
+      }
     }, (error) => {
       console.log('error encountered', error);
     });
@@ -52,9 +76,12 @@ export class LandingStepsComponent implements OnInit {
   }
 
   selectionChange($event: StepperSelectionEvent) {
+    let currentStep = $event.previouslySelectedStep;
     let delta = ($event.selectedIndex - $event.previouslySelectedIndex);
-    this.currentStep += delta;
-    this.updateProgressBarValue();
+    if (currentStep.completed) {
+      this.currentStep += delta;
+      this.updateProgressBarValue();
+    }
   }
 
   getNextLabel() {

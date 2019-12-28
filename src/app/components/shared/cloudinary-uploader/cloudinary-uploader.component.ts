@@ -11,6 +11,7 @@ export class CloudinaryUploaderComponent implements OnInit {
   @Input() folderName: string;
   @Input() buttonName: string;
   @Input() allowMultiple: boolean = false;
+  @Input() showStatus: boolean = true;
   @Output() completeItem: EventEmitter<any> = new EventEmitter();
   @Output() afterAddingFile: EventEmitter<any> = new EventEmitter();
   @Output() whenAddingFileFailed: EventEmitter<any> = new EventEmitter();

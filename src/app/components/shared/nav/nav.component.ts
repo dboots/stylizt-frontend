@@ -43,11 +43,9 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.router.events.filter((event) => event instanceof NavigationEnd)
       .map(() => {
         let child = this.activatedRoute.firstChild;
-        console.log('here', child);
         while (child) {
           if (child.firstChild) {
             child = child.firstChild;

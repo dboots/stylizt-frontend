@@ -59,7 +59,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     private portfolioService: PortfolioService,
     private notesService: NotesService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -146,7 +146,6 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     uploaded.push(image);
     this.noteForm.controls['images'].setValue(uploaded);
-    console.log(this.noteForm.value);
   }
 
   portfolioImageUploadCompleted(response) {

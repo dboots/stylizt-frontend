@@ -38,7 +38,6 @@ export class StepTwoComponent implements OnInit {
       return new Promise((resolve, reject) => {
 
         let user = this.authService.decode();
-        let token = this.authService.token;
         this.formGroup.patchValue(user);
         this.userService.update(this.formGroup.value).subscribe((result) => {
           this.authService.token = result['token'];

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService, StepService } from '../../../../../services';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Client } from 'src/app/models';
+import { Client } from '../../../../../models/client.model';
 
 @Component({
   selector: 'app-step-five',

@@ -38,7 +38,6 @@ export class UserService {
 
   update(body: User) {
     let token = this.authService.token;
-    body.url = (body.url) ? body.url.toLowerCase().replace(' ', '').trim() : null;
     return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }
 

@@ -54,6 +54,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({
+  dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
+});
 
 @NgModule({
   declarations: [

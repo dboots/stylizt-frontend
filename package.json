@@ -28,6 +28,7 @@
     "@cloudinary/angular-5.x": "^1.0.1",
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
+    "@sentry/browser": "^5.10.2",
     "angular2-multiselect-dropdown": "^2.9.0",
     "cloudinary-core": "^2.7.4",
     "core-js": "^2.4.1",

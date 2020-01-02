@@ -5,6 +5,7 @@ import { LandingOnboardingComponent } from './onboarding.component';
 import { LandingStepsComponent } from './steps/steps.component';
 import { CommonModule } from '@angular/common';
 import { LandingVariationAComponent } from './variationA/variationA.component';
+import { LandingVariationBComponent } from './variationB/variationB.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,14 @@ const routes: Routes = [
       { path: 'steps', component: LandingStepsComponent },
     ]
   }, {
-    path: 'how-to-get-more-clients-2019',
+    path: 'get-more-clients-fast',
     component: LandingVariationAComponent
+  }, {
+    path: 'stylist-appointment-book-app',
+    component: LandingVariationBComponent
+  }, {
+    path: 'appointment-scheduling-app',
+    component: LandingVariationBComponent
   }
 ];
 

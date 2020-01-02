@@ -4,10 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-landing-variationb',
-  templateUrl: './variationA.component.html',
-  styleUrls: ['./variationA.component.scss']
+  templateUrl: './variationB.component.html',
+  styleUrls: ['./variationB.component.scss']
 })
-export class LandingVariationAComponent {
+export class LandingVariationBComponent {
   constructor(
     private meta: Meta,
     private route: ActivatedRoute,

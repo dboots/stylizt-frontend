@@ -6,6 +6,7 @@ import { LandingStepsComponent } from './steps/steps.component';
 import { StepsModule } from './steps/steps.module';
 import { SharedModule } from '../../shared/shared.module';
 import { LandingVariationAComponent } from './variationA/variationA.component';
+import { LandingVariationBComponent } from './variationB/variationB.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LandingVariationAComponent } from './variationA/variationA.component';
   declarations: [
     LandingOnboardingComponent,
     LandingStepsComponent,
-    LandingVariationAComponent
+    LandingVariationAComponent,
+    LandingVariationBComponent
   ],
   exports: [
     SharedModule

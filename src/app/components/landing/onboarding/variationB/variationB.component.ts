@@ -24,5 +24,10 @@ export class LandingVariationBComponent {
       name: 'description',
       content: 'Hair to Chair offers affordable and easy to use appointment books and scheduling apps for independant stylists'
     });
+
+    this.meta.updateTag({
+      property: 'og:image',
+      content: 'https://res.cloudinary.com/drcvakvh3/image/upload/v1537535195/assets/header-home.jpg'
+    });
   }
 }

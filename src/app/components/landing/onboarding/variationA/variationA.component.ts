@@ -19,10 +19,10 @@ export class LandingVariationAComponent {
   }
 
   updateMeta() {
-    this.title.setTitle('Affordable & Simple Stylist Appointment Book App');
+    this.title.setTitle('The Tools You Need Build Your Stylist Clientele FAST');
     this.meta.updateTag({
       name: 'description',
-      content: 'Hair to Chair offers affordable and easy to use appointment books and scheduling apps for independant stylists'
+      content: 'Hair to Chair puts you in front of clients that are interested in your talents FAST.'
     });
   }
 }

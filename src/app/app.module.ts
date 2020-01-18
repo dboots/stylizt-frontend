@@ -55,6 +55,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import * as Sentry from '@sentry/browser';
+import { ApplyPageComponent } from './components/apply/apply.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -84,7 +85,8 @@ Sentry.init({
     TermsPageComponent,
     PrivacyPageComponent,
     LandingPageComponent,
-    LandingVideoPageComponent
+    LandingVideoPageComponent,
+    ApplyPageComponent
   ],
   imports: [
     BrowserModule,

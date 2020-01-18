@@ -16,6 +16,7 @@ import { StylistHomePageComponent } from './components/stylist/home/stylist-home
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
 import { HomePageComponent } from './components/home/home.component';
 import { LayoutDefaultComponent } from './layouts/default/default.component';
+import { ApplyPageComponent } from './components/apply/apply.component';
 
 let landingNav = [
   { name: 'Blog', url: '#featured-looks', scroll: true },
@@ -94,6 +95,9 @@ const routes: Routes = [
     }, {
       path: 'password/:token',
       component: PasswordPageComponent
+    }, {
+      path: 'feedback',
+      component: ApplyPageComponent
     }]
   }
 ];

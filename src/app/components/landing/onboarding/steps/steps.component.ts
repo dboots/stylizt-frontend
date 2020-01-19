@@ -16,7 +16,7 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   nextLabel: string;
   progressBarValue: number;
   filledProgressValue: number;
-  isFormValid: boolean = false;
+  isFormValid: boolean = true;
 
   constructor(
     private stepService: StepService,
@@ -36,6 +36,7 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   }
 
   formStatusChange($event) {
+    console.log('formStatusChange', $event);
     this.isFormValid = ($event === 'VALID');
   }
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { User, Brand } from '../../../../../models';
 import { AuthService, BrandService, StepService } from '../../../../../services';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-step-four',
@@ -9,6 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./four.component.scss']
 })
 export class StepFourComponent implements OnInit {
+  @Output() formStatusChange: Subject<any> = new Subject();
+
   user: User;
   formGroup: FormGroup = new FormGroup({
     name: new FormControl('')
@@ -29,6 +32,7 @@ export class StepFourComponent implements OnInit {
     };
 
     this.stepService.nextActions.push(nextAction);
+    this.formStatusChange.next('VALID');
   }
 
   addBrand() {

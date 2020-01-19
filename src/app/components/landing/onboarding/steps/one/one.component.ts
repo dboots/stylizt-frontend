@@ -1,6 +1,6 @@
-import { Component, Output, OnInit, OnChanges } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StepService, UserService, AuthService } from '../../../../../services';
+import { StepService, UserService } from '../../../../../services';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   templateUrl: './one.component.html',
   styleUrls: ['./one.component.scss'],
 })
-export class StepOneComponent {
+export class StepOneComponent implements OnInit {
   @Output() formStatusChange: Subject<any> = new Subject();
 
   formGroup: FormGroup = new FormGroup({
@@ -21,8 +21,7 @@ export class StepOneComponent {
 
   constructor(
     private stepService: StepService,
-    private userService: UserService,
-    private authService: AuthService
+    private userService: UserService
   ) {
     let nextAction = () => {
       return new Promise((resolve, reject) => {
@@ -40,6 +39,10 @@ export class StepOneComponent {
     this.formGroup.statusChanges.subscribe((status) => {
       this.formStatusChange.next(status);
     });
+  }
+
+  ngOnInit() {
+    this.formStatusChange.next('INVALID');
   }
 
   checkPassword(group: FormGroup) {

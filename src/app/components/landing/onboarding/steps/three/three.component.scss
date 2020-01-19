@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+select::-ms-expand { display: block; }
+select {
+  -webkit-appearance: menulist !important;
+  appearance: menulist !important;
+}
+
 .add-button {
   width: 100%;
   height: 50px;

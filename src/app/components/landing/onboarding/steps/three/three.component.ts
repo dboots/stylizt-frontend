@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService, ServicesService, StepService } from '../../../../../services';
+import { Component, OnInit, Output } from '@angular/core';
+import { ServicesService, StepService } from '../../../../../services';
 import { User } from '../../../../../models/user.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Service } from '../../../../../models';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-step-three',
@@ -10,6 +11,8 @@ import { Service } from '../../../../../models';
   styleUrls: ['./three.component.scss']
 })
 export class StepThreeComponent implements OnInit {
+  @Output() formStatusChange: Subject<any> = new Subject();
+
   user: User;
   services: Service[] = [];
   times: string[] = ['30 mins', '1 hour', '1.5 hours', '2 hours', '2.5 hours', '3 hours'];

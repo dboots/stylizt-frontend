@@ -23,12 +23,12 @@
         <ng-template matStepperIcon="number" let-index="index">
           {{index+1}}
         </ng-template>
-        <mat-step [completed]="false">
+        <mat-step [completed]="true">
           <ng-template matStepLabel>Create Account</ng-template>
           <app-step-one (formStatusChange)="formStatusChange($event)"></app-step-one>
         </mat-step>
 
-        <mat-step [completed]="false">
+        <mat-step [completed]="true">
           <ng-template matStepLabel>Location</ng-template>
           <app-step-two (formStatusChange)="formStatusChange($event)"></app-step-two>
         </mat-step>
@@ -40,7 +40,7 @@
 
         <mat-step>
           <ng-template matStepLabel>Brands</ng-template>
-          <app-step-four></app-step-four>
+          <app-step-four (formStatusChange)="formStatusChange($event)"></app-step-four>
         </mat-step>
 
         <mat-step>
@@ -54,9 +54,9 @@
     <div class="container">
       <div class="row py-4">
         <div class="col-md-4 col-6">
-          <button mat-button (click)="prev()" class="prev-button" >Back</button>
+          <button mat-button (click)="prev()" class="prev-button" *ngIf="currentStep > 1" >Back</button>
         </div>
-        <div class="col-4 d-none .d-sm-flex justify-content-center">
+        <div class="col-4 d-none d-md-flex justify-content-center">
           <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
         </div>
         <div class="col-md-4 col-6 text-right">

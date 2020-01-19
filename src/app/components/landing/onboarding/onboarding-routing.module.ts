@@ -6,6 +6,7 @@ import { LandingStepsComponent } from './steps/steps.component';
 import { CommonModule } from '@angular/common';
 import { LandingVariationAComponent } from './variationA/variationA.component';
 import { LandingVariationBComponent } from './variationB/variationB.component';
+import { LandingPromotionComponent } from './landing-promotion/landing-promotion.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
       { path: 'steps', component: LandingStepsComponent },
     ]
   }, {
-    path: 'get-more-clients-fast',
+    path: 'how-build-clientele-fast',
     component: LandingVariationAComponent
   }, {
     path: 'stylist-appointment-book-app',
@@ -24,6 +25,15 @@ const routes: Routes = [
   }, {
     path: 'appointment-scheduling-app',
     component: LandingVariationBComponent
+  }, {
+    path: 'independant-stylist-scheduling-app',
+    component: LandingVariationBComponent
+  }, {
+    path: 'hair-stylist-promotion-marketing',
+    component: LandingVariationBComponent
+  }, {
+    path: 'how-to-get-new-clients-fast',
+    component: LandingPromotionComponent
   }
 ];
 

@@ -1,0 +1,105 @@
+.landing-container {
+  background: #333333;
+}
+
+.landing-image {
+  height: 45px;
+  width: auto;
+  margin: 2% 0;
+}
+
+.bg { 
+  width: 120%;
+  height: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-position: center;
+  z-index: 0;
+}
+
+.jumbo-content {
+  position: relative;
+  padding: 5%;
+  border-right: 3px solid #9ed5be;
+  border-bottom: 3px solid #9ed5be;
+}
+
+.jumbo-content-title {
+  position: relative;
+  z-index: 1;
+}
+
+.jumbo-content-bg {
+  background: #000000;
+  opacity: .8;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.jumbotron {
+  overflow: hidden;
+  position: relative;
+}
+
+.trend-report {
+  background: rgba(0, 0, 0, .8);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.trend-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.feature {
+  border-radius: 5px;
+  box-shadow: 5px 5px #9ed5be;
+}
+
+.bg-variation {
+  background-image: url('https://res.cloudinary.com/drcvakvh3/image/upload/v1537535195/assets/header-home.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: .8;
+  background-color: #333333;
+}
+
+.text-onboarding {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h3 {
+  background: black;
+  border-right: 2px solid #9ed5be;
+  border-bottom: 2px solid #9ed5be;
+  padding: 2%;
+}
+
+.h2c-button {
+  border: 0;
+  background: #9ed5be;
+  padding: 2%;
+  
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+li {
+  margin: 2% 0;
+}
+
+.additional-features {
+  font-size: 18px;
+}

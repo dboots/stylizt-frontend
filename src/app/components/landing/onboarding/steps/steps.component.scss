@@ -1,10 +1,9 @@
-
 .bg-container {
   background: #ffffff;
   color: #000000;
-  
+
   .bg-steps {
-    background-image: url('assets/img/bg-steps.png');
+    background-image: url("assets/img/bg-steps.png");
   }
 }
 
@@ -14,7 +13,7 @@
 
 mat-horizontal-stepper {
   background: transparent;
-  font-family: 'proxima_novaregular';
+  font-family: "proxima_novaregular";
 }
 
 button {
@@ -22,24 +21,21 @@ button {
 }
 
 .prev-button {
-  width: 170px;
-  height: 50px;
+  padding: 8%;
+  opacity: 0.8;
   border-radius: 4px;
   border: solid 2px #6c1f45;
   background-color: rgba(158, 158, 158, 0);
-}
+  color: #6c1f45;
+  width: 100%;
 
-.next-button {
-  width: 170px;
-  height: 50px;
-  opacity: 0.5;
-  border-radius: 4px;
-  background-color: #5ab7bb;
-  color: #FFFFFF;
-}
+  &:disabled {
+    background-color: #dedede;
+  }
 
-.next-button:disabled {
-  background-color: #DEDEDE;
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
 }
 
 .status {
@@ -51,7 +47,7 @@ button {
   letter-spacing: normal;
   text-align: center;
   color: #6c1f45;
-  
+
   .filled {
     font-size: 16px;
   }
@@ -59,7 +55,7 @@ button {
 
 .mat-step-icon-not-touched::after,
 .mat-step-icon-content::after {
-content: 'add_circle' !important; /* name of the material icon */
-font-family: 'Material Icons' !important;
-font-feature-settings: 'liga' 1;
+  content: "add_circle" !important; /* name of the material icon */
+  font-family: "Material Icons" !important;
+  font-feature-settings: "liga" 1;
 }

@@ -1,20 +1,20 @@
 <form [formGroup]="formGroup">
   <div class="row justify-content-md-center mb-4">
-    <div class="col-8">
+    <div class="col-md-8 col-12">
       <h3 class="steps-title">Finish setting up your profile</h3>
       <p>Where do you currently service your clients?</p>
     </div>
   </div>
   <div class="row text-left justify-content-md-center mb-4">
-    <div class="col-2">
+    <div class="col-md-2 col-12">
       <label>Zip</label>
       <input (change)="updateLocation($event)" type="text" formControlName="zip" />
     </div>
-    <div class="col-3">
+    <div class="col-md-3 col-12">
       <label>City</label>
       <input [attr.disabled]="(loading) ? 'disabled' : null" type="text" formControlName="city" />
     </div>
-    <div class="col-3">
+    <div class="col-md-3 col-12">
       <label>State</label>
       <input [attr.disabled]="(loading) ? 'disabled' : null" type="text" formControlName="state" />
     </div>

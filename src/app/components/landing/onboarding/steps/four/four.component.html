@@ -1,22 +1,22 @@
 <div class="row justify-content-md-center mb-4">
-  <div class="col-8">
+  <div class="col-md-8 col-12">
     <h3 class="steps-title">What brands do you work with?</h3>
     <p>Let your clients know what they can book with you.</p>
   </div>
 </div>
 <div class="row text-left justify-content-md-center mb-4">
-  <div class="col-8">
+  <div class="col-md-8 col-12">
     <span class="brand" *ngFor="let brand of brands">{{brand.brand}}</span>
   </div>
 </div>
 <div class="row text-left justify-content-md-center mb-4">
-  <div class="col-8">
+  <div class="col-md-8 col-12">
     <label>Brand</label>
     <input type="text" [(ngModel)]="brand" placeholder="Type a brand and hit Add Brand..." />
   </div>
 </div>
 <div class="row text-left justify-content-md-center">
-  <div class="col-8" (click)="addBrand()">
+  <div class="col-md-8 col-12" (click)="addBrand()">
     <span class="add-button">Add Brand</span>
   </div>
 </div>

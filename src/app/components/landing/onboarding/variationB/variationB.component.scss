@@ -54,16 +54,21 @@
 }
 
 .text-onboarding {
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.5;
+}
+
+h3 {
+  background: black;
+  border-right: 2px solid #9ed5be;
+  border-bottom: 2px solid #9ed5be;
+  padding: 2%;
 }
 
 .h2c-button {
   border: 0;
   background: #9ed5be;
   padding: 16px 0;
-  width: 430px;
-  
   font-size: 18px;
   font-weight: 600;
   font-style: normal;

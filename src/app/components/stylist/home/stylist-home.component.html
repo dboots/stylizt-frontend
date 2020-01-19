@@ -33,6 +33,7 @@
       </div>
     </div>
 
+    <!--
     <div class="row justify-content-center">
       <div class="col-8">chart</div>
       <div class="col-4">
@@ -46,16 +47,17 @@
         </div>
       </div>
     </div>
+  -->
 
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-center d-flex p-2 mb-4">
+      <div class="col-9">
         <div class="row">
-          <div class="col-2"><button class="common-gw-button" (click)="prevScheduleDay()">Previous Day</button></div>
-          <div class="col-8">
+          <div class="col-3"><button class="common-gw-button" (click)="prevScheduleDay()">Previous Day</button></div>
+          <div class="col-6">
             <div class="text-center text-bold text-uppercase">Appointments for {{ scheduleDay | date: 'EE LLL dd' }}
             </div>
           </div>
-          <div class="col-2"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button></div>
+          <div class="col-3 text-right"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button></div>
         </div>
       </div>
       <div class="col-12  text-center" *ngIf="!schedule.length">

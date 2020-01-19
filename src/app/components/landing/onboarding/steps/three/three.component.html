@@ -1,30 +1,31 @@
 <div class="row justify-content-md-center mb-4">
-  <div class="col-8">
+  <div class="col-md-8 col-12">
     <h3 class="steps-title">What services do you offer?</h3>
     <p>Let your clients know what they can book with you.</p>
   </div>
 </div>
-<div class="row text-left justify-content-md-center mb-2">
-  <div class="col-4">
+<div class="row text-left d-none d-md-block justify-content-md-center mb-2">
+  <div class="col-md-4 col-6">
     <label>Service</label>
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-3">
     <label>Price</label>
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-3">
     <label>Time</label>
   </div>
 </div>
 
 <div class="row text-left justify-content-md-center mb-4" *ngFor="let service of services">
-  <div class="col-4">
+  <div class="col-md-4 col-12 mb-0 mb-xs-4">
     <input type="text" class="service" [value]="service.name" />
   </div>
-  <div class="col-2 d-flex align-items-center">
-    <div class="mr-2">$</div><input type="text" [value]="service.price" />
+  <div class="col-md-2 col-6 d-flex align-items-center">
+    <div class="mr-2">$</div><input placeholder="Price" type="text" [value]="service.price" />
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-6">
     <select class="input">
+      <option value=''>Select Time</option>
       <ng-container *ngFor="let time of times; let i = index">
         <option [value]="i+1" [attr.selected]="service.time == (i+1) ? true : null">{{time}}</option>
       </ng-container>
@@ -34,13 +35,13 @@
 
 <form [formGroup]="formGroup">
   <div class="row text-left justify-content-md-center mb-4">
-    <div class="col-4">
+    <div class="col-md-4 col-12">
       <input type="text" class="service" formControlName="name" placeholder="Your service..." />
     </div>
-    <div class="col-2 d-flex align-items-center">
+    <div class="col-md-2 col-6 d-flex align-items-center">
       <div class="mr-2">$</div><input formControlName="price" type="text" />
     </div>
-    <div class="col-2">
+    <div class="col-md-2 col-6">
       <select formControlName="time" class="input">
         <ng-container *ngFor="let time of times; let i = index">
           <option [value]="i+1">{{time}}</option>
@@ -51,7 +52,7 @@
 </form>
 
 <div class="row text-left justify-content-md-center">
-  <div class="col-8" (click)="addService()">
+  <div class="col-md-8 col-12" (click)="addService()">
     <span class="add-button">Add Service</span>
   </div>
 </div>

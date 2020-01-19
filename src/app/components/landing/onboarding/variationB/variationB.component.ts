@@ -22,7 +22,7 @@ export class LandingVariationBComponent {
     this.title.setTitle('Affordable & Simple Stylist Appointment Book App');
     this.meta.updateTag({
       name: 'description',
-      content: 'Hair to Chair offers affordable and easy to use appointment books and scheduling apps for independant stylists'
+      content: 'Appointment book, scheduling, client management app for independant hair stylists, cosmetologist students, salon owners, and barbers.'
     });
 
     this.meta.updateTag({

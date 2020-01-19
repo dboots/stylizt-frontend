@@ -53,13 +53,13 @@
   <div class="fixed-bottom bg-white" style="border-top: 1px solid green">
     <div class="container">
       <div class="row py-4">
-        <div class="col-4">
-          <button mat-button (click)="prev()" class="prev-button" *ngIf="currentStep > 1">Back</button>
+        <div class="col-md-4 col-6">
+          <button mat-button (click)="prev()" class="prev-button" >Back</button>
         </div>
-        <div class="col-4 d-flex justify-content-center">
+        <div class="col-4 d-none .d-sm-flex justify-content-center">
           <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-md-4 col-6 text-right">
           <button mat-button [attr.disabled]="!isFormValid ? 'disabled' : null" (click)="next()" class="next-button">{{nextLabel}}</button>
         </div>
       </div>

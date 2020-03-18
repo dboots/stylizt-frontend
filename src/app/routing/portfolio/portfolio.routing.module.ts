@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { StylistPortfolioV2PageComponent } from '../../components/portfolio/v2/portfolio.component';
+import { StylistPortfolioPageComponent } from '../../components/portfolio/portfolio.component';
 
 const routes: Routes = [{
     path: 'portfolio/:id',
-    component: StylistPortfolioV2PageComponent,
+    component: StylistPortfolioPageComponent,
     data: {
       navItems: [
         { name: 'About', url: '#about', scroll: true },

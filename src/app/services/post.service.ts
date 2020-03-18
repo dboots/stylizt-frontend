@@ -1,23 +1,19 @@
 
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post } from '../models';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getBlogs() {
-    const url = 'https://blog.hairtochair.com/wp-json/wp/v2/posts?_embed&per_page=4';
-    return this.http.get<any[]>(url).pipe(map((res): Post[] => res.map((item): Post => new Post(
-      item.title.rendered,
-      item.excerpt.rendered,
-      new Date(item.date),
-      (item._embedded['wp:featuredmedia']) ? item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url : '',
-      item.link
-      ))
-      ));
-    }
+  browse(): Observable<any> {
+    return this.http.get<any>(`${environment.rootApiUrl}/blog/browse`);
   }
+
+  read(slug: string): Observable<any> {
+    return this.http.get<any>(`${environment.rootApiUrl}/blog/read?slug=${slug}`);
+  }
+}

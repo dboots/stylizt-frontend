@@ -1,49 +1,41 @@
-<!-- Masthead -->
-<header class="masthead text-white text-center" track-scroll>
-  <div class="overlay"></div>
-  <div class="hero-container">
-    <form [formGroup]="formGroup">
-      <div class="row">
-        <div class="title-content col-md-8 col-10 m-auto text-center">
-          <div class="text-uppercase">Find Your Next</div>
-          <div class="text-uppercase">
-            <span class="black-diamond-font">Great</span> Hair Day
-          </div>
-          <div class="row pt-4">
-            <div class="col-md-10 col-sm-12 d-flex m-auto">
-              <input type="text" class="form-control" placeholder="Search by talent, location, or inspiration"
-                formControlName="query" (input)="doSearch($event)" />
-              <button type="button" (click)="doSearch($event)" class="common-gw-button">Search</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</header>
-
-<div class="thumbnail-section">
+<div class="nav py-4">
   <div class="container">
-    <div class="row py-4">
-      <div class="col-md-6 mb-4" *ngFor="let result of results">
-        <div class="row">
-          <div class="col-md-5 text-center position-relative">
-            <a class="name text-uppercase color-green font-weight-bold"
-              href="/portfolio/{{(result.url) ? result.url : result._id}}"> <img class="img-fluid w-100"
-                [src]="result.image" /></a>
+    <div class="row align-items-center d-flex">
+      <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
+      <div class="col-9 text-right d-flex justify-content-end">
+        <span class="nav-link">Home</span>
+        <span class="nav-link">Contact</span>
+        <span class="nav-link button">Login</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron bg-variation">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
+        <div class="jumbo-card">
+          <h1 class="title mb-4">You create beautiful hairstyles.<br /><span class="highlight">Let us do the
+              rest.</span></h1>
+          <p class="subtitle">Hair To Chair is an effortless way for independent stylists to take their business online.
+          </p>
+          <div class="list-item">
+            <span class="list-item-number">1</span>
+            <div>Build your website using Hair To Chair (no tech expertise needed) and book new clients faster</div>
           </div>
-          <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase color-green font-weight-bold"
-              href="/portfolio/{{(result.url) ? result.url : result._id}}">{{result.name}}</a>
-            <p>{{ getStylistBio(result.bio) }}</p>
-            <p class="text-uppercase color-green font-weight-bold">
-              Specializing in:
-            </p>
-            <div class="flex-row talents">
-              <div class="talent" *ngFor="let talent of result.talents">{{talent.talent}}</div>
-            </div>
+
+          <div class="list-item">
+            <span class="list-item-number">2</span>
+            <div>Keep track of clients’ past hairstyles</div>
           </div>
+
+          <div class="list-item">
+            <span class="list-item-number">3</span>
+            <div>Reduce no-shows using our automated reminders</div>
+          </div>
+
+          <button class="button-v3">TRY IT NOW</button>
         </div>
       </div>
     </div>
@@ -51,26 +43,66 @@
 </div>
 
 <div class="container">
-  <div class="row my-5 justify-content-md-center">
-    <div class="col-md-6 action-card mb-4">
-      <!-- [ngStyle]="{'backgroundImage': 'url(' + 'http://via.placeholder.com/500x500' + ')'}" -->
-      <a routerLink="/stylist" class="image-content d-flex align-items-center justify-content-center text-white">
-        <span class="black-diamond-font mr-4">STYLIST</span> SIGN UP
-      </a>
-      <div class="detail-content mt-4">
-        <p>Woo potential clients with your talent portfolio! Keep them coming back to your chair with scheduling
-          reminders via email, text or H2C chat!</p>
-        <p><strong>COMING SOON</strong> - Let your clients know what's going on in your life! Keep clients updated on
-          where you're working next, open appointments, and more!</p>
+  <div class="row">
+    <div class="col-12">
+      <div class="header">Grow your client base without getting overwhelmed</div>
+    </div>
+  </div>
+  <div class="row home-section">
+    <div class="col-md-6 col-12">
+      <div class="black-diamond-font number">01</div>
+      <div class="subtitle">Grow your online presence</div>
+      <p class="copy">You don’t need to be a tech wiz to build a beautiful, customized website. Showcase your portfolio
+        & talents and connect to new clients.</p>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <img src="assets/img/home_01.png" />
+    </div>
+  </div>
+
+  <div class="row home-section">
+    <div class="col-md-6 col-12">
+      <img src="assets/img/home_02.png" />
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="black-diamond-font number">02</div>
+      <div class="subtitle">Manage client notes and relationships</div>
+      <p class="copy">Upload photos of your work to your private portfolio so you can keep track of and reference past
+        hairstyles.</p>
+    </div>
+  </div>
+
+  <div class="row home-section">
+    <div class="col-md-6 col-12">
+      <div class="black-diamond-font number">03</div>
+      <div class="subtitle">Book clients and reduce no-shows</div>
+      <p class="copy">Save time and reduce back and forth with clients by using your Hair To Chair website to book
+        sessions. Use our automated reminders to reduce no-shows.</p>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <img src="assets/img/home_03.png" />
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="subtitle">Our Blog</div>
       </div>
     </div>
-    <div class="col-md-6 action-card mb-4">
-      <a routerLink="/salon" class="image-content d-flex align-items-center justify-content-center text-white">
-        <span class="black-diamond-font mr-4">SALON</span> SIGN UP
-      </a>
-      <div class="detail-content mt-4">
-        <strong>COMING SOON!</strong> - Have empty chairs to fill? Get notified when talent relevant to your salon's
-        needs becomes available. Browse their portfolio. No more empty chairs!
+    <div class="row">
+      <div class="col-md-4 col-6 d-flex" *ngFor="let post of posts">
+        <div class="blog-item d-flex">
+          <div class="blog-image"><img [src]="post.feature_image" /></div>
+          <div class="blog-title">{{post.title}}</div>
+          <p class="blog-excerpt">{{post.excerpt}}</p>
+          <div class="read-more"><a [routerLink]="['/blog/post/' + post.slug]">Read More</a></div>
+        </div>
       </div>
     </div>
   </div>
+</div>

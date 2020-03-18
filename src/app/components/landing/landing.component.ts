@@ -33,10 +33,6 @@ export class LandingPageComponent implements OnInit {
     this.userService.read({ state: this.state }).subscribe((result: any) => {
       this.stylists = result.data;
     });
-
-    this.postService.getBlogs().subscribe((posts: Post[]) => {
-      this.posts = posts;
-    });
   }
 
   updateMeta() {

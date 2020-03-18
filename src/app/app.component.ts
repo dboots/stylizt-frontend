@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
     let production = environment.production;
     let url = window.location.origin.split('://')[1];
     let parts = url.split('.');
-    let subdomain = (parts.length == 3) ? parts[0] : null;
+    let subdomain = (parts.length === 3) ? parts[0] : null;
 
-    if (production && subdomain && subdomain != 'www') {
+    if (production && subdomain && subdomain !== 'www') {
       this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
     }
 

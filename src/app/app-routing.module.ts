@@ -14,7 +14,6 @@ import { LandingPageComponent } from './components/landing/landing.component';
 import { AuthGuardService as AuthGuard } from './services/route-guard.service';
 import { StylistHomePageComponent } from './components/stylist/home/stylist-home.component';
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
-import { HomePageComponent } from './components/home/home.component';
 import { LayoutDefaultComponent } from './layouts/default/default.component';
 import { ApplyPageComponent } from './components/apply/apply.component';
 
@@ -24,14 +23,10 @@ let landingNav = [
   { name: 'Login' }
 ];
 
-const routes: Routes = [
-  {
+const routes: Routes = [{
     path: '',
     component: LayoutDefaultComponent,
     children: [{
-      path: '',
-      component: HomePageComponent
-    }, {
       path: 'stylists-near-me/:state',
       component: LandingPageComponent,
       data: { navItems: landingNav }
@@ -70,7 +65,7 @@ const routes: Routes = [
         ]
       }
     }, {
-      path: 'portfolio/:id',
+      path: 'portfolio-legacy/:id',
       component: StylistPortfolioPageComponent,
       data: {
         navItems: [

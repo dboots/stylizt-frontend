@@ -3,19 +3,19 @@
  * Copyright 2013-2018 
  * Licensed under ISC (https://github.com/BlackrockDigital/stylizt-frontend/blob/master/LICENSE)
  */
-$fa-font-path: '../node_modules/font-awesome/fonts';
-@import '../node_modules/font-awesome/scss/font-awesome';
-@import './sass/mixins';
-@import './sass/variables';
-@import './sass/fonts';
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "./sass/mixins";
+@import "./sass/variables";
+@import "./sass/fonts";
 
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 // always include only once per project
 @include mat-core();
 
 // import our custom theme
-@import './sass/theme.scss';
+@import "./sass/theme.scss";
 
 body {
   @include body-font;
@@ -25,17 +25,30 @@ body {
   line-height: normal;
 }
 
+figcaption {
+  padding: 1% 0;
+  text-align: center;
+}
+
+.kg-card {
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'proxima_novabold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "proxima_novabold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .img-responsive {
-  width: 100%
+  width: 100%;
 }
 
 section {
@@ -49,7 +62,7 @@ section {
   }
 
   &.signup {
-    background: #DEDEDE;
+    background: #dedede;
   }
 }
 
@@ -68,5 +81,11 @@ section {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'proxima_novaregular'; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "proxima_novaregular";
+}

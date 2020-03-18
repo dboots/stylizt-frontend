@@ -56,6 +56,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import * as Sentry from '@sentry/browser';
 import { ApplyPageComponent } from './components/apply/apply.component';
+import { Version3Module } from './routing/v3/v3.module';
+import { BlogPostComponent } from './components/blog/post/post.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -86,13 +88,15 @@ Sentry.init({
     PrivacyPageComponent,
     LandingPageComponent,
     LandingVideoPageComponent,
-    ApplyPageComponent
+    ApplyPageComponent,
+    BlogPostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    Version3Module,
     AppRoutingModule,
     LayoutModule,
     OnboardingModule,

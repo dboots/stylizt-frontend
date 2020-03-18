@@ -23,6 +23,7 @@
             ],
             "styles": [
               "src/sass/landing-page.scss",
+              "src/sass/v3/index.scss",
               "src/styles.scss"
             ],
             "scripts": []

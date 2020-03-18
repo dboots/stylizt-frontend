@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services';
+import { UserService, PostService } from '../../services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../models';
 
@@ -12,8 +12,12 @@ export class HomePageComponent implements OnInit {
   formGroup: FormGroup;
   searchTimeoutId;
   results: User[] = [];
+  posts: any[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private postService: PostService
+  ) {
     this.formGroup = new FormGroup({
       query: new FormControl('', [])
     });
@@ -22,6 +26,11 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.userService.search('').subscribe((results) => {
       this.results = results['data'];
+    });
+
+    this.postService.browse().subscribe((results) => {
+      console.log(results);
+      this.posts = results['data'];
     });
   }
 

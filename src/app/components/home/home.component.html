@@ -1,41 +1,47 @@
-<div class="nav py-4">
-  <div class="container">
-    <div class="row align-items-center d-flex">
-      <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
-      <div class="col-9 text-right d-flex justify-content-end">
-        <span class="nav-link">Home</span>
-        <span class="nav-link">Contact</span>
-        <span class="nav-link button">Login</span>
+<div class="container container-nav">
+  <div class="nav py-4">
+    <div class="container">
+      <div class="row align-items-center d-flex">
+        <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
+        <div class="col-9 text-right d-flex justify-content-end">
+          <span class="nav-link">Home</span>
+          <span class="nav-link">Contact</span>
+          <span class="nav-link button">Login</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="jumbotron bg-variation">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
-        <div class="jumbo-card">
-          <h1 class="title mb-4">You create beautiful hairstyles.<br /><span class="highlight">Let us do the
-              rest.</span></h1>
-          <p class="subtitle">Hair To Chair is an effortless way for independent stylists to take their business online.
-          </p>
-          <div class="list-item">
-            <span class="list-item-number">1</span>
-            <div>Build your website using Hair To Chair (no tech expertise needed) and book new clients faster</div>
-          </div>
+<div class="container-fluid p-0">
+  <div class="jumbotron">
+    <div class="bg-variation"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <div class="jumbo-card">
+            <h1 class="title mb-4">You create beautiful hairstyles.<br /><span class="highlight">Let us do the
+                rest.</span></h1>
+            <p class="subtitle">Hair To Chair is an effortless way for independent stylists to take their business
+              online.
+            </p>
+            <div class="list-item">
+              <span class="list-item-number">1</span>
+              <div>Build your website using Hair To Chair (no tech expertise needed) and book new clients faster</div>
+            </div>
 
-          <div class="list-item">
-            <span class="list-item-number">2</span>
-            <div>Keep track of clients’ past hairstyles</div>
-          </div>
+            <div class="list-item">
+              <span class="list-item-number">2</span>
+              <div>Keep track of clients’ past hairstyles</div>
+            </div>
 
-          <div class="list-item">
-            <span class="list-item-number">3</span>
-            <div>Reduce no-shows using our automated reminders</div>
-          </div>
+            <div class="list-item">
+              <span class="list-item-number">3</span>
+              <div>Reduce no-shows using our automated reminders</div>
+            </div>
 
-          <button class="button-v3">TRY IT NOW</button>
+            <button class="button-v3">TRY IT NOW</button>
+          </div>
         </div>
       </div>
     </div>
@@ -52,7 +58,8 @@
     <div class="col-md-6 col-12">
       <div class="black-diamond-font number">01</div>
       <div class="subtitle">Grow your online presence</div>
-      <p class="copy">You don’t need to be a tech wiz to build a beautiful, customized website. Showcase your portfolio
+      <p class="copy">You don’t need to be a tech wiz to build a beautiful, customized website. Showcase your
+        portfolio
         & talents and connect to new clients.</p>
     </div>
 
@@ -95,7 +102,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex" *ngFor="let post of posts">
+      <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of posts">
         <div class="blog-item d-flex">
           <div class="blog-image"><img [src]="post.feature_image" /></div>
           <div class="blog-title">{{post.title}}</div>
@@ -103,6 +110,85 @@
           <div class="read-more"><a [routerLink]="['/blog/post/' + post.slug]">Read More</a></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container container-features container-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="subtitle">Hair To Chair makes managing your business (and life) easier.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">Grow Your Online Presence</div>
+      <div class="feature-copy">
+        Clients searching online can easily find you based on your location and the services you offer.
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">Track Client History</div>
+      <div class="feature-copy">
+        Upload client photos to your private portfolio and keep track of important notes. See your entire relationship
+        at the click of a button.
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">Showcase Your Talent</div>
+      <div class="feature-copy">
+        Use our intuitive, super-simple website builder to show off your work and tell clients what services you
+        offer.
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">Stay in Control</div>
+      <div class="feature-copy">
+        You decide what’s private and public, and you have total control over appointment times.
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">Automate Client Booking</div>
+      <div class="feature-copy">
+        Save time using our automated booking tools. Clients can book you without taking you away from your work.
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <div class="feature-title">SMS Reminders</div>
+      <div class="feature-copy">
+        Clients receive reminders using their preferred method of communication. The result? Fewer no-shows.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container container-try-now container-padding">
+  <div class="row try-now text-white align-items-center my-2">
+    <div class="bg-try-now"></div>
+    <div class="col-md-8 text-center text-md-left">
+      Hair To Chair is the only all-in-one tool that allows you to keep track of your client history
+      using pictures and notes.
+    </div>
+    <div class="col-md-4">
+      <div class="row text-center">
+        <div class="col-12">$4.99/mo</div>
+        <div class="col-12"><button class="button-v3">TRY IT NOW</button></div>
+        <div class="col-12 try-now-small">30 day trial, no credit card required</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 text-center text-md-left pb-sm-2"><img class="nav-logo" src="assets/img/logo.png"></div>
+      <div class="col-md-6 footer-item text-center text-md-left">
+        <a href="#">CONTACT</a>
+        <a href="#">PRIVACY POLICY</a>
+        <a href="#">TERMS & CONDITIONS</a>
+      </div>
+      <div class="col-md-3 text-right text-center text-md-left">&copy; Hair To Chair 2019. All Rights Reserved</div>
     </div>
   </div>
 </div>

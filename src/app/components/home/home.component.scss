@@ -1,36 +1,51 @@
-.nav {
-  position: absolute;
-  top: 0;
-  height: 50px;
-  width: 100%;
-  z-index: 1;
+.container-nav {
+  position: relative;
 
-  .row {
-    height: 100%;
-  }
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 1;
 
-  .nav-logo {
-    height: 40px;
-    width: auto;
-  }
+    .row {
+      height: 100%;
+    }
 
-  .nav-link {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-    color: #ffffff;
+    .nav-logo {
+      height: 40px;
+      width: auto;
+    }
 
-    &.button {
-      background: #ffffff;
-      color: #000000;
-      border-radius: 2px;
+    .nav-link {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 24px;
+      color: #ffffff;
+
+      &.button {
+        background: #ffffff;
+        color: #000000;
+        border-radius: 2px;
+      }
     }
   }
 }
 
 .jumbotron {
   padding-top: 150px;
+  position: relative;
+  background-color: #000000;
+
+  .bg-variation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
 
   .jumbo-card {
     background: #ffffff;
@@ -94,6 +109,11 @@
   color: #ffffff;
 }
 
+.container-padding {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
 .home-section {
   margin: 0 0 170px 0;
 
@@ -105,14 +125,13 @@
 
 .container-blog {
   background: #599295;
-  padding: 100px 0;
 }
 
 .blog-item {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 30px 40px 50px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
-  padding: 40px;
+  padding: 20px;
   margin: 40px 0;
   width: 100%;
   flex-direction: column;
@@ -122,18 +141,19 @@
     margin: 0 0 20px 0;
 
     img {
-      width: 100%;
-      height: auto;
+      max-height: 180px;
     }
   }
 
   .blog-title {
-    font-size: 24px;
+    font-size: 18px;
+    line-height: 22px;
     margin: 0 0 20px 0;
   }
 
   .blog-excerpt {
     line-height: 20px;
+    font-size: 16px;
   }
 
   .read-more {
@@ -178,4 +198,72 @@
   line-height: 74px;
   color: #5ab7bb;
   margin: 0 0 32px 0;
+}
+
+.container-features {
+  .feature-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 0 14px 0;
+  }
+
+  .feature-copy {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+.container-try-now {
+  .bg-try-now {
+    background-image: url("https://res.cloudinary.com/drcvakvh3/image/upload/v1584586486/assets/footer-home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: center;
+  }
+
+  .try-now {
+    border-radius: 10px;
+    background-color: #000000;
+    padding: 90px 64px;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 46px;
+    position: relative;
+
+    .try-now-small {
+      font-size: 12px;
+      line-height: 22px;
+    }
+  }
+}
+
+.container-footer {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .footer-item {
+    font-weight: 600;
+    font-size: 12px;
+    
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    a {
+      margin: 0 20px;
+    }
+  }
 }

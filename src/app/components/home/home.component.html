@@ -94,20 +94,23 @@
   </div>
 </div>
 
-<div class="container-fluid container-blog">
+<div class="container-fluid container-blog container-padding">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="subtitle">Our Blog</div>
+        <div class="subtitle text-white">Our Blog</div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of posts">
-        <div class="blog-item d-flex">
+        <div class="blog-item">
           <div class="blog-image"><img [src]="post.feature_image" /></div>
           <div class="blog-title">{{post.title}}</div>
+          <p class="blog-date">{{post.published_at | date}}</p>
           <p class="blog-excerpt">{{post.excerpt}}</p>
-          <div class="read-more"><a [routerLink]="['/blog/post/' + post.slug]">Read More</a></div>
+          <p class="blog-tag-title">TAGS:</p>
+          <span *ngFor="let tag of post.tags" class="blog-tag"><a [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
+          <div class="read-more"><a [routerLink]="['/blog/' + post.slug]">Read More</a></div>
         </div>
       </div>
     </div>
@@ -122,12 +125,14 @@
   </div>
   <div class="row">
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-map-o"></i>
       <div class="feature-title">Grow Your Online Presence</div>
       <div class="feature-copy">
         Clients searching online can easily find you based on your location and the services you offer.
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-id-card"></i>
       <div class="feature-title">Track Client History</div>
       <div class="feature-copy">
         Upload client photos to your private portfolio and keep track of important notes. See your entire relationship
@@ -135,6 +140,7 @@
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-newspaper-o"></i>
       <div class="feature-title">Showcase Your Talent</div>
       <div class="feature-copy">
         Use our intuitive, super-simple website builder to show off your work and tell clients what services you
@@ -142,18 +148,21 @@
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-clock-o"></i>
       <div class="feature-title">Stay in Control</div>
       <div class="feature-copy">
         You decide what’s private and public, and you have total control over appointment times.
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-calendar"></i>
       <div class="feature-title">Automate Client Booking</div>
       <div class="feature-copy">
         Save time using our automated booking tools. Clients can book you without taking you away from your work.
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
+      <i class="fa fa-comment-o"></i>
       <div class="feature-title">SMS Reminders</div>
       <div class="feature-copy">
         Clients receive reminders using their preferred method of communication. The result? Fewer no-shows.
@@ -182,13 +191,13 @@
 <div class="container-fluid container-footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 text-center text-md-left pb-sm-2"><img class="nav-logo" src="assets/img/logo.png"></div>
-      <div class="col-md-6 footer-item text-center text-md-left">
+      <div class="col-lg-3 text-center text-lg-left pb-md-2"><img class="nav-logo" src="assets/img/logo.png"></div>
+      <div class="col-lg-6 footer-item text-center text-lg-left">
         <a href="#">CONTACT</a>
         <a href="#">PRIVACY POLICY</a>
         <a href="#">TERMS & CONDITIONS</a>
       </div>
-      <div class="col-md-3 text-right text-center text-md-left">&copy; Hair To Chair 2019. All Rights Reserved</div>
+      <div class="col-lg-3 text-right text-center text-lg-left">&copy; Hair To Chair 2019. All Rights Reserved</div>
     </div>
   </div>
 </div>

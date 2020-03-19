@@ -11,7 +11,10 @@ const routes: Routes = [
   }, {
     path: 'blog',
     children: [{
-      path: 'post/:slug',
+      path: 'tag/:slug',
+      component: BlogPostComponent
+    }, {
+      path: ':slug',
       component: BlogPostComponent
     }]
   }

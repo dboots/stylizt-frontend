@@ -10,7 +10,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class BlogPostComponent implements OnInit {
   slug: string;
-  post: any;
+  post: any = {};
+  relatedPosts: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,10 @@ export class BlogPostComponent implements OnInit {
         this.post = result.data;
         this.sanitizer.bypassSecurityTrustHtml(this.post.html);
       });
+    });
+
+    this.postService.browse().subscribe((posts) => {
+      this.relatedPosts = posts.data;
     });
   }
 }

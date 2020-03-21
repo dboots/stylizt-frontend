@@ -33,12 +33,12 @@
           <app-step-two (formStatusChange)="formStatusChange($event)"></app-step-two>
         </mat-step>
 
-        <mat-step>
+        <mat-step [completed]="true">
           <ng-template matStepLabel>Services</ng-template>
           <app-step-three></app-step-three>
         </mat-step>
 
-        <mat-step>
+        <mat-step [completed]="true">
           <ng-template matStepLabel>Brands</ng-template>
           <app-step-four (formStatusChange)="formStatusChange($event)"></app-step-four>
         </mat-step>

@@ -40,6 +40,7 @@ export class StepFiveComponent implements OnInit {
     this.clientService.create(body).subscribe((result) => {
       this.formGroup.reset();
       this.clients.push(result['data']);
+      this.uploadImage = null;
     });
   }
 

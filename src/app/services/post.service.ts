@@ -3,17 +3,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class PostService {
+export class PostService extends BaseService {
+  cache: Map<any, any> = new Map();
 
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   browse(): Observable<any> {
-    return this.http.get<any>(`${environment.rootApiUrl}/blog/browse`);
+    return this.getByCache(`${environment.rootApiUrl}/blog/browse`);
   }
 
   read(slug: string): Observable<any> {
-    return this.http.get<any>(`${environment.rootApiUrl}/blog/read?slug=${slug}`);
+    return this.getByCache(`${environment.rootApiUrl}/blog/read?slug=${slug}`);
   }
 }

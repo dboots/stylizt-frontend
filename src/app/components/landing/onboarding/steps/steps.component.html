@@ -23,22 +23,22 @@
         <ng-template matStepperIcon="number" let-index="index">
           {{index+1}}
         </ng-template>
-        <mat-step [completed]="true">
+        <mat-step>
           <ng-template matStepLabel>Create Account</ng-template>
           <app-step-one (formStatusChange)="formStatusChange($event)"></app-step-one>
         </mat-step>
 
-        <mat-step [completed]="true">
+        <mat-step>
           <ng-template matStepLabel>Location</ng-template>
           <app-step-two (formStatusChange)="formStatusChange($event)"></app-step-two>
         </mat-step>
 
-        <mat-step [completed]="true">
+        <mat-step>
           <ng-template matStepLabel>Services</ng-template>
           <app-step-three></app-step-three>
         </mat-step>
 
-        <mat-step [completed]="true">
+        <mat-step>
           <ng-template matStepLabel>Brands</ng-template>
           <app-step-four (formStatusChange)="formStatusChange($event)"></app-step-four>
         </mat-step>

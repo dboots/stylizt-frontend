@@ -107,6 +107,10 @@
   border: 0;
   padding: 12px 0;
   color: #ffffff;
+
+  &:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2)
+  }
 }
 
 .container-padding {
@@ -147,7 +151,7 @@
 
   .blog-tag-title {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
     
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -158,7 +162,7 @@
     text-transform: uppercase;
     padding: 10px;
     font-weight: 600;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.05em;
 
     a {
@@ -182,7 +186,7 @@
   }
 
   .blog-excerpt {
-    line-height: 20px;
+    line-height: 26px;
     font-size: 16px;
   }
 
@@ -269,7 +273,6 @@
   .try-now {
     border-radius: 10px;
     background-color: #000000;
-    padding: 90px 64px;
     font-weight: 600;
     font-size: 32px;
     line-height: 46px;

@@ -1,72 +1,76 @@
-<div class="nav py-4">
-  <div class="container">
-    <div class="row align-items-center d-flex">
-      <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
-      <div class="col-9 text-right d-flex justify-content-end">
-        <span class="nav-link"><a [routerLink]="['/']">Home</a></span>
-        <span class="nav-link">Contact</span>
-        <span class="nav-link button">Login</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="jumbotron post-header">
-  <div class="bg-variation" [ngStyle]="{'background-image': 'url(' + post?.feature_image + ')'}"></div>
-  <div class="row ">
-    <div class="col-md-8"><h1 class="post-title">{{post.title}}</h1></div>
-  </div>
-</div>
-
-<div *ngIf="post" class="container">
-  <div class="row">
-    <div class="col-12 m-auto">
-      <p class="blog-tag-title">{{post.published_at | date}}</p>
-      <p class="blog-tag-title">TAGS:
-        <span *ngFor="let tag of post.tags"><a [routerLink]="['blog/tag/' + tag.slug]">{{tag.name}}</a></span>
-      </p>
-      <div class="post-content" [innerHtml]="post.html"></div>
-    </div>
-  </div>
-</div>
-
-<div class="container container-try-now container-padding">
-  <div class="row try-now text-white align-items-center my-2">
-    <div class="bg-try-now"></div>
-    <div class="col-md-8 text-center text-md-left">
-      Hair To Chair is the only all-in-one tool that allows you to keep track of your client history
-      using pictures and notes.
-    </div>
-    <div class="col-md-4">
-      <div class="row text-center">
-        <div class="col-12">$4.99/mo</div>
-        <div class="col-12"><button class="button-v3">TRY IT NOW</button></div>
-        <div class="col-12 try-now-small">30 day trial, no credit card required</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid container-blog">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h3>Related Posts</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of relatedPosts">
-        <div class="blog-item">
-          <div class="blog-image"><img [src]="post.feature_image" /></div>
-          <div class="blog-title">{{post.title}}</div>
-          <p class="blog-date">{{post.published_at | date}}</p>
-          <p class="blog-excerpt">{{post.excerpt}}</p>
-          <p class="blog-tag-title">TAGS:</p>
-          <span *ngFor="let tag of post.tags" class="blog-tag"><a
-              [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
-          <div class="read-more"><a [routerLink]="['/blog/' + post.slug]">Read More</a></div>
+<ng-container *ngIf="post">
+  <div class="nav py-4">
+    <div class="container">
+      <div class="row align-items-center d-flex">
+        <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
+        <div class="col-9 text-right d-flex justify-content-end">
+          <span class="nav-link"><a [routerLink]="['/']">Home</a></span>
+          <span class="nav-link">Contact</span>
+          <span class="nav-link button">Login</span>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="jumbotron post-header">
+    <div class="bg-variation" [ngStyle]="{'background-image': 'url(' + post?.feature_image + ')'}"></div>
+    <div class="row ">
+      <div class="col-md-8">
+        <h1 class="post-title">{{post.title}}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="post" class="container">
+    <div class="row">
+      <div class="col-12 m-auto">
+        <p class="blog-tag-title d-flex align-items-center">{{post.published_at | date}}</p>
+        <p class="blog-tag-title d-flex align-items-center">TAGS:
+          <span *ngFor="let tag of post.tags" class="blog-tag"><a [routerLink]="['blog/tag/' + tag.slug]">{{tag.name}}</a></span>
+        </p>
+        <div class="post-content" [innerHtml]="post.html"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container-try-now container-padding">
+    <div class="row try-now text-white align-items-center my-2 p-4">
+      <div class="bg-try-now"></div>
+      <div class="col-md-8 pb-4">
+        Hair To Chair is the only all-in-one tool that allows you to keep track of your client history
+        using pictures and notes.
+      </div>
+      <div class="col-md-4 pt-4">
+        <div class="row text-center">
+          <div class="col-12">$4.99/mo</div>
+          <div class="col-12"><button class="button-v3">TRY IT NOW</button></div>
+          <div class="col-12 try-now-small">30 day trial, no credit card required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3>Related Posts</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of relatedPosts">
+          <div class="blog-item">
+            <div class="blog-image"><img [src]="post.feature_image" /></div>
+            <div class="blog-title">{{post.title}}</div>
+            <p class="blog-date">{{post.published_at | date}}</p>
+            <p class="blog-excerpt">{{post.excerpt}}</p>
+            <p class="blog-tag-title">TAGS:</p>
+            <span *ngFor="let tag of post.tags" class="blog-tag"><a
+                [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
+            <div class="read-more"><a [routerLink]="['/blog/' + post.slug]">Read More</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

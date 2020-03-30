@@ -1,50 +1,133 @@
-@import '../../../sass/variables';
+@import "../../../sass/variables";
 
-.portfolio-component {
-  padding-top: 100px;
+.nav {
+  font-family: "Futura";
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 17px 0;
 
-  .about {
-    .bio {
-      line-height: 1.4rem;
+  .name {
+    color: #000000;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  a {
+    font-size: 12px;
+    line-height: 24px;
+    color: #000000;
+
+    &:hover {
+      border-top: 2px solid black;
+      text-decoration: none;
+      font-weight: bold;
     }
-
-    .specialties {
-      font-family: 'proxima_novabold';
-    }
   }
 }
 
-.talent {
-  background: $green;
-  color: $white;
-  border: 1px solid $black;
-  padding: 1%;
-  margin: 0.5%;
-  float: left;
+.side {
+  border: 1px solid #E0E0E0;
+}
+.img-container {
+  width: 300px;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
 }
 
-.service-desc {
-  border: 2px solid #dedede;
-  border-radius: 5px;
-}
+.bio-title {
+  font-size: 48px;
+  line-height: 42px;
+  font-weight: normal;
 
-.time {
-  &:hover {
-    background: $teal;
-    color: $black;
-  }
-
-  background: $green;
-  color: $white;
-
-  &.scheduled {
-    background: red;
+  @media only screen and (max-width: 768px) {
+    font-size: 28px;
+    line-height: 38px;
   }
 }
 
-div {
-  &.disabled {
-    opacity: 0.5;
-    pointer-events: none;
+.bio-content {
+  font-size: 18px;
+  line-height: 26px;
+  color: #4f4f4f;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
   }
+}
+
+.container-contact {
+  background: #212121;
+  color: #ffffff;
+  padding-top: 82px;
+
+  .title {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: normal;
+  }
+}
+
+.loggedIn {
+  padding-top: 50px;
+}
+
+.image {
+  flex-grow: 1;
+  border: 1px solid #DEDEDE;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.side-contact {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.hour-item {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+
+  &.closed {
+    color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.cancel-copy {
+  font-size: 12px;
+  line-height: 18px;
+  color: #454545;
+}
+
+.hour-day {
+  flex-grow: 1;
+}
+
+.side-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-item {
+  font-size: 14px;
+  line-height: 24px;
+  color: #454545;
+}
+
+.caption {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #000000;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivationEnd, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +15,8 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  @Input() dark: boolean = false;
+
   model: User = new User();
   modalRef: NgbModalRef;
   message: string = '';
@@ -58,8 +60,10 @@ export class NavComponent implements OnInit {
         return null;
       }).subscribe((data: any) => {
         this.navItems = (data) ? data : this.navItems;
-        this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
       });
+
+    this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
+    console.log(this.loggedInUser);
   }
 
   isLoggedIn() {

@@ -10,11 +10,14 @@ import {
 import { Cloudinary } from 'cloudinary-core';
 import { CloudinaryUploaderComponent } from './cloudinary-uploader/cloudinary-uploader.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NavComponent } from './nav/nav.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     FileUploadModule,
     AngularMultiSelectModule,
     CloudinaryModule.forRoot({ Cloudinary }, {
@@ -24,10 +27,12 @@ import { FileUploadModule } from 'ng2-file-upload';
   declarations: [
     BrandTagsInputComponent,
     CloudinaryUploaderComponent,
+    NavComponent
   ],
   exports: [
     BrandTagsInputComponent,
-    CloudinaryUploaderComponent
+    CloudinaryUploaderComponent,
+    NavComponent
   ]
 })
 export class SharedModule { }

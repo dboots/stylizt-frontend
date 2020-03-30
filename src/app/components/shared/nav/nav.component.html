@@ -1,4 +1,4 @@
-<nav class="fixed-top navbar navbar-expand-lg navbar-light" [class.full]="isFullNav">
+<!--<nav class="fixed-top navbar navbar-expand-lg navbar-light" [class.full]="isFullNav">
   <div class="container align-items-center">
     <a class="navbar-brand" routerLink="">
       <img src="assets/img/logo.png" />
@@ -41,12 +41,30 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav>-->
+
+<div class="container-fluid container-nav" [ngClass]="{'dark': dark}">
+  <div class="row">
+    <div class="col-12 nav">
+      <div class="container py-2">
+        <div class="row align-items-center d-flex">
+          <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
+          <div class="col-9 text-right d-flex justify-content-end">
+            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My H2C Site</a>
+            <a [routerLink]="['/']" class="nav-link">Home</a>
+            <a *ngIf="isLoggedIn()" routerLink="/stylist/home" class="nav-link">Dashboard</a>
+            <a *ngIf="isLoggedIn()" routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a>
+            <a *ngIf="!isLoggedIn()" class="nav-link button" (click)="modal(login)">Login</a>
+            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="logout()">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <ng-template #login let-c="close" let-d="dismiss">
   <div class="login-modal-component text-uppercase">
-    <div class="black-diamond-font">LOGIN</div>
-    <div class="green-divider"></div>
     <div class="main-content">
       <div class="text-center mb-4 text-danger">
         {{ message }}
@@ -78,11 +96,11 @@
           <a (click)="forgotPassword = true">Forgot Password?</a>
         </div>
 
-        <div class="pull-right">
-          <button type="button" class="common-gw-button" (click)="c('Close click')">
+        <div class="pull-right button-row">
+          <button type="button" class="button-v3" (click)="c('Close click')">
             Cancel
           </button>
-          <button type="button" class="common-gw-button" (click)="doLogin()">
+          <button type="button" class="button-v3" (click)="doLogin()">
             Login
           </button>
         </div>

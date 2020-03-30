@@ -1,274 +1,99 @@
-<div class="portfolio-component content" *ngIf="stylist">
+<ng-container *ngIf="stylist">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="component-title text-uppercase">{{ stylist.name }}</div>
-      </div>
-    </div>
-  </div>
-  <div class="green-divider"></div>
-  <div class="container" id="about" *ngIf="stylist">
-    <div class="row">
-      <div class="col-md-4">
-        <img class="img-fluid" [src]="stylist.image" />
-      </div>
-      <div class="col-md-8 about">
-        <p class="bio">{{ stylist.bio }}</p>
+    <app-nav *ngIf="loggedIn()"></app-nav>
+    <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
+      <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
+      <div class="col-12 col-md-8 text-center">
         <div class="row">
-          <div class="col-md-4" *ngIf="instagram || facebook || twitter">
-            <p class="specialties">Social Media</p>
-            <div class="social-media pb-2">
-              <a href="{{ instagram }}" *ngIf="instagram" target="_blank"><i
-                  class="fa fa-fw color-instagram fa-3x fa-instagram"></i></a>
-              <a href="{{ facebook }}" *ngIf="facebook" target="_blank"><i
-                  class="fa fa-fw color-fb fa-3x fa-facebook-square"></i></a>
-              <a href="{{ twitter }}" *ngIf="twitter" target="_blank"><i
-                  class="fa fa-fw color-twitter fa-3x fa-twitter-square"></i></a>
+          <div class="col-4 py-4"><a href="" class="py-4">ABOUT</a></div>
+          <div class="col-4 py-4"><a href="" class="py-4">SERVICES</a></div>
+          <div class="col-4 py-4"><a href="" class="py-4">CONTACT</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 py-4 text-center d-flex justify-content-center">
+        <div class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
+        </div>
+      </div>
+      <div class="col-12 col-md-6 py-4 text-center text-md-left">
+        <h2 class="bio-title">Hi, I'm {{stylist.name}}</h2>
+        <p class="bio-content">{{stylist.bio}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-9">
+        <div class="row">
+          <div class="col-12 col-md-4 d-flex flex-column mb-4" *ngFor="let item of portfolio">
+            <div class="image"><img [src]="item.image" class="image-full" /></div>
+            <div class="caption py-2">{{item.caption}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 side">
+        <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
+          marginwidth="0">
+          <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+        </iframe>
+        <div class="p-2">
+          <div class="side-contact p-2">
+            <div class="side-title mb-2">Contact</div>
+            <div class="contact-item mb-2">
+              <i class="fa fa-icon fa-map-marker pr-2"></i>
+              <span>{{stylist.city}}, {{stylist.state}} {{stylist.zip}}</span>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa fa-icon fa-phone pr-2"></i>
+              <span>{{stylist.phone}}</span>
             </div>
           </div>
-          <div class="col-md-8">
-            <p class="specialties">Specialties</p>
-            <div class="talent" *ngFor="let talent of stylist.talents">
-              {{ talent.talent }}
+        </div>
+        <div class="p-2">
+          <div class="side-contact p-2">
+            <div class="side-title mb-2">Business Hours</div>
+            <div class="hour-item d-flex closed mb-2">
+              <div class="hour-day">Monday</div>
+              <div class="hour-times">10AM - 7PM</div>
+            </div>
+            <div class="hour-item d-flex mb-2">
+              <div class="hour-day">Monday</div>
+              <div class="hour-times">10AM - 7PM</div>
+            </div>
+            <div class="hour-item d-flex mb-2">
+              <div class="hour-day">Tuesday</div>
+              <div class="hour-times">10AM - 7PM</div>
             </div>
           </div>
-          <div class="col-md-8 pt-2">
-            <p class="specialties">Brands Used</p>
-            <div class="talent" *ngFor="let brand of stylist.brands">
-              {{ brand.brand }}
-            </div>
+        </div>
+
+        <div class="p-2">
+          <div class="side-contact p-2 cancel-copy">
+            <div class="mb-4">You will not be charged if you cancel at least 24 hours before your appointment starts.
+              Otherwise, you will
+              be charged 50% of service price for late cancellations and 100% for no shows.</div>
+            <button class="button-v3">Book Appointment</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row" *ngIf="services && services.length">
-      <div class="col-12 pt-4">
-        <div class="component-title text-uppercase">SERVICES</div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="services.length" class="green-divider"></div>
-
-  <div *ngIf="services.length" class="container">
     <div class="row">
       <div class="col-12">
-        <h3>Book Service:</h3>
-      </div>
-
-      <div class="col-lg-3 col-6 mb-2">
-        <div class="header">1. Select a Service</div>
-        <select (change)="clearBooking()" [(ngModel)]="selectedSchedule.service">
-          <option *ngFor="let service of services" [ngValue]="service">{{service.name}}</option>
-        </select>
-      </div>
-
-      <div class="col-lg-3 col-6 mb-2" [ngClass]="{'disabled': !selectedSchedule.service }">
-        <div class="header">2. Select a Date/Time</div>
-
-        <button class="common-gw-button" (click)="showDatePicker = !showDatePicker" type="button">Select Date</button>
-        <div class="input-group">
-          <ngb-datepicker [(ngModel)]="selectedSchedule.datePicker" #datePicker class="dropdown-menu show p-0"
-            [class.d-none]="!showDatePicker" (select)="selectServiceDate($event)" [minDate]="minDate">
-          </ngb-datepicker>
-        </div>
-        <select (change)="selectServiceTime($event)" *ngIf="selectedSchedule.datePicker">
-          <option selected>Select Time</option>
-          <option [value]="time.time" *ngFor="let time of availableTimes"
-            [attr.disabled]="time.available ? null : true">
-            {{time.formattedTime}}</option>
-        </select>
-      </div>
-
-
-      <div class="col-lg-3 col-6 mb-2" [ngClass]="{'disabled': !selectedSchedule.endDateTime}">
-        <div class="header">3. Enter Your Contact Details</div>
-        <input type="text" [(ngModel)]="selectedSchedule.name" placeholder="Your First/Last Name">
-        <input type="text" [(ngModel)]="selectedSchedule.phone" placeholder="Your Phone">
-      </div>
-
-      <div class="col-lg-3 col-6 mb-2">
-        <button
-          [attr.disabled]="(selectedSchedule.endDateTime && selectedSchedule.name && selectedSchedule.phone) ? null : true"
-          class="common-gw-button" (click)="bookService(service)" type="button">Book Service</button>
-        {{message}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4" *ngFor="let service of services">
-        <div class="service-desc p-4 m-2">
-          <h5>{{service.name}}</h5>
-          <p>{{service.description}}</p>
-          <p>Time: {{lengths[service.time]}}</p>
-          <div class="my-2"><strong>Price: ${{service.price}}</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container" *ngIf="portfolio && portfolio.length">
-  <div class="row mt-5" id="local-talent">
-    <div class="col-12 m-auto text-uppercase text-center text-white title-block">
-      PORTFOLIO
-    </div>
-  </div>
-</div>
-
-<div id="portfolio" class="thumbnail-section text-center text-uppercase pt-2">
-  <div class="container">
-    <div class="row pb-4 pt-2" *ngIf="loggedIn()">
-      <div class="col">
-        <button class="common-gw-button" (click)="showModal(addModal)">
-          ADD TO PORTFOLIO
-        </button>
-      </div>
-    </div>
-    <div class="row desktop d-md-flex">
-      <div class="col-md-3 text-center position-relative my-4 mt-md-0" *ngFor="let p of portfolio"
-        (click)="showModal(addModal, p)">
-        <img class="img-fluid w-100" [src]="p.image" />
-        <div class="fixed-bottom position-absolute bg-white p-2" *ngIf="loggedIn()">
-          UPDATE
-        </div>
-      </div>
-    </div>
-    <ngx-slick *ngIf="portfolio && portfolio.length" class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let p of portfolio">
-        <img class="img-fluid w-100" [src]="p.image" />
-        <!--<div class="fixed-bottom position-absolute bg-white p-2">{{p.caption}}</div>-->
-      </div>
-    </ngx-slick>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row pt-4">
-    <div class="col-12">
-      <div class="component-title text-uppercase">CONTACT </div>
-    </div>
-  </div>
-</div>
-
-<div class="green-divider"></div>
-
-<div class="container">
-  <div class="row mb-4">
-    <div class="col-lg-6 col-12">
-      <div class="my-2">
-        <h3>Send Me a Message!</h3>
-        <div class="py-1">
-          <input class="form-control" type="text" placeholder="Your Name" />
-        </div>
-        <div class="py-1">
-          <input class="form-control" type="text" placeholder="Your Contact (phone, email" />
-        </div>
-        <div class="py-1"><textarea class="form-control"></textarea></div>
-      </div>
-      <button class="common-gw-button">Send</button>
-    </div>
-    <div class="col-lg-6 col-12 pt-4">
-      <div *ngIf="stylist && mapUrl">
-        <div *ngIf="stylist.zip" class="w-100">
-          <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
-            marginwidth="0">
-            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
-          </iframe>
-        </div>
+        Available Services
       </div>
     </div>
   </div>
 
-  <!--
-      <div id="schedule" class="section">
-        <div class="container">
-          <div class="row my-4">
-            <div class="col-12">
-              <h3>Schedule an Appointment</h3>
-            </div>
-            
-            <div class="col-12">
-              <div class="blur-overlay">
-                <h3>Coming Soon</h3>
-                <p>StyleSeat / Vagaro / Form Scheduling Options</p>
-              </div>
-              <div class="blur">
-                <div class="row text-center">
-                  <div class="col-6">
-                    <img class="img-fluid" src="/assets/img/styleseat.png" />
-                  </div>
-                  <div class="col-6">
-                    <img class="img-flui" src="/assets/img/vagaro.png" />
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="stylist && mapUrl">
-        <div *ngIf="stylist.zip" class="w-100">
-          <iframe width="100%" height="500" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-            <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
-          </iframe>
-        </div>
-        <br />
-      </div>
-    -->
-
-  <ng-template #addModal let-c="close" let-d="dismiss">
-    <div class="add-modal-component container">
-      <div class="text-uppercase">Portfolio</div>
-      <div class="green-divider"></div>
-      <div class="main-content row">
-        <div class="col-6">
-          <img [src]="portfolioItem.image" class="img-fluid w-100" />
-          <app-cloudinary-uploader *ngIf="loggedIn()" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
-            (completeItem)="imageUploadCompleted($event)">
-          </app-cloudinary-uploader>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label class="text-uppercase">About this image:</label>
-            <span *ngIf="!loggedIn()">
-              <div class="caption">{{ portfolioItem.caption }}</div>
-            </span>
-            <textarea *ngIf="loggedIn()" [(ngModel)]="portfolioItem.caption" class="form-control"
-              placeholder="A description of this image..."></textarea>
-          </div>
-          <div class="form-group">
-            <label class="text-uppercase">What talents were used on this?</label>
-            <app-talent-tags-input *ngIf="loggedIn()" [talents]="portfolioItem.talents"></app-talent-tags-input>
-            <div class="talents" *ngIf="!loggedIn()">
-              <div class="talent" *ngFor="let talent of portfolioItem.talents">
-                {{ talent.talent }}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div *ngIf="!loggedIn()">
-            <div class="text-center mt-4">
-              <button type="button" class="common-gw-button" (click)="c('Close click')">
-                Close
-              </button>
-            </div>
-          </div>
-          <div *ngIf="loggedIn()">
-            <div class="pull-right">
-              <button type="button" class="common-gw-button" (click)="c('Close click')">
-                Cancel
-              </button>
-              <button type="button" [disabled]="portfolioItem.image == ''" (click)="portfolioAction()"
-                class="common-gw-button">
-                {{ portfolioActionLabel }}
-              </button>
-            </div>
-          </div>
+  <div class="container-fluid container-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="title">Contact Us</div>
         </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+</ng-container>

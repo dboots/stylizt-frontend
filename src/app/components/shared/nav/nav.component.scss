@@ -1,12 +1,6 @@
 @import "../../../../sass/variables";
 
 .container-nav {
-  background: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
   .nav-logo {
     height: 40px;
     width: auto;
@@ -17,12 +11,12 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
-    color: #FFFFFF;
+    color: black;
     cursor: pointer;
 
     &.button {
-      background: #ffffff;
-      color: #000000;
+      background: #599295;
+      color: white;
       border-radius: 2px;
     }
   }

@@ -92,12 +92,12 @@
     <div class="row">
       <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of posts">
         <div class="blog-item">
-          <div class="blog-image"><img [src]="post.feature_image" /></div>
-          <div class="blog-title">{{post.title}}</div>
+          <div class="blog-image"><a [routerLink]="['/blog/' + post.slug]"><img [src]="post.feature_image" /></a></div>
+          <div class="blog-title"><a [routerLink]="['/blog/' + post.slug]">{{post.title}}</a></div>
           <p class="blog-date">{{post.published_at | date}}</p>
           <p class="blog-excerpt">{{post.excerpt}}</p>
           <p class="blog-tag-title">TAGS:</p>
-          <span *ngFor="let tag of post.tags" class="blog-tag"><a>{{tag.name}}</a></span>
+          <span *ngFor="let tag of post.tags" class="blog-tag"><a [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
           <div class="read-more"><a [routerLink]="['/blog/' + post.slug]">Read More</a></div>
         </div>
       </div>

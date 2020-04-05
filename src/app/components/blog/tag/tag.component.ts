@@ -5,15 +5,15 @@ import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  selector: 'app-tag',
+  templateUrl: './tag.component.html',
+  styleUrls: ['./tag.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BlogPostComponent implements OnInit {
+export class BlogTagComponent implements OnInit {
   slug: string;
-  post: any;
-  relatedPosts: any = [];
+  posts: any[];
+  tag: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,27 +26,29 @@ export class BlogPostComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      this.slug = params.get('slug');
-      this.postService.read(this.slug).subscribe((result) => {
-        this.post = result.data;
-        this.sanitizer.bypassSecurityTrustHtml(this.post.html);
+      let slug = params.get('slug');
+      let tag: any;
+      let posts: any[];
 
-        // TODO: Move to a SEO Service
+      this.postService.browse({ tag: slug }).subscribe((result: any) => {
+        posts = result.data;
+        tag = posts[0].tags.filter((item: any) => item.slug === slug)[0];
+
         let link: HTMLLinkElement = this.dom.createElement('link');
         link.setAttribute('rel', 'canonical');
         this.dom.head.appendChild(link);
         link.setAttribute('href', this.dom.URL);
 
-        this.title.setTitle(this.post.title);
+        this.title.setTitle(tag.meta_title || tag.name);
 
         this.meta.updateTag({
           name: 'title',
-          content: this.post.meta_title
+          content: tag.meta_title || tag.name
         });
 
         this.meta.updateTag({
           name: 'description',
-          content: this.post.meta_description
+          content: tag.meta_description || tag.description || `Blog posts for ${tag.name}`
         });
 
         this.meta.updateTag({
@@ -64,11 +66,9 @@ export class BlogPostComponent implements OnInit {
           content: 'index, follow (same for all)'
         });
 
-        this.postService.browse({ tag: this.post.tags[0].slug }, 3).subscribe((posts) => {
-          this.relatedPosts = posts.data.filter((post) => {
-            return this.post.id !== post.id;
-          });
-        });
+        this.slug = slug;
+        this.posts = posts;
+        this.tag = tag;
       });
     });
   }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from '../../components/home/home.component';
 import { BlogPostComponent } from '../../components/blog/post/post.component';
 import { EditProfileComponent } from '../../components/stylist/profile/edit/edit.component';
+import { BlogTagComponent } from '../../components/blog/tag/tag.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
     path: 'blog',
     children: [{
       path: 'tag/:slug',
-      component: BlogPostComponent
+      component: BlogTagComponent
     }, {
       path: ':slug',
       component: BlogPostComponent

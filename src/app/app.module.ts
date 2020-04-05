@@ -60,6 +60,7 @@ import { Version3Module } from './routing/v3/v3.module';
 import { BlogPostComponent } from './components/blog/post/post.component';
 import { PortfolioRoutingModule } from './routing/portfolio/portfolio.routing.module';
 import { EditProfileComponent } from './components/stylist/profile/edit/edit.component';
+import { BlogTagComponent } from './components/blog/tag/tag.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -92,6 +93,7 @@ Sentry.init({
     LandingVideoPageComponent,
     ApplyPageComponent,
     BlogPostComponent,
+    BlogTagComponent,
     EditProfileComponent
   ],
   imports: [

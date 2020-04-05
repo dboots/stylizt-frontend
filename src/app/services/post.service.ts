@@ -13,8 +13,14 @@ export class PostService extends BaseService {
     super(http);
   }
 
-  browse(): Observable<any> {
-    return this.getByCache(`${environment.rootApiUrl}/blog/browse`);
+  browse(params: any = {}, limit: number = 6): Observable<any> {
+    // convert params to querystring
+    let filter: string = '';
+    Object.keys(params).map((key) => {
+      filter += `${key}:${params[key]}`;
+    });
+
+    return this.getByCache(`${environment.rootApiUrl}/blog/browse?limit=${limit}&filter=${filter}`);
   }
 
   read(slug: string): Observable<any> {

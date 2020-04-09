@@ -9,9 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../components/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    FooterComponent
-  ],
+  declarations: [ ],
   imports: [
     RouterModule,
     BrowserModule,
@@ -22,7 +20,6 @@ import { SharedModule } from '../../components/shared/shared.module';
     SharedModule
   ],
   exports: [
-    FooterComponent,
     SlickModule,
     SharedModule
   ]

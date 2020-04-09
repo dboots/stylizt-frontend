@@ -19,8 +19,8 @@ const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
 const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_modules');
-const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
-const hashFormat = {"chunk":"","extract":"","file":".[hash:20]","script":""};
+const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
+const hashFormat = { "chunk": "", "extract": "", "file": ".[hash:20]", "script": "" };
 const baseHref = "";
 const deployUrl = "";
 const projectRoot = process.cwd();
@@ -82,40 +82,40 @@ const postcssPlugins = function (loader) {
         filter: ({ url }) => url.startsWith('/') && !url.startsWith('//'),
         url: ({ url }) => {
           if (deployUrl.match(/:\/\//) || deployUrl.startsWith('/')) {
-          // If deployUrl is absolute or root relative, ignore baseHref & use deployUrl as is.
-          return `${deployUrl.replace(/\/$/, '')}${url}`;
+            // If deployUrl is absolute or root relative, ignore baseHref & use deployUrl as is.
+            return `${deployUrl.replace(/\/$/, '')}${url}`;
+          }
+          else if (baseHref.match(/:\/\//)) {
+            // If baseHref contains a scheme, include it as is.
+            return baseHref.replace(/\/$/, '') +
+              `/${deployUrl}/${url}`.replace(/\/\/+/g, '/');
+          }
+          else {
+            // Join together base-href, deploy-url and the original URL.
+            // Also dedupe multiple slashes into single ones.
+            return `/${baseHref}/${deployUrl}/${url}`.replace(/\/\/+/g, '/');
+          }
         }
-        else if (baseHref.match(/:\/\//)) {
-        // If baseHref contains a scheme, include it as is.
-        return baseHref.replace(/\/$/, '') +
-        `/${deployUrl}/${url}`.replace(/\/\/+/g, '/');
-      }
-      else {
-        // Join together base-href, deploy-url and the original URL.
-        // Also dedupe multiple slashes into single ones.
-        return `/${baseHref}/${deployUrl}/${url}`.replace(/\/\/+/g, '/');
-      }
-    }
-  },
-  {
-    // TODO: inline .cur if not supporting IE (use browserslist to check)
-    filter: (asset) => {
-      return maximumInlineSize > 0 && !asset.hash && !asset.absolutePath.endsWith('.cur');
-    },
-    url: 'inline',
-    // NOTE: maxSize is in KB
-    maxSize: maximumInlineSize,
-    fallback: 'rebase',
-  },
-  { url: 'rebase' },
-]),
-PostcssCliResources({
-  deployUrl: loader.loaders[loader.loaderIndex].options.ident == 'extracted' ? '' : deployUrl,
-  loader,
-  filename: `[name]${hashFormat.file}.[ext]`,
-}),
-autoprefixer({ grid: true }),
-];
+      },
+      {
+        // TODO: inline .cur if not supporting IE (use browserslist to check)
+        filter: (asset) => {
+          return maximumInlineSize > 0 && !asset.hash && !asset.absolutePath.endsWith('.cur');
+        },
+        url: 'inline',
+        // NOTE: maxSize is in KB
+        maxSize: maximumInlineSize,
+        fallback: 'rebase',
+      },
+      { url: 'rebase' },
+    ]),
+    PostcssCliResources({
+      deployUrl: loader.loaders[loader.loaderIndex].options.ident == 'extracted' ? '' : deployUrl,
+      loader,
+      filename: `[name]${hashFormat.file}.[ext]`,
+    }),
+    autoprefixer({ grid: true }),
+  ];
 };
 
 module.exports = {
@@ -173,7 +173,7 @@ module.exports = {
               let url = process.env.APIURL || 'http://localhost:3333/api';
               return url;
             }
-          },{
+          }, {
             "pattern": /__PROD__/ig,
             "replacement": function (match, p1, offset, string) {
               let production = (process.env.NODE_ENV == 'production')
@@ -440,6 +440,13 @@ module.exports = {
           "glob": "googlecc28b84af0333bac.html",
           "dot": true
         }
+      }, {
+        "context": "src",
+        "to": "",
+        "from": {
+          "glob": "sitemap.xml",
+          "dot": true
+        }
       }
     ], {
       "ignore": [
@@ -498,9 +505,9 @@ module.exports = {
       ],
       "minChunks": (module) => {
         return module.resource
-        && (module.resource.startsWith(nodeModules)
-        || module.resource.startsWith(genDirNodeModules)
-        || module.resource.startsWith(realNodeModules));
+          && (module.resource.startsWith(nodeModules)
+            || module.resource.startsWith(genDirNodeModules)
+            || module.resource.startsWith(realNodeModules));
       },
       "chunks": [
         "main"

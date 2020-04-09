@@ -48,10 +48,12 @@
     <div class="col-12 nav">
       <div class="container py-2">
         <div class="row align-items-center d-flex">
-          <div class="col-3"><img class="nav-logo" src="assets/img/logo.png"></div>
+          <div class="col-3"><a routerLink="/"><img class="nav-logo" src="assets/img/logo.png"></a></div>
           <div class="col-9 text-right d-flex justify-content-end">
-            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My H2C Site</a>
+            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
+              H2C Site</a>
             <a [routerLink]="['/']" class="nav-link">Home</a>
+            <a routerLink="/blog" class="nav-link">Blog</a>
             <a *ngIf="isLoggedIn()" routerLink="/stylist/home" class="nav-link">Dashboard</a>
             <a *ngIf="isLoggedIn()" routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a>
             <a *ngIf="!isLoggedIn()" class="nav-link button" (click)="modal(login)">Login</a>

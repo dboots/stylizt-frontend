@@ -1,10 +1,23 @@
-footer {
-  a {
-    @media (max-width: 768px) {
-      padding: 1%;
-      margin: 1%;
-    }
+.container-footer {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 30px;
+  padding-bottom: 30px;
 
-    display: block;
+  .footer-item {
+    font-weight: 600;
+    font-size: 12px;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    a {
+      margin: 0 20px;
+      color: #000000;
+      text-decoration: none;
+    }
   }
 }

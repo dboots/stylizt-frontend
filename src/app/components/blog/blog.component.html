@@ -1,12 +1,6 @@
 <app-nav></app-nav>
 <div class="container post-header" *ngIf="posts">
   <div class="row">
-    <div class="col-12">
-      <h1>{{tag.name}}</h1>
-      <p>{{tag.description}}</p>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of posts">
       <app-blog-post [post]="post"></app-blog-post>
     </div>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../components/shared/shared.module';
 import { Version3RoutingModule } from './v3.routing.module';
-import { NavComponent } from '../../components/shared/nav/nav.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -12,8 +11,7 @@ import { FormsModule } from '@angular/forms';
     Version3RoutingModule,
     SharedModule
   ],
-  declarations: [
-  ],
+  declarations: [],
   exports: [
   ]
 })

@@ -91,15 +91,12 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-lg-4 d-flex" *ngFor="let post of posts">
-        <div class="blog-item">
-          <div class="blog-image"><a [routerLink]="['/blog/' + post.slug]"><img [src]="post.feature_image" /></a></div>
-          <div class="blog-title"><a [routerLink]="['/blog/' + post.slug]">{{post.title}}</a></div>
-          <p class="blog-date">{{post.published_at | date}}</p>
-          <p class="blog-excerpt">{{post.excerpt}}</p>
-          <p class="blog-tag-title">TAGS:</p>
-          <span *ngFor="let tag of post.tags" class="blog-tag"><a [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
-          <div class="read-more"><a [routerLink]="['/blog/' + post.slug]">Read More</a></div>
-        </div>
+        <app-blog-post [post]="post"></app-blog-post>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <button class="button-v3" routerLink="/blog">View All Hairstylist Tips and Client Management Updates</button>
       </div>
     </div>
   </div>
@@ -176,16 +173,4 @@
   </div>
 </div>
 
-<div class="container-fluid container-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 text-center text-lg-left pb-md-2"><img class="nav-logo" src="assets/img/logo.png"></div>
-      <div class="col-lg-6 footer-item text-center text-lg-left">
-        <a href="#">CONTACT</a>
-        <a href="#">PRIVACY POLICY</a>
-        <a href="#">TERMS & CONDITIONS</a>
-      </div>
-      <div class="col-lg-3 text-right text-center text-lg-left">&copy; Hair To Chair 2019. All Rights Reserved</div>
-    </div>
-  </div>
-</div>
+<app-footer></app-footer>

@@ -12,6 +12,7 @@ import { CloudinaryUploaderComponent } from './cloudinary-uploader/cloudinary-up
 import { FileUploadModule } from 'ng2-file-upload';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -27,12 +28,14 @@ import { RouterModule } from '@angular/router';
   declarations: [
     BrandTagsInputComponent,
     CloudinaryUploaderComponent,
-    NavComponent
+    NavComponent,
+    FooterComponent
   ],
   exports: [
     BrandTagsInputComponent,
     CloudinaryUploaderComponent,
-    NavComponent
+    NavComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

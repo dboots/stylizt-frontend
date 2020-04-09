@@ -16,6 +16,7 @@ import { StylistHomePageComponent } from './components/stylist/home/stylist-home
 import { StylistServicesPageComponent } from './components/stylist/services/services.component';
 import { LayoutDefaultComponent } from './layouts/default/default.component';
 import { ApplyPageComponent } from './components/apply/apply.component';
+import { NotFoundComponent } from './components/notfound/notfound.component';
 
 let landingNav = [
   { name: 'Blog', url: '#featured-looks', scroll: true },
@@ -24,78 +25,80 @@ let landingNav = [
 ];
 
 const routes: Routes = [{
-    path: '',
-    component: LayoutDefaultComponent,
+  path: '',
+  component: LayoutDefaultComponent,
+  children: [{
+    path: 'stylists-near-me/:state',
+    component: LandingPageComponent,
+    data: { navItems: landingNav }
+  }, {
+    path: 'stylist',
     children: [{
-      path: 'stylists-near-me/:state',
-      component: LandingPageComponent,
-      data: { navItems: landingNav }
+      path: '',
+      component: StylistPageComponent
     }, {
-      path: 'stylist',
-      children: [{
-        path: '',
-        component: StylistPageComponent
-      }, {
-        path: 'home',
-        component: StylistHomePageComponent,
-        canActivate: [AuthGuard]
-      }, {
-        path: 'services',
-        component: StylistServicesPageComponent,
-        canActivate: [AuthGuard]
-      }, {
-        path: 'profile',
-        component: StylistProfilePageComponent,
-        canActivate: [AuthGuard]
-      }, {
-        path: 'clients/:id',
-        component: StylistClientsDetailPageComponent,
-        canActivate: [AuthGuard]
-      }, {
-        path: 'clients',
-        component: StylistClientsPageComponent,
-        canActivate: [AuthGuard]
-      }],
-      data: {
-        navItems: [
-          { name: 'Features', url: '#features', scroll: true },
-          { name: 'Sign Up', url: '#signup', scroll: true },
-          { name: 'Contact', url: '/contact', scroll: false },
-          { name: 'Login' }
-        ]
-      }
+      path: 'home',
+      component: StylistHomePageComponent,
+      canActivate: [AuthGuard]
     }, {
-      path: 'portfolio-legacy/:id',
-      component: StylistPortfolioPageComponent,
-      data: {
-        navItems: [
-          { name: 'About', url: '#about', scroll: true },
-          { name: 'Portfolio', url: '#portfolio', scroll: true },
-          { name: 'Login' }
-        ]
-      }
+      path: 'services',
+      component: StylistServicesPageComponent,
+      canActivate: [AuthGuard]
     }, {
-      path: 'owner',
-      component: OwnerPageComponent
+      path: 'profile',
+      component: StylistProfilePageComponent,
+      canActivate: [AuthGuard]
     }, {
-      path: 'contact',
-      component: ContactPageComponent
-    },
-    {
-      path: 'privacy-policy',
-      component: PrivacyPageComponent
+      path: 'clients/:id',
+      component: StylistClientsDetailPageComponent,
+      canActivate: [AuthGuard]
     }, {
-      path: 'terms',
-      component: TermsPageComponent
-    }, {
-      path: 'password/:token',
-      component: PasswordPageComponent
-    }, {
-      path: 'feedback',
-      component: ApplyPageComponent
-    }]
-  }
-];
+      path: 'clients',
+      component: StylistClientsPageComponent,
+      canActivate: [AuthGuard]
+    }],
+    data: {
+      navItems: [
+        { name: 'Features', url: '#features', scroll: true },
+        { name: 'Sign Up', url: '#signup', scroll: true },
+        { name: 'Contact', url: '/contact', scroll: false },
+        { name: 'Login' }
+      ]
+    }
+  }, {
+    path: 'portfolio-legacy/:id',
+    component: StylistPortfolioPageComponent,
+    data: {
+      navItems: [
+        { name: 'About', url: '#about', scroll: true },
+        { name: 'Portfolio', url: '#portfolio', scroll: true },
+        { name: 'Login' }
+      ]
+    }
+  }, {
+    path: 'owner',
+    component: OwnerPageComponent
+  }, {
+    path: 'contact',
+    component: ContactPageComponent
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPageComponent
+  }, {
+    path: 'terms',
+    component: TermsPageComponent
+  }, {
+    path: 'password/:token',
+    component: PasswordPageComponent
+  }, {
+    path: 'feedback',
+    component: ApplyPageComponent
+  }, {
+    path: '**',
+    component: NotFoundComponent
+  }]
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

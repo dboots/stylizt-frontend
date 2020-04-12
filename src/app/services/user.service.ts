@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { AuthResponse } from '../models/auth-response';
 
 @Injectable()
 export class UserService {
@@ -36,9 +38,9 @@ export class UserService {
     return this.http.post(`${environment.rootApiUrl}/user/subscribe`, body, AuthService.httpOptions(token));
   }
 
-  update(body: User) {
+  update(body: User): Observable<AuthResponse> {
     let token = this.authService.token;
-    return this.http.post(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
+    return this.http.post<AuthResponse>(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
   }
 
   setPassword(body) {

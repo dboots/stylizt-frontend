@@ -5,6 +5,7 @@ export class User {
   _id: string = '';
   name: string = '';
   email: string = '';
+  address: string = '';
   zip: string = '';
   city: string = '';
   state: string = '';

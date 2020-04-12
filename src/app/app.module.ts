@@ -64,6 +64,7 @@ import { BlogTagComponent } from './components/blog/tag/tag.component';
 import { BlogPostItemComponent } from './components/shared/blog/post/post.component';
 import { NotFoundComponent } from './components/notfound/notfound.component';
 import { BlogHomeComponent } from './components/blog/blog.component';
+import { EditProfileDetailsComponent } from './components/stylist/profile/edit/details/details.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -99,6 +100,7 @@ Sentry.init({
     BlogTagComponent,
     BlogHomeComponent,
     EditProfileComponent,
+    EditProfileDetailsComponent,
     BlogPostItemComponent,
     NotFoundComponent
   ],
@@ -137,7 +139,7 @@ Sentry.init({
     StepService
   ],
   exports: [CommonModule, SlickModule, ScrollToModule, SharedModule],
-  entryComponents: [ConfirmDialogComponent],
+  entryComponents: [ConfirmDialogComponent, EditProfileDetailsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,12 +13,10 @@ import { SharedModule } from '../../components/shared/shared.module';
     BrowserModule,
     CommonModule,
     FormsModule,
-    SlickModule,
     ScrollToModule,
     SharedModule
   ],
   exports: [
-    SlickModule,
     SharedModule
   ]
 })

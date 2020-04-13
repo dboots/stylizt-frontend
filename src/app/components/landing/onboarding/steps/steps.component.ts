@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./steps.component.scss']
 })
 export class LandingStepsComponent implements OnInit, AfterViewInit {
-  @ViewChild('stepper', { static: false }) stepper: MatStepper;
+  @ViewChild('stepper') stepper: MatStepper;
   steps: number = 5;
   currentStep: number = 1;
   nextLabel: string;

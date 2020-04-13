@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-import { SlickModule } from 'ngx-slick';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -117,7 +116,6 @@ Sentry.init({
     HttpClientModule,
     AngularMultiSelectModule,
     ScrollToModule.forRoot(),
-    SlickModule.forRoot(),
     BrowserAnimationsModule,
     SharedModule
   ],
@@ -138,7 +136,7 @@ Sentry.init({
     JwtHelperService,
     StepService
   ],
-  exports: [CommonModule, SlickModule, ScrollToModule, SharedModule],
+  exports: [CommonModule, ScrollToModule, SharedModule],
   entryComponents: [ConfirmDialogComponent, EditProfileDetailsComponent],
   bootstrap: [AppComponent]
 })

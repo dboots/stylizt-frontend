@@ -83,7 +83,7 @@ export class SignupComponent {
   }
 
   signup() {
-    var model = this.model;
+    let model = this.model;
     model.type = this.type;
     model.name = this.signupForm.get('name').value;
     model.email = this.signupForm.get('email').value;

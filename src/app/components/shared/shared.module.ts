@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrandTagsInputComponent } from './brand-tags-input/brand-tags-input.component';
 import { CommonModule } from '@angular/common';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/multiselect.component';
 import { FormsModule } from '@angular/forms';
 import {
   CloudinaryModule,
@@ -20,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     RouterModule,
     FileUploadModule,
-    AngularMultiSelectModule,
     CloudinaryModule.forRoot({ Cloudinary }, {
       cloud_name: 'your_cloud_name'
     } as CloudinaryConfiguration),

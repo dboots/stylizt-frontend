@@ -22,6 +22,8 @@ export class SeoService {
   }
 
   updateMetaTags(title: string, metaTitle: string, metaDescription: string) {
+    metaTitle = metaTitle || title;
+
     this.title.setTitle(title);
 
     this.meta.updateTag({

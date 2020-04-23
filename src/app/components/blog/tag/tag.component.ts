@@ -27,10 +27,10 @@ export class BlogTagComponent implements OnInit {
       let slug = params.get('slug');
       let tag: any;
       let posts: any[];
-      let metaTitle: string = tag.meta_title || tag.name;
-      let metaDescription: string = tag.meta_description || tag.description || `Blog posts for ${tag.name}`;
 
       this.postService.browse({ tag: slug }).subscribe((result: any) => {
+        let metaTitle: string = tag.meta_title || tag.name;
+        let metaDescription: string = tag.meta_description || tag.description || `Blog posts for ${tag.name}`;
         posts = result.data;
         tag = posts[0].tags.filter((item: any) => item.slug === slug)[0];
 

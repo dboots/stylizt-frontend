@@ -63,6 +63,7 @@ import { BlogPostItemComponent } from './components/shared/blog/post/post.compon
 import { NotFoundComponent } from './components/notfound/notfound.component';
 import { BlogHomeComponent } from './components/blog/blog.component';
 import { EditProfileDetailsComponent } from './components/stylist/profile/edit/details/details.component';
+import { SeoService } from './services/seo.service';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -131,6 +132,7 @@ Sentry.init({
     ContactService,
     ServicesService,
     ScheduleService,
+    SeoService,
     JwtHelperService,
     StepService
   ],

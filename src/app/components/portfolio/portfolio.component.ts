@@ -11,6 +11,7 @@ import {
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Lengths } from '../../models/length.model';
 import { Time } from '../../models/time.model';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -49,13 +50,12 @@ export class StylistPortfolioPageComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private meta: Meta,
-    private title: Title,
     private modalService: NgbModal,
     private router: Router,
     private sanitization: DomSanitizer,
     private servicesService: ServicesService,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private seoService: SeoService
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
@@ -81,13 +81,9 @@ export class StylistPortfolioPageComponent implements OnInit {
           this.services = result['data'];
         });
 
-        this.title.setTitle(stylist.name + ' Portfolio');
+        this.seoService.createCanonicalUrl();
+        this.seoService.updateMetaTags(stylist.name + ' Portfolio', null, stylist.name + ' is a stylist from ' + stylist.zip);
         if (stylist && stylist.name && stylist.zip) {
-          this.meta.updateTag({
-            name: 'description',
-            content: stylist.name + ' is a stylist from ' + stylist.zip
-          });
-
           let location = stylist.zip.replace('#', '%23');
           let url =
             'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' +

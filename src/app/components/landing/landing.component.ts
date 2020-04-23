@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { UserService, PostService } from '../../services';
+import { UserService } from '../../services';
 import { User, Post } from '../../models';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-landing',
@@ -16,11 +16,9 @@ export class LandingPageComponent implements OnInit {
   state: string = '';
 
   constructor(
-    private meta: Meta,
-    private title: Title,
     private route: ActivatedRoute,
     private userService: UserService,
-    private postService: PostService
+    private seoService: SeoService
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
@@ -39,10 +37,7 @@ export class LandingPageComponent implements OnInit {
     let state = this.params.state;
     let location = state.toUpperCase();
 
-    this.title.setTitle('Talented personal hair stylists in ' + location);
-    this.meta.updateTag({
-      name: 'description',
-      content: 'Personal hair stylists in ' + location
-    });
+    this.seoService.createCanonicalUrl();
+    this.seoService.updateMetaTags('Talented personal hair stylists in ' + location, null, 'Personal hair stylists in ' + location);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../../services';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,10 +15,13 @@ export class ContactPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private seoService: SeoService
   ) { }
 
   ngOnInit() {
+    this.seoService.createCanonicalUrl();
+    this.seoService.updateMetaTags('Contact - Hair To Chair', null, 'To get in contact with Hair To Chair please complete our online contact form. We look forward to hearing from you.');
     this.initForm();
   }
 

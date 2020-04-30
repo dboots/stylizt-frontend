@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { Portfolio } from '../models';
 
 @Injectable()
 export class PortfolioService {
@@ -13,8 +15,8 @@ export class PortfolioService {
     return this.http.post(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
-  read(params) {
-    return this.http.get(`${environment.rootApiUrl}/portfolio`, { params });
+  read(params: any = {}): Observable<any> {
+    return this.http.get<any>(`${environment.rootApiUrl}/portfolio`, { params });
   }
 
   search(params) {

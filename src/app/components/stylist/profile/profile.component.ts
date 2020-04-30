@@ -76,9 +76,8 @@ export class StylistProfilePageComponent implements OnInit {
     this.talents = this.user.talents;
     this.brands = this.user.brands;
 
-    this.portfolioService.read({}).subscribe((result: any) => {
-      this.portfolio = result.portfolio;
-      this.profileStrengths['portfolio'] = this.portfolio.length >= 3;
+    this.portfolioService.read().subscribe((result) => {
+      this.profileStrengths['portfolio'] = result.length >= 3;
     });
 
     this.clientService.read().then((result: any) => {

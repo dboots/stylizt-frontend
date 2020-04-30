@@ -3,6 +3,7 @@ import { EditProfileDetailsComponent } from './details/details.component';
 import { AuthService, UserService } from '../../../../services';
 import { User } from '../../../../models';
 import { FormGroup, FormControl } from '@angular/forms';
+import { EditProfilePortfolioComponent } from './portfolio/portfolio.component';
 
 @Component({
   selector: 'app-profile-edit',
@@ -14,7 +15,7 @@ export class EditProfileComponent implements OnInit {
 
   components: any[] = [
     { details: EditProfileDetailsComponent },
-    { portfolio: EditProfileDetailsComponent }
+    { portfolio: EditProfilePortfolioComponent }
   ];
 
   user: User;
@@ -55,7 +56,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   save() {
-    const user: User = this.formGroup.value;
+    const user: User = this.user;
     this.userService.update(user).subscribe((result) => {
       this.authService.token = result.token;
     });

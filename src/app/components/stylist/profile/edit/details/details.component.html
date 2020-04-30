@@ -62,18 +62,51 @@
       <label>State</label>
       <input class="input" type="text" formControlName="state" />
     </div>
-    <div class="col-12">
-      <label>Address (optional)</label>
-      <input class="input" type="text" formControlName="address" />
-    </div>
   </div>
 
   <div class="row mb-4">
     <div class="col-12 py-2">
       <div class="subtitle">Your Talents</div>
     </div>
-    <div class="col-4">
+    <div class="col-4 search-container d-flex align-items-center">
+      <i class="fa fa-icon fa-close" (click)="cancelTalent()"
+        *ngIf="talentControl.value || talentSearchResults.length > 0"></i>
+      <input class="input" type="text" (focus)="focusTalent()" (blur)="blurTalent()" [formControl]="talentControl"
+        placeholder="Search for your talent(s)" (keyup)="changeTalent($event)" />
+      <div class="search-results mt-1" *ngIf="talentControl.value || talentSearchResults.length > 0">
+        <div><button class="button-v3" *ngIf="!talentSearchResults.length" (click)="addNewTalent()">Add
+            {{talentControl.value}}</button></div>
+        <div *ngFor="let item of talentSearchResults" class="search-results-item px-4 py-2" (click)="addTalent(item)">
+          {{item.talent}}</div>
+      </div>
     </div>
-    <div class="col-8"></div>
+    <div class="col-8 d-flex align-items-center flex-wrap">
+      <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.talents"><span
+          class="label pr-4">{{item.talent}}</span>
+        <i class="fa fa-icon fa-close" (click)="removeTalent(item)"></i></span>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12 py-2">
+      <div class="subtitle">Your Brands</div>
+    </div>
+    <div class="col-4 search-container d-flex align-items-center">
+      <i class="fa fa-icon fa-close" (click)="cancelBrand()"
+        *ngIf="brandControl.value || brandSearchResults.length > 0"></i>
+      <input class="input" type="text" (focus)="focusBrand()" (blur)="blurBrand()" [formControl]="brandControl"
+        placeholder="Search for your brand(s)" (keyup)="changeBrand($event)" />
+      <div class="search-results mt-1" *ngIf="brandControl.value || brandSearchResults.length > 0">
+        <div><button class="button-v3" *ngIf="!brandSearchResults.length" (click)="addNewBrand()">Add
+            {{brandControl.value}}</button></div>
+        <div *ngFor="let item of brandSearchResults" class="search-results-item px-4 py-2" (click)="addBrand(item)">
+          {{item.brand}}</div>
+      </div>
+    </div>
+    <div class="col-8 d-flex align-items-center flex-wrap">
+      <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.brands"><span
+          class="label pr-4">{{item.brand}}</span>
+        <i class="fa fa-icon fa-close" (click)="removeBrand(item)"></i></span>
+    </div>
   </div>
 </div>

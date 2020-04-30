@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Talent } from '../models';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class TalentService {
@@ -26,8 +27,8 @@ export class TalentService {
     return new Promise<any[]>((resolve) => resolve(this.itemList));
   }
 
-  create(body: Talent) {
-    return this.http.post(
+  create(body: Talent): Observable<Talent> {
+    return this.http.post<Talent>(
       environment.rootApiUrl + '/talent',
       body,
       AuthService.httpOptions(this.authService.token)

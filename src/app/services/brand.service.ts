@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Brand } from '../models';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class BrandService {
@@ -26,8 +27,8 @@ export class BrandService {
     return new Promise<any[]>((resolve) => resolve(this.itemList));
   }
 
-  create(body: Brand) {
-    return this.http.post(
+  create(body: Brand): Observable<Brand> {
+    return this.http.post<Brand>(
       environment.rootApiUrl + '/brand',
       body,
       AuthService.httpOptions(this.authService.token)

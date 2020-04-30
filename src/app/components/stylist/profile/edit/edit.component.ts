@@ -56,7 +56,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   save() {
-    const user: User = this.user;
+    const source: User = this.user;
+    let user: User = this.formGroup.value;
+
+    user.brands = source.brands;
+    user.talents = source.talents;
+
     this.userService.update(user).subscribe((result) => {
       this.authService.token = result.token;
     });

@@ -2,127 +2,145 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
    <url>
       <loc>https://www.hairtochair.com/</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://www.hairtochair.com/contact</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
       <loc>https://www.hairtochair.com/terms</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.hairtochair.com/privacy</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://www.hairtochair.com/blog/a-complete-guide-to-getting-your-services-reviewed-online</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/what-to-do-with-negative-reviews-online</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/tag/getting-started</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/5-habits-of-successful-hairstylists</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/salon-equipment-hairstylist-should-own</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/tag/hairstylist-marketing</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/tag/management</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/creativity-101-mastering-celebrity-trends</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/diy-tips-for-successful-hairstylist-marketing</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/blog/4-online-marketing-ideas-boost-your-business</loc>
-      <lastmod>2020-04-20</lastmod>
+      <loc>https://www.hairtochair.com/contact</loc>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.hairtochair.com/blog/manage-yourself</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://www.hairtochair.com/blog/online-profile-more-hairstyling-clients</loc>
-      <lastmod>2020-04-20</lastmod>
+      <loc>https://www.hairtochair.com/blog/creativity-101-mastering-celebrity-trends</loc>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://www.hairtochair.com/blog</loc>
-      <lastmod>2020-04-20</lastmod>
-      <changefreq>daily</changefreq>
-      <priority>0.800000011920929</priority>
-   </url>
-   <url>
-      <loc>https://www.hairtochair.com/stylist</loc>
-      <lastmod>2020-04-20</lastmod>
+      <loc>https://www.hairtochair.com/blog/tag/hairstylist-marketing</loc>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.hairtochair.com/blog/4-rules-independent-hairstylists-barbers</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/tag/management</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/beginners-guide-online-marketing-stylists</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/6-management-tips-that-will-motivate-you</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/4-online-marketing-ideas-boost-your-business</loc>
+      <lastmod>2020-04-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/tag/getting-started</loc>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.hairtochair.com/blog/how-to-find-clients-as-a-stylist-or-independent-hairstylist</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/thrive-in-the-hairstylist-sector</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/salon-equipment-hairstylist-should-own</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/what-to-do-with-negative-reviews-online</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/diy-tips-for-successful-hairstylist-marketing</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/5-habits-of-successful-hairstylists</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/online-profile-more-hairstyling-clients</loc>
+      <lastmod>2020-04-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/stylist</loc>
+      <lastmod>2020-04-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://www.hairtochair.com/blog/a-complete-guide-to-getting-your-services-reviewed-online</loc>
+      <lastmod>2020-04-26</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://www.hairtochair.com/privacy-policy</loc>
-      <lastmod>2020-04-20</lastmod>
+      <lastmod>2020-04-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

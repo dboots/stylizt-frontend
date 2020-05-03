@@ -1,24 +1,23 @@
 @import "../../../../sass/variables";
 
-.container-nav {
-  .nav-logo {
-    height: 40px;
-    width: auto;
-  }
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
 
-  .nav-link {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    color: black;
-    cursor: pointer;
+.nav-link {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: black;
+  cursor: pointer;
+  margin: 0 4px;
 
-    &.button {
-      background: #599295;
-      color: white;
-      border-radius: 2px;
-    }
+  &.button {
+    background: #599295;
+    color: white;
+    border-radius: 2px;
   }
 }
 

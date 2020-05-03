@@ -8,6 +8,7 @@ export class Portfolio {
   talents: Talent[];
   display: boolean;
   loading: boolean;
+  publicId: string;
 
   constructor(
     image: string,

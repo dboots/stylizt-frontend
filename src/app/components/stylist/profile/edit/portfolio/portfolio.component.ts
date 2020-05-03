@@ -35,10 +35,22 @@ export class EditProfilePortfolioComponent implements OnInit {
     });
   }
 
-  save($event: any, image: Portfolio) {
-    console.log($event);
-    this.portfolioService.update(image, this.authService.token).subscribe((result) => {
-      console.log(result);
-    });
+  save($event: any, portfolio: Portfolio) {
+    if (portfolio._id) {
+      this.portfolioService.update(portfolio, this.authService.token).subscribe((result) => {
+        console.log('portfolio saved', result, this.user);
+      });
+    }
+  }
+
+  imageUploadCompleted($event: any) {
+    let url = $event.url;
+    let portfolio = new Portfolio(url);
+    portfolio.publicId = $event.public_id;
+
+    this.portfolioService.create(portfolio, this.authService.token).subscribe((result) => {
+      console.log('portfolio created', result);
+      this.portfolio.push(result);
+    })
   }
 }

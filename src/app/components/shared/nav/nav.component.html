@@ -1,69 +1,28 @@
-<!--<nav class="fixed-top navbar navbar-expand-lg navbar-light" [class.full]="isFullNav">
-  <div class="container align-items-center">
-    <a class="navbar-brand" routerLink="">
-      <img src="assets/img/logo.png" />
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img class="nav-logo" src="assets/img/logo.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" [id]="newInnerWidth < 992 && 'navbarSupportedContent'">
-      <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item" [class.nav-login]="nav.name === 'Login'" *ngFor="let nav of navItems">
-          <a class="nav-link" *ngIf="nav.name !== 'Login' && nav.scroll" [ngx-scroll-to]="nav.url"
-            [ngx-scroll-to-offset]="-80" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link" *ngIf="nav.name !== 'Login' && !nav.scroll" (click)="navigateTo(nav.url)" type="button"
-            data-toggle="collapse" data-target="#navbarSupportedContent">{{ nav.name }}</a>
-          <a class="nav-link" *ngIf="nav.name === 'Login'" (click)="modal(login)" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent">Login</a>
-        </li>
-      </ul>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a [routerLink]="['/']" class="nav-link">Home</a></li>
+      <li class="nav-item"><a routerLink="/blog" class="nav-link">Blog</a></li>
+      <ng-container *ngIf="isLoggedIn()">
+        <li class="nav-item"><a class="nav-link button p-2" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
+            H2C Site</a></li>
+        <li class="nav-item"><a routerLink="/stylist/home" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a></li>
+        <li class="nav-item"><a class="nav-link button p-2" (click)="logout()">Logout</a></li>
+      </ng-container>
 
-      <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto align-items-center text-uppercase">
-        <li class="nav-item nav-highlight" *ngIf="loggedInUser">
-          <a class="nav-link" (click)="navigateTo('/portfolio/' + loggedInUser.url)" type="button"
-            data-toggle="collapse" data-target="#navbarSupportedContent">My H2C Site</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateTo('/stylist/home')" routerLink="/stylist/home" type="button"
-            data-toggle="collapse" data-target="#navbarSupportedContent">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="navigateTo('/stylist/profile')" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent">Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent">Logout</a>
-        </li>
-      </ul>
-    </div>
+      <ng-container *ngIf="!isLoggedIn()">
+        <li class="nav-item"><a class="nav-link button p-2" (click)="modal(login)">Login</a></li>
+      </ng-container>
+    </ul>
   </div>
-</nav>-->
-
-<div class="container-fluid container-nav" [ngClass]="{'dark': dark}">
-  <div class="row">
-    <div class="col-12 nav">
-      <div class="container py-2">
-        <div class="row align-items-center d-flex">
-          <div class="col-3"><a routerLink="/"><img class="nav-logo" src="assets/img/logo.png"></a></div>
-          <div class="col-9 text-right d-flex justify-content-end">
-            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
-              H2C Site</a>
-            <a [routerLink]="['/']" class="nav-link">Home</a>
-            <a routerLink="/blog" class="nav-link">Blog</a>
-            <a *ngIf="isLoggedIn()" routerLink="/stylist/home" class="nav-link">Dashboard</a>
-            <a *ngIf="isLoggedIn()" routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a>
-            <a *ngIf="!isLoggedIn()" class="nav-link button" (click)="modal(login)">Login</a>
-            <a *ngIf="isLoggedIn()" class="nav-link button" (click)="logout()">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</nav>
 
 <ng-template #login let-c="close" let-d="dismiss">
   <div class="login-modal-component text-uppercase">

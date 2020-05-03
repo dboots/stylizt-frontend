@@ -26,8 +26,9 @@ export class EditProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService
   ) {
-    const user = this.authService.decode();
+    let user: User = new User();
     let formGroup = this.formGroup;
+    user = Object.assign(user, this.authService.decode());
 
     Object.keys(user).map((key) => {
       formGroup.addControl(key, new FormControl());

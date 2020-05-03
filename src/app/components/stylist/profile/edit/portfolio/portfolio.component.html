@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <div class="drag-drop">Upload Image <i class="ml-2 fa fa-icon fa-upload"></i></div>
+      <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+        (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
     </div>
   </div>
 
@@ -13,7 +14,8 @@
         </div>
         <img [src]="item.image" class="image-full" />
       </div>
-      <div class="caption py-2"><input (change)="save($event, item)" type="text" [(ngModel)]="item.caption" [ngModelOptions]="{standalone: true}" />
+      <div class="caption py-2"><input (change)="save($event, item)" type="text" [(ngModel)]="item.caption"
+          [ngModelOptions]="{standalone: true}" />
       </div>
     </div>
   </div>

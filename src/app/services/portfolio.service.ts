@@ -11,8 +11,8 @@ export class PortfolioService {
     private http: HttpClient
   ) { }
 
-  create(body, token: string) {
-    return this.http.post(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
+  create(body, token: string): Observable<Portfolio> {
+    return this.http.post<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
   read(params: any = {}): Observable<any> {

@@ -60,7 +60,6 @@ export class StepTwoComponent implements OnInit {
       this.loading = false;
       if (result.results.length > 0) {
         let components = result.results[0].address_components;
-        console.log(components.length);
         if (components.length === 5) {
           this.formGroup.controls['city'].setValue(components[1].long_name);
           this.formGroup.controls['state'].setValue(components[3].long_name);

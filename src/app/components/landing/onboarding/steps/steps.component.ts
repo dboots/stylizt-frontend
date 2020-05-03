@@ -36,7 +36,6 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   }
 
   formStatusChange($event) {
-    console.log('formStatusChange', $event);
     this.isFormValid = ($event === 'VALID');
   }
 

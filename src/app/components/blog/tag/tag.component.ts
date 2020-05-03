@@ -29,7 +29,6 @@ export class BlogTagComponent implements OnInit {
       let posts: any[];
 
       this.postService.browse({ tag: slug }).subscribe((result: any) => {
-        console.log(result);
         tag = result.data[0].tags.filter((item: any) => item.slug === slug)[0];
         let metaTitle: string = tag.meta_title || tag.name;
         let metaDescription: string = tag.meta_description || tag.description || `Blog posts for ${tag.name}`;

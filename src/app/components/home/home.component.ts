@@ -29,7 +29,6 @@ export class HomePageComponent implements OnInit {
     });
 
     this.postService.browse().subscribe((results) => {
-      console.log(results);
       this.posts = results['data'];
     });
   }

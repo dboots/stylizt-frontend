@@ -180,8 +180,6 @@ export class StylistPortfolioPageComponent implements OnInit {
         this.availableTimes.push(new Time(timeString, formattedTimeString, active));
       }
 
-      console.log(this.availableTimes, this.scheduledTimes);
-
       this.availableTimes.map((time, index) => {
         if ((index + service.time) > this.availableTimes.length) {
           time.available = false;
@@ -200,8 +198,6 @@ export class StylistPortfolioPageComponent implements OnInit {
     let timeParts = time.split(':');
     let hour = timeParts[0];
     let minute = timeParts[1];
-
-    console.log(service);
 
     schedule.startDateTime.setHours(hour);
     schedule.startDateTime.setMinutes(minute);

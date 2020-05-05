@@ -26,7 +26,7 @@ export class BlogHomeComponent implements OnInit {
         posts = result.data;
 
         this.seoService.createCanonicalUrl();
-        this.seoService.updateMetaTags('Hair to Chair Blog Posts Title', null, 'Hair to Chair Blog Posts');
+        this.seoService.updateMetaTags('Management & Marketing Tips for Hairstylists and Barbers', null, 'Hair to Chair provides regular and updated articles for all independent stylists, to help them succeed in business. Please check back regularly for updated tips on management and marketing your stylist business.');
         this.posts = posts;
       });
     });

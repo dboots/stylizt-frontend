@@ -3,8 +3,25 @@
 
   <div class="container" *ngIf="post">
     <div class="row">
-      <div class="col-12">
-        <h1 class="post-title">{{post.title}}</h1>
+      <div class="col-12 col-md-8 m-md-auto p-md-0">
+        <div class="post-title">{{post.title}}</div>
+      </div>
+    </div>
+
+    <div class="row mb-4 p-md-0">
+      <div class="col-12 col-md-8 m-md-auto">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-6 col-12">
+            <div class="d-flex align-items-center post-date"><i
+                class="fa fa-icon fa-clock-o pr-2"></i>{{post.published_at | date}}</div>
+          </div>
+          <div class="col-md-6 col-12 text-right">
+            <div class="tag-container">
+              <span *ngFor="let tag of post.tags" class="blog-tag p-2"><a
+                  [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -15,33 +32,13 @@
     </div>
 
     <div class="row p-4 post-content">
-      <div class="col-12 m-auto">
-        <p class="blog-tag-title d-flex align-items-center">{{post.published_at | date}}</p>
-        <p class="blog-tag-title d-flex align-items-center">TAGS:
-          <span *ngFor="let tag of post.tags" class="blog-tag"><a
-              [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a></span>
-        </p>
+      <div class="col-md-8 col-12 m-auto p-md-0">
         <div [innerHtml]="post.html"></div>
       </div>
     </div>
   </div>
 
-  <div class="container container-try-now container-padding">
-    <div class="row try-now text-white align-items-center my-2 p-4">
-      <div class="bg-try-now"></div>
-      <div class="col-md-8 pb-4">
-        Hair To Chair is the only all-in-one tool that allows you to keep track of your client history
-        using pictures and notes.
-      </div>
-      <div class="col-md-4 pt-4">
-        <div class="row text-center">
-          <div class="col-12">$4.99/mo</div>
-          <div class="col-12"><button class="button-v3">TRY IT NOW</button></div>
-          <div class="col-12 try-now-small">30 day trial, no credit card required</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-try-now></app-try-now>
 
   <div class="container-fluid container-blog">
     <div class="container">

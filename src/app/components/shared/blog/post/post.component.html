@@ -1,11 +1,11 @@
 <div class="blog-item">
   <div class="blog-image"><a [routerLink]="['/blog/' + post.slug]"><img [src]="post.feature_image" /></a></div>
+  <p class="blog-date"><i class="fa fa-lg fa-icon fa-clock-o mr-2"></i>{{post.published_at | date}}</p>
   <div class="blog-title"><a [routerLink]="['/blog/' + post.slug]">{{post.title}}</a></div>
-  <p class="blog-date">{{post.published_at | date}}</p>
   <p class="blog-excerpt">{{post.excerpt}}</p>
-  <p class="blog-tag-title">TAGS:</p>
-  <div>
-    <span *ngFor="let tag of post.tags" class="blog-tag">
+  <p><a class="blog-read-more" [routerLink]="['/blog/' + post.slug]">READ MORE</a></p>
+  <div class="tag-container">
+    <span *ngFor="let tag of post.tags" class="p-2 blog-tag">
       <a [routerLink]="['/blog/tag/' + tag.slug]">{{tag.name}}</a>
     </span>
   </div>

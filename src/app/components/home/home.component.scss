@@ -1,4 +1,3 @@
-
 .jumbotron {
   padding-top: 150px;
   position: relative;
@@ -132,34 +131,5 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 26px;
-  }
-}
-
-.container-try-now {
-  .bg-try-now {
-    background-image: url("https://res.cloudinary.com/drcvakvh3/image/upload/v1584586486/assets/footer-home.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 0.5;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-position: center;
-  }
-
-  .try-now {
-    border-radius: 10px;
-    background-color: #000000;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 46px;
-    position: relative;
-
-    .try-now-small {
-      font-size: 12px;
-      line-height: 22px;
-    }
   }
 }

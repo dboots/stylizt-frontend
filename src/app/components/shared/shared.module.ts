@@ -12,6 +12,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { TryNowComponent } from './try-now/try-now.component';
 
 @NgModule({
   imports: [
@@ -27,12 +28,14 @@ import { FooterComponent } from './footer/footer.component';
     BrandTagsInputComponent,
     CloudinaryUploaderComponent,
     NavComponent,
+    TryNowComponent,
     FooterComponent
   ],
   exports: [
     BrandTagsInputComponent,
     CloudinaryUploaderComponent,
     NavComponent,
+    TryNowComponent,
     FooterComponent
   ]
 })

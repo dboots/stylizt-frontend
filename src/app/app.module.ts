@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -116,7 +115,6 @@ Sentry.init({
     OnboardingModule,
     AppRoutingModule,
     HttpClientModule,
-    ScrollToModule.forRoot(),
     BrowserAnimationsModule,
     SharedModule
   ],
@@ -138,7 +136,7 @@ Sentry.init({
     JwtHelperService,
     StepService
   ],
-  exports: [CommonModule, ScrollToModule, SharedModule],
+  exports: [CommonModule, SharedModule],
   entryComponents: [ConfirmDialogComponent, EditProfileDetailsComponent, EditProfilePortfolioComponent],
   bootstrap: [AppComponent]
 })

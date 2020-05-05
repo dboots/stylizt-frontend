@@ -21,6 +21,10 @@ export class SeoService {
     });
   }
 
+  addMetaTag(name: string, content: string) {
+    this.meta.addTag({name, content}, true);
+  }
+
   updateMetaTags(title: string, metaTitle: string, metaDescription: string) {
     metaTitle = metaTitle || title;
 

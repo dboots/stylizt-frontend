@@ -1,6 +1,6 @@
+<app-nav *ngIf="loggedIn()"></app-nav>
 <ng-container *ngIf="stylist">
   <div class="container">
-    <app-nav *ngIf="loggedIn()"></app-nav>
     <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
       <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
       <div class="col-12 col-md-8 text-center">
@@ -13,37 +13,61 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-md-6 py-4 text-center d-flex justify-content-center">
+      <div class="col-12 col-lg-6 py-4 text-center d-flex justify-content-center">
         <div class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
         </div>
       </div>
-      <div class="col-12 col-md-6 py-4 text-center text-md-left">
+      <div class="col-12 col-lg-6 py-4 text-center text-md-left">
         <h2 class="bio-title">Hi, I'm {{stylist.name}}</h2>
         <p class="bio-content">{{stylist.bio}}</p>
 
         <div class="row">
-          <div class="col-12 col-md-6 py-4">
-            Brands
-            <span *ngFor="let item of stylist.brands">{{item.brand}}</span>
+          <div class="col-12 d-flex separator">
+            <span class="list-title">Brands:</span>
+            <span class="d-flex flex-wrap align-items-center">
+              <span class="list-item px-2 mb-2" *ngFor="let item of stylist.brands">{{item.brand}}</span>
+            </span>
           </div>
-          <div class="col-12 col-md-6 py-4">
-            Talents
-            <span *ngFor="let item of stylist.talents">{{item.talent}}</span>
+          <div class="col-12 d-flex mt-2">
+            <span class="list-title">Talents:</span>
+            <span class="d-flex flex-wrap align-items-center">
+              <span class="list-item px-2 mb-2" *ngFor="let item of stylist.talents">{{item.talent}}</span>
+            </span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-9">
-        <div class="row">
-          <div class="col-12 col-md-4 d-flex flex-column mb-4" *ngFor="let item of portfolio">
+      <div class="col-lg-9 col-12">
+        <div class="row separator section-bottom">
+          <div class="col-6 col-md-4 d-flex flex-column mb-4" *ngFor="let item of portfolio">
             <div class="image"><img [src]="item.image" class="image-full" /></div>
             <div class="caption py-2">{{item.caption}}</div>
           </div>
         </div>
+        <div class="row section-top">
+          <div class="col-12">
+            <div class="services-title">Choose a Service Below</div>
+            <div class="services-item" *ngFor="let service of services">
+              <div class="row">
+                <div class="col-md-10 col-8">
+                  <div class="row d-flex service-item-title align-items-center">
+                    <div class="col-md-10 col-6">{{service.name}}</div>
+                    <div class="col-md-2 col-6 text-right">{{service.price | currency}}</div>
+                  </div>
+                  <div class="row d-flex service-item-desc align-items-center">
+                    <div class="col-md-10 col-6">{{service.description}}</div>
+                    <div class="col-md-2 col-6 text-right">{{(service.time * .5)}} hrs</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-4 text-center d-flex align-items-center"><button class="button-v3">BOOK</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-3 side p-0">
+      <div class="col-lg-3 col-12 side p-0">
         <iframe width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
           marginwidth="0">
           <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
@@ -88,12 +112,6 @@
             <button class="button-v3">Book Appointment</button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        Available Services
       </div>
     </div>
   </div>

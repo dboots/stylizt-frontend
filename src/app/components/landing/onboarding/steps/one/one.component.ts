@@ -28,7 +28,7 @@ export class StepOneComponent implements OnInit {
         this.userService.signup(this.formGroup.value).subscribe((result) => {
           resolve(result);
         }, (error) => {
-          this.formGroup.setErrors({ error: 'An error has occurred' });
+          this.formGroup.setErrors({ error: error.error });
           reject(error);
         });
       });

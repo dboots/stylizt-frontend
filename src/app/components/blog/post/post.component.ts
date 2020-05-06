@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../services/post.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SeoService } from 'src/app/services/seo.service';
+import { Post } from 'src/app/models';
 
 @Component({
   selector: 'app-post',
@@ -23,19 +24,30 @@ export class BlogPostComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
-      this.slug = params.get('slug');
-      this.postService.read(this.slug).subscribe((result) => {
-        this.post = result.data;
-        this.sanitizer.bypassSecurityTrustHtml(this.post.html);
-        this.seoService.createCanonicalUrl();
-        this.seoService.updateMetaTags(this.post.title, this.post.meta_title, this.post.meta_description);
+    const seoService: SeoService = this.seoService;
+    const postService: PostService = this.postService;
 
-        this.postService.browse({ tag: this.post.tags[0].slug }, 3).subscribe((posts) => {
-          this.relatedPosts = posts.data.filter((post) => {
-            return this.post.id !== post.id;
+    this.route.paramMap.subscribe((params) => {
+      const slug = params.get('slug');
+      postService.read(slug).subscribe((result) => {
+        const post: any = result.data;
+        this.sanitizer.bypassSecurityTrustHtml(post.html);
+        seoService.createCanonicalUrl();
+
+        if (post.feature_image) {
+          seoService.updateMetaImage(post.feature_image);
+        }
+
+        seoService.updateMetaTags(post.title, post.meta_title, post.meta_description);
+
+        postService.browse({ tag: post.tags[0].slug }, 3).subscribe((posts) => {
+          this.relatedPosts = posts.data.filter((related) => {
+            return post.id !== related.id;
           });
         });
+
+        this.slug = slug;
+        this.post = post;
       });
     });
   }

@@ -22,7 +22,19 @@ export class SeoService {
   }
 
   addMetaTag(name: string, content: string) {
-    this.meta.addTag({name, content}, true);
+    this.meta.addTag({ name, content }, true);
+  }
+
+  updateMetaImage(imageUrl: string) {
+    this.meta.updateTag({
+      name: 'og:image',
+      content: imageUrl
+    });
+
+    this.meta.updateTag({
+      name: 'twitter:image',
+      content: imageUrl
+    });
   }
 
   updateMetaTags(title: string, metaTitle: string, metaDescription: string) {
@@ -36,7 +48,22 @@ export class SeoService {
     });
 
     this.meta.updateTag({
+      name: 'og:title',
+      content: metaTitle
+    });
+
+    this.meta.updateTag({
+      name: 'twitter:text:title',
+      content: metaTitle
+    });
+
+    this.meta.updateTag({
       name: 'description',
+      content: metaDescription
+    });
+
+    this.meta.updateTag({
+      name: 'og:description',
       content: metaDescription
     });
   }
@@ -46,5 +73,7 @@ export class SeoService {
     link.setAttribute('rel', 'canonical');
     this.dom.head.appendChild(link);
     link.setAttribute('href', this.dom.URL);
+
+    this.meta.addTag({ name: 'og:url', content: this.dom.URL }, true);
   }
 }

@@ -40,6 +40,7 @@
 
     <div class="row">
       <div class="col-lg-9 col-12">
+        <app-scheduler></app-scheduler>
         <div class="row separator section-bottom">
           <div class="col-6 col-md-4 d-flex flex-column mb-4" *ngFor="let item of portfolio">
             <div class="image"><img [src]="item.image" class="image-full" /></div>
@@ -51,17 +52,17 @@
             <div class="services-title">Choose a Service Below</div>
             <div class="services-item" *ngFor="let service of services">
               <div class="row">
-                <div class="col-md-10 col-8">
+                <div class="col-md-10 col-12">
                   <div class="row d-flex service-item-title align-items-center">
-                    <div class="col-md-10 col-6">{{service.name}}</div>
-                    <div class="col-md-2 col-6 text-right">{{service.price | currency}}</div>
+                    <div class="col-md-10 col-8">{{service.name}}</div>
+                    <div class="col-md-2 col-4 text-right">{{service.price | currency}}</div>
                   </div>
-                  <div class="row d-flex service-item-desc align-items-center">
-                    <div class="col-md-10 col-6">{{service.description}}</div>
-                    <div class="col-md-2 col-6 text-right">{{(service.time * .5)}} hrs</div>
+                  <div class="row mb-2 d-flex service-item-desc align-items-center">
+                    <div class="col-md-10 col-8">{{service.description}}</div>
+                    <div class="col-md-2 col-4 text-right">{{(service.time * .5)}} hrs</div>
                   </div>
                 </div>
-                <div class="col-md-2 col-4 text-center d-flex align-items-center"><button class="button-v3">BOOK</button></div>
+                <div class="col-md-2 col-12 text-center d-flex align-items-center"><button class="button-v3">BOOK</button></div>
               </div>
             </div>
           </div>
@@ -111,16 +112,6 @@
               be charged 50% of service price for late cancellations and 100% for no shows.</div>
             <button class="button-v3">Book Appointment</button>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid container-contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <div class="title">Contact Us</div>
         </div>
       </div>
     </div>

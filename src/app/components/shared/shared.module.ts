@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { TryNowComponent } from './try-now/try-now.component';
+import { SchedulerComponent } from './scheduler/scheduler.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { TryNowComponent } from './try-now/try-now.component';
     CloudinaryUploaderComponent,
     NavComponent,
     TryNowComponent,
+    SchedulerComponent,
     FooterComponent
   ],
   exports: [
@@ -36,6 +38,7 @@ import { TryNowComponent } from './try-now/try-now.component';
     CloudinaryUploaderComponent,
     NavComponent,
     TryNowComponent,
+    SchedulerComponent,
     FooterComponent
   ]
 })

@@ -6,6 +6,7 @@ import { BlogPostComponent } from '../../components/blog/post/post.component';
 import { EditProfileComponent } from '../../components/stylist/profile/edit/edit.component';
 import { BlogTagComponent } from '../../components/blog/tag/tag.component';
 import { BlogHomeComponent } from '../../components/blog/blog.component';
+import { AuthGuardService } from 'src/app/services';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
     }]
   }, {
     path: 'stylist/profile/edit',
-    component: EditProfileComponent
+    component: EditProfileComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

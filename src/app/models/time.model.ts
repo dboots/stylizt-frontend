@@ -1,3 +1,7 @@
 export class Time {
-  constructor(private time: string, public formattedTime: string, public available: boolean = true) { }
+  selected: boolean = false;
+
+  constructor(private time: string, public formattedTime: string, public available: boolean = true, public date?: Date) {
+    console.log(this.date);
+  }
 }

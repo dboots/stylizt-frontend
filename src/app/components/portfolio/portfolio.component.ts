@@ -43,6 +43,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   currentDate: Date = new Date();
   minDate: any = {};
   message: string;
+  service: Service;
 
   constructor(
     private talentService: TalentService,
@@ -107,6 +108,10 @@ export class StylistPortfolioPageComponent implements OnInit {
       });
   }
 
+  book(service: Service) {
+    this.service = service;
+  }
+
   parseSchedule(schedule: Schedule[]) {
     this.scheduledTimes = [];
     schedule.map((slot) => {
@@ -160,6 +165,7 @@ export class StylistPortfolioPageComponent implements OnInit {
 
         let checkDateTime = new Date(startDateTime);
         let checkTimeString = this.getTimeString(checkDateTime, false);
+        console.log(checkTimeString);
 
         if (active) {
           for (let i = 1; i < service.time; i++) {

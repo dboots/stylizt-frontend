@@ -1,33 +1,148 @@
-<div class="underlay">
-  <div class="container">
-    <div class="row">
-      <div class="col-10 text-center">
-        <h2>Pick a date & time</h2>
-        <p>Please choose an available date & time from the calendar</p>
+<div class="underlay" *ngIf="service">
+  <div class="scheduler-container">
+    <ng-container *ngIf="step == 1">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2>Pick a date & time</h2>
+          <p class="text">Please choose an available date & time from the calendar</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <div class="d-flex align-items-center"><i (click)="prev()" class="fa fa-icon fa-chevron-left"></i></div>
+      <div class="pb-4 col-12 d-flex justify-content-center">
+        <div class="d-flex align-items-center"><i (click)="prev()" class="fa fa-icon fa-chevron-left arrow"></i></div>
         <div class="d-flex">
           <div *ngFor="let day of week, let i = index" class="week px-2"
             [ngClass]="{'current': isCurrentDate(day), 'active': isActiveDate(day)}">
             <div class="month">{{getMonth(day, i)}}</div>
-            <div class="select-date" (click)="selectDate(day)">
+            <div class="select-date" (click)="selectServiceDate(day)">
               <div class="day">{{days[day.getDay()]}}</div>
               <div class="date">{{day.getDate()}}</div>
             </div>
           </div>
         </div>
-        <div class="d-flex align-items-center"><i (click)="next()" class="fa fa-icon fa-chevron-right"></i></div>
+        <div class="d-flex align-items-center"><i (click)="next()" class="fa fa-icon fa-chevron-right arrow"></i></div>
       </div>
-      <div class="col-12">day select
-      </div>
-      <div class="col-12">time select</div>
       <div class="col-12">
-        <button class="button-v3">Confirm Appointment</button>
-        <button class="button-v3">Cancel</button>
+        <div class="row">
+          <div class="col-4 mr-0 pr-0 time-morning">
+            <div class="time-header">Morning</div>
+            <div class="time-column">
+              <div class="time" (click)="selectTime(time)" *ngFor="let time of morningTimes"
+                [ngClass]="{'unavailable': !time.available, 'selected': time.selected}">
+                {{time.formattedTime}}</div>
+            </div>
+          </div>
+          <div class="col-4 m-0 p-0 time-afternoon">
+            <div class="time-header">Afternoon</div>
+            <div class="time-column">
+              <div class="time" (click)="selectTime(time)" *ngFor="let time of afternoonTimes"
+                [ngClass]="{'unavailable': !time.available, 'selected': time.selected}">
+                {{time.formattedTime}}</div>
+            </div>
+          </div>
+          <div class="col-4 ml-0 pl-0 time-evening">
+            <div class="time-header">Evening</div>
+            <div class="time-column">
+              <div class="time" (click)="selectTime(time)" *ngFor="let time of eveningTimes"
+                [ngClass]="{'unavailable': !time.available, 'selected': time.selected}">
+                {{time.formattedTime}}</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="col-12 my-4">
+        <div class="service">Service</div>
+        <div class="row">
+          <div class="col-8">
+            <div class="service-name">{{service.name}}</div>
+            <div class="service-desc">{{service.description}}</div>
+          </div>
+          <div class="col-4">
+            <div class="service-price text-right">{{service.price | currency}}</div>
+            <div class="service-times text-right" *ngIf="selectedSchedule.endDateTime"><i
+                class="fa fa-icon fa-clock-o"></i>
+              {{selectedSchedule.startDateTime | date: 'shortTime'}} -
+              {{selectedSchedule.endDateTime | date: 'shortTime'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">
+            <button class="button-v3 cancel-button" (click)="cancel()">Cancel</button>
+          </div>
+          <div class="col-6">
+            <button class="button-v3" [attr.disabled]="(selectedSchedule.endDateTime) ? null : 'disabled'"
+              (click)="step = 2">Confirm Appointment</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="step == 2">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2>Confirm your booking</h2>
+          <p>Please confirm your information below to book with {{stylist.name}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-6">
+          <label>First Name</label>
+          <input type="text" name="fname" />
+        </div>
+        <div class="col-6">
+          <label>Last Name</label>
+          <input type="text" name="lname" />
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-6">
+          <label>Phone</label>
+          <input type="text" name="phone" />
+        </div>
+        <div class="col-6">
+          <label>Email</label>
+          <input type="text" name="email" />
+        </div>
+      </div>
+      <div class="col-12 my-2 d-flex">
+        <div class="mr-1"><input type="checkbox"></div>
+        <div class="text">I want to receive a booking reminder via SMS text message 24 hours before my appointment.</div>
+      </div>
+      <div class="row my-2">
+        <div class="service col-12">Service</div>
+        <div class="col-8">
+          <div class="service-name">{{service.name}}</div>
+          <div class="service-desc">{{service.description}}</div>
+        </div>
+        <div class="col-4">
+          <div class="service-price text-right">{{service.price | currency}}</div>
+          <div class="service-times text-right" *ngIf="selectedSchedule.endDateTime"><i
+              class="fa fa-icon fa-clock-o"></i>
+            {{selectedSchedule.startDateTime | date: 'shortTime'}} -
+            {{selectedSchedule.endDateTime | date: 'shortTime'}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <button class="button-v3 cancel-button" (click)="step = 1">Cancel</button>
+        </div>
+        <div class="col-6">
+          <button class="button-v3" [attr.disabled]="(selectedSchedule.endDateTime) ? null : 'disabled'"
+            (click)="step = 2">Book Now</button>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
+
+<!--
+  ON BOOKING
+  - create schedule record with client information
+  - send text/email to client (if opted in), confirmed / awaiting confirmation
+  - send text to stylist
+  - - ask to confirm
+  - - if confirmed, send text/email to client
+  - add to stylist calendar (where applicable)
+  - 24 hours before, send text reminder to client
+-->

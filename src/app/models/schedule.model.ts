@@ -5,10 +5,12 @@ export class Schedule {
   startDateTime: Date;
   endDateTime: Date;
   description: string;
+  email: string;
   name: string;
   phone: string;
   owner: string;
   service: Service;
   datePicker: any;
   approved: boolean;
+  confirm: boolean;
 }

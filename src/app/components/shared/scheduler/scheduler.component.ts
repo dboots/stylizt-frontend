@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Renderer2, Inject, OnDestroy, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Renderer2, Inject, OnDestroy, AfterContentInit, ɵSWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__ } from '@angular/core';
 import { Schedule, Service } from 'src/app/models';
 import { ScheduleService } from 'src/app/services';
 import { Time } from 'src/app/models/time.model';
@@ -34,7 +34,6 @@ export class SchedulerComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log('init');
     const currentDate = new Date(this.currentDate);
     let week = [new Date(currentDate)];
 
@@ -47,8 +46,14 @@ export class SchedulerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.service.currentValue) {
-      this.selectServiceDate(this.currentDate, true);
-      this.selectedSchedule = new Schedule();
+      const service: Service = changes.service.currentValue;
+      const currentDate = this.currentDate;
+      let selectedSchedule = new Schedule();
+
+      selectedSchedule.service = service;
+
+      this.selectedSchedule = selectedSchedule;
+      this.selectServiceDate(currentDate, true);
       this.renderer.addClass(this.document.body, 'modal-open');
     }
   }
@@ -233,5 +238,13 @@ export class SchedulerComponent implements OnInit, OnChanges {
   cancel() {
     this.service = null;
     this.renderer.removeClass(this.document.body, 'modal-open');
+  }
+
+  book() {
+    const body = this.selectedSchedule;
+    body.owner = this.stylist._id;
+    this.scheduleService.create(body).subscribe((result) => {
+      this.step = 3;
+    });
   }
 }

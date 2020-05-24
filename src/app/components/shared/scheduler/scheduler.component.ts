@@ -126,6 +126,8 @@ export class SchedulerComponent implements OnInit, OnChanges {
     time.selected = !time.selected;
     this.selectedSchedule.startDateTime = time.date;
     this.selectedSchedule.endDateTime = endDateTime;
+
+    console.log(this.selectedSchedule);
   }
 
   selectServiceDate(day: Date, isDisplayOnly: boolean = false) {

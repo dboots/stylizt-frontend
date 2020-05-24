@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, ViewChild, OnInit, ComponentFactoryResolve
 import { EditProfileDetailsComponent } from './details/details.component';
 import { AuthService, UserService } from '../../../../services';
 import { User } from '../../../../models';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditProfilePortfolioComponent } from './portfolio/portfolio.component';
 
 @Component({
@@ -20,6 +20,7 @@ export class EditProfileComponent implements OnInit {
 
   user: User;
   formGroup: FormGroup = new FormGroup({});
+  activeTab: string = 'details';
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -28,10 +29,17 @@ export class EditProfileComponent implements OnInit {
   ) {
     let user: User = new User();
     let formGroup = this.formGroup;
+    let requiredFields = ['name', 'email', 'phone', 'zip', 'city', 'state', 'url'];
     user = Object.assign(user, this.authService.decode());
 
     Object.keys(user).map((key) => {
-      formGroup.addControl(key, new FormControl());
+      let control = new FormControl();
+
+      if (requiredFields.indexOf(key) !== -1) {
+        control.setValidators(Validators.required);
+      }
+
+      formGroup.addControl(key, control);
     });
 
     formGroup.patchValue(user);
@@ -44,6 +52,10 @@ export class EditProfileComponent implements OnInit {
     this.loadComponent('details');
   }
 
+  isActive(tab: string) {
+    return (tab === this.activeTab);
+  }
+
   loadComponent(componentId: string) {
     let component = this.components.filter((item) => {
       return Object.keys(item).filter((key) => key === componentId).length > 0;
@@ -54,6 +66,7 @@ export class EditProfileComponent implements OnInit {
 
     let instance: ComponentRef<any> = this.componentLoader.createComponent(factory);
     instance.instance.user = this.user;
+    this.activeTab = componentId;
   }
 
   save() {

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import {
   UserService,
@@ -116,7 +117,8 @@ Sentry.init({
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    MatSlideToggleModule
   ],
   providers: [
     UserService,
@@ -136,7 +138,7 @@ Sentry.init({
     JwtHelperService,
     StepService
   ],
-  exports: [CommonModule, SharedModule],
+  exports: [CommonModule, SharedModule, MatSlideToggleModule],
   entryComponents: [ConfirmDialogComponent, EditProfileDetailsComponent, EditProfilePortfolioComponent],
   bootstrap: [AppComponent]
 })

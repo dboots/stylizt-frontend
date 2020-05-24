@@ -101,6 +101,18 @@
           <input type="text" name="email" [(ngModel)]="selectedSchedule.email" />
         </div>
       </div>
+      
+      <div class="col-6 my-2 d-flex" *ngIf="stylist.requireApproval">
+        <div class="text">This booking requires stylist confirmation. How would you like to recieve booking
+          confirmation?</div>
+      </div>
+      <div class="col-6 my-2 d-flex" *ngIf="stylist.requireApproval">
+        <select>
+          <option>Email</option>
+          <option>Text</option>
+        </select>
+      </div>
+
       <div class="col-12 my-2 d-flex">
         <div class="mr-1"><input type="checkbox" [(ngModel)]="selectedSchedule.confirm"></div>
         <div class="text">I want to receive a booking reminder via SMS text message 24 hours before my appointment.
@@ -136,9 +148,11 @@
         <div class="col-12 text-center">
           <i class="fa fa-icon fa-check-circle-o fa-5x"></i>
           <h2>Congratulations!</h2>
-          <p>You have successfully booked</p>
-          <p>Blowout service / 23 Feb, 10:00 AM / $ 99.99</p>
-          <a href="#">Go back to homepage</a>
+          <p class="service">
+            {{(stylist.requireApproval) ? 'Your booking is pending confirmation' : 'You have successfully booked'}}</p>
+          <p>{{service.name}} / {{selectedSchedule.startDateTime | date: 'dd MMM, hh:mm a'}} /
+            {{service.price | currency}}</p>
+          <a (click)="service = null">Close</a>
         </div>
       </div>
     </ng-container>

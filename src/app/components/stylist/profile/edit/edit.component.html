@@ -4,17 +4,20 @@
     <div class="col-12 title">Edit Profile</div>
     <div class="col-12">
       <div class="row d-flex align-items-center row-edit pb-2">
-        <div class="col-2 tab-item" (click)="loadComponent('details')">DETAILS</div>
-        <div class="col-2 tab-item" (click)="loadComponent('portfolio')">PORTFOLIO</div>
+        <div class="col-2 tab-item" [ngClass]="{'active': isActive('details')}" (click)="loadComponent('details')">
+          DETAILS</div>
+        <div class="col-2 tab-item" [ngClass]="{'active': isActive('portfolio')}" (click)="loadComponent('portfolio')">PORTFOLIO</div>
         <div class="col-2 tab-item"><a routerLink="/stylist/services">SERVICES</a></div>
         <div class="col-2 tab-item"><a routerLink="/stylist/clients">CLIENTS</a></div>
-        <div class="col-4 tab-item text-right"><button class="button-v3" (click)="save()">Save Changes</button></div>
+        <div class="col-4 tab-item text-right"><button class="button-v3" [attr.disabled]="(formGroup.invalid) ? 'disabled' : null" (click)="save()">Save Changes</button></div>
       </div>
     </div>
   </div>
-  
+
   <form [formGroup]="formGroup">
     <ng-container #componentLoader></ng-container>
   </form>
+
+  {{formGroup.value | json}}
 </div>
 <app-footer></app-footer>

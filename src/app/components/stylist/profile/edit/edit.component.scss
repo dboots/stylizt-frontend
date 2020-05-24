@@ -30,7 +30,7 @@
     }
   }
 
-  &:hover {
+  &:hover, &.active {
     color: #5AB7BB;
     border-bottom: 1px solid #5AB7BB;
   }

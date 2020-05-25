@@ -30,6 +30,7 @@ export class EditProfileComponent implements OnInit {
     let user: User = new User();
     let formGroup = this.formGroup;
     let requiredFields = ['name', 'email', 'phone', 'zip', 'city', 'state', 'url'];
+
     user = Object.assign(user, this.authService.decode());
 
     Object.keys(user).map((key) => {
@@ -37,6 +38,10 @@ export class EditProfileComponent implements OnInit {
 
       if (requiredFields.indexOf(key) !== -1) {
         control.setValidators(Validators.required);
+      }
+
+      if (key === 'phone') {
+        control.setValidators(this.phoneValidator);
       }
 
       formGroup.addControl(key, control);
@@ -79,5 +84,13 @@ export class EditProfileComponent implements OnInit {
     this.userService.update(user).subscribe((result) => {
       this.authService.token = result.token;
     });
+  }
+
+  phoneValidator(c: FormControl) {
+    return (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(c.value)) ? null : {
+      validatePhone: {
+        valid: false
+      }
+    };
   }
 }

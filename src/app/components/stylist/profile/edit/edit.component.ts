@@ -4,6 +4,8 @@ import { AuthService, UserService } from '../../../../services';
 import { User } from '../../../../models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditProfilePortfolioComponent } from './portfolio/portfolio.component';
+import { EditProfileServicesComponent } from './services/services.component';
+import { EditProfileClientsComponent } from './clients/clients.component';
 
 @Component({
   selector: 'app-profile-edit',
@@ -15,7 +17,9 @@ export class EditProfileComponent implements OnInit {
 
   components: any[] = [
     { details: EditProfileDetailsComponent },
-    { portfolio: EditProfilePortfolioComponent }
+    { portfolio: EditProfilePortfolioComponent },
+    { services: EditProfileServicesComponent },
+    { clients: EditProfileClientsComponent }
   ];
 
   user: User;

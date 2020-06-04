@@ -194,11 +194,14 @@ label {
 
 input[type="text"],
 input[type="password"],
+input[type="number"],
 select.input {
   height: 50px;
 }
 
-textarea.input, input[type="text"],
+textarea.input,
+input[type="text"],
+input[type="number"],
 input[type="password"],
 select.input {
   background: #ffffff;

@@ -65,6 +65,8 @@ import { BlogHomeComponent } from './components/blog/blog.component';
 import { EditProfileDetailsComponent } from './components/stylist/profile/edit/details/details.component';
 import { SeoService } from './services/seo.service';
 import { EditProfilePortfolioComponent } from './components/stylist/profile/edit/portfolio/portfolio.component';
+import { EditProfileServicesComponent } from './components/stylist/profile/edit/services/services.component';
+import { EditProfileClientsComponent } from './components/stylist/profile/edit/clients/clients.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -102,6 +104,8 @@ Sentry.init({
     EditProfileComponent,
     EditProfileDetailsComponent,
     EditProfilePortfolioComponent,
+    EditProfileServicesComponent,
+    EditProfileClientsComponent,
     BlogPostItemComponent,
     NotFoundComponent
   ],
@@ -139,7 +143,13 @@ Sentry.init({
     StepService
   ],
   exports: [CommonModule, SharedModule, MatSlideToggleModule],
-  entryComponents: [ConfirmDialogComponent, EditProfileDetailsComponent, EditProfilePortfolioComponent],
+  entryComponents: [
+    ConfirmDialogComponent,
+    EditProfileDetailsComponent,
+    EditProfilePortfolioComponent,
+    EditProfileServicesComponent,
+    EditProfileClientsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

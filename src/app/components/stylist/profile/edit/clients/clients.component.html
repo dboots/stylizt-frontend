@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 col-md-3 d-flex flex-column mb-4" *ngFor="let client of clients">
+      <div class="image position-relative">
+        <div class="icons d-flex align-items-center justify-content-end p-2">
+          <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
+        </div>
+        <img [src]="client.portfolio[0].image" class="image-full" />
+      </div>
+      <div class="caption py-2 text-center">{{client.name}}</div>
+    </div>
+  </div>
+</div>

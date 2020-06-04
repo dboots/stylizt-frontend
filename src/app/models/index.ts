@@ -8,3 +8,4 @@ export * from './post';
 export * from './brand.model';
 export * from './service.model';
 export * from './schedule.model';
+export * from './length.model';

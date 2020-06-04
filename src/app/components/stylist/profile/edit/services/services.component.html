@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-2 justify-content-end">
+    <button class="button-v3" (click)="add()">Add New Service</button>
+  </div>
+  <div class="services row pb-4 mb-4" *ngFor="let service of services">
+    <div class="service-name col-md-3 col-12">
+      <label>Service Name</label>
+      <input type="text" class="input" [(ngModel)]="service.name">
+    </div>
+    <div class="service-desc col-md-5 col-12">
+      <label>Service Name</label>
+      <input type="text" class="input" [(ngModel)]="service.description">
+    </div>
+    <div class="service-price col-md-2 col-6">
+      <label>Price</label>
+      <input type="number" class="input" [(ngModel)]="service.price">
+    </div>
+    <div class="service-time col-md-2 col-6">
+      <label>Time</label>
+      <select class="input" [(ngModel)]="service.time">
+        <option value="1">30 mins</option>
+        <option value="2">1 hour</option>
+        <option value="3">1 hour 30 mins</option>
+        <option value="4">2 hours</option>
+        <option value="5">2 hours 30 mins</option>
+        <option value="6">3 hours</option>
+      </select>
+    </div>
+  </div>
+</div>

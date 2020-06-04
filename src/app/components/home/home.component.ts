@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, PostService } from '../../services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../models';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private postService: PostService
+    private postService: PostService,
+    private seoService: SeoService
   ) {
     this.formGroup = new FormGroup({
       query: new FormControl('', [])
@@ -31,6 +33,9 @@ export class HomePageComponent implements OnInit {
     this.postService.browse().subscribe((results) => {
       this.posts = results['data'];
     });
+
+    this.seoService.updateMetaTags('Hair To Chair - Stylist Client Management & Portfolio Marketing Tools', null, 'Premium stylist client management tools at affordable rates. Manage, market and boost your stylist services to grow your business today. Free trial, No Credit card required');
+    this.seoService.createCanonicalUrl();
   }
 
   getStylistBio(bio: string) {

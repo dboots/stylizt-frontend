@@ -79,7 +79,7 @@ export class StylistPortfolioPageComponent implements OnInit {
         let stylist: User = data.stylist;
 
         this.servicesService.read(stylist._id).subscribe((result) => {
-          this.services = result['data'];
+          this.services = result;
         });
 
         this.seoService.createCanonicalUrl();

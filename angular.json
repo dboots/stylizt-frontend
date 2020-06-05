@@ -21,7 +21,8 @@
               "src/assets",
               "src/favicon.ico",
               "src/googlecc28b84af0333bac.html",
-              "src/sitemap.xml"
+              "src/sitemap.xml",
+              "src/robots.txt"
             ],
             "styles": [
               "src/sass/landing-page.scss",

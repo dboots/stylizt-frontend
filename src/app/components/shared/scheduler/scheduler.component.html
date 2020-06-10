@@ -152,7 +152,7 @@
             {{(stylist.requireApproval) ? 'Your booking is pending confirmation' : 'You have successfully booked'}}</p>
           <p>{{service.name}} / {{selectedSchedule.startDateTime | date: 'dd MMM, hh:mm a'}} /
             {{service.price | currency}}</p>
-          <a (click)="service = null">Close</a>
+          <a (click)="cancel()">Close</a>
         </div>
       </div>
     </ng-container>

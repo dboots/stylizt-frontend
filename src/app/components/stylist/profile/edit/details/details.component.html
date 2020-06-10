@@ -88,71 +88,85 @@
     </div>
     <div class="col-3 mb-4">
       <label>Monday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[0][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Tuesday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[1][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[1][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Wednesday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[2][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[2][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Thursday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[3][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[3][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Friday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[4][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[4][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Saturday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[5][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[5][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
 
     <div class="col-3">
       <label>Sunday</label>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[6][0]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
-      <select class="input">
-        <option>09:00 AM</option>
+      <select class="input" [(ngModel)]="hours[6][1]" [ngModelOptions]="{standalone: true}">
+        <option [value]=""></option>
+        <option *ngFor="let time of times">{{time}}</option>
       </select>
     </div>
   </div>

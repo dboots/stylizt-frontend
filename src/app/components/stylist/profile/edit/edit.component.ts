@@ -84,6 +84,7 @@ export class EditProfileComponent implements OnInit {
 
     user.brands = source.brands;
     user.talents = source.talents;
+    user.hours = source.hours;
 
     this.userService.update(user).subscribe((result) => {
       this.authService.token = result.token;

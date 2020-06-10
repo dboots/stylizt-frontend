@@ -27,6 +27,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   portfolioItem: Portfolio = new Portfolio('');
   talents: Talent[] = [];
   services: Service[] = [];
+  days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   instagram: string = null;
   twitter: string = null;

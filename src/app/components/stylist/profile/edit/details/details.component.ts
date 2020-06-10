@@ -20,6 +20,8 @@ export class EditProfileDetailsComponent implements OnInit {
   brandSearchResults: Brand[] = [];
   talentControl: FormControl = new FormControl();
   brandControl: FormControl = new FormControl();
+  times: string[] = [];
+  hours: string[][] = [];
 
   constructor(
     private talentService: TalentService,
@@ -27,6 +29,10 @@ export class EditProfileDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let times: string[] = [];
+    let timeString: string;
+    let userHours: string[][] = this.user.hours;
+
     this.talentService.read().then((results) => {
       this.talents = results;
     });
@@ -34,6 +40,35 @@ export class EditProfileDetailsComponent implements OnInit {
     this.brandService.read().then((results) => {
       this.brands = results;
     });
+
+    if (!this.user.hours) {
+      for (let i = 0; i <= 6; i++) {
+        this.hours.push(['9:00 AM', '5:00 PM']);
+      }
+    } else {
+      this.hours = this.user.hours;
+    }
+
+    for (let i = 0; i < 24; i++) {
+      switch (true) {
+        case (i === 0):
+          timeString = '12:00 AM';
+          break;
+        case (i === 12):
+          timeString = '12:00 PM';
+          break;
+        case (i > 12):
+          timeString = i % 12 + ':00 PM';
+          break;
+        default:
+          timeString = i + ':00 AM';
+      }
+
+      times.push(timeString);
+    }
+
+    this.user.hours = userHours || this.hours;
+    this.times = times;
   }
 
   focusTalent() {

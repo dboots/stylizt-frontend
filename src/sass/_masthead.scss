@@ -7,6 +7,10 @@
   padding: 8rem 0;
   position: relative;
 
+  @media (max-width: 768px) {
+    background-image: url('https://res.cloudinary.com/drcvakvh3/image/upload/w_768/v1588696630/assets/header-home-v2.webp');
+  }
+
   .overlay {
     background-color: $gray-900;
     height: 100%;

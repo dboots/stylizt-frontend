@@ -259,7 +259,7 @@ export class StylistPortfolioPageComponent implements OnInit {
   imageUploadCompleted($event) {
     this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${
       $event['public_id']
-      }.jpg`;
+      }.webp`;
   }
 
   updatePortfolio() {

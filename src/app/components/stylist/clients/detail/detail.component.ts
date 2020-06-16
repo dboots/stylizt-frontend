@@ -137,19 +137,19 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   profileImageUploadCompleted(response) {
-    this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.jpg';
+    this.clientProfileImage = 'http://res.cloudinary.com/drcvakvh3/image/upload/w_400/' + response['public_id'] + '.webp';
   }
 
   noteImageUploadCompleted(response) {
     const uploaded = (this.noteForm.controls['images'].value) ? this.noteForm.controls['images'].value : [];
-    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
+    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.webp`;
 
     uploaded.push(image);
     this.noteForm.controls['images'].setValue(uploaded);
   }
 
   portfolioImageUploadCompleted(response) {
-    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.jpg`;
+    const image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${response['public_id']}.webp`;
     this.addPortfolio(image);
     // Temp solution. Should be removed.
     // this.clientPortfolioImages.push(image);
@@ -206,7 +206,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   imageUploadCompleted($event) {
-    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.jpg`;
+    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event['public_id']}.webp`;
   }
 
   portfolioAction() {

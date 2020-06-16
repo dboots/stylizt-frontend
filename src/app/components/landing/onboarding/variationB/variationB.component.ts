@@ -27,7 +27,7 @@ export class LandingVariationBComponent {
 
     this.meta.updateTag({
       property: 'og:image',
-      content: 'https://res.cloudinary.com/drcvakvh3/image/upload/v1588696630/assets/header-home-v2.jp2'
+      content: 'https://res.cloudinary.com/drcvakvh3/image/upload/v1588696630/assets/header-home-v2.webp'
     });
   }
 }

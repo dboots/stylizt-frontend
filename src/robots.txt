@@ -1,3 +1,2 @@
-Sitemap: http://www.hairtochair.com/sitemap.xml
 User-agent: *
-Crawl-delay: 30
+Sitemap: http://www.hairtochair.com/sitemap.xml

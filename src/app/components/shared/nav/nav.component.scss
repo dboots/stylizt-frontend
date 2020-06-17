@@ -5,19 +5,58 @@
   width: auto;
 }
 
-.nav-link {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  color: black;
-  cursor: pointer;
-  margin: 0 4px;
+.nav-item {
+  margin: 5px;
 
   &.button {
     background: #599295;
     color: white;
     border-radius: 2px;
+  }
+  .nav-link {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: inherit;
+    cursor: pointer;
+    margin: 0 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    &:hover {
+      color: #1fb2b9;
+    }
+  }
+}
+
+.nav-item-site {
+  &.button {
+    background: #1fb2b9;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.nav-item-logout {
+  &.button {
+    background: #dedede;
+  }
+
+  .nav-link {
+    color: black;
+
+    &:hover {
+      color: black;
+    }
   }
 }
 

@@ -33,7 +33,7 @@ export class EditProfileComponent implements OnInit {
   ) {
     let user: User = new User();
     let formGroup = this.formGroup;
-    let requiredFields = ['name', 'email', 'phone', 'zip', 'city', 'state', 'url'];
+    let requiredFields = ['name', 'email', 'zip', 'city', 'state', 'url'];
 
     user = Object.assign(user, this.authService.decode());
 
@@ -44,9 +44,10 @@ export class EditProfileComponent implements OnInit {
         control.setValidators(Validators.required);
       }
 
+      /* remove phone validation for now
       if (key === 'phone') {
         control.setValidators(this.phoneValidator);
-      }
+      } */
 
       formGroup.addControl(key, control);
     });

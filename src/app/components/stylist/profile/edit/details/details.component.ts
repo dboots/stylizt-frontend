@@ -47,6 +47,12 @@ export class EditProfileDetailsComponent implements OnInit {
       }
     } else {
       this.hours = this.user.hours;
+
+      if (!this.hours.length) {
+        for (let i = 0; i <= 6; i++) {
+          this.hours.push(['', '']);
+        }
+      }
     }
 
     for (let i = 0; i < 24; i++) {

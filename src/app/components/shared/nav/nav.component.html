@@ -10,11 +10,11 @@
       <li class="nav-item"><a [routerLink]="['/']" class="nav-link">Home</a></li>
       <li class="nav-item"><a routerLink="/blog" class="nav-link">Blog</a></li>
       <ng-container *ngIf="isLoggedIn()">
-        <li class="nav-item"><a class="nav-link button p-2" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
-            H2C Site</a></li>
         <li class="nav-item"><a routerLink="/stylist/home" class="nav-link">Dashboard</a></li>
         <li class="nav-item"><a routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a></li>
-        <li class="nav-item"><a class="nav-link button p-2" (click)="logout()">Logout</a></li>
+        <li class="nav-item nav-item-site button"><a class="nav-link p-2" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
+          H2C Site</a></li>
+        <li class="nav-item nav-item-logout button"><a class="nav-link p-2" (click)="logout()">Logout</a></li>
       </ng-container>
 
       <ng-container *ngIf="!isLoggedIn()">

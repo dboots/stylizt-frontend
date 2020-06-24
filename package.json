@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve --port=4222",
-    "start": "node server.js",
-    "heroku-postbuild": "ng build --aot --prod --build-optimizer",
+    "start": "node dist/client/server/main.js",
+    "heroku-postbuild": "ng build --prod && ng run client:server:production",
     "dev:ssr": "ng run client:serve-ssr",
     "serve:ssr": "node dist/client/server/main.js",
     "build:ssr": "ng build --prod && ng run client:server:production",
@@ -34,7 +34,6 @@
     "@cloudinary/angular-5.x": "^1.2.0-rc.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "@nguniversal/express-engine": "^9.1.1",
-    "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
     "@sentry/browser": "^5.10.2",
     "@types/stripe-v3": "^3.1.17",
     "cloudinary-core": "^2.7.4",

@@ -63,7 +63,6 @@ export class NavComponent implements OnInit {
       });
 
     this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
-    console.log(this.loggedInUser);
   }
 
   isLoggedIn() {

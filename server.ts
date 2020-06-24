@@ -1,17 +1,12 @@
 import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import * as express from 'express';
 import * as path from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { readFileSync, existsSync } from 'fs';
-const domino = require('domino');
-const templateA = readFileSync(path.join('.', 'dist', 'index.html'))
-.toString();
-const win = domino.createWindow(templateA);
+import { existsSync } from 'fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -39,8 +34,6 @@ export function app() {
     res.render(indexHtml, {
       req, providers: [{
         provide: APP_BASE_HREF, useValue: req.baseUrl
-      }, {
-        provide: 'REQUEST', useValue: '123'
       }]
     });
   });

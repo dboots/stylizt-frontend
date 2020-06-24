@@ -67,6 +67,7 @@ import { SeoService } from './services/seo.service';
 import { EditProfilePortfolioComponent } from './components/stylist/profile/edit/portfolio/portfolio.component';
 import { EditProfileServicesComponent } from './components/stylist/profile/edit/services/services.component';
 import { EditProfileClientsComponent } from './components/stylist/profile/edit/clients/clients.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -122,7 +123,8 @@ Sentry.init({
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    LazyLoadImageModule
   ],
   providers: [
     UserService,

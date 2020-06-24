@@ -13,6 +13,7 @@ export function app() {
   const server = express();
   const distFolder = path.join(process.cwd(), 'dist/client/browser');
   const indexHtml = existsSync(path.join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const isProduction = (process.env.PRODUCTION === 'TRUE' || process.env.PRODUCTION);
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -29,16 +30,18 @@ export function app() {
     maxAge: '1y'
   }));
 
-  server.enable('trust proxy');
-  server.use(function (req, res, next) {
-    if (req.secure) {
-      // https request, nothing to handle
-      next();
-    } else {
-      // this is an http request, redirect to https
-      res.redirect(301, 'https://' + req.headers.host + req.url);
-    }
-  });
+  if (isProduction) {
+    server.enable('trust proxy');
+    server.use(function (req, res, next) {
+      if (req.secure) {
+        // https request or production status, nothing to handle
+        next();
+      } else {
+        // this is an http request, redirect to https
+        res.redirect(301, 'https://' + req.headers.host + req.url);
+      }
+    });
+  }
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {

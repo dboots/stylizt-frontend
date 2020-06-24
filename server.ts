@@ -29,6 +29,17 @@ export function app() {
     maxAge: '1y'
   }));
 
+  server.enable('trust proxy');
+  server.use(function (req, res, next) {
+    if (req.secure) {
+      // https request, nothing to handle
+      next();
+    } else {
+      // this is an http request, redirect to https
+      res.redirect(301, 'https://' + req.headers.host + req.url);
+    }
+  });
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, {

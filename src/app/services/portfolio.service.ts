@@ -16,6 +16,7 @@ export class PortfolioService {
   }
 
   read(params: any = {}): Observable<any> {
+    console.log('getting params');
     return this.http.get<any>(`${environment.rootApiUrl}/portfolio`, { params });
   }
 

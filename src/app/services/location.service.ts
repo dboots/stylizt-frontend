@@ -1,30 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '../models/location.model';
 import { environment } from '../../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class LocationService {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) { }
+
   get currentLocation(): Location {
-    const currentLocationStr = localStorage.getItem('currentLocation');
-    if (currentLocationStr) {
-      const obj = JSON.parse(currentLocationStr);
-      return new Location(obj.fullAddress, obj.streetNumber, obj.street, obj.city, obj.state, obj.country, obj.postalCode);
+    if (isPlatformBrowser(this.platformId)) {
+      const currentLocationStr = localStorage.getItem('currentLocation');
+      if (currentLocationStr) {
+        const obj = JSON.parse(currentLocationStr);
+        return new Location(obj.fullAddress, obj.streetNumber, obj.street, obj.city, obj.state, obj.country, obj.postalCode);
+      }
     }
 
     return null;
   }
 
   set currentLocation(val: Location) {
-    localStorage.setItem('currentLocation', val.toString());
-  }
-
-  constructor(private http: HttpClient) {
-    /*
-    if (!this.currentLocation) {
-      this.getCurrentLocation();
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('currentLocation', val.toString());
     }
-    */
   }
 
   states(params: any) {

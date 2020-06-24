@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,24 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) { }
 
   ngOnInit() {
     let production = environment.production;
-    let url = window.location.origin.split('://')[1];
-    let parts = url.split('.');
-    let subdomain = (parts.length === 3) ? parts[0] : null;
+    let location = '';
+    let subdomain;
+    let parts = [];
+
+    if (isPlatformBrowser(this.platformId)) {
+      location = window.location.origin;
+    }
+
+    let url = location.split('://')[1];
+
+    if (url) {
+      parts = url.split('.');
+      subdomain = (parts.length === 3) ? parts[0] : null;
+    }
 
     if (production && subdomain && subdomain !== 'www') {
       this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
@@ -26,7 +38,9 @@ export class AppComponent implements OnInit {
         return;
       }
 
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
     });
   }
 }

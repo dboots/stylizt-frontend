@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
 import { ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
 import { TalentService, BrandService } from 'src/app/services';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-details',
@@ -13,7 +14,7 @@ import { TalentService, BrandService } from 'src/app/services';
 })
 export class EditProfileDetailsComponent implements OnInit {
   user: User;
-  timeoutId: number;
+  timeoutId: any;
   talents: Talent[] = [];
   brands: Brand[] = [];
   talentSearchResults: Talent[] = [];
@@ -84,7 +85,7 @@ export class EditProfileDetailsComponent implements OnInit {
   }
 
   blurTalent() {
-    this.timeoutId = window.setTimeout(() => {
+    this.timeoutId = setTimeout(() => {
       this.talentSearchResults = [];
       this.talentControl.reset();
     }, 250);
@@ -97,7 +98,7 @@ export class EditProfileDetailsComponent implements OnInit {
   }
 
   blurBrand() {
-    this.timeoutId = window.setTimeout(() => {
+    this.timeoutId = setTimeout(() => {
       this.brandSearchResults = [];
       this.brandControl.reset();
     }, 250);
@@ -135,9 +136,9 @@ export class EditProfileDetailsComponent implements OnInit {
     let timeoutId = this.timeoutId;
     let results = [];
 
-    window.clearTimeout(timeoutId);
+    clearTimeout(timeoutId);
 
-    timeoutId = window.setTimeout(() => {
+    timeoutId = setTimeout(() => {
       results = this.talents.filter((talent) => talent.talent.match(new RegExp(value, 'i'))).filter((talent) => {
         return this.user.talents.filter((result) => result._id === talent._id).length === 0;
       });
@@ -178,9 +179,9 @@ export class EditProfileDetailsComponent implements OnInit {
     let timeoutId = this.timeoutId;
     let results = [];
 
-    window.clearTimeout(timeoutId);
+    clearTimeout(timeoutId);
 
-    timeoutId = window.setTimeout(() => {
+    timeoutId = setTimeout(() => {
       results = this.brands.filter((brand) => brand.brand.match(new RegExp(value, 'i'))).filter((brand) => {
         return this.user.brands.filter((result) => result._id === brand._id).length === 0;
       });

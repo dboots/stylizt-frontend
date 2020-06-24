@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.newInnerWidth = window.innerWidth;
+    // this.newInnerWidth = window.innerWidth;
   }
 
   @HostListener('window:resize', ['$event'])

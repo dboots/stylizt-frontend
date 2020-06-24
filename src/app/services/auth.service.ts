@@ -1,17 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken, Inject, PLATFORM_ID } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../models/user.model';
 import { HttpHeaders } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class AuthService {
   jwt = new JwtHelperService();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+
   get token(): string {
-    return localStorage.getItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('token');
+    }
   }
 
   set token(val) {
-    localStorage.setItem('token', val);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('token', val);
+    }
   }
 
   static httpOptions(token?: string) {
@@ -41,6 +49,8 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.removeItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token');
+    }
   }
 }

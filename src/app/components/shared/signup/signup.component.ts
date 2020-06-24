@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
-import { Component, Input, NgZone } from '@angular/core';
-import { AuthService, UserService } from '../../../services';
+import { Component, Input, PLATFORM_ID, Inject } from '@angular/core';
+import { UserService } from '../../../services';
 import { User } from '../../../models';
 import {
   Router,
@@ -14,6 +14,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -36,10 +37,9 @@ export class SignupComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private zone: NgZone
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.initForm();
     this.route.queryParams.subscribe((params) => {
@@ -92,10 +92,21 @@ export class SignupComponent {
     if (typeof this.urlParams.bypass !== 'undefined') {
       this.userService.signup(model).subscribe((data: User) => {
         let token = data['token'];
-        localStorage.setItem('token', token);
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('token', token);
+        }
         this.router.navigate(['stylist/home']);
       });
     } else {
+      this.userService.signup(model).subscribe((data: User) => {
+        let token = data['token'];
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('token', token);
+        }
+        this.router.navigate(['stylist/home']);
+      });
+
+      /*
       stripe.open(
         {
           email: model.email,
@@ -122,7 +133,7 @@ export class SignupComponent {
           this.authService.logout();
           return Observable.throw(error);
         }
-      );
+      );*/
     }
   }
 

@@ -24,6 +24,7 @@ export function app() {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+  server.use(compression());
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
@@ -32,7 +33,7 @@ export function app() {
     maxAge: '1y'
   }));
 
-  server.use(compression());
+
 
   if (environment.production) {
     server.enable('trust proxy');

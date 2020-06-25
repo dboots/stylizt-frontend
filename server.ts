@@ -3,10 +3,12 @@ import 'zone.js/dist/zone-node';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import * as path from 'path';
+import * as compression from 'compression';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+import { environment } from 'src/environments/environment';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -30,7 +32,9 @@ export function app() {
     maxAge: '1y'
   }));
 
-  if (isProduction) {
+  server.use(compression());
+
+  if (environment.production) {
     server.enable('trust proxy');
     server.use(function (req, res, next) {
       if (req.secure) {

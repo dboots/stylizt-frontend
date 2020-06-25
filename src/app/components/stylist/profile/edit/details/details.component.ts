@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
 import { ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
 import { TalentService, BrandService } from 'src/app/services';
-import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-details',
@@ -172,6 +171,10 @@ export class EditProfileDetailsComponent implements OnInit {
       this.user.brands.push(result);
       this.brandControl.reset();
     });
+  }
+
+  imageUploadCompleted($event) {
+    this.user.image = $event.url;
   }
 
   changeBrand($event: any) {

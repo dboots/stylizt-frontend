@@ -83,6 +83,7 @@ export class EditProfileComponent implements OnInit {
     const source: User = this.user;
     let user: User = this.formGroup.value;
 
+    user.image = source.image;
     user.brands = source.brands;
     user.talents = source.talents;
     user.hours = source.hours;

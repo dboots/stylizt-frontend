@@ -51,6 +51,6 @@ export class EditProfilePortfolioComponent implements OnInit {
     this.portfolioService.create(portfolio, this.authService.token).subscribe((result) => {
       console.log('portfolio created', result);
       this.portfolio.push(result);
-    })
+    });
   }
 }

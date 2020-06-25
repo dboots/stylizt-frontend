@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row mb-4">
-    <div class="col-md-3"></div>
+    <div class="col-md-3 p-4">
+      <img [src]="user.image" class="img-fluid" *ngIf="user.image">
+      <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+      (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+    </div>
     <div class="col-md-9">
       <div class="row mb-2">
         <div class="col-md-6 mb-2 mb-md-0 ">
@@ -86,7 +90,7 @@
     <div class="col-12 py-2">
       <div class="subtitle">Business Hours</div>
     </div>
-    <div class="col-md-3 col-6 mb-4">
+    <div class="col-md-3 col-12 mb-4">
       <label>Monday</label>
       <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -98,7 +102,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Tuesday</label>
       <select class="input" [(ngModel)]="hours[1][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -110,7 +114,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Wednesday</label>
       <select class="input" [(ngModel)]="hours[2][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -122,7 +126,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Thursday</label>
       <select class="input" [(ngModel)]="hours[3][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -134,7 +138,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Friday</label>
       <select class="input" [(ngModel)]="hours[4][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -146,7 +150,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Saturday</label>
       <select class="input" [(ngModel)]="hours[5][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>
@@ -158,7 +162,7 @@
       </select>
     </div>
 
-    <div class="col-md-3 col-6">
+    <div class="col-md-3 col-12 mb-sm-4">
       <label>Sunday</label>
       <select class="input" [(ngModel)]="hours[6][0]" [ngModelOptions]="{standalone: true}">
         <option [value]=""></option>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService } from '../../services';
 import { Portfolio, User, Talent, Service, Schedule } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Lengths } from '../../models/length.model';
 import { Time } from '../../models/time.model';
 import { SeoService } from 'src/app/services/seo.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -46,6 +47,9 @@ export class StylistPortfolioPageComponent implements OnInit {
   message: string;
   service: Service;
 
+  @ViewChild('about') aboutViewChild: ElementRef;
+  @ViewChild('servicesViewChild') servicesElementRef: ElementRef;
+
   constructor(
     private talentService: TalentService,
     private portfolioService: PortfolioService,
@@ -57,7 +61,8 @@ export class StylistPortfolioPageComponent implements OnInit {
     private sanitization: DomSanitizer,
     private servicesService: ServicesService,
     private scheduleService: ScheduleService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private viewportScroller: ViewportScroller
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
@@ -123,6 +128,10 @@ export class StylistPortfolioPageComponent implements OnInit {
         scheduledStartTime.setMinutes(scheduledStartTime.getMinutes() + 30);
       }
     });
+  }
+
+  scrollTo(elementRef: ElementRef) {
+    elementRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   bookService(service: Service) {

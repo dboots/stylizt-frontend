@@ -1,18 +1,22 @@
 <app-nav *ngIf="loggedIn()"></app-nav>
 <ng-container *ngIf="stylist">
   <div class="container">
-    <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
-      <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
-      <div class="col-12 col-md-8 text-center">
-        <div class="row">
-          <div class="col-4 py-4"><a href="" class="py-4">ABOUT</a></div>
-          <div class="col-4 py-4"><a href="" class="py-4">SERVICES</a></div>
-          <div class="col-4 py-4"><a href="" class="py-4">CONTACT</a></div>
+    <div class="row">
+      <div class="container portfolio-nav">
+        <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
+          <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
+          <div class="col-12 col-md-8 text-center">
+            <div class="row">
+              <div class="col-4 py-4"><a (click)="scrollTo(aboutViewChild)" class="py-4">ABOUT</a></div>
+              <div class="col-4 py-4"><a (click)="scrollTo(servicesElementRef)" class="py-4">SERVICES</a></div>
+              <div class="col-4 py-4"><a (click)="scrollTo('contact')" class="py-4">CONTACT</a></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row portfolio-content" #about id="about">
       <div class="col-12 col-lg-6 py-4 text-center d-flex justify-content-center">
         <div class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
         </div>
@@ -38,16 +42,16 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="services">
       <div class="col-lg-9 col-12">
         <app-scheduler [stylist]="stylist" [service]="service"></app-scheduler>
         <div class="row separator section-bottom">
-          <div class="col-6 col-md-4 d-flex flex-column mb-4" *ngFor="let item of portfolio">
+          <div class="col-6 col-md-4 d-flex flex-column mb-4 pl-0 pr-4" *ngFor="let item of portfolio">
             <div class="image"><img [src]="item.image" class="image-full" /></div>
             <div class="caption py-2">{{item.caption}}</div>
           </div>
         </div>
-        <div class="row section-top">
+        <div class="row section-top" #servicesViewChild>
           <div class="col-12">
             <div class="services-title">Choose a Service Below</div>
             <div class="services-item" *ngFor="let service of services">
@@ -91,7 +95,8 @@
         <div class="p-2">
           <div class="side-contact p-2">
             <div class="side-title mb-2">Business Hours</div>
-            <div class="hour-item d-flex mb-2" [ngClass]="{'closed': hours[0] === '' || hours[1] === ''}" *ngFor="let hours of stylist.hours; let i = index">
+            <div class="hour-item d-flex mb-2" [ngClass]="{'closed': hours[0] === '' || hours[1] === ''}"
+              *ngFor="let hours of stylist.hours; let i = index">
               <div class="hour-day">{{days[i]}}</div>
               <div class="hour-times">{{hours[0]}} - {{(hours[0]) ? hours[1] : ''}}</div>
             </div>

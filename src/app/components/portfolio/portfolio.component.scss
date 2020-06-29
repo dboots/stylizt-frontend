@@ -1,28 +1,39 @@
 @import "../../../sass/variables";
 
-.nav {
-  font-family: "Futura";
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 17px 0;
+.portfolio-nav {
+  position: fixed;
+  z-index: 1;
+  background: white;
+  border-bottom: 1px solid #DEDEDE;
 
-  .name {
-    color: #000000;
-    font-size: 16px;
-    line-height: 28px;
-  }
+  .nav {
+    font-family: "Futura";
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 17px 0;
 
-  a {
-    font-size: 12px;
-    line-height: 24px;
-    color: #000000;
+    .name {
+      color: #000000;
+      font-size: 16px;
+      line-height: 28px;
+    }
 
-    &:hover {
-      border-top: 2px solid black;
-      text-decoration: none;
-      font-weight: bold;
+    a {
+      font-size: 12px;
+      line-height: 24px;
+      color: #000000;
+
+      &:hover {
+        border-top: 2px solid black;
+        text-decoration: none;
+        font-weight: bold;
+      }
     }
   }
+}
+
+.portfolio-content {
+  padding: 107px 0 0 0;
 }
 
 .separator {
@@ -57,7 +68,7 @@
 
 .services-item {
   padding: 40px 0;
-  border-bottom:  1px solid #F2F2F2;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .services-title {

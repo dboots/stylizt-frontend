@@ -9,10 +9,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) { }
-
-  ngOnInit() {
+export class AppComponent {
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) {
     let production = environment.production;
     let location = '';
     let subdomain;
@@ -29,7 +27,7 @@ export class AppComponent implements OnInit {
       subdomain = (parts.length === 3) ? parts[0] : null;
     }
 
-    if (production && subdomain && subdomain !== 'www') {
+    if (subdomain && subdomain !== 'www') {
       this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
     }
 

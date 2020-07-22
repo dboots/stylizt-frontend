@@ -23,7 +23,7 @@ export class EditProfilePortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.portfolioService.read({ url: this.user.url }).subscribe((result) => {
-      this.portfolio = result.portfolio;
+      this.portfolio = result;
     });
   }
 

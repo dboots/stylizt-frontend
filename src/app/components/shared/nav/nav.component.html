@@ -12,8 +12,8 @@
       <ng-container *ngIf="isLoggedIn()">
         <li class="nav-item"><a routerLink="/stylist/home" class="nav-link">Dashboard</a></li>
         <li class="nav-item"><a routerLink="/stylist/profile/edit" class="nav-link">Edit Profile</a></li>
-        <li class="nav-item nav-item-site button"><a class="nav-link p-2" (click)="navigateTo('/portfolio/' + loggedInUser.url)">My
-          H2C Site</a></li>
+        <li class="nav-item nav-item-site button"><a class="nav-link p-2"
+            (click)="navigateTo('/portfolio/' + loggedInUser.url)">My H2C Site</a></li>
         <li class="nav-item nav-item-logout button"><a class="nav-link p-2" (click)="logout()">Logout</a></li>
       </ng-container>
 
@@ -55,6 +55,7 @@
       <div class="" *ngIf="!forgotPassword">
         <div class="forgot-password-row">
           <a (click)="forgotPassword = true">Forgot Password?</a>
+          <a (click)="signup()">Signup</a>
         </div>
 
         <div class="pull-right button-row">

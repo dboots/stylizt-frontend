@@ -1,25 +1,24 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService } from '../../services';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, AfterContentInit, AfterViewInit } from '@angular/core';
+import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService, ContactService } from '../../services';
 import { Portfolio, User, Talent, Service, Schedule } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   DomSanitizer,
   SafeResourceUrl,
-  Meta,
-  Title
 } from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Lengths } from '../../models/length.model';
 import { Time } from '../../models/time.model';
 import { SeoService } from 'src/app/services/seo.service';
-import { ViewportScroller } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-page-stylistportfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class StylistPortfolioPageComponent implements OnInit {
+export class StylistPortfolioPageComponent {
   portfolio: Portfolio[];
   stylist: User;
   params;
@@ -46,12 +45,21 @@ export class StylistPortfolioPageComponent implements OnInit {
   minDate: any = {};
   message: string;
   service: Service;
+  scrollClass: boolean = false;
+  contactVisible: boolean = false;
+  contactForm: FormGroup = new FormGroup({
+    'name': new FormControl('', [Validators.required]),
+    'email': new FormControl('', [Validators.required, Validators.email]),
+    'message': new FormControl('', [Validators.required]),
+    'from': new FormControl('')
+  });
+  contactFormSubmitted: boolean = false;
 
-  @ViewChild('about') aboutViewChild: ElementRef;
+  @ViewChild('aboutViewChild') aboutElementRef: ElementRef;
   @ViewChild('servicesViewChild') servicesElementRef: ElementRef;
+  @ViewChild('contactViewChild') contactElementRef: ElementRef;
 
   constructor(
-    private talentService: TalentService,
     private portfolioService: PortfolioService,
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -62,7 +70,8 @@ export class StylistPortfolioPageComponent implements OnInit {
     private servicesService: ServicesService,
     private scheduleService: ScheduleService,
     private seoService: SeoService,
-    private viewportScroller: ViewportScroller
+    private contactService: ContactService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.route.params.subscribe((params) => {
       this.params = params;
@@ -109,9 +118,23 @@ export class StylistPortfolioPageComponent implements OnInit {
           ? this.getUrl(stylist.instagram, 'http://www.instagram.com/')
           : null;
 
+        this.contactForm.controls['from'].setValue(stylist.email);
+
         this.portfolio = portfolio;
         this.stylist = stylist;
       });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    let scrollClass = this.scrollClass;
+    if (document.body.scrollTop > 66 || document.documentElement.scrollTop > 66) {
+      scrollClass = true;
+    } else {
+      scrollClass = false;
+    }
+
+    this.scrollClass = scrollClass;
   }
 
   book(service: Service) {
@@ -166,7 +189,7 @@ export class StylistPortfolioPageComponent implements OnInit {
     this.selectedSchedule.startDateTime = new Date(dateString);
 
     this.scheduleService.read(this.stylist._id, startDateTime.getTime()).subscribe((result) => {
-      this.parseSchedule(result['data']);
+      this.parseSchedule(result);
 
       while (startDateTime < endDateTime) {
         let timeString = this.getTimeString(startDateTime, false);
@@ -276,7 +299,7 @@ export class StylistPortfolioPageComponent implements OnInit {
       .update(this.portfolioItem, this.authService.token)
       .subscribe(
         (result: any) => {
-          // this.portfolioItem.talents = result.data.talents;
+          // this.portfolioItem.talents = result.talents;
           this.modalRef.close();
         },
         (err) => {
@@ -319,6 +342,12 @@ export class StylistPortfolioPageComponent implements OnInit {
     this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
+  sendMessage() {
+    this.contactService.contact(this.contactForm.value).subscribe((result) => {
+      this.contactFormSubmitted = true;
+    });
+  }
+
   // Process social media url/handles
   // handle could be valid url, username, @username
   // return url should be close to http://www.[social].com/[handle]
@@ -338,6 +367,4 @@ export class StylistPortfolioPageComponent implements OnInit {
 
     return url + handle.replace('@', '');
   }
-
-  ngOnInit() { }
 }

@@ -25,6 +25,7 @@ export class EditProfileComponent implements OnInit {
   user: User;
   formGroup: FormGroup = new FormGroup({});
   activeTab: string = 'details';
+  isSaving: boolean = false;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -83,13 +84,18 @@ export class EditProfileComponent implements OnInit {
     const source: User = this.user;
     let user: User = this.formGroup.value;
 
+    this.isSaving = true;
+
     user.image = source.image;
     user.brands = source.brands;
     user.talents = source.talents;
     user.hours = source.hours;
 
+    console.log(user);
+
     this.userService.update(user).subscribe((result) => {
       this.authService.token = result.token;
+      this.isSaving = false;
     });
   }
 

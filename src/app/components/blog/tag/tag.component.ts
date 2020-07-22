@@ -29,10 +29,10 @@ export class BlogTagComponent implements OnInit {
       let posts: any[];
 
       this.postService.browse({ tag: slug }).subscribe((result: any) => {
-        tag = result.data[0].tags.filter((item: any) => item.slug === slug)[0];
+        tag = result[0].tags.filter((item: any) => item.slug === slug)[0];
         let metaTitle: string = tag.meta_title || tag.name;
         let metaDescription: string = tag.meta_description || tag.description || `Blog posts for ${tag.name}`;
-        posts = result.data;
+        posts = result;
 
         this.seoService.createCanonicalUrl();
         this.seoService.updateMetaTags(metaTitle, null, metaDescription);

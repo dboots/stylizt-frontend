@@ -16,7 +16,6 @@ export class EditProfileServicesComponent implements OnInit {
 
   ngOnInit() {
     this.servicesService.read(this.user._id).subscribe((result) => {
-      console.log(result);
       this.services = result;
     });
   }

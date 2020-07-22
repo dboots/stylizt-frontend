@@ -27,11 +27,11 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.userService.search('').subscribe((results) => {
-      this.results = results['data'];
+      this.results = results;
     });
 
     this.postService.browse().subscribe((results) => {
-      this.posts = results['data'];
+      this.posts = results;
     });
 
     this.seoService.updateMetaTags('Hair To Chair - Stylist Client Management & Portfolio Marketing Tools', null, 'Premium stylist client management tools at affordable rates. Manage, market and boost your stylist services to grow your business today. Free trial, No Credit card required');
@@ -48,7 +48,7 @@ export class HomePageComponent implements OnInit {
     clearTimeout(this.searchTimeoutId);
     this.searchTimeoutId = setTimeout(() => {
       this.userService.search(query).subscribe((results) => {
-        this.results = results['data'];
+        this.results = results;
       });
     }, 500);
   }

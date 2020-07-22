@@ -1,24 +1,30 @@
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, of, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
+@Injectable()
 export class BaseService {
   cache: Map<string, any> = new Map();
+  headers: { headers: HttpHeaders };
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient, public authService: AuthService) {
+    this.headers = AuthService.httpOptions(this.authService.token);
+  }
 
-  getByCache(url: string) {
+  getByCache<T>(url: string): Observable<T[]> {
     let cache = this.cache.get(url);
-    let response: Observable<any>;
+    let response: Subject<T[]> = new Subject<T[]>();
 
     if (cache) {
-      return of({ data: cache });
+      return of(cache);
     }
 
-    response = this.http.get<any>(url);
-    response.subscribe((result) => {
-      this.cache.set(url, result.data);
+    this.http.get<T[]>(url).subscribe((result) => {
+      this.cache.set(url, result);
+      response.next(result);
     });
 
-    return response;
+    return response.asObservable();
   }
 }

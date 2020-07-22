@@ -67,15 +67,15 @@ export class StylistClientsDetailPageComponent implements OnInit {
       this.clientId = params['id'];
       this.clientService.detail(this.clientId).subscribe((result: any) => {
         this.detailForm.patchValue({
-          name: result.data.name,
-          zip: result.data.zip,
-          email: result.data.email,
-          phone: result.data.phone
+          name: result.name,
+          zip: result.zip,
+          email: result.email,
+          phone: result.phone
         });
 
-        this.clientProfileImage = result.data.image;
+        this.clientProfileImage = result.image;
 
-        this.clientPortfolios = result.data.portfolio.map((p) => {
+        this.clientPortfolios = result.portfolio.map((p) => {
           return new Portfolio(p.image, p.caption, p.talents, true, p.clientId, p._id);
         });
 
@@ -83,7 +83,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
       });
 
       this.notesService.read(this.clientId).subscribe((result) => {
-        this.clientNotes = result['data'];
+        this.clientNotes = result;
       });
     });
 
@@ -169,11 +169,11 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.clientService.update(this.clientId, body).subscribe((result: any) => {
       const idx = this.clientService.clients.findIndex((x: Client) => {
-        return x._id === result.data._id;
+        return x._id === result._id;
       });
 
-      result.data.portfolio = this.clientPortfolios;
-      this.clientService.clients[idx] = result.data;
+      result.portfolio = this.clientPortfolios;
+      this.clientService.clients[idx] = result;
       this.updateStatus = 'Client Updated';
     }, (err) => {
       alert(err.error.messages[0]);
@@ -186,7 +186,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.portfolioService.create(this.clientPortfolios[this.currentIndex].toPayload(), this.authService.token)
       .subscribe((result: any) => {
-        this.clientPortfolios[this.currentIndex] = result.data;
+        this.clientPortfolios[this.currentIndex] = result;
         this.clientPortfolios[this.currentIndex].loading = false;
       }, (err) => {
 
@@ -222,7 +222,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
     this.portfolioService.create(this.portfolioItem, this.authService.token)
       .subscribe((result: any) => {
-        this.portfolioItem._id = result.data._id;
+        this.portfolioItem._id = result._id;
         this.clientPortfolios.push(this.portfolioItem);
         this.modalRef.close();
       }, (err) => {
@@ -263,7 +263,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   updatePortfolio() {
     this.portfolioService.update(this.portfolioItem, this.authService.token)
       .subscribe((result: any) => {
-        // this.portfolioItem.talents = result.data.talents;
+        // this.portfolioItem.talents = result.talents;
         this.modalRef.close();
       }, (err) => {
         this.modalRef.close();
@@ -311,7 +311,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.notesService.create(note)
       .subscribe((result: any) => {
         this.noteForm.reset();
-        this.clientNotes.unshift(result.data);
+        this.clientNotes.unshift(result);
       }, (err) => {
 
       });

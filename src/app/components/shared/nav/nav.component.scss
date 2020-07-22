@@ -82,9 +82,14 @@
     }
 
     .forgot-password-row {
+      display: flex;
+      justify-content: space-between;
       margin: 30px 0;
 
       a {
+        text-decoration: underline;
+        color: #1fb2b9;
+        font-weight: bold;
         cursor: pointer;
       }
     }

@@ -5,12 +5,13 @@ import { environment } from '../../environments/environment';
 import { Brand } from '../models';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class BrandService {
   itemList: Brand[];
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private authService: AuthService, private http: HttpClient) { }
 
   async read(): Promise<any[]> {
     const token = this.authService.token;
@@ -18,7 +19,7 @@ export class BrandService {
       const result = await this.http
         .get(
           environment.rootApiUrl + '/brands',
-          AuthService.httpOptions(token)
+          AuthService.httpOptions()
         )
         .pipe(map((res: any) => res['data'] as any[]))
         .toPromise();
@@ -31,7 +32,7 @@ export class BrandService {
     return this.http.post<Brand>(
       environment.rootApiUrl + '/brand',
       body,
-      AuthService.httpOptions(this.authService.token)
+      AuthService.httpOptions()
     );
   }
 }

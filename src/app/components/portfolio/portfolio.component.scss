@@ -1,10 +1,28 @@
 @import "../../../sass/variables";
 
 .portfolio-nav {
-  position: fixed;
   z-index: 1;
   background: white;
-  border-bottom: 1px solid #DEDEDE;
+  position: fixed;
+  left: 0;
+
+  .container {
+    border-bottom: 1px solid #dedede;
+  }
+
+  &.not-scrolled {
+    position: relative;
+  }
+
+  &.contact-visible {
+    position: absolute;
+    top: 0;
+  }
+
+  &.scrolled {
+    position: fixed;
+    top: 0;
+  }
 
   .nav {
     font-family: "Futura";
@@ -33,7 +51,15 @@
 }
 
 .portfolio-content {
-  padding: 107px 0 0 0;
+  padding: 167px 0 0 0;
+
+  &.not-scrolled {
+    padding: 25px 0 0 0;
+  }
+
+  &.scrolled {
+    padding: 128px 0 0 0;
+  }
 }
 
 .separator {
@@ -95,11 +121,12 @@
   border: 1px solid #e0e0e0;
 }
 .img-container {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  border: 1px solid #dedede;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 50%;
+  background-size: contain;
 }
 
 .bio-title {
@@ -196,4 +223,47 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: #000000;
+}
+
+.contact-container {
+  background: #212121;
+  color: white;
+  padding-top: 82px;
+
+  .name {
+    letter-spacing: 0.2em;
+    padding: 17px 0;
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  p {
+    color: #828282;
+  }
+
+  .material {
+    input,
+    textarea {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #3e3e3e;
+      color: white;
+      border-radius: 0;
+    }
+
+    textarea {
+      width: 100%;
+    }
+  }
+
+  .button {
+    background: transparent;
+    border: 1px solid white;
+    padding: 13px 58px;
+    color: white;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
 }

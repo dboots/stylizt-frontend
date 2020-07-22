@@ -9,7 +9,7 @@
         <div class="col-2 tab-item" [ngClass]="{'active': isActive('portfolio')}" (click)="loadComponent('portfolio')">PORTFOLIO</div>
         <div class="col-2 tab-item" [ngClass]="{'active': isActive('services')}" (click)="loadComponent('services')">SERVICES</div>
         <div class="col-2 tab-item" [ngClass]="{'active': isActive('clients')}" (click)="loadComponent('clients')">CLIENTS</div>
-        <div class="col-4 tab-item text-right"><button class="button-v3" [attr.disabled]="(formGroup.invalid) ? 'disabled' : null" (click)="save()">Save Changes</button></div>
+        <div class="col-4 tab-item text-right"><button class="button-v3" [attr.disabled]="(formGroup.invalid) ? 'disabled' : null" (click)="save()">Save Changes <i *ngIf="isSaving" class="text-white fa fa-spinner fa-spin"></i></button></div>
       </div>
     </div>
   </div>

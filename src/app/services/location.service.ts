@@ -40,7 +40,7 @@ export class LocationService {
 
   geocode(zip) {
     let params = {
-      key: 'AIzaSyDCLogJN6E_s1uNso1FDiB90qGFHVOjd9w',
+      key: 'AIzaSyCTizcI3WpOSHunlbsP9KSZuW3J9v48G_c',
       components: 'country:US|postal_code:' + zip
     };
 
@@ -54,7 +54,7 @@ export class LocationService {
           const res: any = await this.http.get('https://maps.googleapis.com/maps/api/geocode/json',
             {
               params: {
-                key: 'AIzaSyDCLogJN6E_s1uNso1FDiB90qGFHVOjd9w',
+                key: 'AIzaSyCTizcI3WpOSHunlbsP9KSZuW3J9v48G_c',
                 latlng: pos.coords.latitude + ',' + pos.coords.longitude
               }
             }
@@ -63,7 +63,6 @@ export class LocationService {
           currentLocation.fullAddress = res.results[0].formatted_address;
           if (res.results[0] && res.results[0].address_components) {
             res.results[0].address_components.forEach((x) => {
-              console.log(x.types[0])
               if (x.types[0] === 'street_number') {
                 currentLocation.streetNumber = x.long_name;
               } else if (x.types[0] === 'route') {
@@ -82,8 +81,6 @@ export class LocationService {
           if (currentLocation) {
             this.currentLocation = currentLocation;
           }
-
-          console.log(currentLocation);
         },
         (err) => {
           console.log(err);

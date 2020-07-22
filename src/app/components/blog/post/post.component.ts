@@ -30,7 +30,7 @@ export class BlogPostComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const slug = params.get('slug');
       postService.read(slug).subscribe((result) => {
-        const post: any = result.data;
+        const post: any = result;
         this.sanitizer.bypassSecurityTrustHtml(post.html);
         seoService.createCanonicalUrl();
 
@@ -41,7 +41,7 @@ export class BlogPostComponent implements OnInit {
         seoService.updateMetaTags(post.title, post.meta_title, post.meta_description);
 
         postService.browse({ tag: post.tags[0].slug }, 3).subscribe((posts) => {
-          this.relatedPosts = posts.data.filter((related) => {
+          this.relatedPosts = posts.filter((related) => {
             return post.id !== related.id;
           });
         });

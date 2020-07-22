@@ -18,6 +18,5 @@ export class EditProfileClientsComponent implements OnInit {
 
   async ngOnInit() {
     this.clients = await this.clientService.read();
-    console.log(this.clients);
   }
 }

@@ -39,7 +39,7 @@ export class StepFourComponent implements OnInit {
     let brand = new Brand(this.brand);
     this.brandService.create(brand).subscribe((result) => {
       this.brand = '';
-      this.brands.push(result['result']);
+      this.brands.push(result);
     });
   }
 }

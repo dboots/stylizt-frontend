@@ -19,14 +19,14 @@ export class BlogHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const seoService: SeoService = this.seoService;
     this.route.paramMap.subscribe((params) => {
       let posts: any[];
 
       this.postService.browse({}, 12).subscribe((result: any) => {
-        posts = result.data;
-
-        this.seoService.createCanonicalUrl();
-        this.seoService.updateMetaTags('Management & Marketing Tips for Hairstylists and Barbers', null, 'Hair to Chair provides regular and updated articles for all independent stylists, to help them succeed in business. Please check back regularly for updated tips on management and marketing your stylist business.');
+        posts = result;
+        seoService.createCanonicalUrl();
+        seoService.updateMetaTags('Management & Marketing Tips for Hairstylists and Barbers', null, 'Hair to Chair provides regular and updated articles for all independent stylists, to help them succeed in business. Please check back regularly for updated tips on management and marketing your stylist business.');
         this.posts = posts;
       });
     });

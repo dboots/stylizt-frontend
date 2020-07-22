@@ -15,9 +15,8 @@ export class PortfolioService {
     return this.http.post<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
   }
 
-  read(params: any = {}): Observable<any> {
-    console.log('getting params');
-    return this.http.get<any>(`${environment.rootApiUrl}/portfolio`, { params });
+  read(params: any = {}): Observable<Portfolio[]> {
+    return this.http.get<Portfolio[]>(`${environment.rootApiUrl}/portfolio`, { params });
   }
 
   search(params) {

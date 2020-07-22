@@ -48,9 +48,9 @@ export class StylistClientsPageComponent implements OnInit {
   addClient() {
     const client: Client = new Client(this.clientName.value, '');
     this.clientService.create(client).subscribe((result: any) => {
-      this.clientService.clients.push(result.data);
+      this.clientService.clients.push(result);
       this.modalRef.close();
-      this.router.navigate(['/stylist/clients/' + result.data._id]);
+      this.router.navigate(['/stylist/clients/' + result._id]);
     }, (err) => {
     });
   }

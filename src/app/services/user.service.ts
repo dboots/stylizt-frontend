@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class UserService {
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
-
+export class UserService extends BaseService {
   signup(body: User) {
     return this.http.post(environment.rootApiUrl + '/signup', body, AuthService.httpOptions());
   }
 
-  search(query: string) {
+  search(query: string): Observable<User[]> {
     let httpParams = new HttpParams().set('query', query);
-    return this.http.get(environment.rootApiUrl + '/search', { params: httpParams });
+    return this.http.get<User[]>(environment.rootApiUrl + '/search', { params: httpParams });
   }
 
   login(body) {
@@ -39,8 +35,7 @@ export class UserService {
   }
 
   update(body: User): Observable<AuthResponse> {
-    let token = this.authService.token;
-    return this.http.post<AuthResponse>(environment.rootApiUrl + '/user/update', body, AuthService.httpOptions(token));
+    return this.http.post<AuthResponse>(environment.rootApiUrl + '/user/update', body, this.headers);
   }
 
   setPassword(body) {

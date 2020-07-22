@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
   jwt = new JwtHelperService();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: any) { }
 
   get token(): string {
     if (isPlatformBrowser(this.platformId)) {
@@ -22,16 +22,13 @@ export class AuthService {
     }
   }
 
-  static httpOptions(token?: string) {
-    const headers = {
-      'Content-Type': 'application/json'
+  static httpOptions(token?: string): { headers: HttpHeaders } {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
+      })
     };
-
-    if (token) {
-      headers['authorization'] = 'Bearer ' + token;
-    }
-
-    return { headers: new HttpHeaders(headers) };
   }
 
   public isAuthenticated(): boolean {
@@ -44,7 +41,7 @@ export class AuthService {
 
   public decode(): User {
     if (this.token) {
-      return this.jwt.decodeToken(this.token).data as User;
+      return this.jwt.decodeToken(this.token).payload as User;
     }
   }
 

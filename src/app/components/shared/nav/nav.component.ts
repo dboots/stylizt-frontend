@@ -69,6 +69,11 @@ export class NavComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
+  signup() {
+    this.modalRef.close();
+    this.router.navigate(['landing/steps']);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
@@ -97,6 +102,7 @@ export class NavComponent implements OnInit {
       (data) => {
         this.message = '';
         this.modalRef.close();
+        console.log('doLogin setting token', data['token']);
         this.authService.token = data['token'];
         this.router.navigate(['stylist/home']);
       }, (error) => {

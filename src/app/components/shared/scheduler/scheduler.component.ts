@@ -152,7 +152,7 @@ export class SchedulerComponent implements OnInit, OnChanges {
     eveningTimes = [];
 
     this.scheduleService.read(stylist._id, day.getTime()).subscribe((result) => {
-      this.parseSchedule(result['data']);
+      this.parseSchedule(result);
 
       while (startDateTime < endDateTime) {
         let timeString = this.getTimeString(startDateTime, false);

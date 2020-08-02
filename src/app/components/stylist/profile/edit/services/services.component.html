@@ -1,14 +1,16 @@
 <div class="container">
-  <div class="col-12 justify-content-end">
-    <div class="add-new-service py-4" (click)="add()">Add New Service</div>
+  <div class="row">
+    <div class="col-12 p-4 mb-4 text-center add-new" (click)="add()">
+      Add New Service
+    </div>
   </div>
   <div class="services row pb-4 mb-4" *ngFor="let service of services">
     <div class="service-name col-md-3 col-12">
       <label>Service Name</label>
       <input type="text" class="input" [(ngModel)]="service.name">
     </div>
-    <div class="service-desc col-md-5 col-12">
-      <label>Service Name</label>
+    <div class="service-desc col-md-4 col-12">
+      <label>Description</label>
       <input type="text" class="input" [(ngModel)]="service.description">
     </div>
     <div class="service-price col-md-2 col-6">
@@ -25,6 +27,10 @@
         <option value="5">2 hours 30 mins</option>
         <option value="6">3 hours</option>
       </select>
+    </div>
+    <div class="col-1 justify-content-center pt-4 align-items-center d-flex">
+      <i class="fa fa-icon fa-save fa-lg mr-2" (click)="save(service)"></i>
+      <i class="fa fa-icon fa-trash fa-lg" (click)="delete(service)"></i>
     </div>
   </div>
 </div>

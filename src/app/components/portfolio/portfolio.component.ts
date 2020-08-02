@@ -12,6 +12,7 @@ import { Time } from '../../models/time.model';
 import { SeoService } from 'src/app/services/seo.service';
 import { DOCUMENT } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Site } from 'src/app/models/site';
 
 @Component({
   selector: 'app-page-stylistportfolio',
@@ -85,7 +86,7 @@ export class StylistPortfolioPageComponent {
 
     this.portfolioService
       .read({ url: this.params.id })
-      .subscribe((data: any) => {
+      .subscribe((data: Site) => {
         if (!data.stylist) {
           this.router.navigate(['/']);
         }
@@ -296,7 +297,7 @@ export class StylistPortfolioPageComponent {
 
   updatePortfolio() {
     this.portfolioService
-      .update(this.portfolioItem, this.authService.token)
+      .update(this.portfolioItem)
       .subscribe(
         (result: any) => {
           // this.portfolioItem.talents = result.talents;
@@ -310,7 +311,7 @@ export class StylistPortfolioPageComponent {
 
   addToPortfolio() {
     this.portfolioService
-      .create(this.portfolioItem, this.authService.token)
+      .create(this.portfolioItem)
       .subscribe(
         (result: any) => {
           this.portfolio.push(this.portfolioItem);

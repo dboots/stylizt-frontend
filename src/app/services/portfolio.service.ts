@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models';
+import { BaseService } from './base.service';
+import { Site } from '../models/site';
 
 @Injectable()
-export class PortfolioService {
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  create(body, token: string): Observable<Portfolio> {
-    return this.http.post<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio`, body, AuthService.httpOptions(token));
+export class PortfolioService extends BaseService {
+  create(body: any): Observable<Portfolio> {
+    return this.http.post<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio`, body, this.headers);
   }
 
-  read(params: any = {}): Observable<Portfolio[]> {
-    return this.http.get<Portfolio[]>(`${environment.rootApiUrl}/portfolio`, { params });
+  read(params: any = {}): Observable<Site> {
+    return this.http.get<Site>(`${environment.rootApiUrl}/portfolio`, { params });
   }
 
-  search(params) {
-    return this.http.get(`${environment.rootApiUrl}/search/portfolio`, { params });
+  search(params): Observable<Portfolio[]> {
+    return this.http.get<Portfolio[]>(`${environment.rootApiUrl}/search/portfolio`, { params });
   }
 
-  update(body, token: string) {
-    return this.http.patch(`${environment.rootApiUrl}/stylist/portfolio/${body._id}`, body, AuthService.httpOptions(token));
+  update(body): Observable<Portfolio> {
+    return this.http.patch<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio/${body._id}`, body, this.headers);
   }
 
-  delete(portfolioId: string, token: string) {
-    return this.http.delete(`${environment.rootApiUrl}/stylist/portfolio/${portfolioId}`, AuthService.httpOptions(token));
+  delete(portfolioId: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.rootApiUrl}/stylist/portfolio/${portfolioId}`, this.headers);
   }
 }

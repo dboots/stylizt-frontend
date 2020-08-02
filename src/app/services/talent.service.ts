@@ -5,33 +5,32 @@ import { environment } from '../../environments/environment';
 import { Talent } from '../models';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class TalentService {
+export class TalentService extends BaseService {
   itemList: Talent[];
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
-  async read(): Promise<any[]> {
+  async read(): Promise<Talent[]> {
     const token = this.authService.token;
     if (this.itemList === undefined) {
       const result = await this.http
         .get(
           environment.rootApiUrl + '/talents',
-          AuthService.httpOptions(token)
+          this.headers
         )
-        .pipe(map((res: any) => res['data'] as any[]))
+        .pipe(map((res: Talent[]) => res as Talent[]))
         .toPromise();
       this.itemList = result;
     }
-    return new Promise<any[]>((resolve) => resolve(this.itemList));
+    return new Promise<Talent[]>((resolve) => resolve(this.itemList));
   }
 
   create(body: Talent): Observable<Talent> {
     return this.http.post<Talent>(
       environment.rootApiUrl + '/talent',
       body,
-      AuthService.httpOptions(this.authService.token)
+      this.headers
     );
   }
 }

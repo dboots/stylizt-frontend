@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Service } from '../models';
-import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class ServicesService {
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
+export class ServicesService extends BaseService {
   create(body: Service): Observable<Service> {
     return this.http.post<Service>(
       environment.rootApiUrl + '/stylist/service',
       body,
-      AuthService.httpOptions(this.authService.token)
+      this.headers
     );
   }
 
@@ -25,14 +22,14 @@ export class ServicesService {
     return this.http.patch<Service>(
       environment.rootApiUrl + '/stylist/service/' + body._id,
       body,
-      AuthService.httpOptions(this.authService.token)
+      this.headers
     );
   }
 
   delete(body: Service): Observable<Service> {
     return this.http.delete<Service>(
       environment.rootApiUrl + '/stylist/service/' + body._id,
-      AuthService.httpOptions(this.authService.token)
+      this.headers
     );
   }
 }

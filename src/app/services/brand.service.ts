@@ -1,38 +1,33 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Brand } from '../models';
-import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 
 @Injectable()
-export class BrandService {
+export class BrandService extends BaseService {
   itemList: Brand[];
 
-  constructor(private authService: AuthService, private http: HttpClient) { }
-
-  async read(): Promise<any[]> {
-    const token = this.authService.token;
+  async read(): Promise<Brand[]> {
     if (this.itemList === undefined) {
       const result = await this.http
-        .get(
+        .get<Brand[]>(
           environment.rootApiUrl + '/brands',
-          AuthService.httpOptions()
+          this.headers
         )
-        .pipe(map((res: any) => res['data'] as any[]))
+        .pipe(map((res: Brand[]) => res as Brand[]))
         .toPromise();
       this.itemList = result;
     }
-    return new Promise<any[]>((resolve) => resolve(this.itemList));
+    return new Promise<Brand[]>((resolve) => resolve(this.itemList));
   }
 
   create(body: Brand): Observable<Brand> {
     return this.http.post<Brand>(
       environment.rootApiUrl + '/brand',
       body,
-      AuthService.httpOptions()
+      this.headers
     );
   }
 }

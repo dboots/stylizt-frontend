@@ -12,6 +12,7 @@ import {
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Brand } from '../../../models/brand.model';
+import { Site } from 'src/app/models/site';
 
 @Component({
   selector: 'app-page-stylistprofile',
@@ -76,11 +77,11 @@ export class StylistProfilePageComponent implements OnInit {
     this.talents = this.user.talents;
     this.brands = this.user.brands;
 
-    this.portfolioService.read().subscribe((result) => {
-      this.profileStrengths['portfolio'] = result.length >= 3;
+    this.portfolioService.read().subscribe((result: Site) => {
+      this.profileStrengths['portfolio'] = result.portfolio.length >= 3;
     });
 
-    this.clientService.read().then((result: any) => {
+    this.clientService.read().then((result: Client[]) => {
       this.clients = result;
       this.profileStrengths['clients'] = this.clients.length >= 3;
     });

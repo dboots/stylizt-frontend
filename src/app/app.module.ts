@@ -68,6 +68,8 @@ import { EditProfilePortfolioComponent } from './components/stylist/profile/edit
 import { EditProfileServicesComponent } from './components/stylist/profile/edit/services/services.component';
 import { EditProfileClientsComponent } from './components/stylist/profile/edit/clients/clients.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { EditProfileClientsDetailsComponent } from './components/stylist/profile/edit/clients/details/details.component';
+import { EditProfileClientsListComponent } from './components/stylist/profile/edit/clients/list/list.component';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -107,6 +109,8 @@ Sentry.init({
     EditProfilePortfolioComponent,
     EditProfileServicesComponent,
     EditProfileClientsComponent,
+    EditProfileClientsDetailsComponent,
+    EditProfileClientsListComponent,
     BlogPostItemComponent,
     NotFoundComponent
   ],

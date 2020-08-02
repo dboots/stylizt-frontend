@@ -13,10 +13,30 @@ import { ClientService } from 'src/app/services';
 })
 export class EditProfileClientsComponent implements OnInit {
   user: User;
-  clients: Client[];
-  constructor(private clientService: ClientService) { }
+  client: Client;
+  constructor(public clientService: ClientService) { }
 
   async ngOnInit() {
-    this.clients = await this.clientService.read();
+    await this.clientService.read();
+  }
+
+  add() {
+    this.client = new Client('', '');
+  }
+
+  selectClient(client: Client) {
+    this.client = client;
+  }
+
+  clientAdded(client: Client) {
+    console.log(client);
+    this.clientService.clients.push(client);
+    this.client = null;
+  }
+
+  delete(client: Client) {
+    this.clientService.delete(client._id).subscribe((result) => {
+      this.clientService.clients = this.clientService.clients.filter(c => c._id !== client._id);
+    });
   }
 }

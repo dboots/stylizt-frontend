@@ -1,13 +1,9 @@
 <div class="container">
-  <div class="row mt-4">
-    <div class="col-12 col-md-3 d-flex flex-column mb-4" *ngFor="let client of clients">
-      <div class="image position-relative">
-        <div class="icons d-flex align-items-center justify-content-end p-2">
-          <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
-        </div>
-        <img [src]="client.portfolio[0].image" class="image-full" />
-      </div>
-      <div class="caption py-2 text-center">{{client.name}}</div>
+  <div class="row" *ngIf="!client">
+    <div class="col-12 p-4 mb-4 text-center add-new" (click)="add()">
+      Add New Client
     </div>
   </div>
+  <app-profile-clients-detail [client]="client" (isAdded)="clientAdded($event)" *ngIf="client"></app-profile-clients-detail>
+  <app-profile-clients-list (selectClient)="selectClient($event)" *ngIf="!client"></app-profile-clients-list>
 </div>

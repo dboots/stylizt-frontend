@@ -119,7 +119,7 @@ export class SignupComponent {
               localStorage.setItem('token', token);
 
               this.userService
-                .createSubscription(token, source.id)
+                .createSubscription(source.id)
                 .subscribe((_) => {
                   this.zone.run(() => {
                     this.router.navigate(['stylist/home']);

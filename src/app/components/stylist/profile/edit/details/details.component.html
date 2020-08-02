@@ -3,7 +3,7 @@
     <div class="col-md-3 p-4">
       <img [src]="user.image" class="img-fluid" *ngIf="user.image">
       <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
-      (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+        (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
     </div>
     <div class="col-md-9">
       <div class="row mb-2">

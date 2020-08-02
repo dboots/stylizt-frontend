@@ -184,7 +184,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
     this.currentIndex++;
     this.clientPortfolios[this.currentIndex].image = portfolioImage;
 
-    this.portfolioService.create(this.clientPortfolios[this.currentIndex].toPayload(), this.authService.token)
+    this.portfolioService.create(this.clientPortfolios[this.currentIndex].toPayload())
       .subscribe((result: any) => {
         this.clientPortfolios[this.currentIndex] = result;
         this.clientPortfolios[this.currentIndex].loading = false;
@@ -220,7 +220,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   addToPortfolio() {
     this.portfolioItem.clientId = this.clientId;
 
-    this.portfolioService.create(this.portfolioItem, this.authService.token)
+    this.portfolioService.create(this.portfolioItem)
       .subscribe((result: any) => {
         this.portfolioItem._id = result._id;
         this.clientPortfolios.push(this.portfolioItem);
@@ -243,7 +243,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   deletePortfolio(portfolio: Portfolio) {
-    this.portfolioService.delete(portfolio._id, this.authService.token)
+    this.portfolioService.delete(portfolio._id)
       .subscribe((result: any) => {
         let idx = this.clientPortfolios.findIndex((p: Portfolio) => p._id === portfolio._id);
         this.clientPortfolios.splice(idx, 1);
@@ -261,7 +261,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
   }
 
   updatePortfolio() {
-    this.portfolioService.update(this.portfolioItem, this.authService.token)
+    this.portfolioService.update(this.portfolioItem)
       .subscribe((result: any) => {
         // this.portfolioItem.talents = result.talents;
         this.modalRef.close();

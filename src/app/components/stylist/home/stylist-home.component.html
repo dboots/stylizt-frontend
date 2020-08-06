@@ -1,55 +1,6 @@
 <div class="stylist-home justify-content-md-center py-4 row">
   <div class="container">
     <div class="row justify-content-center d-flex p-2 mb-4">
-      <div [routerLink]="['/stylist/profile/edit']"
-        class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-        <img src="assets/img/home-website.png" />
-        <div class="feature-title">Your H2C Site</div>
-        <p class="featured-body py-2 px-4">
-          You'll use this to share your online presence and keep clients engaged.
-        </p>
-        <button class="button-updated">Edit Your Site</button>
-      </div>
-
-      <div [routerLink]="['/stylist/services']"
-        class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-        <img src="assets/img/home-services.png" />
-        <div class="feature-title">Manage Services</div>
-        <p class="featured-body py-2 px-4">
-          Set up your schedule so that you can plan weeks ahead and let clients know when you’re available.
-        </p>
-        <button class="button-updated">Update Services</button>
-      </div>
-
-      <div [routerLink]="['/stylist/clients']"
-        class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-        <img src="assets/img/home-clients.png" />
-        <div class="feature-title">Client Book</div>
-        <p class="featured-body py-2 px-4">
-          Add important information about your clients (i.e. images from previous visits, birthdays, or any potential
-          new ideas you have for them!)
-        </p>
-        <button class="button-updated">Add More Clients</button>
-      </div>
-    </div>
-
-    <!--
-    <div class="row justify-content-center">
-      <div class="col-8">chart</div>
-      <div class="col-4">
-        <div class="message bg-yellow">
-          <div class="message-title">Warning Title</div>
-          <p>This is a warning</p>
-        </div>
-        <div class="message bg-red">
-          <div class="message-title">Danger Title</div>
-          <p>This is a danger</p>
-        </div>
-      </div>
-    </div>
-  -->
-
-    <div class="row justify-content-center d-flex p-2 mb-4">
       <div class="col-9">
         <div class="row">
           <div class="col-3"><button class="common-gw-button" (click)="prevScheduleDay()">Previous Day</button></div>
@@ -57,7 +8,8 @@
             <div class="text-center text-bold text-uppercase">Appointments for {{ scheduleDay | date: 'EE LLL dd' }}
             </div>
           </div>
-          <div class="col-3 text-right"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button></div>
+          <div class="col-3 text-right"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button>
+          </div>
         </div>
       </div>
       <div class="col-12  text-center" *ngIf="!schedule.length">

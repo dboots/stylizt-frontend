@@ -30,6 +30,14 @@
         <p class="bio-content">{{stylist.bio}}</p>
 
         <div class="row">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <a [attr.href]="getUrl(stylist.facebook, 'http://www.facebook.com/')" target="_blank" *ngIf="stylist.facebook"><i class="fa fa-icon fa-lg fa-facebook mx-4 p-4"></i></a>
+            <a [attr.href]="getUrl(stylist.twitter, 'http://www.twitter.com/')" target="_blank" *ngIf="stylist.twitter"><i class="fa fa-icon fa-lg fa-twitter mx-4 p-4"></i></a>
+            <a [attr.href]="getUrl(stylist.instagram, 'http://www.instagram.com/')" target="_blank" *ngIf="stylist.instagram"><i class="fa fa-icon fa-lg fa-instagram mx-4 p-4"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-12 d-flex separator">
             <span class="list-title">Brands:</span>
             <span class="d-flex flex-wrap align-items-center">
@@ -133,11 +141,13 @@
             <div class="material py-4"><textarea formControlName="message" placeholder="Message"></textarea></div>
           </div>
           <div class="col-md-7 col-12 py-4 m-auto text-right">
-            <button class="button" (click)="sendMessage()" [attr.disabled]="contactForm.invalid ? true : null">SEND</button>
+            <button class="button" (click)="sendMessage()"
+              [attr.disabled]="contactForm.invalid ? true : null">SEND</button>
           </div>
         </div>
       </form>
-      <div *ngIf="contactFormSubmitted" class="col-12 text-center bio-content text-white">Thanks! I will reach out as soon as I can!</div>
+      <div *ngIf="contactFormSubmitted" class="col-12 text-center bio-content text-white">Thanks! I will reach out as
+        soon as I can!</div>
     </div>
   </div>
 

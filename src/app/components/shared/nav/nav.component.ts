@@ -104,7 +104,7 @@ export class NavComponent implements OnInit {
         this.modalRef.close();
         console.log('doLogin setting token', data['token']);
         this.authService.token = data['token'];
-        this.router.navigate(['stylist/home']);
+        this.router.navigate(['stylist/profile/edit']);
       }, (error) => {
         this.message = 'Invalid login, please try again.';
         return Observable.throw(error);

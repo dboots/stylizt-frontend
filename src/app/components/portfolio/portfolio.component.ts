@@ -355,7 +355,7 @@ export class StylistPortfolioPageComponent {
   getUrl(handle: string, url: string): string {
     let hasHttp = handle.indexOf('http') > -1;
     let hasHttps = handle.indexOf('https') > -1;
-    let hasWww = handle.indexOf('www') > -1;
+    let hasWww = (handle.indexOf('www') > -1 || handle.indexOf('.com') > -1);
     let isUrl = hasHttp || hasHttps || hasWww;
 
     if (!hasHttp && !hasHttps && hasWww) {

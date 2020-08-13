@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-12 col-md-3 d-flex flex-column" (click)="select(client)" *ngFor="let client of clientService.clients">
+  <div class="col-12 col-md-3 d-flex flex-column" *ngFor="let client of clientService.clients">
     <div class="image position-relative">
       <div class="icons d-flex align-items-center justify-content-end p-2">
         <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
       </div>
-      <img [src]="client.portfolio[0].image" class="image-full" />
+      <img [src]="client.portfolio[0].image" class="image-full" (click)="select(client)" />
     </div>
     <div class="caption py-2 text-center">{{client.name}}</div>
   </div>

@@ -1,3 +1,7 @@
-<h1>detail</h1>
-{{client | json}}
-<button (click)="cancel()" class="h2c-button">Cancel</button>
+<div class="col-md-6 mb-2 mb-md-0 ">
+  <label>Name</label>
+  <input class="input" type="text" [(ngModel)]="client.name" />
+</div>
+
+<button (click)="save()" class="button-v3">Save</button>
+<button (click)="cancel()" class="button-v3">Cancel</button>

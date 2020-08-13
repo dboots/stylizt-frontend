@@ -22,6 +22,10 @@ export class EditProfileClientsDetailsComponent implements OnInit {
     });
   }
 
+  save() {
+    this.clientService.create(this.client).subscribe((result) => console.log(result));
+  }
+
   cancel() {
     this.isAdded.emit(this.client);
   }

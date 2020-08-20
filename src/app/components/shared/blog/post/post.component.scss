@@ -6,6 +6,8 @@
   margin: 30px 0;
   width: 100%;
   flex-direction: column;
+  height: 90%;
+  display: flex;
 
   .blog-date {
     font-style: normal;
@@ -25,6 +27,9 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #1fb2b9;
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .tag-container {
@@ -66,21 +71,23 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
+    min-height: 50px;
     a {
       color: #000000;
     }
+  }
+
+  .blog-bottom {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .blog-excerpt {
     font-size: 16px;
     line-height: 26px;
     margin: 24px 0;
-  }
-
-  .read-more {
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-grow: 1;
-    display: flex;
+    min-height: 182px;
   }
 }

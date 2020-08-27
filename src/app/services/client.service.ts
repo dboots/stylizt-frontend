@@ -1,4 +1,3 @@
-
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
@@ -33,11 +32,6 @@ export class ClientService extends BaseService {
   }
 
   delete(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(environment.rootApiUrl + '/stylist/clients/' + id, this.headers).pipe(
-      map((res) => {
-        this.clients = this.clients.filter(c => c._id !== id);
-        return res;
-      })
-    );
+    return this.http.delete<boolean>(environment.rootApiUrl + '/stylist/clients/' + id, this.headers);
   }
 }

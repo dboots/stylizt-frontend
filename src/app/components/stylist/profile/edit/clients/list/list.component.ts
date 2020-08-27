@@ -13,6 +13,7 @@ export class EditProfileClientsListComponent implements OnInit {
 
   async ngOnInit() {
     await this.clientService.read();
+    console.log(this.clientService.clients);
   }
 
   select(client: Client) {
@@ -20,7 +21,9 @@ export class EditProfileClientsListComponent implements OnInit {
   }
 
   delete(client: Client) {
+    console.log('deleting', client);
     this.clientService.delete(client._id).subscribe((result) => {
+      console.log(this.clientService.clients);
       this.clientService.clients = this.clientService.clients.filter(c => c._id !== client._id);
     });
   }

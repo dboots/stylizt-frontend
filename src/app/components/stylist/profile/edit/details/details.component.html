@@ -1,11 +1,16 @@
 <div class="container">
+  <div class="row mb-4 justify-content-md-end">
+    <div class="col-12 col-md-3">
+      <button class="button-v3" (click)="save()">Save Changes <i *ngIf="isSaving" class="text-white fa fa-spinner fa-spin"></i></button>
+    </div>
+  </div>
   <div class="row mb-4">
-    <div class="col-md-3 p-4">
+    <div class="col-md-3 col-sm-6 p-4">
       <img [src]="user.image" class="img-fluid" *ngIf="user.image">
       <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
         (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 col-sm-6">
       <div class="row mb-2">
         <div class="col-md-6 mb-2 mb-md-0 ">
           <label>Name</label>

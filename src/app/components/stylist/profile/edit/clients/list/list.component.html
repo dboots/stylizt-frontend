@@ -4,7 +4,7 @@
       <div class="icons d-flex align-items-center justify-content-end p-2">
         <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
       </div>
-      <img [src]="client.portfolio[0].image" class="image-full" (click)="select(client)" />
+      <img [src]="(client.portfolio[0]) ? client.portfolio[0].image : ''" class="image image-full" (click)="select(client)" />
     </div>
     <div class="caption py-2 text-center">{{client.name}}</div>
   </div>

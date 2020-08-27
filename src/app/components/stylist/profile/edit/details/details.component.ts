@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
 import { ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
-import { TalentService, BrandService } from 'src/app/services';
+import { TalentService, BrandService, UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile-details',
@@ -22,8 +22,10 @@ export class EditProfileDetailsComponent implements OnInit {
   brandControl: FormControl = new FormControl();
   times: string[] = [];
   hours: string[][] = [];
+  isSaving: boolean = false;
 
   constructor(
+    private userService: UserService,
     private talentService: TalentService,
     private brandService: BrandService
   ) { }
@@ -118,6 +120,13 @@ export class EditProfileDetailsComponent implements OnInit {
     this.user.talents.push(talent);
     this.talentSearchResults = this.talents.filter((item) => {
       return this.user.talents.filter((result) => result._id === item._id).length === 0;
+    });
+  }
+
+  save() {
+    this.isSaving = true;
+    this.userService.update(this.user).subscribe((result) => {
+      this.isSaving = false;
     });
   }
 

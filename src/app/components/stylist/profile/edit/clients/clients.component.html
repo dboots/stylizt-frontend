@@ -4,6 +4,6 @@
       Add New Client
     </div>
   </div>
-  <app-profile-clients-detail [client]="client" (isAdded)="clientAdded($event)" *ngIf="client"></app-profile-clients-detail>
+  <app-profile-clients-detail [(client)]="client" (isAdded)="clientAdded($event)" *ngIf="client"></app-profile-clients-detail>
   <app-profile-clients-list (selectClient)="selectClient($event)" *ngIf="!client"></app-profile-clients-list>
 </div>

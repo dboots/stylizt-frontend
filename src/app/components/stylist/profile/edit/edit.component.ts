@@ -25,7 +25,6 @@ export class EditProfileComponent implements OnInit {
   user: User;
   formGroup: FormGroup = new FormGroup({});
   activeTab: string = 'details';
-  isSaving: boolean = false;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -80,6 +79,7 @@ export class EditProfileComponent implements OnInit {
     this.activeTab = componentId;
   }
 
+  /*
   save() {
     const source: User = this.user;
     let user: User = this.formGroup.value;
@@ -98,6 +98,7 @@ export class EditProfileComponent implements OnInit {
       this.isSaving = false;
     });
   }
+  */
 
   phoneValidator(c: FormControl) {
     return (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(c.value)) ? null : {

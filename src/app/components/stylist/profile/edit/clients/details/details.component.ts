@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ClientService } from 'src/app/services';
-import { Client } from 'src/app/models';
+import { Client, Portfolio } from 'src/app/models';
 
 @Component({
   selector: 'app-profile-clients-detail',
@@ -9,7 +9,8 @@ import { Client } from 'src/app/models';
 })
 export class EditProfileClientsDetailsComponent implements OnInit {
   @Input() client: Client;
-  @Output() isAdded: EventEmitter<Client> = new EventEmitter<Client>();
+  @Output() isAdded: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clientChange: EventEmitter<Client> = new EventEmitter<Client>();
 
   constructor(public clientService: ClientService) { }
 
@@ -23,10 +24,34 @@ export class EditProfileClientsDetailsComponent implements OnInit {
   }
 
   save() {
-    this.clientService.create(this.client).subscribe((result) => console.log(result));
+    const client = this.client;
+    if (client._id) {
+      this.clientService.update(client._id, client).subscribe((result) => {
+        console.log('details updated', result);
+        this.isAdded.emit({ client: result, updated: true });
+      });
+    } else {
+      this.clientService.create(this.client).subscribe((result) => {
+        console.log('details updated', result);
+        this.isAdded.emit({ client: result, updated: false });
+      });
+    }
+  }
+
+  imageUploadCompleted($event) {
+    const client = this.client;
+    let url = $event.url;
+    let portfolio = new Portfolio(url);
+    portfolio.clientId = client._id;
+    portfolio.publicId = $event.public_id;
+
+    client.portfolio.push(portfolio);
+    this.clientService.update(client._id, client).subscribe((result) => {
+      console.log('client updated', result);
+    });
   }
 
   cancel() {
-    this.isAdded.emit(this.client);
+    this.clientChange.emit(null);
   }
 }

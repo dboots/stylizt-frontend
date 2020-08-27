@@ -1,7 +1,57 @@
-<div class="col-md-6 mb-2 mb-md-0 ">
-  <label>Name</label>
-  <input class="input" type="text" [(ngModel)]="client.name" />
+<div class="row mb-4">
+  <div class="col-md-4 col-12">
+    <label>Name</label>
+    <input class="input" type="text" [(ngModel)]="client.name" />
+  </div>
+
+  <div class="col-md-4 col-12">
+    <label>Email</label>
+    <input class="input" type="text" [(ngModel)]="client.email" />
+  </div>
+
+  <div class="col-md-4 col-12">
+    <label>Phone</label>
+    <input class="input" type="text" [(ngModel)]="client.phone" />
+  </div>
 </div>
 
-<button (click)="save()" class="button-v3">Save</button>
-<button (click)="cancel()" class="button-v3">Cancel</button>
+<div class="row mb-4" *ngIf="client._id">
+  <div class="col-12 py-2">
+    <div class="subtitle">Client Notes</div>
+  </div>
+</div>
+
+<div class="row mb-4" *ngIf="client._id">
+  <div class="col-12 py-2">
+    <div class="subtitle">Client Portfolio</div>
+  </div>
+</div>
+
+<div class="row mb-4" *ngIf="client._id">
+  <div class="col-12">
+    <app-cloudinary-uploader [folderName]="'clients'" [buttonName]="'UPLOAD IMAGE(S)'"
+      (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+  </div>
+</div>
+
+<div class="row mb-4" *ngIf="client._id">
+  <div class="col-md-3 col-sm-6 col-12" *ngFor="let portfolio of client.portfolio">
+    <div class="image position-relative">
+      <div class="icons d-flex align-items-center justify-content-end p-2">
+        <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
+      </div>
+      <img [src]="(client.portfolio[0]) ? client.portfolio[0].image : ''" class="image image-full"
+        (click)="select(client)" />
+    </div>
+    <div class="caption py-2 text-center">{{client.name}}</div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-6">
+    <button (click)="cancel()" class="button-v3">Cancel</button>
+  </div>
+  <div class="col-6">
+    <button (click)="save()" class="button-v3">Save</button>
+  </div>
+</div>

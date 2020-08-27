@@ -1,0 +1,33 @@
+.caption {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.image {
+  flex-grow: 1;
+  border: 1px solid #dedede;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.icons {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .fa-trash {
+    background: white;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+}

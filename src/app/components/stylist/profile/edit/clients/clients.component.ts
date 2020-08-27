@@ -28,9 +28,21 @@ export class EditProfileClientsComponent implements OnInit {
     this.client = client;
   }
 
-  clientAdded(client: Client) {
-    console.log(client);
-    this.clientService.clients.push(client);
+  clientAdded($event: any) {
+    const client = $event.client;
+    const clients = this.clientService.clients;
+
+    const idx = clients.findIndex(c => c._id === $event.client._id);
+
+    if (idx !== -1) {
+      console.log('updating', idx);
+      clients[idx] = client;
+    } else {
+      console.log('adding', idx);
+      clients.push(client);
+    }
+
+    this.clientService.clients = clients;
     this.client = null;
   }
 

@@ -20,7 +20,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 body {
   @include body-font;
   @include angular-material-theme($theme);
-  font-family: "proxima_novalight", Arial, sans-serif;
+  font-family: "spartan-light", Arial, sans-serif;
   letter-spacing: normal;
   line-height: normal;
 }
@@ -44,7 +44,7 @@ h3,
 h4,
 h5,
 h6, .font-bold {
-  font-family: "proxima_novabold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "spartan-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .img-responsive {
@@ -68,15 +68,6 @@ section {
 
 app-cloudinary-uploader {
   width: 100%;
-}
-
-.subtitle {
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #000000;
 }
 
 .add-new {
@@ -115,7 +106,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: "proxima_novaregular";
+  font-family: "spartan";
 }
 
 .nav-padding {

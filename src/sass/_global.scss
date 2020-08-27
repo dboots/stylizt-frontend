@@ -47,7 +47,7 @@ textarea {
   letter-spacing: normal;
   text-align: center;
   color: #5ab7bb;
-  font-family: "proxima_novasemibold";
+  font-family: "spartan-medium";
 }
 
 .next-button {
@@ -162,7 +162,7 @@ input[type="checkbox"].ng-touched.ng-invalid {
 }
 
 .steps-title {
-  font-family: "proxima_novaboldblack";
+  font-family: "spartan-bold";
   font-size: 32px;
   font-weight: 900;
   font-stretch: normal;
@@ -182,7 +182,7 @@ input[type="checkbox"].ng-touched.ng-invalid {
 
 label {
   display: block;
-  font-family: "proxima_novabold" !important;
+  font-family: "spartan-bold" !important;
   font-size: 13px;
   font-weight: bold;
   font-stretch: normal;
@@ -265,7 +265,7 @@ select.input {
   border-radius: 0;
   color: $white;
   cursor: pointer;
-  font-family: "proxima_novamedium";
+  font-family: "spartan-medium";
   font-size: 15px;
   letter-spacing: 2px;
   padding: 5px 12px;
@@ -282,7 +282,7 @@ select.input {
   background: $white;
   border-radius: 5px;
   color: red;
-  font-family: "proxima_novasemibold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "spartan-medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
   left: 20px;
   margin: auto;
@@ -292,7 +292,7 @@ select.input {
 }
 
 .bold {
-  font-family: "proxima_novabold";
+  font-family: "spartan-bold";
 }
 
 .flex-fill {
@@ -337,7 +337,7 @@ select.input {
   }
 
   .feature-title {
-    font-family: "proxima_novabold";
+    font-family: "spartan-bold";
     font-size: 16px;
     font-weight: bold;
     font-stretch: normal;
@@ -348,7 +348,7 @@ select.input {
   }
 
   .featured-body {
-    font-family: "proxima_novaregular";
+    font-family: "";
     font-size: 14px;
     font-weight: normal;
     font-stretch: normal;

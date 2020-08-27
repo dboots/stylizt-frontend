@@ -1,4 +1,39 @@
 @font-face {
+  font-family: 'spartan';
+  src: url('/assets/fonts/Spartan-Regular.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'spartan-medium';
+  src: url('/assets/fonts/Spartan-Medium.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'spartan-semibold';
+  src: url('/assets/fonts/Spartan-SemiBold.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'spartan-bold';
+  src: url('/assets/fonts/Spartan-Bold.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'spartan-light';
+  src: url('/assets/fonts/Spartan-Light.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
   font-family: 'Black Diamond';
   src: url('/assets/fonts/Black Diamond.ttf');
   font-style: normal;

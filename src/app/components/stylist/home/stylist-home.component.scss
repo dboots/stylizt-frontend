@@ -13,7 +13,7 @@
     }
 
     .feature-title {
-      font-family: "proxima_novabold";
+      font-family: "spartan-bold";
       font-size: 16px;
       font-weight: bold;
       font-stretch: normal;
@@ -25,7 +25,7 @@
     }
 
     .featured-body {
-      font-family: "proxima_novaregular";
+      font-family: "";
       font-size: 14px;
       font-weight: normal;
       font-stretch: normal;
@@ -41,7 +41,7 @@
 
 .message {
   .message-title {
-    font-family: 'proxima_novabold';
+    font-family: 'spartan-bold';
     font-size: 11px;
     font-weight: bold;
     text-transform: uppercase;
@@ -72,7 +72,7 @@
 }
 
 .title {
-  font-family: "proxima_novamedium";
+  font-family: "spartan-medium";
   text-transform: uppercase;
   font-size: 18px;
   color: $red;
@@ -84,7 +84,7 @@ ol {
   padding: 3%;
 
   li {
-    font-family: "proxima_novalight";
+    font-family: "spartan-light";
     margin: 2% 0;
     font-size: 14px;
   }

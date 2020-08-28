@@ -17,6 +17,8 @@ export class EditProfileServicesComponent implements OnInit {
     price: new FormControl('price', [Validators.required]),
     time: new FormControl('time', [Validators.required])
   });
+  message: string = ' ';
+  showMessage: boolean = false;
 
   constructor(private servicesService: ServicesService) { }
 
@@ -30,25 +32,32 @@ export class EditProfileServicesComponent implements OnInit {
     this.services.unshift(new Service());
   }
 
-  save(service: Service) {
+  save(service: Service, index: number) {
     if (service._id) {
       this.servicesService.update(service).subscribe((result) => {
-        console.log('server service updated', result);
-        const index = this.services.findIndex((s) => s._id === service._id);
-        this.services[index] = service;
+        this.services[index] = result;
+        this.startMessageTimer('Service Updated!');
       });
     } else {
       this.servicesService.create(service).subscribe((result) => {
-        console.log('client service created', result);
+        console.log('result', result);
+        this.services[index] = result;
+        this.startMessageTimer('Service Created!');
       });
     }
   }
 
   delete(service: Service) {
     this.servicesService.delete(service).subscribe((result) => {
-      console.log('service deleted', result);
+      this.startMessageTimer('Service Deleted!');
       const index = this.services.findIndex((s) => s._id === service._id);
       this.services.splice(index, 1);
     });
+  }
+
+  startMessageTimer(message: string) {
+    this.message = message;
+    this.showMessage = true;
+    setTimeout(() => { this.showMessage = false; }, 5000);
   }
 }

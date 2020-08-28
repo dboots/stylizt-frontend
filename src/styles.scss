@@ -66,6 +66,11 @@ section {
   }
 }
 
+nav, .container-fluid {
+  max-width: 1600px;
+  margin: auto;
+}
+
 app-cloudinary-uploader {
   width: 100%;
 }

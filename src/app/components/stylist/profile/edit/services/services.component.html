@@ -4,7 +4,10 @@
       Add New Service
     </div>
   </div>
-  <div class="services row pb-4 mb-4" *ngFor="let service of services">
+  <div class="row message-row my-4" [ngClass]="{'active': showMessage}">
+    <div class="col-12">{{message}}</div>
+  </div>
+  <div class="services row pb-4 mb-4" *ngFor="let service of services, let i = index">
     <div class="service-name col-md-3 col-12">
       <label>Service Name</label>
       <input type="text" class="input" [(ngModel)]="service.name">
@@ -29,8 +32,8 @@
       </select>
     </div>
     <div class="col-1 justify-content-center pt-4 align-items-center d-flex">
-      <i class="fa fa-icon fa-save fa-lg mr-2" (click)="save(service)"></i>
-      <i class="fa fa-icon fa-trash fa-lg" (click)="delete(service)"></i>
+      <i class="fa fa-icon fa-save fa-lg mr-2" (click)="save(service, i)"></i>
+      <i class="fa fa-icon fa-trash fa-lg" *ngIf="service._id" (click)="delete(service)"></i>
     </div>
   </div>
 </div>

@@ -1,3 +1,16 @@
 .services {
   border-bottom: 1px solid #1fb2b9;
 }
+
+.message-row {
+  transition: opacity 1s;
+  text-transform: uppercase;
+  font-family: 'spartan-semibold';
+  text-align: center;
+  color: #1fb2b9;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+}

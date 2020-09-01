@@ -1,4 +1,4 @@
-import { ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Portfolio, User } from 'src/app/models';
 import { PortfolioService, AuthService } from 'src/app/services';
@@ -7,10 +7,7 @@ import { Site } from 'src/app/models/site';
 @Component({
   selector: 'app-profile-portfolio',
   templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss'],
-  viewProviders: [{
-    provide: ControlContainer, useExisting: FormGroupDirective
-  }],
+  styleUrls: ['./portfolio.component.scss']
 })
 export class EditProfilePortfolioComponent implements OnInit {
   user: User;

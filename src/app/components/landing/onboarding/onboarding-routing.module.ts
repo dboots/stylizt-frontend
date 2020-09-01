@@ -14,7 +14,7 @@ const routes: Routes = [
     component: LayoutOnboardingComponent,
     children: [
       { path: '', component: LandingOnboardingComponent },
-      { path: 'steps', component: LandingStepsComponent },
+      { path: 'steps', component: LandingStepsComponent }
     ]
   }, {
     path: 'how-build-clientele-fast',

@@ -7,6 +7,25 @@
   line-height: 1.5;
 }
 
+label {
+  font-size: 14px;
+  color: white;
+}
+
+.form-control {
+  height: 30px;
+  padding: 2px;
+}
+
+.field-error {
+  font-weight: bold;
+  color: #9ed5be;
+  font-size: 12px;
+  padding: 10px 0 0;
+  font-family: 'spartan-semibold';
+  text-align: right;
+}
+
 .h2c-button {
   border: 0;
   background: #9ed5be;
@@ -19,6 +38,10 @@
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
+
+  &[disabled] {
+    background: #DEDEDE;
+  }
 }
 
 li {

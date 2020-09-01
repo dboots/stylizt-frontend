@@ -21,13 +21,14 @@ button {
 }
 
 .prev-button {
-  padding: 8%;
+  padding: 20px;
   opacity: 0.8;
   border-radius: 4px;
   border: solid 2px #6c1f45;
   background-color: rgba(158, 158, 158, 0);
   color: #6c1f45;
   width: 100%;
+  border: 0;
 
   &:disabled {
     background-color: #dedede;

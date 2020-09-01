@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LandingStepsComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper') stepper: MatStepper;
   steps: number = 5;
-  currentStep: number = 1;
+  currentStep: number = 3;
   nextLabel: string;
   progressBarValue: number;
   filledProgressValue: number;

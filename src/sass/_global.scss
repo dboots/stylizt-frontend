@@ -51,12 +51,13 @@ textarea {
 }
 
 .next-button {
-  padding: 8%;
+  padding: 20px;
   opacity: 0.8;
   border-radius: 4px;
   background-color: #5ab7bb;
   color: #ffffff;
   width: 100%;
+  border: 0;
 
   &:disabled {
     background-color: #dedede;

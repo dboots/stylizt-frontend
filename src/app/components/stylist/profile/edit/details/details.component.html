@@ -1,228 +1,231 @@
-<div class="container">
-  <div class="row mb-4 justify-content-md-end">
-    <div class="col-12 col-md-3">
-      <button class="button-v3" (click)="save()">Save Changes <i *ngIf="isSaving" class="text-white fa fa-spinner fa-spin"></i></button>
+<form [formGroup]="formGroup">
+  <div class="container">
+    <div class="row mb-4 justify-content-md-end">
+      <div class="col-12 col-md-3">
+        <button class="button-v3" (click)="save()">Save Changes <i *ngIf="isSaving"
+            class="text-white fa fa-spinner fa-spin"></i></button>
+      </div>
     </div>
-  </div>
-  <div class="row mb-4">
-    <div class="col-md-3 col-sm-6 p-4">
-      <img [src]="user.image" class="img-fluid" *ngIf="user.image">
-      <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
-        (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
-    </div>
-    <div class="col-md-9 col-sm-6">
-      <div class="row mb-2">
-        <div class="col-md-6 mb-2 mb-md-0 ">
-          <label>Name</label>
-          <input class="input" type="text" formControlName="name" />
-        </div>
-        <div class="col-md-6 mb-2 mb-md-0 ">
-          <label>Profile Name</label>
-          <div class="row d-flex align-items-center">
-            <div class="col-6 pr-1">
-              <input class="input text-center" type="text" formControlName="url" />
-            </div>
-            <div class="col-6 p-1">
-              .hairtochair.com
+    <div class="row mb-4">
+      <div class="col-md-3 col-sm-6 p-4">
+        <img [src]="user.image" class="img-fluid" *ngIf="user.image">
+        <app-cloudinary-uploader [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+          (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+      </div>
+      <div class="col-md-9 col-sm-6">
+        <div class="row mb-2">
+          <div class="col-md-6 mb-2 mb-md-0 ">
+            <label>Name</label>
+            <input class="input" type="text" formControlName="name" />
+          </div>
+          <div class="col-md-6 mb-2 mb-md-0 ">
+            <label>Profile Name</label>
+            <div class="row d-flex align-items-center">
+              <div class="col-6 pr-1">
+                <input class="input text-center" type="text" formControlName="url" />
+              </div>
+              <div class="col-6 p-1">
+                .hairtochair.com
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <label>Bio</label>
-          <textarea class="input" formControlName="bio"></textarea>
+        <div class="row">
+          <div class="col-12">
+            <label>Bio</label>
+            <textarea class="input" formControlName="bio"></textarea>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mb-md-4">
-    <div class="col-12 py-2">
-      <div class="subtitle">Settings</div>
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Email Address</label>
-      {{user.email}}
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Phone Number</label>
-      <input class="input" type="text" formControlName="phone" />
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Require Booking Approval</label>
-      <mat-slide-toggle [formControlName]="'requireApproval'"></mat-slide-toggle>
-    </div>
-  </div>
-
-  <div class="row mb-md-4">
-    <div class="col-12 py-2">
-      <div class="subtitle">My Social Medias</div>
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Facebook</label>
-      <input class="input" type="text" formControlName="facebook" placeholder="facebook.com/your-name" />
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Instagram</label>
-      <input class="input" type="text" formControlName="instagram" placeholder="@YourName" />
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Twitter</label>
-      <input class="input" type="text" formControlName="twitter" placeholder="@YourName" />
-    </div>
-  </div>
-
-  <div class="row mb-md-4">
-    <div class="col-12 py-2">
-      <div class="subtitle">Location</div>
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>Zip</label>
-      <input class="input" type="text" formControlName="zip" />
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>City</label>
-      <input class="input" type="text" formControlName="city" />
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0">
-      <label>State</label>
-      <input class="input" type="text" formControlName="state" />
-    </div>
-  </div>
-
-  <div class="row mb-md-4 business-hours">
-    <div class="col-12 py-2">
-      <div class="subtitle">Business Hours</div>
-    </div>
-    <div class="col-md-3 col-12 mb-4">
-      <label>Monday</label>
-      <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[0][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Tuesday</label>
-      <select class="input" [(ngModel)]="hours[1][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[1][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Wednesday</label>
-      <select class="input" [(ngModel)]="hours[2][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[2][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Thursday</label>
-      <select class="input" [(ngModel)]="hours[3][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[3][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Friday</label>
-      <select class="input" [(ngModel)]="hours[4][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[4][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Saturday</label>
-      <select class="input" [(ngModel)]="hours[5][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[5][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-
-    <div class="col-md-3 col-12 mb-sm-4">
-      <label>Sunday</label>
-      <select class="input" [(ngModel)]="hours[6][0]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-      <select class="input" [(ngModel)]="hours[6][1]" [ngModelOptions]="{standalone: true}">
-        <option [value]=""></option>
-        <option *ngFor="let time of times">{{time}}</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row mb-4">
-    <div class="col-12 py-2">
-      <div class="subtitle">Your Talents</div>
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0 search-container d-flex align-items-center">
-      <i class="fa fa-icon fa-close" (click)="cancelTalent()"
-        *ngIf="talentControl.value || talentSearchResults.length > 0"></i>
-      <input class="input" type="text" (focus)="focusTalent()" (blur)="blurTalent()" [formControl]="talentControl"
-        placeholder="Search for your talent(s)" (keyup)="changeTalent($event)" />
-      <div class="search-results mt-1" *ngIf="talentControl.value || talentSearchResults.length > 0">
-        <div><button class="button-v3" *ngIf="!talentSearchResults.length" (click)="addNewTalent()">Add
-            {{talentControl.value}}</button></div>
-        <div *ngFor="let item of talentSearchResults" class="search-results-item px-4 py-2" (click)="addTalent(item)">
-          {{item.talent}}</div>
+    <div class="row mb-md-4">
+      <div class="col-12 py-4">
+        <div class="subtitle">Settings</div>
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Email Address</label>
+        {{user.email}}
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Phone Number</label>
+        <input class="input" type="text" formControlName="phone" />
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Require Booking Approval</label>
+        <mat-slide-toggle [formControlName]="'requireApproval'"></mat-slide-toggle>
       </div>
     </div>
-    <div class="col-md-8 d-flex align-items-center flex-wrap">
-      <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.talents"><span
-          class="label pr-4">{{item.talent}}</span>
-        <i class="fa fa-icon fa-close" (click)="removeTalent(item)"></i></span>
-    </div>
-  </div>
 
-  <div class="row mb-md-4">
-    <div class="col-12 py-2">
-      <div class="subtitle">Your Brands</div>
-    </div>
-    <div class="col-md-4 mb-2 mb-md-0 search-container d-flex align-items-center">
-      <i class="fa fa-icon fa-close" (click)="cancelBrand()"
-        *ngIf="brandControl.value || brandSearchResults.length > 0"></i>
-      <input class="input" type="text" (focus)="focusBrand()" (blur)="blurBrand()" [formControl]="brandControl"
-        placeholder="Search for your brand(s)" (keyup)="changeBrand($event)" />
-      <div class="search-results mt-1" *ngIf="brandControl.value || brandSearchResults.length > 0">
-        <div><button class="button-v3" *ngIf="!brandSearchResults.length" (click)="addNewBrand()">Add
-            {{brandControl.value}}</button></div>
-        <div *ngFor="let item of brandSearchResults" class="search-results-item px-4 py-2" (click)="addBrand(item)">
-          {{item.brand}}</div>
+    <div class="row mb-md-4">
+      <div class="col-12 py-4">
+        <div class="subtitle">My Social Medias</div>
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Facebook</label>
+        <input class="input" type="text" formControlName="facebook" placeholder="facebook.com/your-name" />
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Instagram</label>
+        <input class="input" type="text" formControlName="instagram" placeholder="@YourName" />
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Twitter</label>
+        <input class="input" type="text" formControlName="twitter" placeholder="@YourName" />
       </div>
     </div>
-    <div class="col-md-8 d-flex align-items-center flex-wrap">
-      <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.brands"><span
-          class="label pr-4">{{item.brand}}</span>
-        <i class="fa fa-icon fa-close" (click)="removeBrand(item)"></i></span>
+
+    <div class="row mb-md-4">
+      <div class="col-12 py-4">
+        <div class="subtitle">Location</div>
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>Zip</label>
+        <input class="input" type="text" formControlName="zip" />
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>City</label>
+        <input class="input" type="text" formControlName="city" />
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0">
+        <label>State</label>
+        <input class="input" type="text" formControlName="state" />
+      </div>
+    </div>
+
+    <div class="row mb-md-4 business-hours">
+      <div class="col-12 py-4">
+        <div class="subtitle">Business Hours</div>
+      </div>
+      <div class="col-md-3 col-12 mb-4">
+        <label>Monday</label>
+        <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[0][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Tuesday</label>
+        <select class="input" [(ngModel)]="hours[1][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[1][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Wednesday</label>
+        <select class="input" [(ngModel)]="hours[2][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[2][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Thursday</label>
+        <select class="input" [(ngModel)]="hours[3][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[3][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Friday</label>
+        <select class="input" [(ngModel)]="hours[4][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[4][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Saturday</label>
+        <select class="input" [(ngModel)]="hours[5][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[5][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-12 mb-sm-4">
+        <label>Sunday</label>
+        <select class="input" [(ngModel)]="hours[6][0]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+        <select class="input" [(ngModel)]="hours[6][1]" [ngModelOptions]="{standalone: true}">
+          <option [value]=""></option>
+          <option *ngFor="let time of times">{{time}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12 py-4">
+        <div class="subtitle">Your Talents</div>
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0 search-container d-flex align-items-center">
+        <i class="fa fa-icon fa-close" (click)="cancelTalent()"
+          *ngIf="talentControl.value || talentSearchResults.length > 0"></i>
+        <input class="input" type="text" (focus)="focusTalent()" (blur)="blurTalent()" [formControl]="talentControl"
+          placeholder="Search for your talent(s)" (keyup)="changeTalent($event)" />
+        <div class="search-results mt-1" *ngIf="talentControl.value || talentSearchResults.length > 0">
+          <div><button class="button-v3" *ngIf="!talentSearchResults.length" (click)="addNewTalent()">Add
+              {{talentControl.value}}</button></div>
+          <div *ngFor="let item of talentSearchResults" class="search-results-item px-4 py-2" (click)="addTalent(item)">
+            {{item.talent}}</div>
+        </div>
+      </div>
+      <div class="col-md-8 d-flex align-items-center flex-wrap">
+        <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.talents"><span
+            class="label pr-4">{{item.talent}}</span>
+          <i class="fa fa-icon fa-close" (click)="removeTalent(item)"></i></span>
+      </div>
+    </div>
+
+    <div class="row mb-md-4">
+      <div class="col-12 py-4">
+        <div class="subtitle">Your Brands</div>
+      </div>
+      <div class="col-md-4 mb-2 mb-md-0 search-container d-flex align-items-center">
+        <i class="fa fa-icon fa-close" (click)="cancelBrand()"
+          *ngIf="brandControl.value || brandSearchResults.length > 0"></i>
+        <input class="input" type="text" (focus)="focusBrand()" (blur)="blurBrand()" [formControl]="brandControl"
+          placeholder="Search for your brand(s)" (keyup)="changeBrand($event)" />
+        <div class="search-results mt-1" *ngIf="brandControl.value || brandSearchResults.length > 0">
+          <div><button class="button-v3" *ngIf="!brandSearchResults.length" (click)="addNewBrand()">Add
+              {{brandControl.value}}</button></div>
+          <div *ngFor="let item of brandSearchResults" class="search-results-item px-4 py-2" (click)="addBrand(item)">
+            {{item.brand}}</div>
+        </div>
+      </div>
+      <div class="col-md-8 d-flex align-items-center flex-wrap">
+        <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.brands"><span
+            class="label pr-4">{{item.brand}}</span>
+          <i class="fa fa-icon fa-close" (click)="removeBrand(item)"></i></span>
+      </div>
     </div>
   </div>
-</div>
+</form>

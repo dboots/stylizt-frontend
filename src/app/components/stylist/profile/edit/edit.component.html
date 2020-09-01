@@ -6,15 +6,15 @@
       <div class="row d-flex align-items-center row-edit pb-2">
         <div class="col-3 tab-item" [ngClass]="{'active': isActive('details')}" (click)="loadComponent('details')">
           DETAILS</div>
-        <div class="col-3 tab-item" [ngClass]="{'active': isActive('portfolio')}" (click)="loadComponent('portfolio')">PORTFOLIO</div>
-        <div class="col-3 tab-item" [ngClass]="{'active': isActive('services')}" (click)="loadComponent('services')">SERVICES</div>
-        <div class="col-3 tab-item" [ngClass]="{'active': isActive('clients')}" (click)="loadComponent('clients')">CLIENTS</div>
+        <div class="col-3 tab-item" [ngClass]="{'active': isActive('portfolio')}" (click)="loadComponent('portfolio')">
+          PORTFOLIO</div>
+        <div class="col-3 tab-item" [ngClass]="{'active': isActive('services')}" (click)="loadComponent('services')">
+          SERVICES</div>
+        <div class="col-3 tab-item" [ngClass]="{'active': isActive('clients')}" (click)="loadComponent('clients')">
+          CLIENTS</div>
       </div>
     </div>
   </div>
-
-  <form [formGroup]="formGroup">
-    <ng-container #componentLoader></ng-container>
-  </form>
+  <ng-container #componentLoader></ng-container>
 </div>
 <app-footer></app-footer>

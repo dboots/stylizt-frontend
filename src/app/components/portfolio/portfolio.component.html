@@ -38,13 +38,13 @@
         </div>
 
         <div class="row">
-          <div class="col-12 d-flex separator">
+          <div *ngIf="stylist.brands.length" class="col-12 d-flex separator">
             <span class="list-title">Brands:</span>
             <span class="d-flex flex-wrap align-items-center">
               <span class="list-item px-2 mb-2" *ngFor="let item of stylist.brands">{{item.brand}}</span>
             </span>
           </div>
-          <div class="col-12 d-flex mt-2">
+          <div *ngIf="stylist.talents.length" class="col-12 d-flex mt-2">
             <span class="list-title">Talents:</span>
             <span class="d-flex flex-wrap align-items-center">
               <span class="list-item px-2 mb-2" *ngFor="let item of stylist.talents">{{item.talent}}</span>

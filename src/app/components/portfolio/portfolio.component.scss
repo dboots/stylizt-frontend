@@ -123,10 +123,11 @@
 .img-container {
   width: 100%;
   height: auto;
-  border: 1px solid #dedede;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  max-height: 500px;
+  min-height: 500px;
 
   @media only screen and (max-width: 990px) {
     width: 100%;
@@ -149,6 +150,7 @@
   font-size: 18px;
   line-height: 26px;
   color: #4f4f4f;
+  min-height: 250px;
 
   @media only screen and (max-width: 768px) {
     font-size: 16px;

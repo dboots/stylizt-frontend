@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
-import { ControlContainer, FormGroupDirective, FormControl } from '@angular/forms';
-import { TalentService, BrandService, UserService } from 'src/app/services';
+import { FormGroup, FormControl } from '@angular/forms';
+import { TalentService, BrandService, UserService, AuthService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
-  viewProviders: [{
-    provide: ControlContainer, useExisting: FormGroupDirective
-  }],
 })
 export class EditProfileDetailsComponent implements OnInit {
   user: User;
@@ -23,17 +20,25 @@ export class EditProfileDetailsComponent implements OnInit {
   times: string[] = [];
   hours: string[][] = [];
   isSaving: boolean = false;
+  formGroup: FormGroup = new FormGroup({});
 
   constructor(
     private userService: UserService,
     private talentService: TalentService,
-    private brandService: BrandService
+    private brandService: BrandService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     let times: string[] = [];
     let timeString: string;
     let userHours: string[][] = this.user.hours;
+
+    Object.keys(this.user).forEach((key) => {
+      this.formGroup.addControl(key, new FormControl(this.user[key]));
+    });
+
+    console.log(this.formGroup.value);
 
     this.talentService.read().then((results) => {
       this.talents = results;
@@ -125,8 +130,11 @@ export class EditProfileDetailsComponent implements OnInit {
 
   save() {
     this.isSaving = true;
+    this.user = this.formGroup.value;
+    console.log(this.user);
     this.userService.update(this.user).subscribe((result) => {
       this.isSaving = false;
+      this.authService.token = result.token;
     });
   }
 
@@ -136,6 +144,7 @@ export class EditProfileDetailsComponent implements OnInit {
     this.talentService.create(talent).subscribe((result) => {
       this.user.talents.push(result);
       this.talentControl.reset();
+
     });
   }
 

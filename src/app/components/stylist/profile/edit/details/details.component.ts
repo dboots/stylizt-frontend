@@ -38,8 +38,6 @@ export class EditProfileDetailsComponent implements OnInit {
       this.formGroup.addControl(key, new FormControl(this.user[key]));
     });
 
-    console.log(this.formGroup.value);
-
     this.talentService.read().then((results) => {
       this.talents = results;
     });
@@ -131,7 +129,6 @@ export class EditProfileDetailsComponent implements OnInit {
   save() {
     this.isSaving = true;
     this.user = this.formGroup.value;
-    console.log(this.user);
     this.userService.update(this.user).subscribe((result) => {
       this.isSaving = false;
       this.authService.token = result.token;
@@ -193,6 +190,7 @@ export class EditProfileDetailsComponent implements OnInit {
 
   imageUploadCompleted($event) {
     this.user.image = $event.url;
+    this.formGroup.controls['image'].setValue($event.url);
   }
 
   changeBrand($event: any) {

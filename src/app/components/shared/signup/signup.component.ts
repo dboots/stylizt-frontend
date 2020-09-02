@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { Component, Input, PLATFORM_ID, Inject } from '@angular/core';
-import { UserService } from '../../../services';
+import { UserService, AuthService } from '../../../services';
 import { User } from '../../../models';
 import {
   Router,
@@ -39,6 +39,7 @@ export class SignupComponent {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.initForm();
@@ -92,6 +93,7 @@ export class SignupComponent {
     if (typeof this.urlParams.bypass !== 'undefined') {
       this.userService.signup(model).subscribe((data: User) => {
         let token = data['token'];
+        this.userService.headers = AuthService.httpOptions(this.authService.token);
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('token', token);
         }
@@ -100,6 +102,7 @@ export class SignupComponent {
     } else {
       this.userService.signup(model).subscribe((data: User) => {
         let token = data['token'];
+        this.userService.headers = AuthService.httpOptions(this.authService.token);
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('token', token);
         }

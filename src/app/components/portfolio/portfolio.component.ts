@@ -142,6 +142,10 @@ export class StylistPortfolioPageComponent {
     this.service = service;
   }
 
+  isLoggedInOwner() {
+    return this.authService.isAuthenticated() && (this.stylist._id === this.authService.decode()._id);
+  }
+
   parseSchedule(schedule: Schedule[]) {
     this.scheduledTimes = [];
     schedule.map((slot) => {

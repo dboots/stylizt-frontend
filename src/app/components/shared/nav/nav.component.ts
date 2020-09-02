@@ -71,7 +71,7 @@ export class NavComponent implements OnInit {
 
   signup() {
     this.modalRef.close();
-    this.router.navigate(['landing/steps']);
+    this.router.navigate(['landing']);
   }
 
   logout() {
@@ -104,6 +104,7 @@ export class NavComponent implements OnInit {
         this.modalRef.close();
         console.log('doLogin setting token', data['token']);
         this.authService.token = data['token'];
+        this.userService.headers = AuthService.httpOptions(this.authService.token);
         this.router.navigate(['stylist/profile/edit']);
       }, (error) => {
         this.message = 'Invalid login, please try again.';

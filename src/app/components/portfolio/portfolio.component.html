@@ -22,7 +22,7 @@
     <div class="row portfolio-content" #aboutViewChild
       [ngClass]="{'scrolled': loggedIn() && scrollClass, 'not-scrolled': loggedIn()}">
       <div class="col-12 col-lg-6 pl-0 py-4 text-center d-flex justify-content-center">
-        <div class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
+        <div *ngIf="stylist.image" class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
         </div>
       </div>
       <div class="col-12 col-lg-6 py-4 text-center text-md-left">

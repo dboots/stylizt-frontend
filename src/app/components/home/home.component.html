@@ -5,24 +5,25 @@
     <div class="bg-variation"></div>
     <div class="container">
       <div class="row">
-        <div class="col-11 p-0 p-sm-2 col-sm-12 col-md-10 col-lg-8 col-xl-6">
+        <div class="col-12 p-0 p-sm-2 col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <div class="jumbo-card">
-            <div class="title font-bold mb-3 mb-sm-4">You create beautiful hairstyles.<br /><span class="highlight">Let
-                us do the rest.</span></div>
+            <div class="title font-bold mb-3 mb-sm-4">You create beautiful hairstyles.<div class="highlight">Let
+                us do the rest.</div>
+            </div>
             <p class="subtitle-home">Hair To Chair is an app for independent hair stylists &amp; barbers looking to grow
               their business. With Hair To Chair you get:</p>
-            <div class="list-item">
+            <div class="list-item d-md-flex d-none">
               <span class="list-item-number">1</span>
               <div>Your own professional hair stylist website to showcase clients (no tech expertise needed)
               </div>
             </div>
 
-            <div class="list-item">
+            <div class="list-item d-md-flex d-none">
               <span class="list-item-number">2</span>
               <div>Online scheduling with automatic reminders to reduce no-shows</div>
             </div>
 
-            <div class="list-item">
+            <div class="list-item d-md-flex d-none">
               <span class="list-item-number">3</span>
               <div>A way to manage clients and their past hairstyles wherever you go</div>
             </div>
@@ -44,37 +45,50 @@
   </div>
   <div class="row home-section">
     <div class="col-md-6 col-12">
-      <div class="black-diamond-font number">01</div>
-      <div class="subtitle">Create and share your website in minutes</div>
+      <div class="row">
+        <div class="col-12 d-flex pb-4 align-items-center">
+          <div class="black-diamond-font number pr-4">01</div>
+          <div class="subtitle">Create and share your website in minutes</div>
+        </div>
+      </div>
       <p class="copy">Showcase your portfolio & talents to new clients using your one click setup website.</p>
     </div>
 
-    <div class="col-md-6 col-12">
+    <div class="col-md-6 col-12 pb-sm-4">
       <img [lazyLoad]="'assets/img/home_01.webp'" />
     </div>
   </div>
 
-  <div class="row home-section">
-    <div class="col-md-6 col-12">
+  <div class="row home-section d-flex">
+    <div class="col-md-6 col-12 order-2 order-md-1 pb-sm-4">
       <img [lazyLoad]="'assets/img/home_02.webp'" />
     </div>
-    <div class="col-md-6 col-12">
-      <div class="black-diamond-font number">02</div>
-      <div class="subtitle">End-to-end client tracking keeps you in total control</div>
-      <p class="copy">Manage client relationships by keeping appointment notes, images. Upload photos to either your private or
+    <div class="col-md-6 col-12 order-1 order-md-2">
+      <div class="row">
+        <div class="col-12 d-flex pb-4 align-items-center">
+          <div class="black-diamond-font number pr-4">02</div>
+          <div class="subtitle">End-to-end client tracking keeps you in total control</div>
+        </div>
+      </div>
+      <p class="copy">Manage client relationships by keeping appointment notes, images. Upload photos to either your
+        private or
         public portfolio to keep track of past appointments and hairstyles.</p>
     </div>
   </div>
 
-  <div class="row home-section">
+  <div class="row home-section d-flex">
     <div class="col-md-6 col-12">
-      <div class="black-diamond-font number">03</div>
-      <div class="subtitle">Save time with online bookings and automatic reminders</div>
+      <div class="row">
+        <div class="col-12 d-flex pb-4 align-items-center">
+          <div class="black-diamond-font number pr-4">03</div>
+          <div class="subtitle">Save time with online bookings and automatic reminders</div>
+        </div>
+      </div>
       <p class="copy">Save time and reduce back and forth with clients by using our online booking software. Send
         friendly automatic reminders to reduce no-shows and stay organized.</p>
     </div>
 
-    <div class="col-md-6 col-12">
+    <div class="col-md-6 col-12 pb-sm-4">
       <img [lazyLoad]="'assets/img/home_03.webp'" />
     </div>
   </div>
@@ -103,7 +117,8 @@
 <div class="container container-features container-padding">
   <div class="row">
     <div class="col-12">
-      <h3 class="subtitle">Hair To Chair is an app exclusively for independent hair stylists &amp; barbers to make managing
+      <h3 class="subtitle">Hair To Chair is an app exclusively for independent hair stylists &amp; barbers to make
+        managing
         their business (and life) easier.
       </h3>
     </div>

@@ -16,21 +16,30 @@
     top: 0;
     left: 0;
     background-position: 60%;
+    opacity: 0.8;
+
+    @media all and (max-width: 768px) {
+      background: #FBBC1E !important;
+    }
   }
 
   .jumbo-card {
     background: #ffffff;
     box-shadow: 20px 24px 24px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    padding: 40px 52px;
+    padding: 40px 34px;
 
     @media all and (max-width: 768px) {
       padding: 20px;
     }
 
     .title {
-      font-size: 44px;
-      line-height: 54px;
+      font-size: 38px;
+      line-height: 46px;
+
+      .highlight {
+        margin: 20px 0 0 0;
+      }
 
       @media all and (max-width: 768px) {
         font-size: 24px;
@@ -45,21 +54,19 @@
     }
 
     .subtitle-home {
-      font-size: 20px;
-      line-height: 30px;
+      font-size: 18px;
+      line-height: 36px;
       color: #454545;
 
       @media all and (max-width: 768px) {
-        font-size: 16px;
-        line-height: 20px;
         margin: 0 0 20px 0;
       }
       
     }
 
     .list-item {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 14px;
+      line-height: 28px;
       display: flex;
       margin: 0 0 1rem 0;
 
@@ -101,6 +108,10 @@
 .home-section {
   margin: 0 0 170px 0;
 
+  @media all and (max-width: 768px) {
+    margin: 0 0 30px 0;
+  }
+
   img {
     box-shadow: 10px 10px 70px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -125,6 +136,7 @@
     margin: 0;
     font-size: 15px;
     line-height: 24px;
+    margin: 0 0 80px 0;
   }
 }
 
@@ -134,7 +146,13 @@
   font-size: 32px;
   line-height: 42px;
   color: #000000;
-  margin: 0 0 32px 0;
+  margin: 0 0 20px 0;
+
+  @media all and (max-width: 768px) {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0;
+  }
 }
 
 .copy {
@@ -150,7 +168,6 @@
   font-size: 54px;
   line-height: 74px;
   color: #5ab7bb;
-  margin: 0 0 32px 0;
 }
 
 .container-features {

@@ -8,11 +8,11 @@
     <div class="col-12">{{message}}</div>
   </div>
   <div class="services row pb-4 mb-4" *ngFor="let service of services, let i = index">
-    <div class="service-name col-md-3 col-12">
+    <div class="service-name col-md-3 col-12 pb-4">
       <label>Service Name</label>
       <input type="text" class="input" [(ngModel)]="service.name">
     </div>
-    <div class="service-desc col-md-4 col-12">
+    <div class="service-desc col-md-4 col-12 pb-4">
       <label>Description</label>
       <input type="text" class="input" [(ngModel)]="service.description">
     </div>
@@ -31,7 +31,7 @@
         <option value="6">3 hours</option>
       </select>
     </div>
-    <div class="col-1 justify-content-center pt-4 align-items-center d-flex">
+    <div class="col-md-1 col-12 justify-content-center text-align-center align-items-center pt-4 align-items-center d-flex">
       <i class="fa fa-icon fa-save fa-lg mr-2" (click)="save(service, i)"></i>
       <i class="fa fa-icon fa-trash fa-lg" *ngIf="service._id" (click)="delete(service)"></i>
     </div>

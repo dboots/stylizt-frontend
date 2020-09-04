@@ -9,12 +9,35 @@
   color: #000000;
 }
 
+.fa-xl {
+  color: #1fb2b9;
+  font-size: 25px;
+}
+
 .image {
   flex-grow: 1;
   border: 1px solid #dedede;
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+.client-note {
+  font-size: 14px;
+  border: 1px solid #DEDEDE;
+  border-radius: 2px;
+
+  .note-date {
+    font-family: 'spartan-semibold';
+  }
+}
+
+.subtitle {
+  font-family: "spartan-bold" !important;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .icons {

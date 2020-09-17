@@ -1,15 +1,24 @@
+<div class="row mb-4 d-flex justify-content-md-end">
+  <div class="col-6 col-md-3">
+    <button (click)="cancel()" class="button-v3">Cancel</button>
+  </div>
+  <div class="col-6 col-md-3">
+    <button (click)="save()" class="button-v3">Save</button>
+  </div>
+</div>
+
 <div class="row mb-4">
-  <div class="col-md-4 col-12">
+  <div class="col-md-4 col-12 my-2">
     <label>Name</label>
     <input class="input" type="text" [(ngModel)]="client.name" />
   </div>
 
-  <div class="col-md-4 col-12">
+  <div class="col-md-4 col-12 my-2">
     <label>Email</label>
     <input class="input" type="text" [(ngModel)]="client.email" />
   </div>
 
-  <div class="col-md-4 col-12">
+  <div class="col-md-4 col-12 my-2">
     <label>Phone</label>
     <input class="input" type="text" [(ngModel)]="client.phone" />
   </div>
@@ -17,7 +26,29 @@
 
 <div class="row mb-4" *ngIf="client._id">
   <div class="col-12 py-2">
-    <div class="subtitle">Client Notes</div>
+    <div class="subtitle d-flex align-items-center">Client Notes <i (click)="addClientNote()"
+        class="pl-2 fa fa-icon fa-xl fa-plus-circle"></i>
+    </div>
+  </div>
+
+  <div class="col-12" *ngFor="let note of notes">
+    <div class="client-note p-4" [ngClass]="{'editable': note._id}">
+      <div class="note-date">{{note.dateCreated | date: 'medium'}}</div>
+      <div class="note-body py-4"><textarea type="text" class="input" [(ngModel)]="note.body" rows="3"></textarea></div>
+      <div class="note-images row">
+        <div class="col-md-3" *ngFor="let image of note.images">
+          <img [src]="image" class="image image-full" />
+        </div>
+      </div>
+      <app-cloudinary-uploader *ngIf="!note._id" [folderName]="'clients-notes'" [buttonName]="'UPLOAD IMAGE(S)'"
+        (completeItem)="imageNoteUploadCompleted($event, note)"></app-cloudinary-uploader>
+      <div class="row my-2 d-flex justify-content-md-end">
+        <div class="col-12 col-md-2">
+          <button class="button-v3" (click)="saveClientNote(note)" *ngIf="!note._id">Create</button>
+          <button class="button-v3" (click)="deleteClientNote(note)" *ngIf="note._id">Delete</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -44,14 +75,5 @@
         (click)="select(client)" />
     </div>
     <div class="caption py-2 text-center">{{client.name}}</div>
-  </div>
-</div>
-
-<div class="row mb-4">
-  <div class="col-6">
-    <button (click)="cancel()" class="button-v3">Cancel</button>
-  </div>
-  <div class="col-6">
-    <button (click)="save()" class="button-v3">Save</button>
   </div>
 </div>

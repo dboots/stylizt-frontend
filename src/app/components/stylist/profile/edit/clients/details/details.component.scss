@@ -9,6 +9,24 @@
   color: #000000;
 }
 
+.fa-plus-circle {
+  cursor: pointer;
+}
+
+textarea {
+  &.input {
+    height: auto;
+  }
+}
+
+.editable {
+  textarea {
+    &.input {
+      border: 0;
+    }
+  }
+}
+
 .fa-xl {
   color: #1fb2b9;
   font-size: 25px;
@@ -26,7 +44,7 @@
   font-size: 14px;
   border: 1px solid #DEDEDE;
   border-radius: 2px;
-
+  
   .note-date {
     font-family: 'spartan-semibold';
   }
@@ -44,7 +62,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-
+  
   .fa-trash {
     background: white;
     color: black;

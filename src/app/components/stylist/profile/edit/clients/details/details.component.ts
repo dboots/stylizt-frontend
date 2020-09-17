@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ClientService } from 'src/app/services';
-import { Client, Portfolio } from 'src/app/models';
+import { AuthService, ClientService, NotesService } from 'src/app/services';
+import { Client, Note, Portfolio, User } from 'src/app/models';
 
 @Component({
   selector: 'app-profile-clients-detail',
@@ -12,9 +12,22 @@ export class EditProfileClientsDetailsComponent implements OnInit {
   @Output() isAdded: EventEmitter<any> = new EventEmitter<any>();
   @Output() clientChange: EventEmitter<Client> = new EventEmitter<Client>();
 
-  constructor(public clientService: ClientService) { }
+  notes: Note[] = [];
+  user: User;
+
+  constructor(
+    public clientService: ClientService,
+    private noteService: NotesService,
+    private authService: AuthService,
+  ) { }
 
   async ngOnInit() {
+    const client: Client = this.client;
+    this.user = this.authService.decode();
+    this.noteService.read(client._id).subscribe((results) => {
+      console.log('notes', results);
+      this.notes = results;
+    });
   }
 
   delete(client: Client) {
@@ -36,6 +49,40 @@ export class EditProfileClientsDetailsComponent implements OnInit {
         this.isAdded.emit({ client: result, updated: false });
       });
     }
+  }
+
+  saveClientNote(note: Note) {
+    this.noteService.create(note).subscribe((result) => {
+      console.log('client note saved', result);
+      note._id = result._id;
+    });
+  }
+
+  imageNoteUploadCompleted($event, note: Note) {
+    const client = this.client;
+    let url = $event.url;
+    note.images.push(url);
+  }
+
+  addClientNote() {
+    const note: Note = new Note();
+    const user: User = this.user;
+    const client: Client = this.client;
+
+    note.dateCreated = new Date();
+    note.owner = user._id;
+    note.clientId = client._id;
+
+    this.notes.unshift(note);
+  }
+
+  deleteClientNote(note: Note) {
+    const client: Client = this.client;
+
+    this.noteService.delete(client._id, note._id).subscribe((result) => {
+      const noteIndex = this.notes.findIndex((item) => item._id === note._id);
+      this.notes.splice(noteIndex, 1);
+    });
   }
 
   imageUploadCompleted($event) {

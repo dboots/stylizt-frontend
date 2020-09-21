@@ -66,6 +66,29 @@ section {
   }
 }
 
+.icons {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  
+  .fa-icon {
+    background: white;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 12px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    opacity: 0.6;
+  }
+}
+
 nav, .container-fluid {
   max-width: 1600px;
   margin: auto;
@@ -131,6 +154,22 @@ body {
   border: 0;
   padding: 12px 0;
   color: #ffffff;
+
+  .fa-icon {
+    padding: 0 10px 0 0;
+  }
+
+  &.edit-button {
+    background: transparent;
+    color: #1fb2b9;
+    border: 1px solid #1fb2b9;
+  }
+
+  &.delete-button {
+    background: red;
+    color: white;
+    border: 1px solid white;
+  }
 
   &[disabled] {
     background: #DEDEDE;

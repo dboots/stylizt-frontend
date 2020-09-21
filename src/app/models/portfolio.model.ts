@@ -9,6 +9,7 @@ export class Portfolio {
   display: boolean;
   loading: boolean;
   publicId: string;
+  owner: string;
 
   constructor(
     image: string,

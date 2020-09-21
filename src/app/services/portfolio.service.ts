@@ -11,8 +11,12 @@ export class PortfolioService extends BaseService {
     return this.http.post<Portfolio>(`${environment.rootApiUrl}/stylist/portfolio`, body, this.headers);
   }
 
-  read(params: any = {}): Observable<Site> {
-    return this.http.get<Site>(`${environment.rootApiUrl}/portfolio`, { params });
+  read(isPrivate: boolean = false, params: any = {}): Observable<Site | Portfolio[]> {
+    if (!isPrivate) {
+      return this.http.get<Site>(`${environment.rootApiUrl}/portfolio`, { params });
+    } else {
+      return this.http.get<Portfolio[]>(`${environment.rootApiUrl}/stylist/portfolio/`, this.headers);
+    }
   }
 
   search(params): Observable<Portfolio[]> {

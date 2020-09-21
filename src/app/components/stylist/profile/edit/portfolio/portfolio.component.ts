@@ -13,14 +13,15 @@ export class EditProfilePortfolioComponent implements OnInit {
   user: User;
   portfolio: Portfolio[] = [];
   captionControl: FormControl = new FormControl();
+  isSaving: boolean = false;
 
   constructor(
-    private portfolioService: PortfolioService,
+    private portfolioService: PortfolioService
   ) { }
 
   ngOnInit() {
-    this.portfolioService.read({ url: this.user.url }).subscribe((site: Site) => {
-      this.portfolio = site.portfolio;
+    this.portfolioService.read(true).subscribe((portfolio: Portfolio[]) => {
+      this.portfolio = portfolio;
     });
   }
 
@@ -30,6 +31,22 @@ export class EditProfilePortfolioComponent implements OnInit {
         return image._id !== item._id;
       });
     });
+  }
+
+  toggleVisibility(portfolio: Portfolio) {
+    portfolio.display = !portfolio.display;
+    if (portfolio._id) {
+      this.portfolioService.update(portfolio).subscribe((result) => {
+        console.log('portfolio saved', result, this.user);
+      });
+    }
+  }
+
+  saveAll() {
+    this.isSaving = true;
+    setTimeout(() => {
+      this.isSaving = false;
+    }, 1000);
   }
 
   save($event: any, portfolio: Portfolio) {

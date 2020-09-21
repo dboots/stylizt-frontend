@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AuthService, ClientService, NotesService } from 'src/app/services';
+import { AuthService, ClientService, NotesService, PortfolioService } from 'src/app/services';
 import { Client, Note, Portfolio, User } from 'src/app/models';
 
 @Component({
@@ -19,20 +19,23 @@ export class EditProfileClientsDetailsComponent implements OnInit {
     public clientService: ClientService,
     private noteService: NotesService,
     private authService: AuthService,
+    private portfolioService: PortfolioService
   ) { }
 
   async ngOnInit() {
     const client: Client = this.client;
     this.user = this.authService.decode();
-    this.noteService.read(client._id).subscribe((results) => {
-      console.log('notes', results);
-      this.notes = results;
-    });
+
+    if (client._id) {
+      this.noteService.read(client._id).subscribe((results) => {
+        this.notes = results;
+      });
+    }
   }
 
-  delete(client: Client) {
-    this.clientService.delete(client._id).subscribe((result) => {
-      this.clientService.clients = this.clientService.clients.filter(c => c._id !== client._id);
+  deleteClientPortfolio(portfolio: Portfolio, idx: number) {
+    this.portfolioService.delete(portfolio._id).subscribe((result) => {
+      this.client.portfolio.slice(idx, 1);
     });
   }
 
@@ -56,6 +59,10 @@ export class EditProfileClientsDetailsComponent implements OnInit {
       console.log('client note saved', result);
       note._id = result._id;
     });
+  }
+
+  toggleVisibility(portfolio: Portfolio) {
+    portfolio.display = !portfolio.display;
   }
 
   imageNoteUploadCompleted($event, note: Note) {
@@ -86,11 +93,13 @@ export class EditProfileClientsDetailsComponent implements OnInit {
   }
 
   imageUploadCompleted($event) {
-    const client = this.client;
+    const client: Client = this.client;
+    const user: User = this.user;
     let url = $event.url;
     let portfolio = new Portfolio(url);
     portfolio.clientId = client._id;
     portfolio.publicId = $event.public_id;
+    portfolio.owner = user._id;
 
     client.portfolio.push(portfolio);
     this.clientService.update(client._id, client).subscribe((result) => {

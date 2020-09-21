@@ -1,9 +1,11 @@
 <div class="row mb-4 d-flex justify-content-md-end">
   <div class="col-6 col-md-3">
-    <button (click)="cancel()" class="button-v3">Cancel</button>
+    <button (click)="cancel()" class="button-v3 edit-button delete-button"><i
+      class="fa fa-icon fa-backward"></i>Cancel</button>
   </div>
   <div class="col-6 col-md-3">
-    <button (click)="save()" class="button-v3">Save</button>
+    <button (click)="save()" class="button-v3 edit-button"><i
+      class="fa fa-icon fa-save"></i>Save</button>
   </div>
 </div>
 
@@ -66,14 +68,16 @@
 </div>
 
 <div class="row mb-4" *ngIf="client._id">
-  <div class="col-md-3 col-sm-6 col-12" *ngFor="let portfolio of client.portfolio">
+  <div class="col-md-3 col-sm-6 col-12" *ngFor="let portfolio of client.portfolio; let idx = index">
     <div class="image position-relative">
       <div class="icons d-flex align-items-center justify-content-end p-2">
-        <i class="fa fa-icon fa-trash" (click)="delete(client)"></i>
+        <i class="fa fa-icon fa-trash" (click)="deleteClientPortfolio(portfolio, idx)"></i>
+        <i class="fa fa-icon" [ngClass]="{'fa-eye': portfolio.display, 'fa-eye-slash': !portfolio.display}" (click)="portfolio.display = !portfolio.display"></i>
       </div>
-      <img [src]="(client.portfolio[0]) ? client.portfolio[0].image : ''" class="image image-full"
-        (click)="select(client)" />
+      <img [src]="portfolio.image" class="image image-full" />
     </div>
-    <div class="caption py-2 text-center">{{client.name}}</div>
+    <div class="caption py-2 text-center">{{portfolio.caption}}</div>
   </div>
 </div>
+
+{{client | json}}

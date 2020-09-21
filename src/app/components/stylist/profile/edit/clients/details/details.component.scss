@@ -57,18 +57,3 @@ textarea {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-
-.icons {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  
-  .fa-trash {
-    background: white;
-    color: black;
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid black;
-    cursor: pointer;
-  }
-}

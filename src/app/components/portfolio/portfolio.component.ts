@@ -85,7 +85,7 @@ export class StylistPortfolioPageComponent {
     };
 
     this.portfolioService
-      .read({ url: this.params.id })
+      .read(false, { url: this.params.id })
       .subscribe((data: Site) => {
         if (!data.stylist) {
           this.router.navigate(['/']);

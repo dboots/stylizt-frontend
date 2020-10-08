@@ -1,5 +1,23 @@
 @import "../../../../sass/variables";
 
+button {
+  &.transparent {
+    background: transparent;
+    color: #1fb2b9;
+    border: 1px solid #1fb2b9;
+  }
+}
+
+.fa {
+  color: #1fb2b9;
+  cursor: pointer;
+}
+
+.share-url {
+  border: 1px solid #DEDEDE;
+  font-weight: bold;
+}
+
 .stylist-home {
   margin: 100px auto 0;
   min-height: 500px;

@@ -70,6 +70,8 @@ import { EditProfileClientsComponent } from './components/stylist/profile/edit/c
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { EditProfileClientsDetailsComponent } from './components/stylist/profile/edit/clients/details/details.component';
 import { EditProfileClientsListComponent } from './components/stylist/profile/edit/clients/list/list.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -128,7 +130,11 @@ Sentry.init({
     BrowserAnimationsModule,
     SharedModule,
     MatSlideToggleModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [
     UserService,

@@ -1,81 +1,54 @@
-<div class="row justify-content-center d-flex p-2 mb-4">
-  <div [routerLink]="['/stylist/profile/edit']"
-    class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-    <img src="assets/img/home-website.png" />
-    <div class="feature-title">Your H2C Site</div>
-    <p class="featured-body py-2 px-4">
-      You'll use this to share your online presence and keep clients engaged.
-    </p>
-    <button class="button-updated">Edit Your Site</button>
-  </div>
-
-  <div [routerLink]="['/stylist/services']"
-    class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-    <img src="assets/img/home-services.png" />
-    <div class="feature-title">Manage Services</div>
-    <p class="featured-body py-2 px-4">
-      Set up your schedule so that you can plan weeks ahead and let clients know when you’re available.
-    </p>
-    <button class="button-updated">Update Services</button>
-  </div>
-
-  <div [routerLink]="['/stylist/clients']"
-    class="d-flex align-items-center flex-column feature col-lg-3 col-11 m-1 p-2 text-center">
-    <img src="assets/img/home-clients.png" />
-    <div class="feature-title">Client Book</div>
-    <p class="featured-body py-2 px-4">
-      Add important information about your clients (i.e. images from previous visits, birthdays, or any potential
-      new ideas you have for them!)
-    </p>
-    <button class="button-updated">Add More Clients</button>
-  </div>
-</div>
-
-<!--
-<div class="row justify-content-center">
-  <div class="col-8">chart</div>
-  <div class="col-4">
-    <div class="message bg-yellow">
-      <div class="message-title">Warning Title</div>
-      <p>This is a warning</p>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h4>SHARE YOUR H2C SITE</h4>
     </div>
-    <div class="message bg-red">
-      <div class="message-title">Danger Title</div>
-      <p>This is a danger</p>
-    </div>
-  </div>
-</div>
--->
-
-<div class="stylist-home justify-content-md-center py-4 row">
-  <div class="container">
-    <div class="row justify-content-center d-flex p-2 mb-4">
-      <div class="col-9">
-        <div class="row">
-          <div class="col-3"><button class="common-gw-button" (click)="prevScheduleDay()">Previous Day</button></div>
-          <div class="col-6">
-            <div class="text-center text-bold text-uppercase">Appointments for {{ scheduleDay | date: 'EE LLL dd' }}
-            </div>
-          </div>
-          <div class="col-3 text-right"><button class="common-gw-button" (click)="nextScheduleDay()">Next Day</button>
-          </div>
+    <div class="col-3 align-items-center justify-content-center d-flex"><a target="_blank"
+        href="{{'https://www.facebook.com/sharer/sharer.php?u=https://' + user.url + '.hairtochair.com'}}"><i
+          class="fa fa-2x fa-facebook"></i></a></div>
+    <div class="col-3 align-items-center justify-content-center d-flex"><a target="_blank"
+        href="{{'https://twitter.com/intent/tweet?text=Check out my Hair to Chair site!&url=https://' + user.url + '.hairtochair.com'}}"><i
+          class="fa fa-2x fa-twitter"></i></a></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-6 pr-0">
+          <div class="share-url align-items-center p-4">{{user.url}}.hairtochair.com</div>
+        </div>
+        <div class="col-6 pl-0 d-flex">
+          <button class="button-v3" (click)="copyLink()">Copy Link</button>
+        </div>
+        <div class="col-12 py-2 d-flex align-items-center justify-content-center">
+          <div *ngIf="linkCopied">Link copied to clipboard!</div>
         </div>
       </div>
-      <div class="col-12  text-center" *ngIf="!schedule.length">
-        <h3>You have no bookings</h3>
-      </div>
-      <div class="col-3 schedule m-2 p-2" [ngClass]="{ pending: !event.approved }"
-        *ngFor="let event of schedule; let index = index">
-        <strong>Service:</strong> {{ event.description }}<br />
-        <strong>Time:</strong> {{ event.startDateTime | date: 'hh:mm' }} -
-        {{ event.endDateTime | date: 'hh:mm' }}<br />
-        <strong>Client:</strong>{{ event.name }}, {{ event.phone }}<br />
-        <strong>Status: </strong>{{ event.approved ? 'Approved' : 'Pending' }}
-        <button (click)="confirm(event, index, true)" *ngIf="!event.approved" class="common-gw-button">Confirm
-          Booking</button>
-        <button (click)="confirm(event, index, false)" *ngIf="event.approved" class="common-gw-button">Cancel
-          Booking</button>
-      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <h4>UPCOMING BOOKINGS</h4>
+    </div>
+    <div class="col-4">
+      <button class="button-v3" [daysInWeek]="daysInWeek" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+        Previous
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="transparent button-v3" mwlCalendarToday [(viewDate)]="viewDate">
+        Today
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="button-v3" [daysInWeek]="daysInWeek" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mwl-calendar-week-view [dayStartHour]="8" [dayEndHour]="22" [events]="events" [refresh]="refresh"
+        [viewDate]="viewDate" [daysInWeek]="daysInWeek">
+      </mwl-calendar-week-view>
     </div>
   </div>
 </div>

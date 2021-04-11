@@ -1,5 +1,5 @@
 .bg-onboarding {
-  background-image: url('/assets/img/bg-onboarding.webp');
+  background-image: url("/assets/img/bg-onboarding-updated.webp");
 }
 
 .text-onboarding {
@@ -22,7 +22,7 @@ label {
   color: #9ed5be;
   font-size: 12px;
   padding: 10px 0 0;
-  font-family: 'spartan-semibold';
+  font-family: "spartan-semibold";
   text-align: right;
 }
 
@@ -44,7 +44,7 @@ label {
   color: #ffffff;
 
   &[disabled] {
-    background: #DEDEDE;
+    background: #dedede;
   }
 }
 

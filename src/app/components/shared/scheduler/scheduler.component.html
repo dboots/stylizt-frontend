@@ -102,22 +102,6 @@
         </div>
       </div>
       
-      <div class="col-6 my-2 d-flex" *ngIf="stylist.requireApproval">
-        <div class="text">This booking requires stylist confirmation. How would you like to recieve booking
-          confirmation?</div>
-      </div>
-      <div class="col-6 my-2 d-flex" *ngIf="stylist.requireApproval">
-        <select>
-          <option>Email</option>
-          <option>Text</option>
-        </select>
-      </div>
-
-      <div class="col-12 my-2 d-flex">
-        <div class="mr-1"><input type="checkbox" [(ngModel)]="selectedSchedule.confirm"></div>
-        <div class="text">I want to receive a booking reminder via SMS text message 24 hours before my appointment.
-        </div>
-      </div>
       <div class="row my-2">
         <div class="service col-12">Service</div>
         <div class="col-8">

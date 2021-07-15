@@ -3,8 +3,7 @@
  * Copyright 2013-2018 
  * Licensed under ISC (https://github.com/BlackrockDigital/stylizt-frontend/blob/master/LICENSE)
  */
-$fa-font-path: "../node_modules/font-awesome/fonts";
-@import "../node_modules/font-awesome/scss/font-awesome";
+
 @import "./sass/mixins";
 @import "./sass/variables";
 @import "./sass/fonts";
@@ -176,3 +175,5 @@ body {
     background: #DEDEDE;
   }
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

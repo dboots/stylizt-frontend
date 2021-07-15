@@ -29,6 +29,9 @@
       "app",
       "kebab-case"
     ],
+    "deprecation": {
+      "severity": "warning"
+    },
     "curly": true,
     "directive-class-suffix": [
       true,

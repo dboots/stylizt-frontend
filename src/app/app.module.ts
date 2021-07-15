@@ -72,6 +72,7 @@ import { EditProfileClientsDetailsComponent } from './components/stylist/profile
 import { EditProfileClientsListComponent } from './components/stylist/profile/edit/clients/list/list.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 Sentry.init({
   dsn: 'https://fc25569a8ffd4a658bab6fdb85175fbf@sentry.io/1869808'
@@ -135,6 +136,7 @@ Sentry.init({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    FontAwesomeModule,
   ],
   providers: [
     UserService,

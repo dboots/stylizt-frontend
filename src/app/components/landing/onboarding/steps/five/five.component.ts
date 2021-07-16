@@ -27,7 +27,7 @@ export class StepFiveComponent implements OnInit {
   ngOnInit() {
     let nextAction = () => {
       return new Promise((resolve, reject) => {
-        resolve();
+        resolve(null);
       });
     };
 

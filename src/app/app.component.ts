@@ -16,7 +16,7 @@ export class AppComponent {
     let subdomain;
     let parts = [];
 
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && production) {
       location = window.location.origin;
     }
 

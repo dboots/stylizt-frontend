@@ -26,13 +26,15 @@ export class AppComponent {
 
     if (url) {
       parts = url.split(".");
-      subdomain =
-        parts.length === 3 && parts[0] !== "h2c-frontend-staging"
-          ? parts[0]
-          : null;
+      subdomain = parts.length === 3 ? parts[0] : null;
     }
 
-    if (subdomain && subdomain !== "www" && production) {
+    if (
+      subdomain &&
+      subdomain !== "www" &&
+      production &&
+      subdomain !== "h2c-frontend-staging"
+    ) {
       this.router.navigate(["portfolio/" + subdomain], {
         skipLocationChange: true,
       });

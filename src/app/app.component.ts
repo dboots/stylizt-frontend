@@ -16,7 +16,7 @@ export class AppComponent {
     let subdomain;
     let parts = [];
 
-    if (isPlatformBrowser(this.platformId) && production) {
+    if (isPlatformBrowser(this.platformId)) {
       location = window.location.origin;
     }
 
@@ -27,7 +27,7 @@ export class AppComponent {
       subdomain = (parts.length === 3) ? parts[0] : null;
     }
 
-    if (subdomain && subdomain !== 'www') {
+    if (subdomain && subdomain !== 'www' && production) {
       this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
     }
 

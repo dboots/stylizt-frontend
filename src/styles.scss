@@ -10,9 +10,8 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 @import "~@angular/material/theming";
-
-// always include only once per project
 @include mat-core();
+
 
 // import our custom theme
 @import "./sass/theme.scss";
@@ -20,7 +19,7 @@
 body {
   @include body-font;
   @include angular-material-theme($theme);
-  font-family: "spartan-light", Arial, sans-serif;
+  font-family: "proxima-nova", Arial, sans-serif;
   letter-spacing: normal;
   line-height: normal;
 }
@@ -175,5 +174,6 @@ body {
     background: #DEDEDE;
   }
 }
+
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap';

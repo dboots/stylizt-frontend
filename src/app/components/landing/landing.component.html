@@ -31,7 +31,8 @@
             </a>
           </div>
           <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist.url]">{{stylist.name}}</a>
+            <a class="name text-uppercase color-green font-weight-bold" *ngIf="stylist.url" [routerLink]="['/portfolio', stylist.url]">{{stylist.name}}</a>
+            <a class="name text-uppercase color-green font-weight-bold" *ngIf="!stylist.url" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
             <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
             <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
             <div class="flex-row talents">

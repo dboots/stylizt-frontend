@@ -4,7 +4,7 @@
     <p>Let your clients know what they can book with you.</p>
   </div>
 </div>
-<div class="row text-left d-none d-md-flex justify-content-md-center mb-2">
+<div class="row text-start d-none d-md-flex justify-content-md-center mb-2">
   <div class="col-lg-4 col-6">
     <label>Service</label>
   </div>
@@ -16,13 +16,13 @@
   </div>
 </div>
 {{services | json}}
-<div class="row text-left justify-content-md-center mb-4" *ngFor="let service of services">
+<div class="row text-start justify-content-md-center mb-4" *ngFor="let service of services">
   {{service | json}}
   <div class="col-lg-4 col-12 mb-2 mb-lg-0">
     <input type="text" class="service" [value]="service.name" />
   </div>
   <div class="col-lg-2 col-6 d-flex align-items-center p-2 py-lg-0">
-    <div class="mr-2"></div><input placeholder="$0.00" type="text" [value]="service.price" />
+    <div class="me-2"></div><input placeholder="$0.00" type="text" [value]="service.price" />
   </div>
   <div class="col-lg-2 col-6 p-2 py-lg-0 px-lg-3">
     <select class="input">
@@ -35,12 +35,12 @@
 </div>
 
 <form [formGroup]="formGroup">
-  <div class="row text-left justify-content-md-center mb-4">
+  <div class="row text-start justify-content-md-center mb-4">
     <div class="col-lg-4 col-12 col-12 mb-2 mb-lg-0">
       <input type="text" class="service" formControlName="name" placeholder="Your service..." />
     </div>
     <div class="col-lg-2 col-6 d-flex align-items-center p-2 py-lg-0">
-      <div class="mr-2"></div><input placeholder="$0.00" formControlName="price" type="text" />
+      <div class="me-2"></div><input placeholder="$0.00" formControlName="price" type="text" />
     </div>
     <div class="col-lg-2 col-6 p-2 py-lg-0 px-lg-3">
       <select formControlName="time" class="input">
@@ -53,7 +53,7 @@
   </div>
 </form>
 
-<div class="row text-left justify-content-md-center">
+<div class="row text-start justify-content-md-center">
   <div class="col-lg-8 col-12" (click)="addService()">
     <span class="add-button">Add Service</span>
   </div>

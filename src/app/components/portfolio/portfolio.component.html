@@ -5,7 +5,7 @@
     <div class="px-0 container">
       <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
         <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
-        <div class="col-12 col-md-8 text-right">
+        <div class="col-12 col-md-8 text-end">
           <div class="row text-center text-md-right">
             <div class="col-4 py-4"><a (click)="scrollTo(aboutElementRef)" class="py-4">ABOUT</a></div>
             <div class="col-4 py-4" *ngIf="services.length"><a (click)="scrollTo(servicesElementRef)"
@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row portfolio-content" #aboutViewChild
       [ngClass]="{'scrolled': loggedIn() && scrollClass, 'not-scrolled': loggedIn()}">
-      <div class="col-12 col-lg-6 pl-0 py-4 text-center d-flex justify-content-center">
+      <div class="col-12 col-lg-6 ps-0 py-4 text-center d-flex justify-content-center">
         <div *ngIf="stylist.image" class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
         </div>
       </div>
@@ -59,7 +59,7 @@
       <div class="col-lg-9 col-12">
         <app-scheduler [stylist]="stylist" [service]="service"></app-scheduler>
         <div class="row separator section-bottom">
-          <div class="col-6 col-md-4 d-flex flex-column mb-4 pl-0 pr-4" *ngFor="let item of portfolio">
+          <div class="col-6 col-md-4 d-flex flex-column mb-4 ps-0 pe-4" *ngFor="let item of portfolio">
             <div class="image"><img [src]="item.image" class="image-full" /></div>
             <div class="caption py-2">{{item.caption}}</div>
           </div>
@@ -72,11 +72,11 @@
                 <div class="col-md-10 col-12">
                   <div class="row d-flex service-item-title align-items-center">
                     <div class="col-md-9 col-8">{{service.name}}</div>
-                    <div class="col-md-3 col-4 text-right">{{service.price | currency}}</div>
+                    <div class="col-md-3 col-4 text-end">{{service.price | currency}}</div>
                   </div>
                   <div class="row mb-2 d-flex service-item-desc align-items-center">
                     <div class="col-md-9 col-8">{{service.description}}</div>
-                    <div class="col-md-3 col-4 text-right">{{(service.time * .5)}} hrs</div>
+                    <div class="col-md-3 col-4 text-end">{{(service.time * .5)}} hrs</div>
                   </div>
                 </div>
                 <div class="col-md-2 col-12 text-center d-flex align-items-center"><button (click)="book(service)"
@@ -95,12 +95,12 @@
           <div class="side-contact p-2">
             <div class="side-title mb-2">Contact</div>
             <div class="contact-item mb-2" *ngIf="stylist.city && stylist.state && stylist.zip">
-              <i class="fa fa-icon fa-map-marker pr-2"></i>
+              <i class="fa fa-icon fa-map-marker pe-2"></i>
               <span>{{stylist.city}}, {{stylist.state}} {{stylist.zip}}</span>
             </div>
 
             <div class="contact-item" *ngIf="stylist.phone">
-              <i class="fa fa-icon fa-phone pr-2"></i>
+              <i class="fa fa-icon fa-phone pe-2"></i>
               <span>{{stylist.phone}}</span>
             </div>
           </div>
@@ -111,7 +111,7 @@
             <div class="hour-item d-flex mb-2 row" [ngClass]="{'closed': hours[0] === '' || hours[1] === ''}"
               *ngFor="let hours of stylist.hours; let i = index">
               <div class="hour-day col-xl-4 col-12">{{days[i]}}</div>
-              <div class="hour-times col-xl-8 text-right col-12">{{hours[0]}} - {{(hours[0]) ? hours[1] : ''}}</div>
+              <div class="hour-times col-xl-8 text-end col-12">{{hours[0]}} - {{(hours[0]) ? hours[1] : ''}}</div>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
             <div class="material py-4"><input formControlName="email" type="text" placeholder="Email Address"></div>
             <div class="material py-4"><textarea formControlName="message" placeholder="Message"></textarea></div>
           </div>
-          <div class="col-md-7 col-12 py-4 m-auto text-right">
+          <div class="col-md-7 col-12 py-4 m-auto text-end">
             <button class="button" (click)="sendMessage()"
               [attr.disabled]="contactForm.invalid ? true : null">SEND</button>
           </div>

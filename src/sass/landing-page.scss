@@ -26,6 +26,9 @@ $client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
 // that you are using.
 @include angular-material-theme($client-theme);
 
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
 // Core variables and mixins
 @import "variables.scss";
 @import "mixins.scss";

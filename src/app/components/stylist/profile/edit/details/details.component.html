@@ -21,7 +21,7 @@
           <div class="col-md-6 mb-2 mb-md-0 ">
             <label>Profile Name</label>
             <div class="row d-flex align-items-center">
-              <div class="col-6 pr-1">
+              <div class="col-6 pe-1">
                 <input class="input text-center" type="text" formControlName="url" />
               </div>
               <div class="col-6 p-1">
@@ -199,9 +199,9 @@
         </div>
       </div>
       <div class="col-md-8 d-flex align-items-center flex-wrap">
-        <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.talents"><span
-            class="label pr-4">{{item.talent}}</span>
-          <i class="fa fa-icon fa-close" (click)="removeTalent(item)"></i></span>
+        <span class="search-item p-2 d-flex me-2 mb-2" *ngFor="let item of user.talents"><span
+            class="label pe-4">{{item.talent}}</span>
+          <i class="fas fa-times" (click)="removeTalent(item)"></i></span>
       </div>
     </div>
 
@@ -222,8 +222,8 @@
         </div>
       </div>
       <div class="col-md-8 d-flex align-items-center flex-wrap">
-        <span class="search-item p-2 d-flex mr-2 mb-2" *ngFor="let item of user.brands"><span
-            class="label pr-4">{{item.brand}}</span>
+        <span class="search-item p-2 d-flex me-2 mb-2" *ngFor="let item of user.brands"><span
+            class="label pe-4">{{item.brand}}</span>
           <i class="fa fa-icon fa-close" (click)="removeBrand(item)"></i></span>
       </div>
     </div>

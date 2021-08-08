@@ -30,11 +30,11 @@
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
             <a [attr.href]="getUrl(stylist.facebook, 'http://www.facebook.com/')" target="_blank"
-              *ngIf="stylist.facebook"><i class="fa fa-icon fa-lg fa-facebook mx-4 p-4"></i></a>
+              *ngIf="stylist.facebook"><i class="fas fa-icon fa-lg fa-facebook mx-4 p-4"></i></a>
             <a [attr.href]="getUrl(stylist.twitter, 'http://www.twitter.com/')" target="_blank"
-              *ngIf="stylist.twitter"><i class="fa fa-icon fa-lg fa-twitter mx-4 p-4"></i></a>
+              *ngIf="stylist.twitter"><i class="fas fa-icon fa-lg fa-twitter mx-4 p-4"></i></a>
             <a [attr.href]="getUrl(stylist.instagram, 'http://www.instagram.com/')" target="_blank"
-              *ngIf="stylist.instagram"><i class="fa fa-icon fa-lg fa-instagram mx-4 p-4"></i></a>
+              *ngIf="stylist.instagram"><i class="fas fa-icon fa-lg fa-instagram mx-4 p-4"></i></a>
           </div>
         </div>
 
@@ -95,12 +95,12 @@
           <div class="side-contact p-2">
             <div class="side-title mb-2">Contact</div>
             <div class="contact-item mb-2" *ngIf="stylist.city && stylist.state && stylist.zip">
-              <i class="fa fa-icon fa-map-marker pe-2"></i>
+              <i class="fas fa-icon fa-map-marker pe-2"></i>
               <span>{{stylist.city}}, {{stylist.state}} {{stylist.zip}}</span>
             </div>
 
             <div class="contact-item" *ngIf="stylist.phone">
-              <i class="fa fa-icon fa-phone pe-2"></i>
+              <i class="fas fa-icon fa-phone pe-2"></i>
               <span>{{stylist.phone}}</span>
             </div>
           </div>

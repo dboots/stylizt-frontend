@@ -1,10 +1,10 @@
 <div class="row mb-4 d-flex justify-content-md-end">
   <div class="col-6 col-md-3">
     <button (click)="cancel()" class="button-v3 edit-button delete-button"><i
-        class="fa fa-icon fa-backward"></i>Cancel</button>
+        class="fas fa-icon fa-backward"></i>Cancel</button>
   </div>
   <div class="col-6 col-md-3">
-    <button (click)="save()" class="button-v3 edit-button"><i class="fa fa-icon fa-save"></i>Save</button>
+    <button (click)="save()" class="button-v3 edit-button"><i class="fas fa-icon fa-save"></i>Save</button>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
 <div class="row mb-4" *ngIf="client._id">
   <div class="col-12 py-2">
     <div class="subtitle d-flex align-items-center">Client Notes <i (click)="addClientNote()"
-        class="ps-2 fa fa-icon fa-xl fa-plus-circle"></i>
+        class="ps-2 fas fa-icon fa-xl fa-plus-circle"></i>
     </div>
   </div>
 
@@ -70,8 +70,8 @@
   <div class="col-md-3 col-sm-6 col-12" *ngFor="let portfolio of client.portfolio; let idx = index">
     <div class="image position-relative">
       <div class="icons d-flex align-items-center justify-content-end p-2">
-        <i class="fa fa-icon fa-trash" (click)="deleteClientPortfolio(portfolio, idx)"></i>
-        <i class="fa fa-icon" [ngClass]="{'fa-eye': portfolio.display, 'fa-eye-slash': !portfolio.display}"
+        <i class="fas fa-icon fa-trash" (click)="deleteClientPortfolio(portfolio, idx)"></i>
+        <i class="fas fa-icon" [ngClass]="{'fa-eye': portfolio.display, 'fa-eye-slash': !portfolio.display}"
           (click)="portfolio.display = !portfolio.display"></i>
       </div>
       <img [src]="portfolio.image" class="image image-full" />

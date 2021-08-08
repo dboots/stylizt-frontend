@@ -2,7 +2,7 @@
   <div class="col-12 col-md-3 d-flex flex-column" *ngFor="let client of clientService.clients">
     <div class="image position-relative" (click)="select(client)" [ngClass]="{'no-image': !client.portfolio.length}">
       <div class="icons d-flex align-items-center justify-content-end p-2">
-        <i class="fa fa-icon fa-trash" (click)="delete(client, $event)"></i>
+        <i class="fas fa-icon fa-trash" (click)="delete(client, $event)"></i>
       </div>
       <img *ngIf="client.portfolio.length" [src]="(client.portfolio[0]) ? client.portfolio[0].image : ''"
         class="image image-full" />

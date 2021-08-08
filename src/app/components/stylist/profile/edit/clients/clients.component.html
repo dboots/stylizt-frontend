@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-4 justify-content-md-end" *ngIf="!client">
     <div class="col-12 col-md-3">
-      <button class="button-v3 edit-button" (click)="add()"><i class="fa fa-icon fa-plus"></i>Add Client</button>
+      <button class="button-v3 edit-button" (click)="add()"><i class="fas fa-icon fa-plus"></i>Add Client</button>
     </div>
   </div>  
   <app-profile-clients-detail [(client)]="client" (isAdded)="clientAdded($event)" *ngIf="client"></app-profile-clients-detail>

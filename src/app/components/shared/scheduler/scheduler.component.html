@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="pb-4 col-12 d-flex justify-content-center">
-        <div class="d-flex align-items-center"><i (click)="prev()" class="fa fa-icon fa-chevron-left arrow"></i></div>
+        <div class="d-flex align-items-center"><i (click)="prev()" class="fas fa-icon fa-chevron-left arrow"></i></div>
         <div class="d-flex">
           <div *ngFor="let day of week, let i = index" class="week px-2"
             [ngClass]="{'current': isCurrentDate(day), 'active': isActiveDate(day)}">
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex align-items-center"><i (click)="next()" class="fa fa-icon fa-chevron-right arrow"></i></div>
+        <div class="d-flex align-items-center"><i (click)="next()" class="fas fa-icon fa-chevron-right arrow"></i></div>
       </div>
       <div class="col-12">
         <div class="row">
@@ -59,7 +59,7 @@
           <div class="col-4">
             <div class="service-price text-end">{{service.price | currency}}</div>
             <div class="service-times text-end" *ngIf="selectedSchedule.endDateTime"><i
-                class="fa fa-icon fa-clock-o"></i>
+                class="fas fa-icon fa-clock-o"></i>
               {{selectedSchedule.startDateTime | date: 'shortTime'}} -
               {{selectedSchedule.endDateTime | date: 'shortTime'}}</div>
           </div>
@@ -111,7 +111,7 @@
         <div class="col-4">
           <div class="service-price text-end">{{service.price | currency}}</div>
           <div class="service-times text-end" *ngIf="selectedSchedule.endDateTime"><i
-              class="fa fa-icon fa-clock-o"></i>
+              class="fas fa-icon fa-clock-o"></i>
             {{selectedSchedule.startDateTime | date: 'shortTime'}} -
             {{selectedSchedule.endDateTime | date: 'shortTime'}}</div>
         </div>
@@ -130,7 +130,7 @@
     <ng-container *ngIf="step == 3">
       <div class="row">
         <div class="col-12 text-center">
-          <i class="fa fa-icon fa-check-circle-o fa-5x"></i>
+          <i class="fa fas-icon fa-check-circle fa-5x"></i>
           <h2>Congratulations!</h2>
           <p class="service">
             {{(stylist.requireApproval) ? 'Your booking is pending confirmation' : 'You have successfully booked'}}</p>

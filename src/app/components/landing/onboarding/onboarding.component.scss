@@ -5,6 +5,8 @@
 .text-onboarding {
   font-size: 22px;
   line-height: 1.5;
+  position: relative;
+  z-index: 1;
 }
 
 label {
@@ -24,6 +26,7 @@ label {
   padding: 10px 0 0;
   font-family: "spartan-semibold";
   text-align: right;
+  height: 20px;
 }
 
 .bullets {

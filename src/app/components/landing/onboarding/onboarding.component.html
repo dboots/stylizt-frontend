@@ -8,39 +8,74 @@
       <h1 class="color-green content-title black-diamond-font">Welcome</h1>
     </div>
     <div class="col-12 col-md-8 offset-md-2 my-2">
-      <p class="text-center">Hair To Chair gives independent hair stylists &amp; barber shops the tools needed
-        to grow their clientele fast and manage their existing client book.</p>
+      <p class="text-center">
+        Hair To Chair gives independent hair stylists &amp; barber shops the
+        tools needed to grow their clientele fast and manage their existing
+        client book.
+      </p>
     </div>
   </div>
   <form [formGroup]="formGroup">
-    <div class="row">
-      <div class="col-md-6 col-12">
+    <div class="row m-auto">
+      <div class="col-lg-4 offset-lg-2 col-12">
         <label>Name</label>
-        <input type="text" name="name" (input)="getErrorMessage($event)" class="form-control" formControlName="name">
-        <div class="field-error">{{fieldErrors['name']}}</div>
+        <input
+          type="text"
+          name="name"
+          (input)="getErrorMessage($event)"
+          class="form-control"
+          formControlName="name"
+        />
+        <div class="field-error">{{ fieldErrors["name"] }}</div>
         <label>Email Address</label>
-        <input type="text" name="email" (input)="getErrorMessage($event)" class="form-control" formControlName="email">
-        <div class="field-error">{{fieldErrors['email']}}</div>
+        <input
+          type="text"
+          name="email"
+          (input)="getErrorMessage($event)"
+          class="form-control"
+          formControlName="email"
+        />
+        <div class="field-error">{{ fieldErrors["email"] }}</div>
       </div>
-      <div class="col-md-6 col-12">
+      <div class="col-lg-4 col-12">
         <label>Password</label>
-        <input type="password" name="password" (input)="getErrorMessage($event)" class="form-control"
-          formControlName="password">
-        <div class="field-error">{{fieldErrors['password']}}</div>
+        <input
+          type="password"
+          name="password"
+          (input)="getErrorMessage($event)"
+          class="form-control"
+          formControlName="password"
+        />
+        <div class="field-error">{{ fieldErrors["password"] }}</div>
         <label>Confirm Password</label>
-        <input type="password" name="confirmPassword" (input)="getErrorMessage($event)" class="form-control"
-          formControlName="confirmPassword">
-        <div class="field-error">{{fieldErrors['confirmPassword']}}</div>
+        <input
+          type="password"
+          name="confirmPassword"
+          (input)="getErrorMessage($event)"
+          class="form-control"
+          formControlName="confirmPassword"
+        />
+        <div class="field-error">{{ fieldErrors["confirmPassword"] }}</div>
       </div>
-      <div class="col-6 m-auto text-center">
-        <div class="field-error" *ngFor="let error of getFormGroupErrors()">{{errorMessages[error]}}</div>
-        <button class="button-v3" (click)="signup()" [attr.disabled]="(formGroup.invalid) ? true : null">Sign
-          Up</button>
+      <div class="col-lg-4 pt-4 m-auto text-center">
+        <div class="field-error" *ngFor="let error of getFormGroupErrors()">
+          {{ errorMessages[error] }}
+        </div>
+        <button
+          class="button-v3"
+          (click)="signup()"
+          [attr.disabled]="formGroup.invalid ? true : null"
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   </form>
 
   <!-- Event snippet for Subscribe conversion page -->
   <script>
-    gtag('event', 'conversion', { 'send_to': 'AW-1012708768/0QgeCObk7_oBEKDr8uID' });
+    gtag("event", "conversion", {
+      send_to: "AW-1012708768/0QgeCObk7_oBEKDr8uID",
+    });
   </script>
+</div>

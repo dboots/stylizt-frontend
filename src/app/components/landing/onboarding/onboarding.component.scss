@@ -19,13 +19,16 @@ label {
   padding: 2px;
 }
 
-.field-error {
+.field-error-list, .field-error {
   font-weight: bold;
   color: #9ed5be;
   font-size: 12px;
   padding: 10px 0 0;
   font-family: "spartan-semibold";
   text-align: right;
+}
+
+.field-error {
   height: 20px;
 }
 

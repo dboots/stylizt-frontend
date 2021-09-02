@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-4 justify-content-md-end">
     <div class="col-12 col-md-3">
-      <button class="button-v3 edit-button" (click)="add()"><i class="fa fa-icon fa-plus"></i>Add Service</button>
+      <button class="button-v3 edit-button" (click)="add()"><i class="fas fa-icon fa-plus"></i>Add Service</button>
     </div>
   </div>
   <div class="row message-row my-4" [ngClass]="{'active': showMessage}">
@@ -35,11 +35,11 @@
       <div class="row mb-4 justify-content-md-end d-flex">
         <div class="col-12 col-md-3" *ngIf="service._id">
           <button (click)="delete(service)" class="button-v3 edit-button delete-button"><i
-              class="fa fa-icon fa-trash" (click)="delete(service)"></i>Delete</button>
+              class="fas fa-icon fa-trash" (click)="delete(service)"></i>Delete</button>
         </div>
         <div class="col-md-3 col-12">
           <button (click)="save(service, i)" class="button-v3"><i
-              class="fa fa-icon fa-save"></i>Save</button>
+              class="fas fa-icon fa-save"></i>Save</button>
         </div>
       </div>
     </div>

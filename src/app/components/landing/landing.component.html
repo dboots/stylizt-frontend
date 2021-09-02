@@ -23,7 +23,7 @@
             </div>
           </div>-->
       </div>
-      <div class="col-md-6 mb-4 desktop" *ngFor="let stylist of stylists">
+      <div class="col-md-6 mb-4" *ngFor="let stylist of stylists">
         <div class="row">
           <div class="col-md-5 text-center position-relative">
             <a [routerLink]="['/portfolio', stylist.url]">
@@ -31,9 +31,10 @@
             </a>
           </div>
           <div class="col-md-7 text-white d-flex flex-column">
-            <a class="name text-uppercase color-green font-weight-bold" [routerLink]="['/portfolio', stylist.url]">{{stylist.name}}</a>
+            <a class="name text-uppercase color-green fw-bold" *ngIf="stylist.url" [routerLink]="['/portfolio', stylist.url]">{{stylist.name}}</a>
+            <a class="name text-uppercase color-green fw-bold" *ngIf="!stylist.url" [routerLink]="['/portfolio', stylist._id]">{{stylist.name}}</a>
             <p *ngIf="stylist.bio" class="bio flex-fill">{{ (stylist.bio.length > 200)? (stylist.bio | slice:0:200) + '...' : (stylist.bio) }}</p>
-            <p class="text-uppercase color-green font-weight-bold">Specializing in:</p>
+            <p class="text-uppercase color-green fw-bold">Specializing in:</p>
             <div class="flex-row talents">
               <a [routerLink]="['/portfolio', stylist.url]" [queryParams]="{'talent': talent._id}" class="talent text-uppercase" *ngFor="let talent of stylist.talents">{{talent.talent}}</a>
             </div>

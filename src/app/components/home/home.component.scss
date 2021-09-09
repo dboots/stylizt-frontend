@@ -1,3 +1,7 @@
+.top-card {
+  z-index: 99;
+}
+
 .jumbotron {
   padding-top: 10px;
   position: relative;
@@ -19,7 +23,7 @@
     opacity: 0.8;
 
     @media all and (max-width: 768px) {
-      background: #FBBC1E !important;
+      background: #fbbc1e !important;
     }
   }
 
@@ -61,7 +65,6 @@
       @media all and (max-width: 768px) {
         margin: 0 0 20px 0;
       }
-      
     }
 
     .list-item {

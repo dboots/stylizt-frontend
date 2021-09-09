@@ -8,8 +8,8 @@
     <div class="col-12 col-md-3 d-flex flex-column mb-4" *ngFor="let item of portfolio">
       <div class="image position-relative">
         <div class="icons d-flex align-items-center justify-content-end p-2">
-          <i class="fa fa-icon fa-trash" (click)="delete(item)"></i>
-          <i class="fa fa-icon" [ngClass]="{'fa-eye': item.display, 'fa-eye-slash': !item.display}"
+          <i class="fas fa-icon fa-trash" (click)="delete(item)"></i>
+          <i class="fas fa-icon" [ngClass]="{'fa-eye': item.display, 'fa-eye-slash': !item.display}"
             (click)="toggleVisibility(item)"></i>
         </div>
         <img [src]="item.image" class="image-full" />

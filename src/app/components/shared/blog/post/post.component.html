@@ -1,6 +1,6 @@
 <div class="blog-item">
   <div class="blog-image"><a [routerLink]="['/blog/' + post.slug]"><img [lazyLoad]="post.feature_image" /></a></div>
-  <p class="blog-date"><i class="fa fa-lg fa-icon fa-clock-o mr-2"></i>{{post.published_at | date}}</p>
+  <p class="blog-date"><i class="fas fa-lg fa-icon fa-clock me-2"></i>{{post.published_at | date}}</p>
   <div class="blog-title"><a [routerLink]="['/blog/' + post.slug]">{{post.title}}</a></div>
   <p class="blog-excerpt">{{post.excerpt}}</p>
   <div class="blog-bottom">

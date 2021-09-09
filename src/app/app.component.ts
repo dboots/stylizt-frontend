@@ -1,18 +1,20 @@
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { environment } from '../environments/environment';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, Inject } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
+import { environment } from "../environments/environment";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
-
 export class AppComponent {
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) {
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
     let production = environment.production;
-    let location = '';
+    let location = "";
     let subdomain;
     let parts = [];
 
@@ -20,15 +22,22 @@ export class AppComponent {
       location = window.location.origin;
     }
 
-    let url = location.split('://')[1];
+    let url = location.split("://")[1];
 
     if (url) {
-      parts = url.split('.');
-      subdomain = (parts.length === 3) ? parts[0] : null;
+      parts = url.split(".");
+      subdomain = parts.length === 3 ? parts[0] : null;
     }
 
-    if (subdomain && subdomain !== 'www') {
-      this.router.navigate(['portfolio/' + subdomain], { skipLocationChange: true });
+    if (
+      subdomain &&
+      subdomain !== "www" &&
+      production &&
+      subdomain !== "h2c-frontend-staging"
+    ) {
+      this.router.navigate(["portfolio/" + subdomain], {
+        skipLocationChange: true,
+      });
     }
 
     this.router.events.subscribe((evt) => {

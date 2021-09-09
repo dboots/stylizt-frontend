@@ -59,7 +59,7 @@
         <div class="col-4 d-none d-md-flex justify-content-center">
           <span class="status align-self-center">{{filledProgressValue}}% <span class="filled">filled</span></span>
         </div>
-        <div class="col-md-4 col-6 text-right">
+        <div class="col-md-4 col-6 text-end">
           <button mat-button [attr.disabled]="!isFormValid ? 'disabled' : null" (click)="next()" class="next-button">{{nextLabel}}</button>
         </div>
       </div>

@@ -42,6 +42,7 @@ export function app() {
   if (environment.production) {
     server.enable('trust proxy');
     server.use(function (req, res, next) {
+      console.log('production', req.subdomains)
       if (req.secure) {
         // https request or production status, nothing to handle
         next();

@@ -61,7 +61,7 @@ export function app() {
         ) {
           res.redirect(
             301,
-            `https://${req.headers.host}${req.url}portfolio/${subdomains[0]}`
+            `https://www.hairtochair.com/portfolio/${subdomains[0]}`
           );
         } else {
           next();

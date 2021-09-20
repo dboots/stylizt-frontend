@@ -51,8 +51,9 @@ export function app() {
     server.use(function (req, res, next) {
       console.log("production", req.subdomains);
       if (req.secure) {
+        const subdomains = req.subdomains;
         // https request or production status, nothing to handle
-        if (req.subdomains && req.subdomains.length) {
+        if (subdomains && subdomains.length && subdomains[0] != 'www') {
           res.redirect(
             301,
             "https://" +
@@ -60,7 +61,7 @@ export function app() {
               req.url +
               "/portfolio" +
               "/" +
-              req.subdomains[0]
+              subdomains[0]
           );
         } else {
           next();

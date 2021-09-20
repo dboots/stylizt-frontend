@@ -53,15 +53,15 @@ export function app() {
       if (req.secure) {
         const subdomains = req.subdomains;
         // https request or production status, nothing to handle
-        if (subdomains && subdomains.length && subdomains[0] != 'www') {
+        if (
+          subdomains &&
+          subdomains.length &&
+          subdomains[0] != "www" &&
+          req.url.toString().indexOf("/portfolio/") === -1
+        ) {
           res.redirect(
             301,
-            "https://" +
-              req.headers.host +
-              req.url +
-              "/portfolio" +
-              "/" +
-              subdomains[0]
+            `"https://${req.headers.host}${req.url}/portfolio/${subdomains[0]}`
           );
         } else {
           next();

@@ -53,7 +53,7 @@ export function app() {
       if (req.secure) {
         const subdomains = req.subdomains;
         // https request or production status, nothing to handle
-        console.log(subdomains, subdomains.length, subdomains[0] !== "www", req.url.toString().indexOf("/portfolio/") === -1)
+        console.log(subdomains, subdomains[0], subdomains.length, subdomains[0] !== "www", req.url.toString().indexOf("/portfolio/") === -1)
         if (
           subdomains &&
           subdomains.length &&

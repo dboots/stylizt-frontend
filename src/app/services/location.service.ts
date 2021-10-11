@@ -26,6 +26,44 @@ export class LocationService {
     }
   }
 
+  parse(result: any, zip: number): string[] {
+    const location: string[] = [];
+    if (result.status === 'OK') {
+      let city: string = '';
+      let state: string = '';
+      let cityIndex: number = -1;
+      let stateIndex: number = -1;
+      let components = result.results[0].address_components;
+
+      // if it has letters in the zip, it's not USA?
+      if (isNaN(zip)) {
+        cityIndex = components.findIndex((c) => {
+          return c.types.indexOf('postal_town') > -1;
+        });
+
+        stateIndex = components.findIndex((c) => {
+          return c.types.indexOf('administrative_area_level_1') > -1;
+        });
+      } else {
+        cityIndex = components.findIndex((c) => {
+          return c.types.indexOf('locality') > -1;
+        });
+
+        stateIndex = components.findIndex((c) => {
+          return c.types.indexOf('administrative_area_level_1') > -1;
+        });
+      }
+
+      city = components[cityIndex].long_name;
+      state = components[stateIndex].long_name;
+
+      location.push(city);
+      location.push(state);
+    }
+
+    return location;
+  }
+
   states(params: any) {
     return this.http.get(`${environment.rootApiUrl}/location/states`, { params });
   }

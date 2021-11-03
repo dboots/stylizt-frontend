@@ -1,3 +1,131 @@
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
   background-color: red !important;
 }
+
+header {
+  margin-top: 0;
+}
+
+
+
+.top-card {
+  z-index: 99;
+
+}
+
+.text-uppercase {
+  font-size: 38px;
+  font-weight:bold;
+}
+
+.jumbotron {
+  padding-top: 10px;
+  position: relative;
+  background-color: #000000;
+  border-radius: 0;
+  align-items: center;
+
+  @media all and (max-width: 768px) {
+    padding-top: 30px;
+    padding-bottom: 40px;
+  }
+
+  .bg-variation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: 60%;
+    opacity: 0.8;
+
+    @media all and (max-width: 768px) {
+      background: #fbbc1e !important;
+    }
+  }
+
+  .container {
+    height: 646px;
+    display: flex;
+    justify-content: center;
+  }
+  .row {
+    align-items: center;
+  }
+  .jumbo-card {
+    background: #ffffff;
+    box-shadow: 20px 24px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 40px 34px;
+    align-content: center;
+    width: 100%;
+
+    @media all and (max-width: 768px) {
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 38px;
+      line-height: 46px;
+
+      .highlight {
+        margin: 20px 0 0 0;
+      }
+
+      @media all and (max-width: 768px) {
+        font-size: 24px;
+        line-height: 25px;
+        padding: 0px 58px 0 0;
+
+        .highlight {
+          margin: 10px 0 0 0;
+          display: block;
+        }
+      }
+    }
+
+    .subtitle-home {
+      font-size: 18px;
+      line-height: 36px;
+      color: #454545;
+
+      @media all and (max-width: 768px) {
+        margin: 0 0 20px 0;
+      }
+    }
+
+    .list-item {
+      font-size: 14px;
+      line-height: 28px;
+      display: flex;
+      margin: 0 0 1rem 0;
+
+      @media all and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 10px 0;
+      }
+
+      div {
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+    }
+
+    .list-item-number {
+      background: rgba(90, 183, 187, 0.17);
+      width: 28px;
+      height: 28px;
+      border-radius: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(90, 183, 187);
+      margin: 0 10px 0 0;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 22px;
+      flex-basis: auto;
+    }
+  }
+}

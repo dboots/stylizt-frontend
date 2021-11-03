@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
 import { FormGroup, FormControl } from '@angular/forms';
-import { TalentService, BrandService, UserService, AuthService } from 'src/app/services';
+import { TalentService, BrandService, UserService, AuthService, LocationService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile-details',
@@ -26,7 +26,8 @@ export class EditProfileDetailsComponent implements OnInit {
     private userService: UserService,
     private talentService: TalentService,
     private brandService: BrandService,
-    private authService: AuthService
+    private authService: AuthService,
+    private locationService: LocationService
   ) { }
 
   ngOnInit() {
@@ -191,6 +192,15 @@ export class EditProfileDetailsComponent implements OnInit {
   imageUploadCompleted($event) {
     this.user.image = $event.url;
     this.formGroup.controls['image'].setValue($event.url);
+  }
+
+  blurZip($event: any) {
+    const zip = parseInt($event.target.value);
+    this.locationService.geocode(zip).subscribe((result) => {
+      const location = this.locationService.parse(result, zip);
+      this.formGroup.controls['city'].setValue(location[0]);
+      this.formGroup.controls['state'].setValue(location[1]);
+    });
   }
 
   changeBrand($event: any) {

@@ -40,6 +40,7 @@ export class LandingOnboardingComponent implements OnInit {
     if (!formGroup.invalid) {
       this.userService.signup(formGroup.value).subscribe((result) => {
         this.authService.token = result['token'];
+        this.userService.headers = AuthService.httpOptions(this.authService.token);
         this.router.navigate(['stylist/profile/edit']);
       });
     }

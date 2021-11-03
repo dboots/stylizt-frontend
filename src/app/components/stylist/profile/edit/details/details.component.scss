@@ -64,8 +64,30 @@
     &.input {
       font-size: 12px;
       height: 30px;
-      width: 46%;
-      margin: 0 2%;
+      //width: 46%;
+      //margin: 0 2%;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .business-hours{
+    select {
+      &.input {
+        width: 30%;
+        
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .business-hours{
+    select {
+      &.input {
+        width: 90%;
+        
+      }
     }
   }
 }

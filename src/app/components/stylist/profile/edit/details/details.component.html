@@ -99,14 +99,20 @@
       </div>
       <div class="col-md-3 col-12 mb-4">
         <label>Monday</label>
-        <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
-          <option [value]=""></option>
-          <option *ngFor="let time of times">{{time}}</option>
-        </select>
-        <select class="input" [(ngModel)]="hours[0][1]" [ngModelOptions]="{standalone: true}">
-          <option [value]=""></option>
-          <option *ngFor="let time of times">{{time}}</option>
-        </select>
+        <div class="row">
+          <div class="col-6">
+            <select class="input" [(ngModel)]="hours[0][0]" [ngModelOptions]="{standalone: true}">
+              <option [value]=""></option>
+              <option *ngFor="let time of times">{{time}}</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <select class="input" [(ngModel)]="hours[0][1]" [ngModelOptions]="{standalone: true}">
+              <option [value]=""></option>
+              <option *ngFor="let time of times">{{time}}</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div class="col-md-3 col-12 mb-sm-4">

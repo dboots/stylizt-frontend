@@ -1,0 +1,41 @@
+.jumbotron {
+  padding-top: 10px;
+  position: relative;
+  background-color: #000000;
+  border-radius: 0;
+
+  @media all and (max-width: 768px) {
+    padding-top: 30px;
+    padding-bottom: 40px;
+  }
+
+  .bg-variation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: 60%;
+    opacity: 0.8;
+
+    @media all and (max-width: 768px) {
+      background: #fbbc1e !important;
+    }
+  }
+
+  .top-card {
+    z-index: 99;
+  }
+
+  .jumbo-card {
+    z-index: 1;
+    background: #ffffff;
+    box-shadow: 20px 24px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 40px 34px;
+
+    @media all and (max-width: 768px) {
+      padding: 20px;
+    }
+  }
+}

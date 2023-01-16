@@ -28,7 +28,7 @@ const routes: Routes = [{
   path: '',
   component: LayoutDefaultComponent,
   children: [{
-    path: 'stylists-near-me/:state',
+    path: 'stylists-near-me/:state/:city',
     component: LandingPageComponent,
     data: { navItems: landingNav }
   }, {

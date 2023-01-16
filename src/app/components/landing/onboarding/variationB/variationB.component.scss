@@ -1,5 +1,5 @@
 .landing-container {
-  background: #333333;
+  color: black;
 }
 
 .landing-image {
@@ -8,7 +8,7 @@
   margin: 2% 0;
 }
 
-.bg { 
+.bg {
   width: 120%;
   height: 120%;
   position: absolute;
@@ -30,9 +30,13 @@
   z-index: 1;
 }
 
+h3 {
+  color: white;
+}
+
 .jumbo-content-bg {
   background: #000000;
-  opacity: .8;
+  opacity: 0.8;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -46,10 +50,10 @@
 }
 
 .bg-variation {
-  background-image: url('https://res.cloudinary.com/drcvakvh3/image/upload/v1588696630/assets/header-home-v2.webp');
+  background-image: url("https://res.cloudinary.com/drcvakvh3/image/upload/v1588696630/assets/header-home-v2.webp");
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: .8;
+  opacity: 0.8;
   background-color: #333333;
 }
 

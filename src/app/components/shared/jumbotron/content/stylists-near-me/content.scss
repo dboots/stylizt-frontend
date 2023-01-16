@@ -1,0 +1,13 @@
+.content {
+  min-height: 450px;
+  margin: 0 0 50px 0;
+  .subtitle {
+    font-size: 18px;
+    line-height: 36px;
+    color: #454545;
+
+    @media all and (max-width: 768px) {
+      margin: 0 0 20px 0;
+    }
+  }
+}

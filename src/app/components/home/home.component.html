@@ -1,72 +1,50 @@
 <app-nav></app-nav>
 
 <div class="container-fluid p-0">
-  <div class="jumbotron">
-    <div class="bg-variation"></div>
-    <div class="container">
-      <div class="row">
-        <div class="top-card col-12 p-0 p-sm-2 col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <div class="jumbo-card">
-            <div class="title font-bold mb-3 mb-sm-4">
-              You create beautiful hairstyles.
-              <div class="highlight">Let us do the rest.</div>
-            </div>
-            <p class="subtitle-home">Hair To Chair gives independent hair stylists &amp; barber shops the tools needed
-              to grow their clientele fast and manage their existing client book.</p>
-            <div class="list-item d-md-flex d-none">
-              <span class="list-item-number"><i class="fas fa-icon fa-arrow-right"></i></span>
-              <div><span class="font-bold color-black">FREE</span> Stylist Website &amp; Portfolio</div>
-            </div>
-
-            <div class="list-item d-md-flex d-none">
-              <span class="list-item-number"><i class="fas fa-icon fa-arrow-right"></i></span>
-              <div><span class="font-bold color-black">FREE</span> Client History &amp; Formula Book</div>
-            </div>
-
-            <div class="list-item d-md-flex d-none">
-              <span class="list-item-number"><i class="fas fa-icon fa-arrow-right"></i></span>
-              <div><span class="font-bold color-black">FREE</span> Appointment Booking Website</div>
-            </div>
-
-            <div class="list-item d-md-flex d-none">
-              <span class="list-item-number"><i class="fas fa-icon fa-arrow-right"></i></span>
-              <div><span class="font-bold color-black">FREE</span> Clientele Building &amp; Stylist Marketing Tools
-              </div>
-            </div>
-
-            <button class="button-v3" [routerLink]="['/landing']">Signup For FREE</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-jumbotron>
+    <app-home-content></app-home-content>
+  </app-jumbotron>
 </div>
 
 <div class="container container-features py-4">
   <div class="row">
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
-      <div class="d-flex justify-content-center"><img class="mb-4 feature-image"
-          [lazyLoad]="'assets/img/home_01.webp'" /></div>
-      <div class="feature-title">Grow Your Online Presence</div>
+      <div class="d-flex justify-content-center">
+        <img
+          class="mb-4 feature-image"
+          [lazyLoad]="'assets/img/home_01.webp'"
+        />
+      </div>
+      <h2 class="feature-title">Hair Stylist Marketing Tools</h2>
       <div class="feature-copy">
-        Clients searching online can easily find you based on your location and the services you offer.
+        Clients searching online can easily find you based on your location and
+        the services you offer.
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
-      <div class="d-flex justify-content-center"><img class="mb-4 feature-image"
-          [lazyLoad]="'assets/img/home_02.webp'" /></div>
-      <div class="feature-title">Track Client History</div>
+      <div class="d-flex justify-content-center">
+        <img
+          class="mb-4 feature-image"
+          [lazyLoad]="'assets/img/home_02.webp'"
+        />
+      </div>
+      <h2 class="feature-title">Build Your Hair Stylist Clientele</h2>
       <div class="feature-copy">
-        Upload client photos to your private client book and keep track of important notes and client formulas.
+        Upload client photos to your private client book and keep track of
+        important notes and client formulas.
       </div>
     </div>
     <div class="col-lg-4 col-sm-6 p-4 mb-4">
-      <div class="d-flex justify-content-center"><img class="mb-4 feature-image"
-          [lazyLoad]="'assets/img/home_03.webp'" />
+      <div class="d-flex justify-content-center">
+        <img
+          class="mb-4 feature-image"
+          [lazyLoad]="'assets/img/home_03.webp'"
+        />
       </div>
-      <div class="feature-title">Booking Website</div>
+      <h2 class="feature-title">Hair Stylist Booking Website</h2>
       <div class="feature-copy">
-        With your appointment booking website, clients can book you without taking you away from your work.
+        With your appointment booking website, clients can book you without
+        taking you away from your work.
       </div>
     </div>
   </div>
@@ -95,5 +73,7 @@
     </div>
   </div>
 </div>
+
+<app-directory></app-directory>
 
 <app-footer></app-footer>

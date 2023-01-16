@@ -14,6 +14,10 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { TryNowComponent } from './try-now/try-now.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
+import { JumbotronComponent } from './jumbotron/jumbotron.component';
+import { HomeContentComponent } from './jumbotron/content/home/home-content.component';
+import { StylistsNearMeContentComponent } from './jumbotron/content/stylists-near-me/content';
+import { DirectoryComponent } from './directory/directory.component';
 
 @NgModule({
   imports: [
@@ -31,7 +35,11 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     NavComponent,
     TryNowComponent,
     SchedulerComponent,
-    FooterComponent
+    FooterComponent,
+    JumbotronComponent,
+    HomeContentComponent,
+    StylistsNearMeContentComponent,
+    DirectoryComponent
   ],
   exports: [
     BrandTagsInputComponent,
@@ -39,7 +47,11 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     NavComponent,
     TryNowComponent,
     SchedulerComponent,
-    FooterComponent
+    FooterComponent,
+    JumbotronComponent,
+    HomeContentComponent,
+    StylistsNearMeContentComponent,
+    DirectoryComponent,
   ]
 })
 export class SharedModule { }

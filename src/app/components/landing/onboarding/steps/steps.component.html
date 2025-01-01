@@ -11,7 +11,7 @@
   <div class="row content-row">
     <div class="form-body col-12 text-center pt-4">
       <mat-progress-bar mode="determinate" [value]="progressBarValue"></mat-progress-bar>
-      <mat-horizontal-stepper [linear]="true" (selectionChange)="selectionChange($event)" #stepper>
+      <mat-stepper [linear]="true" (selectionChange)="selectionChange($event)" #stepper>
         <ng-template matStepperIcon="edit" let-index="index">
           {{index+1}}
         </ng-template>
@@ -47,7 +47,7 @@
           <ng-template matStepLabel>Clients</ng-template>
           <app-step-five></app-step-five>
         </mat-step>
-      </mat-horizontal-stepper>
+      </mat-stepper>
     </div>
   </div>
   <div class="fixed-bottom bg-white" style="border-top: 1px solid green">

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper, MatHorizontalStepper, MatStep } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule, MatStep } from '@angular/material/stepper';
 import { AuthService, StepService } from '../../../../services';
 import { Router } from '@angular/router';
 

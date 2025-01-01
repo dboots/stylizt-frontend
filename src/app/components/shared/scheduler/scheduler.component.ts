@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Renderer2, Inject, OnDestroy, AfterContentInit, ɵSWITCH_VIEW_CONTAINER_REF_FACTORY__POST_R3__ } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Renderer2, Inject, OnDestroy, AfterContentInit } from '@angular/core';
 import { Schedule, Service } from 'src/app/models';
 import { ScheduleService } from 'src/app/services';
 import { Time } from 'src/app/models/time.model';

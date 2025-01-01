@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StepOneComponent } from './one/one.component';

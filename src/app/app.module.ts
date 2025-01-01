@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
 
 import {
   UserService,

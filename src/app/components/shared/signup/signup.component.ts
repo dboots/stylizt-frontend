@@ -10,8 +10,8 @@ import {
 } from '@angular/router';
 import {
   AbstractControl,
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
@@ -29,13 +29,13 @@ export class SignupComponent {
   showSignup = true;
   success = false;
 
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   signupFormErrors: any;
 
   urlParams: Params;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,

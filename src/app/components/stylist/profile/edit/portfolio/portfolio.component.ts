@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Portfolio, User } from 'src/app/models';
 import { PortfolioService, AuthService } from 'src/app/services';
@@ -12,7 +12,7 @@ import { Site } from 'src/app/models/site';
 export class EditProfilePortfolioComponent implements OnInit {
   user: User;
   portfolio: Portfolio[] = [];
-  captionControl: FormControl = new FormControl();
+  captionControl: UntypedFormControl = new UntypedFormControl();
   isSaving: boolean = false;
 
   constructor(

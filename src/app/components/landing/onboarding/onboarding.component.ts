@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl } from '@angular/forms';
 import { UserService, AuthService } from 'src/app/services';
 import { Router } from '@angular/router';
 
@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./onboarding.component.scss']
 })
 export class LandingOnboardingComponent implements OnInit {
-  formGroup: FormGroup = new FormGroup({
-    'name': new FormControl('', [Validators.required]),
-    'email': new FormControl('', [Validators.required, Validators.email]),
-    'password': new FormControl('', [Validators.required, Validators.minLength(8)]),
-    'confirmPassword': new FormControl('', [Validators.required, Validators.minLength(8)])
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'name': new UntypedFormControl('', [Validators.required]),
+    'email': new UntypedFormControl('', [Validators.required, Validators.email]),
+    'password': new UntypedFormControl('', [Validators.required, Validators.minLength(8)]),
+    'confirmPassword': new UntypedFormControl('', [Validators.required, Validators.minLength(8)])
   }, this._checkPassword);
 
   errorMessages: object = {
@@ -36,7 +36,7 @@ export class LandingOnboardingComponent implements OnInit {
   }
 
   signup() {
-    const formGroup: FormGroup = this.formGroup;
+    const formGroup: UntypedFormGroup = this.formGroup;
     if (!formGroup.invalid) {
       this.userService.signup(formGroup.value).subscribe((result) => {
         this.authService.token = result['token'];
@@ -48,7 +48,7 @@ export class LandingOnboardingComponent implements OnInit {
 
   getErrorMessage($event: any) {
     const field = $event.target.name;
-    const formGroup: FormGroup = this.formGroup;
+    const formGroup: UntypedFormGroup = this.formGroup;
     const fieldErrors: object = this.fieldErrors;
     const control = formGroup.controls[field];
     const errorMessages = this.errorMessages;
@@ -66,13 +66,13 @@ export class LandingOnboardingComponent implements OnInit {
   }
 
   getFormGroupErrors() {
-    const formGroup: FormGroup = this.formGroup;
+    const formGroup: UntypedFormGroup = this.formGroup;
     if (formGroup.errors) {
       return Object.keys(this.formGroup.errors).map((key) => key);
     }
   }
 
-  _checkPassword(group: FormGroup) {
+  _checkPassword(group: UntypedFormGroup) {
     let result = (group.get('password').value === group.get('confirmPassword').value) ? null : { passwordsNotSame: true };
     return result;
   }

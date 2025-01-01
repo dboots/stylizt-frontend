@@ -10,7 +10,7 @@ import {
   BrandService,
 } from "../../../services";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl, Validators } from "@angular/forms";
 import { Brand } from "../../../models/brand.model";
 import { Site } from "src/app/models/site";
 
@@ -26,10 +26,10 @@ export class StylistProfilePageComponent implements OnInit {
   talents: Talent[] = [];
   brands: Brand[] = [];
   modalRef: NgbModalRef;
-  talentForm: FormGroup;
-  brandForm: FormGroup;
-  talent: FormControl;
-  brand: FormControl;
+  talentForm: UntypedFormGroup;
+  brandForm: UntypedFormGroup;
+  talent: UntypedFormControl;
+  brand: UntypedFormControl;
   selectedTalents: Talent[] = [];
   selectedBrands: Brand[] = [];
   location: string = "";
@@ -37,7 +37,7 @@ export class StylistProfilePageComponent implements OnInit {
   clients: Client[] = [];
   portfolio: Portfolio[] = [];
   profileStrengths = {};
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
   constructor(
     private authService: AuthService,
@@ -53,23 +53,23 @@ export class StylistProfilePageComponent implements OnInit {
   }
 
   getFormGroup(model: any) {
-    let formGroup: FormGroup = new FormGroup({});
+    let formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
     Object.keys(model).map((key) => {
-      formGroup.addControl(key, new FormControl());
+      formGroup.addControl(key, new UntypedFormControl());
     });
 
     return formGroup;
   }
 
   ngOnInit() {
-    this.talent = new FormControl();
-    this.brand = new FormControl();
-    this.talentForm = new FormGroup({
+    this.talent = new UntypedFormControl();
+    this.brand = new UntypedFormControl();
+    this.talentForm = new UntypedFormGroup({
       talent: this.talent,
     });
 
-    this.brandForm = new FormGroup({
+    this.brandForm = new UntypedFormGroup({
       brand: this.brand,
     });
 

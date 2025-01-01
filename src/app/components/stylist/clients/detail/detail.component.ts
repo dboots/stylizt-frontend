@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
@@ -24,8 +24,8 @@ import {
 
 export class StylistClientsDetailPageComponent implements OnInit {
   modalRef: NgbModalRef;
-  detailForm: FormGroup;
-  noteForm: FormGroup;
+  detailForm: UntypedFormGroup;
+  noteForm: UntypedFormGroup;
   detailFormErrors: any;
   clientId: string;
   talents: Talent[] = [];
@@ -53,7 +53,7 @@ export class StylistClientsDetailPageComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
     private portfolioService: PortfolioService,
@@ -87,10 +87,10 @@ export class StylistClientsDetailPageComponent implements OnInit {
       });
     });
 
-    this.noteForm = new FormGroup({
-      body: new FormControl(),
-      clientId: new FormControl(this.clientId),
-      images: new FormControl()
+    this.noteForm = new UntypedFormGroup({
+      body: new UntypedFormControl(),
+      clientId: new UntypedFormControl(this.clientId),
+      images: new UntypedFormControl()
     });
 
     this.initForm();

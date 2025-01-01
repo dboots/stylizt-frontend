@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ServicesService, StepService } from '../../../../../services';
 import { User } from '../../../../../models/user.model';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Service } from '../../../../../models';
 import { Subject } from 'rxjs';
 
@@ -16,10 +16,10 @@ export class StepThreeComponent implements OnInit {
   user: User;
   services: Service[] = [];
   times: string[] = ['30 mins', '1 hour', '1.5 hours', '2 hours', '2.5 hours', '3 hours'];
-  formGroup: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    price: new FormControl(''),
-    time: new FormControl('')
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    name: new UntypedFormControl(''),
+    price: new UntypedFormControl(''),
+    time: new UntypedFormControl('')
   });
 
   constructor(

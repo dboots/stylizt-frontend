@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service, User } from '../../../models';
 import { ServicesService, AuthService } from '../../../services';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Lengths } from '../../../models/length.model';
 
 @Component({
@@ -17,12 +17,12 @@ export class StylistServicesPageComponent implements OnInit {
   lengths: string[] = Lengths.lengths;
   user: User;
 
-  formGroup: FormGroup = new FormGroup({
-    _id: new FormControl(),
-    name: new FormControl(),
-    price: new FormControl(),
-    time: new FormControl(1),
-    description: new FormControl()
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    _id: new UntypedFormControl(),
+    name: new UntypedFormControl(),
+    price: new UntypedFormControl(),
+    time: new UntypedFormControl(1),
+    description: new UntypedFormControl()
   });
 
   constructor(private servicesService: ServicesService, private authService: AuthService) {

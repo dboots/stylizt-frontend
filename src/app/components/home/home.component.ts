@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, PostService } from '../../services';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { User } from '../../models';
 import { SeoService } from 'src/app/services/seo.service';
 
@@ -10,7 +10,7 @@ import { SeoService } from 'src/app/services/seo.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   searchTimeoutId;
   results: User[] = [];
   posts: any[] = [];
@@ -20,8 +20,8 @@ export class HomePageComponent implements OnInit {
     private postService: PostService,
     private seoService: SeoService
   ) {
-    this.formGroup = new FormGroup({
-      query: new FormControl('', [])
+    this.formGroup = new UntypedFormGroup({
+      query: new UntypedFormControl('', [])
     });
   }
 

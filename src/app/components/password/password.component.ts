@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthService, UserService } from '../../services';
 
 function matchPassword(ac: AbstractControl) {
@@ -24,9 +24,9 @@ function matchPassword(ac: AbstractControl) {
 })
 
 export class PasswordPageComponent implements OnInit {
-  passwordForm: FormGroup;
-  passwordNew: FormControl;
-  passwordConfirm: FormControl;
+  passwordForm: UntypedFormGroup;
+  passwordNew: UntypedFormControl;
+  passwordConfirm: UntypedFormControl;
   token: string;
   message: string;
   success: boolean = false;
@@ -42,10 +42,10 @@ export class PasswordPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.passwordNew = new FormControl('', [Validators.minLength(8), Validators.required]);
-    this.passwordConfirm = new FormControl('', [Validators.minLength(8), Validators.required]);
+    this.passwordNew = new UntypedFormControl('', [Validators.minLength(8), Validators.required]);
+    this.passwordConfirm = new UntypedFormControl('', [Validators.minLength(8), Validators.required]);
 
-    this.passwordForm = new FormGroup({
+    this.passwordForm = new UntypedFormGroup({
       passwordNew: this.passwordNew,
       passwordConfirm: this.passwordConfirm
     }, matchPassword);

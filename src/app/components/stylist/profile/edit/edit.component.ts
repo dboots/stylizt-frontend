@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, ViewChild, OnInit, ComponentFactoryResolve
 import { EditProfileDetailsComponent } from './details/details.component';
 import { AuthService, UserService } from '../../../../services';
 import { User } from '../../../../models';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { EditProfilePortfolioComponent } from './portfolio/portfolio.component';
 import { EditProfileServicesComponent } from './services/services.component';
 import { EditProfileClientsComponent } from './clients/clients.component';
@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit {
   ];
 
   user: User;
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: UntypedFormGroup = new UntypedFormGroup({});
   activeTab: string = 'details';
 
   constructor(
@@ -38,7 +38,7 @@ export class EditProfileComponent implements OnInit {
     user = Object.assign(user, this.authService.decode());
 
     Object.keys(user).map((key) => {
-      let control = new FormControl();
+      let control = new UntypedFormControl();
 
       if (requiredFields.indexOf(key) !== -1) {
         control.setValidators(Validators.required);
@@ -100,7 +100,7 @@ export class EditProfileComponent implements OnInit {
   }
   */
 
-  phoneValidator(c: FormControl) {
+  phoneValidator(c: UntypedFormControl) {
     return (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(c.value)) ? null : {
       validatePhone: {
         valid: false

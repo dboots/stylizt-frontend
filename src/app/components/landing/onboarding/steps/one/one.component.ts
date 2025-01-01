@@ -1,5 +1,5 @@
 import { Component, Output, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { StepService, UserService } from '../../../../../services';
 import { Subject } from 'rxjs';
 
@@ -11,12 +11,12 @@ import { Subject } from 'rxjs';
 export class StepOneComponent implements OnInit {
   @Output() formStatusChange: Subject<any> = new Subject();
 
-  formGroup: FormGroup = new FormGroup({
-    _id: new FormControl(''),
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    _id: new UntypedFormControl(''),
+    name: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', [Validators.required, Validators.minLength(8)]),
+    confirmPassword: new UntypedFormControl('', [Validators.required, Validators.minLength(8)])
   }, this.checkPassword);
 
   constructor(
@@ -45,7 +45,7 @@ export class StepOneComponent implements OnInit {
     this.formStatusChange.next('INVALID');
   }
 
-  checkPassword(group: FormGroup) {
+  checkPassword(group: UntypedFormGroup) {
     let result = (group.get('password').value === group.get('confirmPassword').value) ? null : { passwordsNotSame: true };
     return result;
   }

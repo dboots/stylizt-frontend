@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { UserService, AuthService, StepService, LocationService } from '../../../../../services';
 import { Subject } from 'rxjs';
 import { User } from '../../../../../models';
@@ -13,11 +13,11 @@ export class StepTwoComponent implements OnInit {
   @Input() stepSubject: Subject<any> = new Subject<any>();
   @Output() formStatusChange: Subject<any> = new Subject();
 
-  formGroup: FormGroup = new FormGroup({
-    _id: new FormControl(''),
-    city: new FormControl('', [Validators.required]),
-    state: new FormControl('', [Validators.required]),
-    zip: new FormControl('', [Validators.required])
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    _id: new UntypedFormControl(''),
+    city: new UntypedFormControl('', [Validators.required]),
+    state: new UntypedFormControl('', [Validators.required]),
+    zip: new UntypedFormControl('', [Validators.required])
   });
 
   loading: boolean = false;

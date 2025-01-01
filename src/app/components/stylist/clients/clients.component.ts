@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl } from '@angular/forms';
 import { Client, User } from '../../../models';
 import { ClientService } from '../../../services';
 
@@ -13,8 +13,8 @@ import { ClientService } from '../../../services';
 
 export class StylistClientsPageComponent implements OnInit {
   modalRef: NgbModalRef;
-  clientForm: FormGroup;
-  clientName: FormControl;
+  clientForm: UntypedFormGroup;
+  clientName: UntypedFormControl;
   clients: any[];
 
   constructor(
@@ -24,9 +24,9 @@ export class StylistClientsPageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.clientName = new FormControl('', [Validators.required]),
+    this.clientName = new UntypedFormControl('', [Validators.required]),
 
-    this.clientForm = new FormGroup({
+    this.clientForm = new UntypedFormGroup({
       clientName: this.clientName
     });
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service, User, Lengths } from 'src/app/models';
 import { ServicesService, AuthService } from 'src/app/services';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-services',
@@ -11,11 +11,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditProfileServicesComponent implements OnInit {
   services: Service[] = [];
   user: User;
-  form: FormGroup = new FormGroup({
-    name: new FormControl('name', [Validators.required]),
-    description: new FormControl('description', [Validators.required]),
-    price: new FormControl('price', [Validators.required]),
-    time: new FormControl('time', [Validators.required])
+  form: UntypedFormGroup = new UntypedFormGroup({
+    name: new UntypedFormControl('name', [Validators.required]),
+    description: new UntypedFormControl('description', [Validators.required]),
+    price: new UntypedFormControl('price', [Validators.required]),
+    time: new UntypedFormControl('time', [Validators.required])
   });
   message: string = ' ';
   showMessage: boolean = false;

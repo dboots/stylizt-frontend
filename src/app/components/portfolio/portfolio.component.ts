@@ -11,7 +11,7 @@ import { Lengths } from '../../models/length.model';
 import { Time } from '../../models/time.model';
 import { SeoService } from 'src/app/services/seo.service';
 import { DOCUMENT } from '@angular/common';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Site } from 'src/app/models/site';
 
 @Component({
@@ -48,11 +48,11 @@ export class StylistPortfolioPageComponent {
   service: Service;
   scrollClass: boolean = false;
   contactVisible: boolean = false;
-  contactForm: FormGroup = new FormGroup({
-    'name': new FormControl('', [Validators.required]),
-    'email': new FormControl('', [Validators.required, Validators.email]),
-    'message': new FormControl('', [Validators.required]),
-    'from': new FormControl('')
+  contactForm: UntypedFormGroup = new UntypedFormGroup({
+    'name': new UntypedFormControl('', [Validators.required]),
+    'email': new UntypedFormControl('', [Validators.required, Validators.email]),
+    'message': new UntypedFormControl('', [Validators.required]),
+    'from': new UntypedFormControl('')
   });
   contactFormSubmitted: boolean = false;
 

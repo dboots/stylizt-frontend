@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { TalentService, BrandService, UserService, AuthService, LocationService } from 'src/app/services';
 
 @Component({
@@ -15,12 +15,12 @@ export class EditProfileDetailsComponent implements OnInit {
   brands: Brand[] = [];
   talentSearchResults: Talent[] = [];
   brandSearchResults: Brand[] = [];
-  talentControl: FormControl = new FormControl();
-  brandControl: FormControl = new FormControl();
+  talentControl: UntypedFormControl = new UntypedFormControl();
+  brandControl: UntypedFormControl = new UntypedFormControl();
   times: string[] = [];
   hours: string[][] = [];
   isSaving: boolean = false;
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
     private userService: UserService,
@@ -36,7 +36,7 @@ export class EditProfileDetailsComponent implements OnInit {
     let userHours: string[][] = this.user.hours;
 
     Object.keys(this.user).forEach((key) => {
-      this.formGroup.addControl(key, new FormControl(this.user[key]));
+      this.formGroup.addControl(key, new UntypedFormControl(this.user[key]));
     });
 
     this.talentService.read().then((results) => {

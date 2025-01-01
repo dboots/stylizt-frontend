@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService, StepService } from '../../../../../services';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Client } from '../../../../../models/client.model';
 
 @Component({
@@ -9,11 +9,11 @@ import { Client } from '../../../../../models/client.model';
   styleUrls: ['./five.component.scss']
 })
 export class StepFiveComponent implements OnInit {
-  formGroup: FormGroup = new FormGroup({
-    image: new FormControl(''),
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl('')
+  formGroup: UntypedFormGroup = new UntypedFormGroup({
+    image: new UntypedFormControl(''),
+    name: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    phone: new UntypedFormControl('')
   });
 
   uploadImage: string;

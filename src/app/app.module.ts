@@ -129,7 +129,7 @@ Sentry.init({
         HttpClientModule,
         BrowserAnimationsModule,
         SharedModule,
-        MatSlideToggleModule,
+        MatLegacySlideToggleModule,
         LazyLoadImageModule,
         CalendarModule.forRoot({
             provide: DateAdapter,

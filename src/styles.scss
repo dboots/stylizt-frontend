@@ -4,21 +4,20 @@
  * Licensed under ISC (https://github.com/BlackrockDigital/stylizt-frontend/blob/master/LICENSE)
  */
 
+@use "@angular/material" as mat;
+@include mat.core();
+
 @import "./sass/mixins";
 @import "./sass/variables";
 @import "./sass/fonts";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
-
-@import "@angular/material/theming";
-@include mat-core();
-
 
 // import our custom theme
 @import "./sass/theme.scss";
 
 body {
   @include body-font;
-  @include angular-material-theme($theme);
+  @include mat.core-theme($theme);
   font-family: "proxima-nova", Arial, sans-serif;
   letter-spacing: normal;
   line-height: normal;
@@ -44,7 +43,8 @@ h2,
 h3,
 h4,
 h5,
-h6, .font-bold {
+h6,
+.font-bold {
   font-family: "spartan-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -71,7 +71,7 @@ section {
   position: absolute;
   top: 0;
   width: 100%;
-  
+
   .fa-icon {
     background: white;
     color: black;
@@ -90,7 +90,8 @@ section {
   }
 }
 
-nav, .container-fluid {
+nav,
+.container-fluid {
   max-width: 1600px;
   margin: auto;
 }
@@ -173,9 +174,9 @@ body {
   }
 
   &[disabled] {
-    background: #DEDEDE;
+    background: #dedede;
   }
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "../node_modules/bootstrap/scss/bootstrap";

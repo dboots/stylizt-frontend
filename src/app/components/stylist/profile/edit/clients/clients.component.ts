@@ -3,9 +3,10 @@ import { User, Client } from '../../../../../models';
 import { ClientService } from 'src/app/services';
 
 @Component({
-  selector: 'app-profile-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss'],
+    selector: 'app-profile-clients',
+    templateUrl: './clients.component.html',
+    styleUrls: ['./clients.component.scss'],
+    standalone: true,
 })
 export class EditProfileClientsComponent implements OnInit {
   user: User;

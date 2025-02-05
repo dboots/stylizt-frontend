@@ -6,9 +6,10 @@ import { User } from 'src/app/models/user.model';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-scheduler',
-  templateUrl: './scheduler.component.html',
-  styleUrls: ['./scheduler.component.scss']
+    selector: 'app-scheduler',
+    templateUrl: './scheduler.component.html',
+    styleUrls: ['./scheduler.component.scss'],
+    standalone: true
 })
 export class SchedulerComponent implements OnInit, OnChanges {
   @Input() stylist: User;

@@ -1,13 +1,15 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { User, Brand } from '../../../../../models';
 import { AuthService, BrandService, StepService } from '../../../../../services';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-step-four',
-  templateUrl: './four.component.html',
-  styleUrls: ['./four.component.scss']
+    selector: 'app-step-four',
+    templateUrl: './four.component.html',
+    styleUrls: ['./four.component.scss'],
+    imports: [FormsModule],
+    standalone: true
 })
 export class StepFourComponent implements OnInit {
   @Output() formStatusChange: Subject<any> = new Subject();

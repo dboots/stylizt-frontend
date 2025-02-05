@@ -1,15 +1,22 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService, ScheduleService } from '../../../services';
-import { User, Schedule } from '../../../models';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { AuthService, ScheduleService } from "../../../services";
+import { User, Schedule } from "../../../models";
+import {
+  CalendarEvent,
+  CalendarModule,
+  CalendarView,
+  DateAdapter,
+} from "angular-calendar";
+import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: 'app-page-stylist-home',
-  templateUrl: './stylist-home.component.html',
-  styleUrls: ['./stylist-home.component.scss']
+  selector: "app-page-stylist-home",
+  templateUrl: "./stylist-home.component.html",
+  styleUrls: ["./stylist-home.component.scss"],
+  imports: [CalendarModule],
+  standalone: true,
 })
 export class StylistHomePageComponent implements OnInit, OnDestroy {
   user: User;
@@ -27,7 +34,8 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private scheduleService: ScheduleService,
     private breakpointObserver: BreakpointObserver,
-    private cd: ChangeDetectorRef) {
+    private cd: ChangeDetectorRef
+  ) {
     this.scheduleDay.setHours(9);
     this.scheduleDay.setMinutes(0);
 
@@ -41,18 +49,20 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
 
   loadSchedule() {
     const events = this.events;
-    this.scheduleService.read(this.user._id, this.scheduleDay.getTime()).subscribe((result) => {
-      result.map((appt) => {
-        events.push({
-          start: new Date(Date.parse(appt.startDateTime.toString())),
-          end: new Date(Date.parse(appt.endDateTime.toString())),
-          title: `${appt.service.name} with ${appt.name}`,
+    this.scheduleService
+      .read(this.user._id, this.scheduleDay.getTime())
+      .subscribe((result) => {
+        result.map((appt) => {
+          events.push({
+            start: new Date(Date.parse(appt.startDateTime.toString())),
+            end: new Date(Date.parse(appt.endDateTime.toString())),
+            title: `${appt.service.name} with ${appt.name}`,
+          });
         });
-      });
 
-      this.events = events;
-      this.refresh.next();
-    });
+        this.events = events;
+        this.refresh.next();
+      });
   }
 
   nextScheduleDay() {
@@ -66,7 +76,7 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
   confirm(event: Schedule, index: number, approved: boolean) {
     event.approved = approved;
     this.scheduleService.update(event).subscribe((result) => {
-      this.schedule[index] = result['data'];
+      this.schedule[index] = result["data"];
     });
   }
 
@@ -81,15 +91,15 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const CALENDAR_RESPONSIVE = {
       small: {
-        breakpoint: '(max-width: 576px)',
+        breakpoint: "(max-width: 576px)",
         daysInWeek: 2,
       },
       medium: {
-        breakpoint: '(max-width: 768px)',
+        breakpoint: "(max-width: 768px)",
         daysInWeek: 3,
       },
       large: {
-        breakpoint: '(max-width: 960px)',
+        breakpoint: "(max-width: 960px)",
         daysInWeek: 5,
       },
     };

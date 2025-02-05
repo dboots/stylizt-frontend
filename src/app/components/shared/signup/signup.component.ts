@@ -17,9 +17,10 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss'],
+    standalone: true
 })
 export class SignupComponent {
   @Input() type: string;

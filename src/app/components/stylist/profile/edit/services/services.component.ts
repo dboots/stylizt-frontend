@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Service, User, Lengths } from 'src/app/models';
 import { ServicesService, AuthService } from 'src/app/services';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-profile-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+    selector: 'app-profile-services',
+    templateUrl: './services.component.html',
+    styleUrls: ['./services.component.scss'],
+    imports: [CommonModule],
+    standalone: true
 })
 export class EditProfileServicesComponent implements OnInit {
   services: Service[] = [];

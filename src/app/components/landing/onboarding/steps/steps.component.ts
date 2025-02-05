@@ -1,16 +1,39 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper, MatStepperModule, MatStep } from '@angular/material/stepper';
-import { AuthService, StepService } from '../../../../services';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import { StepperSelectionEvent } from "@angular/cdk/stepper";
+import {
+  MatStepper,
+  MatStepperModule,
+  MatStep,
+} from "@angular/material/stepper";
+import { AuthService, StepService } from "../../../../services";
+import { Router } from "@angular/router";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { StepOneComponent } from "./one/one.component";
+import { StepTwoComponent } from './two/two.component';
+import { StepThreeComponent } from './three/three.component';
+import { StepFourComponent } from './four/four.component';
+import { StepFiveComponent } from './five/five.component';
 
 @Component({
-  selector: 'app-landing-steps',
-  templateUrl: './steps.component.html',
-  styleUrls: ['./steps.component.scss']
+  selector: "app-landing-steps",
+  templateUrl: "./steps.component.html",
+  styleUrls: ["./steps.component.scss"],
+  imports: [
+    MatStepperModule,
+    MatProgressBarModule,
+    ReactiveFormsModule,
+    FormsModule,
+    StepOneComponent,
+    StepTwoComponent,
+    StepThreeComponent,
+    StepFourComponent,
+    StepFiveComponent,
+  ],
+  standalone: true,
 })
 export class LandingStepsComponent implements OnInit, AfterViewInit {
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild("stepper") stepper: MatStepper;
   steps: number = 5;
   currentStep: number = 3;
   nextLabel: string;
@@ -22,7 +45,7 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
     private stepService: StepService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.updateProgressBarValue();
@@ -36,32 +59,35 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   }
 
   formStatusChange($event) {
-    this.isFormValid = ($event === 'VALID');
+    this.isFormValid = $event === "VALID";
   }
 
   next() {
-    this.stepService.nextActions[(this.currentStep - 1)]().then((result) => {
-      this.stepper.selected.completed = true;
+    this.stepService.nextActions[this.currentStep - 1]().then(
+      (result) => {
+        this.stepper.selected.completed = true;
 
-      if (this.currentStep < 2) {
-        this.isFormValid = false;
-      } else {
-        this.stepper.steps.map((step) => step.completed = true);
-      }
+        if (this.currentStep < 2) {
+          this.isFormValid = false;
+        } else {
+          this.stepper.steps.map((step) => (step.completed = true));
+        }
 
-      if (result && result['token']) {
-        this.authService.token = result['token'];
-      }
+        if (result && result["token"]) {
+          this.authService.token = result["token"];
+        }
 
-      if (this.currentStep === this.steps) {
-        this.router.navigate(['stylist/home']);
-      } else {
-        this.stepper.next();
-        this.updateProgressBarValue();
+        if (this.currentStep === this.steps) {
+          this.router.navigate(["stylist/home"]);
+        } else {
+          this.stepper.next();
+          this.updateProgressBarValue();
+        }
+      },
+      (error) => {
+        console.log("error encountered", error);
       }
-    }, (error) => {
-      console.log('error encountered', error);
-    });
+    );
   }
 
   prev() {
@@ -70,14 +96,15 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   }
 
   updateProgressBarValue() {
-    this.progressBarValue = ((this.currentStep / this.steps) * 100);
-    this.filledProgressValue = (this.currentStep > 0) ? ((this.currentStep - 1) / this.steps) * 100 : 0;
+    this.progressBarValue = (this.currentStep / this.steps) * 100;
+    this.filledProgressValue =
+      this.currentStep > 0 ? ((this.currentStep - 1) / this.steps) * 100 : 0;
     this.nextLabel = this.getNextLabel();
   }
 
   selectionChange($event: StepperSelectionEvent) {
     let currentStep = $event.previouslySelectedStep;
-    let delta = ($event.selectedIndex - $event.previouslySelectedIndex);
+    let delta = $event.selectedIndex - $event.previouslySelectedIndex;
     if (currentStep.completed) {
       this.currentStep += delta;
       this.updateProgressBarValue();
@@ -85,14 +112,14 @@ export class LandingStepsComponent implements OnInit, AfterViewInit {
   }
 
   getNextLabel() {
-    let label: string = 'Next';
+    let label: string = "Next";
 
     switch (this.currentStep) {
       case 1:
-        label = 'Create Account';
+        label = "Create Account";
         break;
       case 5:
-        label = 'Finish';
+        label = "Finish";
         break;
     }
 

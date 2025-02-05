@@ -4,9 +4,10 @@ import { ContactService } from '../../services';
 import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: true
 })
 export class ContactPageComponent implements OnInit {
   contactForm: UntypedFormGroup;

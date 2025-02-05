@@ -2,12 +2,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { SeoService } from 'src/app/services/seo.service';
+import { NavComponent } from '../shared/nav/nav.component';
 
 @Component({
-  selector: 'app-blog-home',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-blog-home',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
+    imports: [NavComponent],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true
 })
 export class BlogHomeComponent implements OnInit {
   posts: any[];

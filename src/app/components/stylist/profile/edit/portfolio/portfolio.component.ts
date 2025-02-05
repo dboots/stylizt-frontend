@@ -5,9 +5,10 @@ import { PortfolioService, AuthService } from 'src/app/services';
 import { Site } from 'src/app/models/site';
 
 @Component({
-  selector: 'app-profile-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss']
+    selector: 'app-profile-portfolio',
+    templateUrl: './portfolio.component.html',
+    styleUrls: ['./portfolio.component.scss'],
+    standalone: true
 })
 export class EditProfilePortfolioComponent implements OnInit {
   user: User;

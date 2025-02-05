@@ -3,9 +3,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-landing-variationa',
-  templateUrl: './variationA.component.html',
-  styleUrls: ['./variationA.component.scss']
+    selector: 'app-landing-variationa',
+    templateUrl: './variationA.component.html',
+    styleUrls: ['./variationA.component.scss'],
+    standalone: true
 })
 export class LandingVariationAComponent {
   constructor(

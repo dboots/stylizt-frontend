@@ -15,9 +15,10 @@ import { Brand } from "../../../models/brand.model";
 import { Site } from "src/app/models/site";
 
 @Component({
-  selector: "app-page-stylistprofile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"],
+    selector: "app-page-stylistprofile",
+    templateUrl: "./profile.component.html",
+    styleUrls: ["./profile.component.scss"],
+    standalone: true,
 })
 export class StylistProfilePageComponent implements OnInit {
   user: User = new User();

@@ -4,12 +4,15 @@ import { PostService } from '../../../services/post.service';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { SeoService } from 'src/app/services/seo.service';
+import { NavComponent } from '../../shared/nav/nav.component';
 
 @Component({
-  selector: 'app-tag',
-  templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-tag',
+    templateUrl: './tag.component.html',
+    styleUrls: ['./tag.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [NavComponent],
+    standalone: true
 })
 export class BlogTagComponent implements OnInit {
   slug: string;

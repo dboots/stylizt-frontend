@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {
   AuthService,
@@ -17,9 +17,11 @@ import {
 } from '../../../../models';
 
 @Component({
-  selector: 'app-page-stylistclientsdetail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+    selector: 'app-page-stylistclientsdetail',
+    templateUrl: './detail.component.html',
+    styleUrls: ['./detail.component.scss'],
+    imports: [ReactiveFormsModule],
+    standalone: true
 })
 
 export class StylistClientsDetailPageComponent implements OnInit {

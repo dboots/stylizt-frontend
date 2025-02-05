@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService, StepService } from '../../../../../services';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { Client } from '../../../../../models/client.model';
 
 @Component({
-  selector: 'app-step-five',
-  templateUrl: './five.component.html',
-  styleUrls: ['./five.component.scss']
+    selector: 'app-step-five',
+    templateUrl: './five.component.html',
+    styleUrls: ['./five.component.scss'],
+    imports: [ReactiveFormsModule],
+    standalone: true
 })
 export class StepFiveComponent implements OnInit {
   formGroup: UntypedFormGroup = new UntypedFormGroup({

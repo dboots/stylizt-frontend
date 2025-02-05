@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, UserService } from '../../services';
 
 function matchPassword(ac: AbstractControl) {
@@ -18,9 +18,11 @@ function matchPassword(ac: AbstractControl) {
 }
 
 @Component({
-  selector: 'app-page-password',
-  templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+    selector: 'app-page-password',
+    templateUrl: './password.component.html',
+    styleUrls: ['./password.component.scss'],
+    imports: [ReactiveFormsModule],
+    standalone: true
 })
 
 export class PasswordPageComponent implements OnInit {

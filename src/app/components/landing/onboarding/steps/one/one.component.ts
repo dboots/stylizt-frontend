@@ -1,12 +1,14 @@
 import { Component, Output, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StepService, UserService } from '../../../../../services';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-step-one',
-  templateUrl: './one.component.html',
-  styleUrls: ['./one.component.scss'],
+    selector: 'app-step-one',
+    templateUrl: './one.component.html',
+    styleUrls: ['./one.component.scss'],
+    imports: [FormsModule, ReactiveFormsModule],
+    standalone: true,
 })
 export class StepOneComponent implements OnInit {
   @Output() formStatusChange: Subject<any> = new Subject();

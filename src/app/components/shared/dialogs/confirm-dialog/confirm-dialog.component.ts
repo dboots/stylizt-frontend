@@ -2,9 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } fro
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss']
+    selector: 'app-confirm-dialog',
+    templateUrl: './confirm-dialog.component.html',
+    styleUrls: ['./confirm-dialog.component.scss'],
+    standalone: true
 })
 export class ConfirmDialogComponent implements OnInit {
   @Input() confirmMessage;

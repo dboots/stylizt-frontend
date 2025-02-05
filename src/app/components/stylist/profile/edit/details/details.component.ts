@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TalentService, BrandService, UserService, AuthService, LocationService } from 'src/app/services';
 
 @Component({
-  selector: 'app-profile-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+    selector: 'app-profile-details',
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.scss'],
+    imports: [ReactiveFormsModule, FormsModule],
+    standalone: true,
 })
 export class EditProfileDetailsComponent implements OnInit {
   user: User;

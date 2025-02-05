@@ -6,9 +6,10 @@ import { Client, User } from '../../../models';
 import { ClientService } from '../../../services';
 
 @Component({
-  selector: 'app-page-stylistclients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss']
+    selector: 'app-page-stylistclients',
+    templateUrl: './clients.component.html',
+    styleUrls: ['./clients.component.scss'],
+    standalone: true
 })
 
 export class StylistClientsPageComponent implements OnInit {

@@ -3,9 +3,10 @@ import { ClientService } from 'src/app/services';
 import { Client } from 'src/app/models';
 
 @Component({
-  selector: 'app-profile-clients-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-profile-clients-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: true
 })
 export class EditProfileClientsListComponent implements OnInit {
   @Output() selectClient: EventEmitter<Client> = new EventEmitter<Client>();

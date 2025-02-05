@@ -6,11 +6,16 @@ import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms
 import { EditProfilePortfolioComponent } from './portfolio/portfolio.component';
 import { EditProfileServicesComponent } from './services/services.component';
 import { EditProfileClientsComponent } from './clients/clients.component';
+import { NavComponent } from 'src/app/components/shared/nav/nav.component';
+import { FooterComponent } from 'src/app/components/shared/footer/footer.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-profile-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+    selector: 'app-profile-edit',
+    templateUrl: './edit.component.html',
+    styleUrls: ['./edit.component.scss'],
+    imports: [CommonModule, NavComponent, FooterComponent],
+    standalone: true
 })
 export class EditProfileComponent implements OnInit {
   @ViewChild('componentLoader', { read: ViewContainerRef, static: true }) componentLoader: ViewContainerRef;

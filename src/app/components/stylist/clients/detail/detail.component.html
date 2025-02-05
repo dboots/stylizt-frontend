@@ -60,9 +60,9 @@
             </div>
             <div class="row pb-4">
               <div class="col-12">
-                <app-cloudinary-uploader [allowMultiple]="true" [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'"
+                <!-- <app-cloudinary-uploader [allowMultiple]="true" [folderName]="'notes'" [buttonName]="'ATTACH IMAGE(S)'"
                   (completeItem)="noteImageUploadCompleted($event)" (uploadComplete)="toggleClientNote(false)"
-                  (startUpload)="toggleClientNote(true)"></app-cloudinary-uploader>
+                  (startUpload)="toggleClientNote(true)"></app-cloudinary-uploader> -->
               </div>
             </div>
             <button (click)="postNote()" [disabled]="disableNoteAdd" class="common-gw-button pull-right">ADD CLIENT
@@ -123,8 +123,8 @@
     <div class="main-content row">
       <div class="col-6">
         <img [src]="portfolioItem.image" class="img-fluid w-100" />
-        <app-cloudinary-uploader [allowMultiple]="true" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
-          (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+        <!-- <app-cloudinary-uploader [allowMultiple]="true" [folderName]="'portfolio'" [buttonName]="'UPLOAD IMAGE(S)'"
+          (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader> -->
       </div>
       <div class="col-6">
         <div class="form-group">

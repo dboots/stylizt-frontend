@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Router, ActivationEnd, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, ActivationEnd, ActivatedRoute, NavigationEnd, NavigationStart, RouterLink } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService, UserService } from '../../../services';
 import { User } from '../../../models';
@@ -10,9 +10,11 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.scss'],
+    imports: [RouterLink],
+    standalone: true
 })
 export class NavComponent implements OnInit {
   @Input() dark: boolean = false;

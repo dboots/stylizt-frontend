@@ -1,12 +1,14 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, RouterOutlet } from "@angular/router";
 import { environment } from "../environments/environment";
 import { isPlatformBrowser } from "@angular/common";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    imports: [RouterOutlet],
+    styleUrls: ["./app.component.css"],
+    standalone: true,
 })
 export class AppComponent {
   constructor(

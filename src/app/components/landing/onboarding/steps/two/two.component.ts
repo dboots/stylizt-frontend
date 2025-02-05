@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserService, AuthService, StepService, LocationService } from '../../../../../services';
 import { Subject } from 'rxjs';
 import { User } from '../../../../../models';
 
 @Component({
-  selector: 'app-step-two',
-  templateUrl: './two.component.html',
-  styleUrls: ['./two.component.scss']
+    selector: 'app-step-two',
+    templateUrl: './two.component.html',
+    styleUrls: ['./two.component.scss'],
+    imports: [ReactiveFormsModule],
+    standalone: true
 })
 export class StepTwoComponent implements OnInit {
   @Input() stepSubject: Subject<any> = new Subject<any>();

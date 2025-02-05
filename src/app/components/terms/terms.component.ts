@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
-  selector: 'app-terms',
-  templateUrl: './terms.component.html'
+    selector: 'app-terms',
+    templateUrl: './terms.component.html',
+    standalone: true
 })
 export class TermsPageComponent implements OnInit {
   constructor(private seoService: SeoService) { }

@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "app-stylists-near-me-content",
-  templateUrl: "./content.html",
-  styleUrls: ["./content.scss"],
+    selector: "app-stylists-near-me-content",
+    templateUrl: "./content.html",
+    styleUrls: ["./content.scss"],
+    standalone: true,
 })
 export class StylistsNearMeContentComponent implements OnInit {
   state: string;

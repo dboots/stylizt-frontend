@@ -3,9 +3,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-landing-promotion',
-  templateUrl: './landing-promotion.component.html',
-  styleUrls: ['./landing-promotion.component.scss']
+    selector: 'app-landing-promotion',
+    templateUrl: './landing-promotion.component.html',
+    styleUrls: ['./landing-promotion.component.scss'],
+    standalone: true
 })
 export class LandingPromotionComponent {
   constructor(

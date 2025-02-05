@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Service, User } from '../../../models';
 import { ServicesService, AuthService } from '../../../services';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { Lengths } from '../../../models/length.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-page-stylist-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+    selector: 'app-page-stylist-services',
+    templateUrl: './services.component.html',
+    styleUrls: ['./services.component.scss'],
+    imports: [CommonModule, ReactiveFormsModule],
+    standalone: true
 })
 export class StylistServicesPageComponent implements OnInit {
   ADD_LABEL: string = 'Add Service';

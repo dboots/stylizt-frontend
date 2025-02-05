@@ -41,8 +41,8 @@
           <img [src]="image" class="image image-full" />
         </div>
       </div>
-      <app-cloudinary-uploader *ngIf="!note._id" [folderName]="'clients-notes'" [buttonName]="'UPLOAD IMAGE(S)'"
-        (completeItem)="imageNoteUploadCompleted($event, note)"></app-cloudinary-uploader>
+      <!-- <app-cloudinary-uploader *ngIf="!note._id" [folderName]="'clients-notes'" [buttonName]="'UPLOAD IMAGE(S)'"
+        (completeItem)="imageNoteUploadCompleted($event, note)"></app-cloudinary-uploader> -->
       <div class="row my-2 d-flex justify-content-md-end">
         <div class="col-12 col-md-2">
           <button class="button-v3" (click)="saveClientNote(note)" *ngIf="!note._id">Create</button>
@@ -61,8 +61,8 @@
 
 <div class="row mb-4" *ngIf="client._id">
   <div class="col-12">
-    <app-cloudinary-uploader [folderName]="'clients'" [buttonName]="'UPLOAD IMAGE(S)'"
-      (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader>
+    <!-- <app-cloudinary-uploader [folderName]="'clients'" [buttonName]="'UPLOAD IMAGE(S)'"
+      (completeItem)="imageUploadCompleted($event)"></app-cloudinary-uploader> -->
   </div>
 </div>
 

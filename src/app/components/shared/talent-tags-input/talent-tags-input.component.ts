@@ -3,9 +3,10 @@ import { TalentService } from '../../../services';
 import { Talent } from '../../../models/talent.model';
 
 @Component({
-  selector: 'app-talent-tags-input',
-  templateUrl: './talent-tags-input.component.html',
-  styleUrls: ['./talent-tags-input.component.scss']
+    selector: 'app-talent-tags-input',
+    templateUrl: './talent-tags-input.component.html',
+    styleUrls: ['./talent-tags-input.component.scss'],
+    standalone: true
 })
 export class TalentTagsInputComponent implements OnInit {
   itemList: Talent[];

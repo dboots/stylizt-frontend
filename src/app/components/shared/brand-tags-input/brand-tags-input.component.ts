@@ -3,9 +3,10 @@ import { BrandService } from '../../../services';
 import { Brand } from '../../../models/brand.model';
 
 @Component({
-  selector: 'app-brand-tags-input',
-  templateUrl: './brand-tags-input.component.html',
-  styleUrls: ['./brand-tags-input.component.scss']
+    selector: 'app-brand-tags-input',
+    templateUrl: './brand-tags-input.component.html',
+    styleUrls: ['./brand-tags-input.component.scss'],
+    standalone: true
 })
 export class BrandTagsInputComponent implements OnInit, OnChanges {
   itemList: Brand[]; // TODO: PARAM (type)

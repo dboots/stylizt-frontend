@@ -2,9 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 
 @Component({
-  selector: 'app-cloudinary-uploader',
-  templateUrl: './cloudinary-uploader.component.html',
-  styleUrls: ['./cloudinary-uploader.component.scss']
+    selector: 'app-cloudinary-uploader',
+    templateUrl: './cloudinary-uploader.component.html',
+    styleUrls: ['./cloudinary-uploader.component.scss'],
+    standalone: true
 })
 export class CloudinaryUploaderComponent implements OnInit {
   uploader: FileUploader;

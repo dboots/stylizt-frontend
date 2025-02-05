@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService, ClientService, NotesService, PortfolioService } from 'src/app/services';
 import { Client, Note, Portfolio, User } from 'src/app/models';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile-clients-detail',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+    selector: 'app-profile-clients-detail',
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.scss'],
+    imports: [FormsModule],
+    standalone: true,
 })
 export class EditProfileClientsDetailsComponent implements OnInit {
   @Input() client: Client;

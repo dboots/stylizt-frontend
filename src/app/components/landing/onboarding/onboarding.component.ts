@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models';
-import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService, AuthService } from 'src/app/services';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { StepsModule } from './steps/steps.module';
 
 @Component({
-  selector: 'app-landing-onboarding',
-  templateUrl: './onboarding.component.html',
-  styleUrls: ['./onboarding.component.scss']
+    selector: 'app-landing-onboarding',
+    templateUrl: './onboarding.component.html',
+    styleUrls: ['./onboarding.component.scss'],
+    imports: [RouterOutlet, ReactiveFormsModule, StepsModule],
+    standalone: true
 })
 export class LandingOnboardingComponent implements OnInit {
   formGroup: UntypedFormGroup = new UntypedFormGroup({

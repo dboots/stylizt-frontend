@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
-  selector: 'app-notfound',
-  templateUrl: './notfound.component.html',
-  styleUrls: ['./notfound.component.scss']
+    selector: 'app-notfound',
+    templateUrl: './notfound.component.html',
+    styleUrls: ['./notfound.component.scss'],
+    standalone: true
 })
 export class NotFoundComponent implements OnInit {
   constructor(private seoService: SeoService) { }

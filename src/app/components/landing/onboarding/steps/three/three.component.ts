@@ -1,14 +1,17 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ServicesService, StepService } from '../../../../../services';
 import { User } from '../../../../../models/user.model';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Service } from '../../../../../models';
 import { Subject } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-step-three',
-  templateUrl: './three.component.html',
-  styleUrls: ['./three.component.scss']
+    selector: 'app-step-three',
+    templateUrl: './three.component.html',
+    styleUrls: ['./three.component.scss'],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    standalone: true
 })
 export class StepThreeComponent implements OnInit {
   @Output() formStatusChange: Subject<any> = new Subject();

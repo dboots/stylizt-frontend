@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../components/shared/shared.module';
 import { Version3RoutingModule } from './v3.routing.module';
 import { FormsModule } from '@angular/forms';
 
@@ -9,7 +8,6 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     Version3RoutingModule,
-    SharedModule
   ],
   declarations: [],
   exports: [

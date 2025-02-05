@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 declare var Peer: any;
 
 @Component({
-  selector: 'app-landing-video',
-  templateUrl: './video.component.html'
+    selector: 'app-landing-video',
+    templateUrl: './video.component.html',
+    imports: [FormsModule],
+    standalone: true
 })
 export class LandingVideoPageComponent implements OnInit {
   @ViewChild('myvideo', { static: true }) myVideo: any;

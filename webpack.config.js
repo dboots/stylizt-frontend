@@ -19,7 +19,7 @@ const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
 const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_modules');
-const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
+const entryPoints = ["inline", "sw-register", "styles", "vendor", "main"];
 const hashFormat = { "chunk": "", "extract": "", "file": ".[hash:20]", "script": "" };
 const baseHref = "";
 const deployUrl = "";
@@ -147,9 +147,6 @@ module.exports = {
   "entry": {
     "main": [
       "./src/main.ts"
-    ],
-    "polyfills": [
-      "./src/polyfills.ts"
     ],
     "styles": [
       "./src/sass/landing-page.scss",

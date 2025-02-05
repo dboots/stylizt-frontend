@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -5,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
     selector: 'app-layout-onboarding',
     templateUrl: './onboarding.component.html',
     styleUrls: ['./onboarding.component.css'],
-    imports: [RouterOutlet],
+    imports: [CommonModule, RouterOutlet],
     standalone: true
 })
 

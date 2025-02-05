@@ -8,12 +8,13 @@ import { filter } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss'],
-    imports: [RouterLink],
+    imports: [CommonModule, RouterLink],
     standalone: true
 })
 export class NavComponent implements OnInit {
@@ -82,11 +83,10 @@ export class NavComponent implements OnInit {
   }
 
   modal(content) {
+    console.log(content);
     this.message = '';
     this.modalRef = this.modalService.open(content);
-    this.modalRef.result.then((result) => {
-    }, (reason) => {
-    });
+    console.log('modalRef');
   }
 
   doResetPassword() {

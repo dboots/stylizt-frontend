@@ -10,7 +10,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Lengths } from '../../models/length.model';
 import { Time } from '../../models/time.model';
 import { SeoService } from 'src/app/services/seo.service';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Site } from 'src/app/models/site';
 import { NavComponent } from '../shared/nav/nav.component';
@@ -20,7 +20,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
     selector: 'app-page-stylistportfolio',
     templateUrl: './portfolio.component.html',
     styleUrls: ['./portfolio.component.scss'],
-    imports: [NavComponent, FooterComponent],
+    imports: [CommonModule, NavComponent, FooterComponent],
     standalone: true
 })
 export class StylistPortfolioPageComponent {

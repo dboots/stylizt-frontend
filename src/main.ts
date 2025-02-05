@@ -1,4 +1,5 @@
 import 'hammerjs';
+import 'zone.js';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

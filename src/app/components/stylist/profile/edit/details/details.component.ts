@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { User, Talent, Brand } from '../../../../../models';
 import { UntypedFormGroup, UntypedFormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TalentService, BrandService, UserService, AuthService, LocationService } from 'src/app/services';
+import { CommonModule } from '@angular/common';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'app-profile-details',
     templateUrl: './details.component.html',
     styleUrls: ['./details.component.scss'],
-    imports: [ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, MatSlideToggleModule, ReactiveFormsModule, FormsModule],
     standalone: true,
 })
 export class EditProfileDetailsComponent implements OnInit {

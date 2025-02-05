@@ -8,12 +8,14 @@ import { FooterComponent } from "../shared/footer/footer.component";
 import { JumbotronComponent } from "../shared/jumbotron/jumbotron.component";
 import { HomeContentComponent } from "../shared/jumbotron/content/home/home-content.component";
 import { TryNowComponent } from "../shared/try-now/try-now.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
   imports: [
+    CommonModule,
     NavComponent,
     FooterComponent,
     JumbotronComponent,

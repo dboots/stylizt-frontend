@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { Portfolio, User } from 'src/app/models';
 import { PortfolioService, AuthService } from 'src/app/services';
 import { Site } from 'src/app/models/site';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-profile-portfolio',
     templateUrl: './portfolio.component.html',
     styleUrls: ['./portfolio.component.scss'],
+    imports: [CommonModule],
     standalone: true
 })
 export class EditProfilePortfolioComponent implements OnInit {

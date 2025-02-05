@@ -4,12 +4,13 @@ import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl, Form
 import { UserService, AuthService } from 'src/app/services';
 import { Router, RouterOutlet } from '@angular/router';
 import { StepsModule } from './steps/steps.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-landing-onboarding',
     templateUrl: './onboarding.component.html',
     styleUrls: ['./onboarding.component.scss'],
-    imports: [RouterOutlet, ReactiveFormsModule, StepsModule],
+    imports: [CommonModule, RouterOutlet, ReactiveFormsModule, StepsModule],
     standalone: true
 })
 export class LandingOnboardingComponent implements OnInit {

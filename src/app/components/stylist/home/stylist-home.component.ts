@@ -10,12 +10,13 @@ import {
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: "app-page-stylist-home",
   templateUrl: "./stylist-home.component.html",
   styleUrls: ["./stylist-home.component.scss"],
-  imports: [CalendarModule],
+  imports: [CommonModule, CalendarModule],
   standalone: true,
 })
 export class StylistHomePageComponent implements OnInit, OnDestroy {
@@ -61,7 +62,7 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
         });
 
         this.events = events;
-        this.refresh.next();
+        this.refresh.next(true);
       });
   }
 
@@ -123,6 +124,6 @@ export class StylistHomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next();
+    this.destroy$.next(true);
   }
 }

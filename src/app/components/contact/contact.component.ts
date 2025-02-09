@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../../services';
 import { SeoService } from 'src/app/services/seo.service';
 
@@ -10,12 +10,12 @@ import { SeoService } from 'src/app/services/seo.service';
     standalone: true
 })
 export class ContactPageComponent implements OnInit {
-  contactForm: UntypedFormGroup;
+  contactForm: FormGroup;
   contactFormErrors: any;
   formSubmitted: boolean;
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private contactService: ContactService,
     private seoService: SeoService
   ) { }
@@ -33,7 +33,7 @@ export class ContactPageComponent implements OnInit {
       message: {}
     };
 
-    this.contactForm = this.formBuilder.group({
+    this.contactForm = this.formBuilder.nonNullable.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required]

@@ -1,22 +1,49 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Renderer2, Inject, OnDestroy, AfterContentInit } from '@angular/core';
-import { Schedule, Service } from 'src/app/models';
-import { ScheduleService } from 'src/app/services';
-import { Time } from 'src/app/models/time.model';
-import { User } from 'src/app/models/user.model';
-import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Renderer2,
+  Inject,
+  OnDestroy,
+  AfterContentInit,
+  Output,
+  EventEmitter,
+} from "@angular/core";
+import { Schedule, Service } from "src/app/models";
+import { ScheduleService } from "src/app/services";
+import { Time } from "src/app/models/time.model";
+import { User } from "src/app/models/user.model";
+import { CommonModule, DOCUMENT } from "@angular/common";
 
 @Component({
-    selector: 'app-scheduler',
-    templateUrl: './scheduler.component.html',
-    styleUrls: ['./scheduler.component.scss'],
-    standalone: true
+  selector: "app-scheduler",
+  templateUrl: "./scheduler.component.html",
+  styleUrls: ["./scheduler.component.scss"],
+  imports: [CommonModule],
+  standalone: true,
 })
 export class SchedulerComponent implements OnInit, OnChanges {
   @Input() stylist: User;
   @Input() service: Service;
+  @Output() close = new EventEmitter<void>();
 
-  days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  months = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
   selectedDate: Date;
   week: Date[] = [];
   currentDate: Date = new Date();
@@ -32,7 +59,7 @@ export class SchedulerComponent implements OnInit, OnChanges {
     private scheduleService: ScheduleService,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
-  ) { }
+  ) {}
 
   ngOnInit() {
     const currentDate = new Date(this.currentDate);
@@ -55,7 +82,7 @@ export class SchedulerComponent implements OnInit, OnChanges {
 
       this.selectedSchedule = selectedSchedule;
       this.selectServiceDate(currentDate, true);
-      this.renderer.addClass(this.document.body, 'modal-open');
+      this.renderer.addClass(this.document.body, "modal-open");
     }
   }
 
@@ -69,36 +96,41 @@ export class SchedulerComponent implements OnInit, OnChanges {
 
   isActiveDate(day: Date): boolean {
     const selected = this.selectedDate;
-    return selected && day.getDate() === selected.getDate() &&
+    return (
+      selected &&
+      day.getDate() === selected.getDate() &&
       day.getMonth() === selected.getMonth() &&
-      day.getFullYear() === selected.getFullYear();
+      day.getFullYear() === selected.getFullYear()
+    );
   }
 
   isCurrentDate(day: Date): boolean {
     const today = new Date();
-    return day.getDate() === today.getDate() &&
+    return (
+      day.getDate() === today.getDate() &&
       day.getMonth() === today.getMonth() &&
-      day.getFullYear() === today.getFullYear();
+      day.getFullYear() === today.getFullYear()
+    );
   }
 
   getTimeString(date: Date, returnFormatted: boolean) {
     let minutes = date.getMinutes().toString();
     let hours = date.getHours();
-    let formattedHours = ((hours > 12) ? (hours % 12) : hours).toString();
+    let formattedHours = (hours > 12 ? hours % 12 : hours).toString();
 
     if (!returnFormatted) {
       formattedHours = hours.toString();
     }
 
     if (formattedHours.length === 1) {
-      formattedHours = '0' + formattedHours;
+      formattedHours = "0" + formattedHours;
     }
 
     if (minutes.length === 1) {
-      minutes = '0' + minutes;
+      minutes = "0" + minutes;
     }
 
-    return formattedHours + ':' + minutes;
+    return formattedHours + ":" + minutes;
   }
 
   parseSchedule(schedule: Schedule[]) {
@@ -119,11 +151,11 @@ export class SchedulerComponent implements OnInit, OnChanges {
     let endDateTime = new Date(time.date);
     const service = this.service;
 
-    this.morningTimes.map((t) => t.selected = false);
-    this.afternoonTimes.map((t) => t.selected = false);
-    this.eveningTimes.map((t) => t.selected = false);
+    this.morningTimes.map((t) => (t.selected = false));
+    this.afternoonTimes.map((t) => (t.selected = false));
+    this.eveningTimes.map((t) => (t.selected = false));
 
-    endDateTime.setTime(time.date.getTime() + ((service.time * 30) * 60 * 1000));
+    endDateTime.setTime(time.date.getTime() + service.time * 30 * 60 * 1000);
     time.selected = !time.selected;
     this.selectedSchedule.startDateTime = time.date;
     this.selectedSchedule.endDateTime = endDateTime;
@@ -152,64 +184,74 @@ export class SchedulerComponent implements OnInit, OnChanges {
     afternoonTimes = [];
     eveningTimes = [];
 
-    this.scheduleService.read(stylist._id, day.getTime()).subscribe((result) => {
-      this.parseSchedule(result);
+    this.scheduleService
+      .read(stylist._id, day.getTime())
+      .subscribe((result) => {
+        this.parseSchedule(result);
 
-      while (startDateTime < endDateTime) {
-        let timeString = this.getTimeString(startDateTime, false);
-        let formattedTimeString = this.getTimeString(startDateTime, true);
-        let active = (this.scheduledTimes.indexOf(timeString) === -1) && (startDateTime > this.currentDate);
+        while (startDateTime < endDateTime) {
+          let timeString = this.getTimeString(startDateTime, false);
+          let formattedTimeString = this.getTimeString(startDateTime, true);
+          let active =
+            this.scheduledTimes.indexOf(timeString) === -1 &&
+            startDateTime > this.currentDate;
 
-        let checkDateTime = new Date(startDateTime);
-        let timeDate = new Date(startDateTime);
-        let checkTimeString = this.getTimeString(checkDateTime, false);
+          let checkDateTime = new Date(startDateTime);
+          let timeDate = new Date(startDateTime);
+          let checkTimeString = this.getTimeString(checkDateTime, false);
 
-        timeDate.setHours(startDateTime.getHours());
-        timeDate.setMinutes(startDateTime.getMinutes());
+          timeDate.setHours(startDateTime.getHours());
+          timeDate.setMinutes(startDateTime.getMinutes());
 
-        if (active) {
-          for (let i = 1; i < service.time; i++) {
-            checkTimeString = this.getTimeString(checkDateTime, false);
-            let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
-            console.log(checkTimeString, this.scheduledTimes, checkTimeString);
-            active = (checkTimeIndex === -1);
+          if (active) {
+            for (let i = 1; i < service.time; i++) {
+              checkTimeString = this.getTimeString(checkDateTime, false);
+              let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
+              console.log(
+                checkTimeString,
+                this.scheduledTimes,
+                checkTimeString
+              );
+              active = checkTimeIndex === -1;
 
-            checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
+              checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
 
-            if (!active) {
-              break;
+              if (!active) {
+                break;
+              }
             }
           }
+
+          availableTimes.push(
+            new Time(timeString, formattedTimeString, active, timeDate)
+          );
+          startDateTime.setMinutes(startDateTime.getMinutes() + 30);
         }
 
-        availableTimes.push(new Time(timeString, formattedTimeString, active, timeDate));
-        startDateTime.setMinutes(startDateTime.getMinutes() + 30);
-      }
+        availableTimes.map((time, index) => {
+          if (index + service.time > availableTimes.length) {
+            time.available = false;
+          }
 
-      availableTimes.map((time, index) => {
-        if ((index + service.time) > (availableTimes.length)) {
-          time.available = false;
-        }
+          if (time.date.getHours() <= 11) {
+            morningTimes.push(time);
+          }
 
-        if (time.date.getHours() <= 11) {
-          morningTimes.push(time);
-        }
+          if (time.date.getHours() >= 12 && time.date.getHours() <= 17) {
+            afternoonTimes.push(time);
+          }
 
-        if (time.date.getHours() >= 12 && time.date.getHours() <= 17) {
-          afternoonTimes.push(time);
-        }
+          if (time.date.getHours() >= 18) {
+            eveningTimes.push(time);
+          }
+        });
 
-        if (time.date.getHours() >= 18) {
-          eveningTimes.push(time);
-        }
+        this.availableTimes = availableTimes;
+        this.selectedDate = day;
+        this.morningTimes = morningTimes;
+        this.afternoonTimes = afternoonTimes;
+        this.eveningTimes = eveningTimes;
       });
-
-      this.availableTimes = availableTimes;
-      this.selectedDate = day;
-      this.morningTimes = morningTimes;
-      this.afternoonTimes = afternoonTimes;
-      this.eveningTimes = eveningTimes;
-    });
   }
 
   next(): void {
@@ -239,8 +281,8 @@ export class SchedulerComponent implements OnInit, OnChanges {
   }
 
   cancel() {
-    this.service = null;
-    this.renderer.removeClass(this.document.body, 'modal-open');
+    this.close.emit();
+    this.renderer.removeClass(this.document.body, "modal-open");
   }
 
   book() {

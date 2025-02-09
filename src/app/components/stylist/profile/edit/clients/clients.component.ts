@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Client } from '../../../../../models';
 import { ClientService } from 'src/app/services';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-profile-clients',
     templateUrl: './clients.component.html',
+    imports: [CommonModule],
     styleUrls: ['./clients.component.scss'],
     standalone: true,
 })

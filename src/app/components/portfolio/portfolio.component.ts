@@ -1,44 +1,67 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, AfterContentInit, AfterViewInit } from '@angular/core';
-import { PortfolioService, AuthService, TalentService, ServicesService, ScheduleService, ContactService } from '../../services';
-import { Portfolio, User, Talent, Service, Schedule } from '../../models';
-import { ActivatedRoute, Router } from '@angular/router';
 import {
-  DomSanitizer,
-  SafeResourceUrl,
-} from '@angular/platform-browser';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Lengths } from '../../models/length.model';
-import { Time } from '../../models/time.model';
-import { SeoService } from 'src/app/services/seo.service';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { Site } from 'src/app/models/site';
-import { NavComponent } from '../shared/nav/nav.component';
-import { FooterComponent } from '../shared/footer/footer.component';
+  Component,
+  ViewChild,
+  ElementRef,
+  HostListener,
+  Inject,
+  inject,
+} from "@angular/core";
+import {
+  PortfolioService,
+  AuthService,
+  ServicesService,
+  ScheduleService,
+  ContactService,
+} from "../../services";
+import { Portfolio, User, Talent, Service, Schedule } from "../../models";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Lengths } from "../../models/length.model";
+import { Time } from "../../models/time.model";
+import { SeoService } from "src/app/services/seo.service";
+import { CommonModule, DOCUMENT } from "@angular/common";
+import {
+  UntypedFormGroup,
+  UntypedFormControl,
+  Validators,
+} from "@angular/forms";
+import { Site } from "src/app/models/site";
+import { NavComponent } from "../shared/nav/nav.component";
+import { FooterComponent } from "../shared/footer/footer.component";
+import { SchedulerComponent } from "../shared/scheduler/scheduler.component";
 
 @Component({
-    selector: 'app-page-stylistportfolio',
-    templateUrl: './portfolio.component.html',
-    styleUrls: ['./portfolio.component.scss'],
-    imports: [CommonModule, NavComponent, FooterComponent],
-    standalone: true
+  selector: "app-page-stylistportfolio",
+  templateUrl: "./portfolio.component.html",
+  styleUrls: ["./portfolio.component.scss"],
+  imports: [CommonModule, NavComponent, FooterComponent, SchedulerComponent],
+  standalone: true,
 })
 export class StylistPortfolioPageComponent {
   portfolio: Portfolio[];
   stylist: User;
   params;
   mapUrl: SafeResourceUrl;
-  modalRef: NgbModalRef;
-  portfolioItem: Portfolio = new Portfolio('');
+  modalService = inject(NgbModal);
+  portfolioItem: Portfolio = new Portfolio("");
   talents: Talent[] = [];
   services: Service[] = [];
-  days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  days: string[] = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   instagram: string = null;
   twitter: string = null;
   facebook: string = null;
-  portfolioActionLabel = 'Add To Portfolio';
-  portfolioTitle = 'Add To Portfolio';
+  portfolioActionLabel = "Add To Portfolio";
+  portfolioTitle = "Add To Portfolio";
 
   availableTimes: Time[] = [];
   lengths: string[] = Lengths.lengths;
@@ -53,23 +76,22 @@ export class StylistPortfolioPageComponent {
   scrollClass: boolean = false;
   contactVisible: boolean = false;
   contactForm: UntypedFormGroup = new UntypedFormGroup({
-    'name': new UntypedFormControl('', [Validators.required]),
-    'email': new UntypedFormControl('', [Validators.required, Validators.email]),
-    'message': new UntypedFormControl('', [Validators.required]),
-    'from': new UntypedFormControl('')
+    name: new UntypedFormControl("", [Validators.required]),
+    email: new UntypedFormControl("", [Validators.required, Validators.email]),
+    message: new UntypedFormControl("", [Validators.required]),
+    from: new UntypedFormControl(""),
   });
   contactFormSubmitted: boolean = false;
 
-  @ViewChild('aboutViewChild') aboutElementRef: ElementRef;
-  @ViewChild('servicesViewChild') servicesElementRef: ElementRef;
-  @ViewChild('contactViewChild') contactElementRef: ElementRef;
+  @ViewChild("aboutViewChild") aboutElementRef: ElementRef;
+  @ViewChild("servicesViewChild") servicesElementRef: ElementRef;
+  @ViewChild("contactViewChild") contactElementRef: ElementRef;
 
   constructor(
     private portfolioService: PortfolioService,
     private authService: AuthService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private modalService: NgbModal,
     private router: Router,
     private sanitization: DomSanitizer,
     private servicesService: ServicesService,
@@ -84,15 +106,15 @@ export class StylistPortfolioPageComponent {
 
     this.minDate = {
       year: this.currentDate.getFullYear(),
-      month: (this.currentDate.getMonth() + 1),
-      day: this.currentDate.getDate()
+      month: this.currentDate.getMonth() + 1,
+      day: this.currentDate.getDate(),
     };
 
     this.portfolioService
       .read(false, { url: this.params.id })
       .subscribe((data: Site) => {
         if (!data.stylist) {
-          this.router.navigate(['/']);
+          this.router.navigate(["/"]);
         }
 
         let portfolio = data.portfolio;
@@ -103,37 +125,44 @@ export class StylistPortfolioPageComponent {
         });
 
         this.seoService.createCanonicalUrl();
-        this.seoService.updateMetaTags(stylist.name + ' Portfolio', null, stylist.name + ' is a stylist from ' + stylist.zip);
+        this.seoService.updateMetaTags(
+          stylist.name + " Portfolio",
+          null,
+          stylist.name + " is a stylist from " + stylist.zip
+        );
         if (stylist && stylist.name && stylist.zip) {
-          let location = stylist.zip.replace('#', '%23');
+          let location = stylist.zip.replace("#", "%23");
           let url =
-            'https://maps.google.com/maps?width=100%&height=600&hl=en&q=' +
+            "https://maps.google.com/maps?width=100%&height=600&hl=en&q=" +
             encodeURI(location) +
-            '&ie=UTF8&t=&z=14&iwloc=B&output=embed';
+            "&ie=UTF8&t=&z=14&iwloc=B&output=embed";
           this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         }
 
         this.twitter = stylist.twitter
-          ? this.getUrl(stylist.twitter, 'http://www.twitter.com/')
+          ? this.getUrl(stylist.twitter, "http://www.twitter.com/")
           : null;
         this.facebook = stylist.facebook
-          ? this.getUrl(stylist.facebook, 'http://www.facebook.com/')
+          ? this.getUrl(stylist.facebook, "http://www.facebook.com/")
           : null;
         this.instagram = stylist.instagram
-          ? this.getUrl(stylist.instagram, 'http://www.instagram.com/')
+          ? this.getUrl(stylist.instagram, "http://www.instagram.com/")
           : null;
 
-        this.contactForm.controls['from'].setValue(stylist.email);
+        this.contactForm.controls["from"].setValue(stylist.email);
 
         this.portfolio = portfolio;
         this.stylist = stylist;
       });
   }
 
-  @HostListener('window:scroll', [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
     let scrollClass = this.scrollClass;
-    if (document.body.scrollTop > 66 || document.documentElement.scrollTop > 66) {
+    if (
+      document.body.scrollTop > 66 ||
+      document.documentElement.scrollTop > 66
+    ) {
       scrollClass = true;
     } else {
       scrollClass = false;
@@ -142,12 +171,20 @@ export class StylistPortfolioPageComponent {
     this.scrollClass = scrollClass;
   }
 
+  onServiceClose = () => {
+    this.service = null;
+  };
+
   book(service: Service) {
+    console.log(service);
     this.service = service;
   }
 
   isLoggedInOwner() {
-    return this.authService.isAuthenticated() && (this.stylist._id === this.authService.decode()._id);
+    return (
+      this.authService.isAuthenticated() &&
+      this.stylist._id === this.authService.decode()._id
+    );
   }
 
   parseSchedule(schedule: Schedule[]) {
@@ -163,7 +200,7 @@ export class StylistPortfolioPageComponent {
   }
 
   scrollTo(elementRef: ElementRef) {
-    elementRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    elementRef.nativeElement.scrollIntoView({ behavior: "smooth" });
   }
 
   bookService(service: Service) {
@@ -172,7 +209,7 @@ export class StylistPortfolioPageComponent {
     schedule.owner = this.stylist._id;
     this.scheduleService.create(schedule).subscribe((result) => {
       this.selectedSchedule = new Schedule();
-      this.message = 'Your appointment is booked!';
+      this.message = "Your appointment is booked!";
     });
   }
 
@@ -181,12 +218,12 @@ export class StylistPortfolioPageComponent {
     this.selectedSchedule.endDateTime = null;
     this.selectedSchedule.datePicker = null;
     this.availableTimes = [];
-    this.message = '';
+    this.message = "";
   }
 
   selectServiceDate($event) {
     this.availableTimes = [];
-    let dateString = $event.month + '/' + $event.day + '/' + $event.year;
+    let dateString = $event.month + "/" + $event.day + "/" + $event.year;
     let startDateTime = new Date(dateString);
     let endDateTime = new Date(dateString);
     let schedule = this.selectedSchedule;
@@ -197,53 +234,59 @@ export class StylistPortfolioPageComponent {
 
     this.selectedSchedule.startDateTime = new Date(dateString);
 
-    this.scheduleService.read(this.stylist._id, startDateTime.getTime()).subscribe((result) => {
-      this.parseSchedule(result);
+    this.scheduleService
+      .read(this.stylist._id, startDateTime.getTime())
+      .subscribe((result) => {
+        this.parseSchedule(result);
 
-      while (startDateTime < endDateTime) {
-        let timeString = this.getTimeString(startDateTime, false);
-        let formattedTimeString = this.getTimeString(startDateTime, true);
-        let active = (this.scheduledTimes.indexOf(timeString) === -1) && (startDateTime > this.currentDate);
+        while (startDateTime < endDateTime) {
+          let timeString = this.getTimeString(startDateTime, false);
+          let formattedTimeString = this.getTimeString(startDateTime, true);
+          let active =
+            this.scheduledTimes.indexOf(timeString) === -1 &&
+            startDateTime > this.currentDate;
 
-        let checkDateTime = new Date(startDateTime);
-        let checkTimeString = this.getTimeString(checkDateTime, false);
-        console.log(checkTimeString);
+          let checkDateTime = new Date(startDateTime);
+          let checkTimeString = this.getTimeString(checkDateTime, false);
+          console.log(checkTimeString);
 
-        if (active) {
-          for (let i = 1; i < service.time; i++) {
-            checkTimeString = this.getTimeString(checkDateTime, false);
-            let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
-            active = (checkTimeIndex === -1);
+          if (active) {
+            for (let i = 1; i < service.time; i++) {
+              checkTimeString = this.getTimeString(checkDateTime, false);
+              let checkTimeIndex = this.scheduledTimes.indexOf(checkTimeString);
+              active = checkTimeIndex === -1;
 
-            checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
+              checkDateTime.setMinutes(checkDateTime.getMinutes() + 30);
 
-            if (!active) {
-              break;
+              if (!active) {
+                break;
+              }
             }
           }
+
+          startDateTime.setMinutes(startDateTime.getMinutes() + 30);
+
+          this.availableTimes.push(
+            new Time(timeString, formattedTimeString, active)
+          );
         }
 
-        startDateTime.setMinutes(startDateTime.getMinutes() + 30);
+        this.availableTimes.map((time, index) => {
+          if (index + service.time > this.availableTimes.length) {
+            time.available = false;
+          }
+        });
 
-        this.availableTimes.push(new Time(timeString, formattedTimeString, active));
-      }
-
-      this.availableTimes.map((time, index) => {
-        if ((index + service.time) > this.availableTimes.length) {
-          time.available = false;
-        }
+        this.showDatePicker = false;
+        this.showBookButton = false;
       });
-
-      this.showDatePicker = false;
-      this.showBookButton = false;
-    });
   }
 
   selectServiceTime($event) {
     let schedule = this.selectedSchedule;
     let service = schedule.service;
     let time = $event.target.value;
-    let timeParts = time.split(':');
+    let timeParts = time.split(":");
     let hour = timeParts[0];
     let minute = timeParts[1];
 
@@ -251,7 +294,9 @@ export class StylistPortfolioPageComponent {
     schedule.startDateTime.setMinutes(minute);
 
     schedule.endDateTime = new Date(schedule.startDateTime);
-    schedule.endDateTime.setMinutes(schedule.endDateTime.getMinutes() + (30 * service.time));
+    schedule.endDateTime.setMinutes(
+      schedule.endDateTime.getMinutes() + 30 * service.time
+    );
 
     this.selectedSchedule = schedule;
     this.showBookButton = true;
@@ -265,27 +310,27 @@ export class StylistPortfolioPageComponent {
   getTimeString(date: Date, returnFormatted: boolean) {
     let minutes = date.getMinutes().toString();
     let hours = date.getHours();
-    let formattedHours = ((hours > 12) ? (hours % 12) : hours).toString();
+    let formattedHours = (hours > 12 ? hours % 12 : hours).toString();
 
     if (!returnFormatted) {
       formattedHours = hours.toString();
     }
 
     if (formattedHours.length === 1) {
-      formattedHours = '0' + formattedHours;
+      formattedHours = "0" + formattedHours;
     }
 
     if (minutes.length === 1) {
-      minutes = '0' + minutes;
+      minutes = "0" + minutes;
     }
 
-    return formattedHours + ':' + minutes;
+    return formattedHours + ":" + minutes;
   }
 
   getBackgroundImage() {
     const random = Math.floor(Math.random() * Math.floor(100000));
     return this.sanitization.bypassSecurityTrustStyle(
-      'url(https://placeimg.com/320/240/any?' + random
+      "url(https://placeimg.com/320/240/any?" + random
     );
   }
 
@@ -298,37 +343,31 @@ export class StylistPortfolioPageComponent {
   }
 
   imageUploadCompleted($event) {
-    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${
-      $event['public_id']
-      }.webp`;
+    this.portfolioItem.image = `http://res.cloudinary.com/drcvakvh3/image/upload/w_400/${$event["public_id"]}.webp`;
   }
 
   updatePortfolio() {
-    this.portfolioService
-      .update(this.portfolioItem)
-      .subscribe(
-        (result: any) => {
-          // this.portfolioItem.talents = result.talents;
-          this.modalRef.close();
-        },
-        (err) => {
-          this.modalRef.close();
-        }
-      );
+    this.portfolioService.update(this.portfolioItem).subscribe(
+      (result: any) => {
+        // this.portfolioItem.talents = result.talents;
+        this.modalService.dismissAll();
+      },
+      (err) => {
+        this.modalService.dismissAll();
+      }
+    );
   }
 
   addToPortfolio() {
-    this.portfolioService
-      .create(this.portfolioItem)
-      .subscribe(
-        (result: any) => {
-          this.portfolio.push(this.portfolioItem);
-          this.modalRef.close();
-        },
-        (err) => {
-          console.log('unable to add to portfolio', err);
-        }
-      );
+    this.portfolioService.create(this.portfolioItem).subscribe(
+      (result: any) => {
+        this.portfolio.push(this.portfolioItem);
+        this.modalService.dismissAll();
+      },
+      (err) => {
+        console.log("unable to add to portfolio", err);
+      }
+    );
   }
 
   portfolioAction() {
@@ -342,13 +381,22 @@ export class StylistPortfolioPageComponent {
   showModal(modal, item) {
     if (item && item._id) {
       this.portfolioItem = item;
-      this.portfolioActionLabel = 'Update Portfolio';
+      this.portfolioActionLabel = "Update Portfolio";
     } else {
-      this.portfolioItem = new Portfolio('');
-      this.portfolioActionLabel = 'Add to Portfolio';
+      this.portfolioItem = new Portfolio("");
+      this.portfolioActionLabel = "Add to Portfolio";
     }
 
-    this.modalRef = this.modalService.open(modal, { size: 'lg' });
+    this.modalService
+      .open(modal, { ariaLabelledBy: "modal-basic-title" })
+      .result.then(
+        (result) => {
+          console.log("result", result);
+        },
+        (reason) => {
+          console.log("reason", reason);
+        }
+      );
   }
 
   sendMessage() {
@@ -361,19 +409,19 @@ export class StylistPortfolioPageComponent {
   // handle could be valid url, username, @username
   // return url should be close to http://www.[social].com/[handle]
   getUrl(handle: string, url: string): string {
-    let hasHttp = handle.indexOf('http') > -1;
-    let hasHttps = handle.indexOf('https') > -1;
-    let hasWww = (handle.indexOf('www') > -1 || handle.indexOf('.com') > -1);
+    let hasHttp = handle.indexOf("http") > -1;
+    let hasHttps = handle.indexOf("https") > -1;
+    let hasWww = handle.indexOf("www") > -1 || handle.indexOf(".com") > -1;
     let isUrl = hasHttp || hasHttps || hasWww;
 
     if (!hasHttp && !hasHttps && hasWww) {
-      handle = 'https://' + handle;
+      handle = "https://" + handle;
     }
 
     if (isUrl) {
       return handle;
     }
 
-    return url + handle.replace('@', '');
+    return url + handle.replace("@", "");
   }
 }

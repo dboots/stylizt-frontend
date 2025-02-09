@@ -1,96 +1,212 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
+import { Component, computed, input, output, signal } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpEvent,
+  HttpEventType,
+  HttpResponse,
+} from "@angular/common/http";
+import { Observable, lastValueFrom } from "rxjs";
+import { map, tap } from "rxjs/operators";
+
+interface CloudinaryResponse {
+  secure_url: string;
+  public_id: string;
+  // Add other response fields as needed
+}
+
+interface UploadProgress {
+  filename: string;
+  progress: number;
+}
 
 @Component({
-    selector: 'app-cloudinary-uploader',
-    templateUrl: './cloudinary-uploader.component.html',
-    styleUrls: ['./cloudinary-uploader.component.scss'],
-    standalone: true
-})
-export class CloudinaryUploaderComponent implements OnInit {
-  uploader: FileUploader;
-  @Input() folderName: string;
-  @Input() buttonName: string;
-  @Input() allowMultiple: boolean = false;
-  @Input() showStatus: boolean = true;
-  @Output() completeItem: EventEmitter<any> = new EventEmitter();
-  @Output() afterAddingFile: EventEmitter<any> = new EventEmitter();
-  @Output() whenAddingFileFailed: EventEmitter<any> = new EventEmitter();
-  @Output() progressItem: EventEmitter<any> = new EventEmitter();
-  @Output() uploadComplete: EventEmitter<any> = new EventEmitter();
-  @Output() startUpload: EventEmitter<any> = new EventEmitter();
-  showLoadingScreen: boolean;
-  loadingProgress: number = 0;
-  fileCount: number = 0;
-  currentFile: number = 0;
-
-  constructor() { }
-
-  ngOnInit() {
-    this.initFileUpload();
-  }
-
-  initFileUpload() {
-    const uploaderOptions: FileUploaderOptions = {
-      url: 'https://api.cloudinary.com/v1_1/drcvakvh3/upload',
-      allowedMimeType: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'],
-      autoUpload: false,
-      isHTML5: true,
-      removeAfterUpload: true,
-      headers: [{
-        name: 'X-Requested-With',
-        value: 'XMLHttpRequest'
-      }]
-    };
-
-    this.uploader = new FileUploader(uploaderOptions);
-
-    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
-      form.append('upload_preset', 'k9kduvri');
-      form.append('folder', this.folderName);
-      form.append('file', fileItem);
-      fileItem.withCredentials = false;
-      return { fileItem, form };
-    };
-
-    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      // TODO: delete old file
-      response = JSON.parse(response);
-      this.completeItem.emit(response);
-      this.currentFile++;
-
-      if (this.fileCount === this.currentFile) {
-        this.showLoadingScreen = false;
-        this.uploadComplete.emit();
-        this.loadingProgress = 0;
-
-        if (!this.allowMultiple) {
-          this.fileCount = 0;
-          this.currentFile = 0;
-        }
+  selector: "app-cloudinary-uploader",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div
+      class="col-12 drag-drop p-2"
+      (click)="fileInput.click()"
+      (dragover)="onDragOver($event)"
+      (drop)="onDrop($event)"
+    >
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center">
+            Upload Image
+            <i class="ms-2 fas fa-icon fa-upload"></i>
+          </div>
+          @if (uploadProgress().length > 0) { @for (progress of
+          uploadProgress(); track progress.filename) {
+          <div class="pt-2">
+            Uploading {{ progress.filename }}... {{ progress.progress }}%
+          </div>
+          } }
+        </div>
+      </div>
+      <span class="upload">
+        <input
+          #fileInput
+          type="file"
+          [attr.multiple]="allowMultiple()"
+          (change)="onFileSelected($event)"
+          accept="image/jpg,image/jpeg,image/png,image/gif"
+        />
+      </span>
+    </div>
+  `,
+  styles: [
+    `
+      .drag-drop {
+        border: 2px dashed #ccc;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
       }
-    };
 
-    this.uploader.onAfterAddingFile = (item: FileItem) => {
-      this.fileCount++;
-      this.uploader.uploadAll();
-      this.afterAddingFile.emit();
-      this.showLoadingScreen = true;
-      this.startUpload.emit();
-    };
+      .upload input {
+        display: none;
+      }
 
-    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
-      this.whenAddingFileFailed.emit();
-    };
+      .drag-over {
+        border-color: #2196f3;
+        background-color: #e3f2fd;
+      }
+    `,
+  ],
+})
+export class CloudinaryUploaderComponent {
+  // Inputs
+  folderName = input<string>("");
+  buttonName = input<string>("Upload Image");
+  allowMultiple = input<boolean>(false);
+  showStatus = input<boolean>(true);
 
-    this.uploader.onProgressItem = (fileItem: any, progress: any) => {
-      console.log('onProgressItem', fileItem, progress);
-      this.loadingProgress = progress;
-      this.progressItem.emit();
-    };
+  // Outputs
+  completeItem = output<CloudinaryResponse>();
+  uploadComplete = output<void>();
+  fileProgress = output<UploadProgress>();
+  uploadError = output<Error>();
+  uploadStart = output<void>();
+
+  // Internal state
+  private readonly CLOUD_NAME = "drcvakvh3";
+  private readonly UPLOAD_PRESET = "k9kduvri";
+  private readonly CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${this.CLOUD_NAME}/upload`;
+
+  uploadProgress = signal<UploadProgress[]>([]);
+  isUploading = signal(false);
+
+  constructor(private http: HttpClient) {}
+
+  async onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.uploadStart.emit();
+    this.isUploading.set(true);
+
+    try {
+      const files = Array.from(input.files);
+      const uploadPromises = files.map((file) => this.uploadFile(file));
+      await Promise.all(uploadPromises);
+
+      this.uploadComplete.emit();
+    } catch (error) {
+      this.uploadError.emit(error as Error);
+    } finally {
+      this.isUploading.set(false);
+      this.uploadProgress.set([]);
+    }
   }
 
-  onFileChange($event) {
-    console.log('onFileChange', $event.target.files.length);
+  private async uploadFile(file: File): Promise<void> {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", this.UPLOAD_PRESET);
+    formData.append("folder", this.folderName());
+
+    const headers = new HttpHeaders().set("X-Requested-With", "XMLHttpRequest");
+
+    try {
+      const upload$ = this.http.post<CloudinaryResponse>(
+        this.CLOUDINARY_URL,
+        formData,
+        {
+          headers,
+          reportProgress: true,
+          observe: "events",
+        }
+      );
+
+      const response = await lastValueFrom(
+        new Observable<CloudinaryResponse>((subscriber) => {
+          upload$.subscribe({
+            next: (event: HttpEvent<CloudinaryResponse>) => {
+              if (event.type === HttpEventType.UploadProgress && event.total) {
+                const progress = Math.round((100 * event.loaded) / event.total);
+                this.updateProgress(file.name, progress);
+              }
+              if (event.type === HttpEventType.Response && event.body) {
+                subscriber.next(event.body);
+                subscriber.complete();
+              }
+            },
+            error: (error) => subscriber.error(error),
+            complete: () => subscriber.complete(),
+          });
+        })
+      );
+
+      if (response) {
+        this.completeItem.emit(response);
+      }
+    } catch (error) {
+      this.uploadError.emit(error as Error);
+      throw error;
+    }
+  }
+
+  private updateProgress(filename: string, progress: number) {
+    const currentProgress = this.uploadProgress();
+    const fileIndex = currentProgress.findIndex((p) => p.filename === filename);
+
+    if (fileIndex === -1) {
+      this.uploadProgress.set([...currentProgress, { filename, progress }]);
+    } else {
+      const updatedProgress = [...currentProgress];
+      updatedProgress[fileIndex] = { filename, progress };
+      this.uploadProgress.set(updatedProgress);
+    }
+
+    this.fileProgress.emit({ filename, progress });
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    (event.target as HTMLElement).classList.add("drag-over");
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const files = event.dataTransfer?.files;
+    if (files?.length) {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.multiple = this.allowMultiple();
+      input.files = files;
+
+      const changeEvent = new Event("change");
+      Object.defineProperty(changeEvent, "target", { value: input });
+      this.onFileSelected(changeEvent);
+    }
+
+    (event.target as HTMLElement).classList.remove("drag-over");
   }
 }

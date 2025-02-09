@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService, PostService } from "../../services";
-import { UntypedFormGroup, UntypedFormControl } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+} from "@angular/forms";
 import { User } from "../../models";
 import { SeoService } from "src/app/services/seo.service";
 import { NavComponent } from "../shared/nav/nav.component";
@@ -8,7 +11,7 @@ import { FooterComponent } from "../shared/footer/footer.component";
 import { JumbotronComponent } from "../shared/jumbotron/jumbotron.component";
 import { HomeContentComponent } from "../shared/jumbotron/content/home/home-content.component";
 import { TryNowComponent } from "../shared/try-now/try-now.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -25,7 +28,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class HomePageComponent implements OnInit {
-  formGroup: UntypedFormGroup;
+  formGroup: FormGroup;
   searchTimeoutId;
   results: User[] = [];
   posts: any[] = [];
@@ -35,8 +38,8 @@ export class HomePageComponent implements OnInit {
     private postService: PostService,
     private seoService: SeoService
   ) {
-    this.formGroup = new UntypedFormGroup({
-      query: new UntypedFormControl("", []),
+    this.formGroup = new FormGroup({
+      query: new FormControl<string | null>("", []),
     });
   }
 

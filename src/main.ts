@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import 'hammerjs';
 import 'zone.js';
 import { enableProdMode, importProvidersFrom } from '@angular/core';

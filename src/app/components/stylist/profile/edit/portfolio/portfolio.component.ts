@@ -1,15 +1,15 @@
-import { UntypedFormControl } from '@angular/forms';
+import { FormsModule, UntypedFormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Portfolio, User } from 'src/app/models';
-import { PortfolioService, AuthService } from 'src/app/services';
-import { Site } from 'src/app/models/site';
+import { PortfolioService } from 'src/app/services';
 import { CommonModule } from '@angular/common';
+import { CloudinaryUploaderComponent } from 'src/app/components/shared/cloudinary-uploader/cloudinary-uploader.component';
 
 @Component({
     selector: 'app-profile-portfolio',
     templateUrl: './portfolio.component.html',
     styleUrls: ['./portfolio.component.scss'],
-    imports: [CommonModule],
+    imports: [CommonModule, CloudinaryUploaderComponent, FormsModule],
     standalone: true
 })
 export class EditProfilePortfolioComponent implements OnInit {

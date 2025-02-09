@@ -1,32 +1,27 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import { Component, Input, PLATFORM_ID, Inject } from '@angular/core';
-import { UserService, AuthService } from '../../../services';
-import { User } from '../../../models';
-import {
-  Router,
-  ActivatedRoute,
-  Params
-} from '@angular/router';
+import { Observable } from "rxjs";
+import { Component, Input, PLATFORM_ID, Inject } from "@angular/core";
+import { UserService, AuthService } from "../../../services";
+import { User } from "../../../models";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import {
   AbstractControl,
   UntypedFormBuilder,
   UntypedFormGroup,
-  Validators
-} from '@angular/forms';
-import { isPlatformBrowser } from '@angular/common';
+  Validators,
+} from "@angular/forms";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
-    selector: 'app-signup',
-    templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.scss'],
-    standalone: true
+  selector: "app-signup",
+  templateUrl: "./signup.component.html",
+  styleUrls: ["./signup.component.scss"],
+  standalone: true,
 })
 export class SignupComponent {
   @Input() type: string;
   @Input() plan: number;
   model = new User();
-  message = '';
+  message = "";
   showSignup = true;
   success = false;
 
@@ -54,14 +49,14 @@ export class SignupComponent {
       name: {},
       email: {},
       password: {},
-      passwordRepeat: {}
+      passwordRepeat: {},
     };
 
     this.signupForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      passwordRepeat: ['', [Validators.required, confirmPassword]]
+      name: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
+      passwordRepeat: ["", [Validators.required, confirmPassword]],
     });
 
     this.formValuesChanged();
@@ -87,27 +82,31 @@ export class SignupComponent {
   signup() {
     let model = this.model;
     model.type = this.type;
-    model.name = this.signupForm.get('name').value;
-    model.email = this.signupForm.get('email').value;
-    model.password = this.signupForm.get('password').value;
+    model.name = this.signupForm.get("name").value;
+    model.email = this.signupForm.get("email").value;
+    model.password = this.signupForm.get("password").value;
 
-    if (typeof this.urlParams.bypass !== 'undefined') {
+    if (typeof this.urlParams.bypass !== "undefined") {
       this.userService.signup(model).subscribe((data: User) => {
-        let token = data['token'];
-        this.userService.headers = AuthService.httpOptions(this.authService.token);
+        let token = data["token"];
+        this.userService.headers = AuthService.httpOptions(
+          this.authService.token
+        );
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
         }
-        this.router.navigate(['stylist/home']);
+        this.router.navigate(["stylist/home"]);
       });
     } else {
       this.userService.signup(model).subscribe((data: User) => {
-        let token = data['token'];
-        this.userService.headers = AuthService.httpOptions(this.authService.token);
+        let token = data["token"];
+        this.userService.headers = AuthService.httpOptions(
+          this.authService.token
+        );
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
         }
-        this.router.navigate(['stylist/home']);
+        this.router.navigate(["stylist/home"]);
       });
 
       /*
@@ -143,19 +142,18 @@ export class SignupComponent {
 
   login() {
     let model = this.model;
-    model.email = this.signupForm.get('email').value;
-    model.password = this.signupForm.get('password').value;
+    model.email = this.signupForm.get("email").value;
+    model.password = this.signupForm.get("password").value;
 
-    this.userService.login(model).subscribe(
-      (data) => {
-        this.message = 'Thanks for logging in!';
+    this.userService.login(model).subscribe({
+      next: (data) => {
+        this.message = "Thanks for logging in!";
         return true;
       },
-      (error) => {
-        this.message = 'Invalid email address';
-        return Observable.throw(error);
-      }
-    );
+      error: (error) => {
+        this.message = "Invalid email address";
+      },
+    });
   }
 }
 
@@ -164,20 +162,20 @@ function confirmPassword(control: AbstractControl) {
     return;
   }
 
-  const password = control.parent.get('password');
-  const passwordRepeat = control.parent.get('passwordRepeat');
+  const password = control.parent.get("password");
+  const passwordRepeat = control.parent.get("passwordRepeat");
 
   if (!password || !passwordRepeat) {
     return;
   }
 
-  if (passwordRepeat.value === '') {
+  if (passwordRepeat.value === "") {
     return;
   }
 
   if (password.value !== passwordRepeat.value) {
     return {
-      passwordsNotMatch: true
+      passwordsNotMatch: true,
     };
   }
 }

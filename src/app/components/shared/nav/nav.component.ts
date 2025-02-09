@@ -1,39 +1,49 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Router, ActivationEnd, ActivatedRoute, NavigationEnd, NavigationStart, RouterLink } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService, UserService } from '../../../services';
-import { User } from '../../../models';
-import { filter } from 'rxjs/operators';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Input,
+  inject,
+  TemplateRef,
+} from "@angular/core";
+import { Observable, Subscription, throwError } from "rxjs";
+import { catchError, filter, map } from "rxjs/operators";
+import {
+  Router,
+  ActivatedRoute,
+  NavigationEnd,
+  RouterLink,
+} from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { AuthService, UserService } from "../../../services";
+import { User } from "../../../models";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-    selector: 'app-nav',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss'],
-    imports: [CommonModule, RouterLink],
-    standalone: true
+  selector: "app-nav",
+  templateUrl: "./nav.component.html",
+  styleUrls: ["./nav.component.scss"],
+  imports: [CommonModule, RouterLink, FormsModule],
+  standalone: true,
 })
 export class NavComponent implements OnInit {
   @Input() dark: boolean = false;
+  private routerSubscription?: Subscription;
 
   model: User = new User();
-  modalRef: NgbModalRef;
-  message: string = '';
+  private modalService = inject(NgbModal);
+  message: string = "";
   forgotPassword: boolean = false;
   isFullNav: boolean = true;
   navItems = [
-    { name: 'Contact', url: '/contact', scroll: false },
-    { name: 'Login' }
+    { name: "Contact", url: "/contact", scroll: false },
+    { name: "Login" },
   ];
   loggedInUser: User;
   newInnerWidth;
 
   constructor(
-    private modalService: NgbModal,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
@@ -42,30 +52,44 @@ export class NavComponent implements OnInit {
     // this.newInnerWidth = window.innerWidth;
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event) {
     this.newInnerWidth = event.target.innerWidth;
   }
 
   ngOnInit() {
-    this.router.events.filter((event) => event instanceof NavigationEnd)
-      .map(() => {
-        let child = this.activatedRoute.firstChild;
-        while (child) {
-          if (child.firstChild) {
-            child = child.firstChild;
-          } else if (child.snapshot.data && child.snapshot.data['navItems']) {
-            return child.snapshot.data['navItems'];
-          } else {
-            return null;
-          }
+    this.routerSubscription = this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        ),
+        map(() => this.extractNavItems(this.activatedRoute.firstChild))
+      )
+      .subscribe((navItems) => {
+        if (navItems) {
+          this.navItems = navItems;
         }
-        return null;
-      }).subscribe((data: any) => {
-        this.navItems = (data) ? data : this.navItems;
       });
+    this.loggedInUser = this.authService.isAuthenticated()
+      ? this.authService.decode()
+      : null;
+  }
 
-    this.loggedInUser = (this.authService.isAuthenticated()) ? this.authService.decode() : null;
+  ngOnDestroy() {
+    this.routerSubscription?.unsubscribe();
+  }
+
+  private extractNavItems(route: ActivatedRoute | null): any[] | null {
+    while (route) {
+      if (route.firstChild) {
+        route = route.firstChild;
+      } else if (route.snapshot.data && "navItems" in route.snapshot.data) {
+        return route.snapshot.data["navItems"];
+      } else {
+        return null;
+      }
+    }
+    return null;
   }
 
   isLoggedIn() {
@@ -73,46 +97,83 @@ export class NavComponent implements OnInit {
   }
 
   signup() {
-    this.modalRef.close();
-    this.router.navigate(['landing']);
+    this.modalService.dismissAll();
+    this.router.navigate(["landing"]);
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(["/"]);
   }
 
-  modal(content) {
-    console.log(content);
-    this.message = '';
-    this.modalRef = this.modalService.open(content);
-    console.log('modalRef');
+  open(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { ariaLabelledBy: "modal-basic-title" })
+      .result.then(
+        (result) => {
+          console.log("result", result);
+        },
+        (reason) => {
+          console.log("reason", reason);
+        }
+      );
   }
 
   doResetPassword() {
     if (this.model.email.length > 0) {
-      this.userService.forgotPassword(this.model).subscribe((result) => {
-        this.message = 'An email has been sent requesting to reset your password';
-      }, (err) => {
-        this.message = 'Unable to process that request';
-      });
+      this.userService.forgotPassword(this.model).subscribe(
+        (result) => {
+          this.message =
+            "An email has been sent requesting to reset your password";
+        },
+        (err) => {
+          this.message = "Unable to process that request";
+        }
+      );
     }
   }
 
   doLogin() {
-    this.userService.login(this.model).subscribe(
-      (data) => {
-        this.message = '';
-        this.modalRef.close();
-        console.log('doLogin setting token', data['token']);
-        this.authService.token = data['token'];
-        this.userService.headers = AuthService.httpOptions(this.authService.token);
-        this.router.navigate(['stylist/profile/edit']);
-      }, (error) => {
-        this.message = 'Invalid login, please try again.';
-        return Observable.throw(error);
-      }
-    );
+    this.userService
+      .login(this.model)
+      .pipe(
+        catchError((error) => {
+          this.message = "Invalid login, please try again.";
+          return throwError(() => error);
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.message = "";
+          this.modalService.dismissAll();
+          console.log("doLogin setting token", data["token"]);
+          this.authService.token = data["token"];
+          this.userService.headers = AuthService.httpOptions(
+            this.authService.token
+          );
+          this.router.navigate(["stylist/profile/edit"]);
+        },
+        error: (error) => {
+          this.message = "Invalid login, please try again.";
+        },
+      });
+
+    // this.userService.login(this.model).subscribe(
+    //   (data) => {
+    //     this.message = "";
+    //     this.modalService.dismissAll();
+    //     console.log("doLogin setting token", data["token"]);
+    //     this.authService.token = data["token"];
+    //     this.userService.headers = AuthService.httpOptions(
+    //       this.authService.token
+    //     );
+    //     this.router.navigate(["stylist/profile/edit"]);
+    //   },
+    //     (error) => {
+    //       this.message = "Invalid login, please try again.";
+    //       return Observable.throw(error);
+    //     }
+    // );
   }
 
   navigateTo(linkTo) {

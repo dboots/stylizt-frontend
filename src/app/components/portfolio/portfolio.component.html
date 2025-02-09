@@ -1,40 +1,74 @@
 <app-nav *ngIf="loggedIn()"></app-nav>
 <ng-container *ngIf="stylist">
-  <div class="px-0 portfolio-nav"
-    [ngClass]="{'scrolled': loggedIn() && scrollClass, 'not-scrolled': loggedIn(), 'contact-visible': contactVisible}">
+  <div
+    class="px-0 portfolio-nav"
+    [ngClass]="{
+      scrolled: loggedIn() && scrollClass,
+      'not-scrolled': loggedIn(),
+      'contact-visible': contactVisible
+    }"
+  >
     <div class="px-0 container">
-      <div class="row nav d-flex align-items-center" [ngClass]="{'loggedIn': loggedIn()}">
-        <div class="col-12 col-md-4 text-center text-md-left name">{{stylist.name}}</div>
-        <div class="col-12 col-md-8 text-end">
-          <div class="row text-center text-md-right">
-            <div class="col-4 py-4"><a (click)="scrollTo(aboutElementRef)" class="py-4">ABOUT</a></div>
-            <div class="col-4 py-4" *ngIf="services.length"><a (click)="scrollTo(servicesElementRef)"
-                class="py-4">SERVICES</a></div>
-            <div class="col-4 py-4"><a (click)="scrollTo(contactElementRef)" class="py-4">CONTACT</a></div>
-          </div>
+      <div
+        class="row nav d-flex align-items-center"
+        [ngClass]="{ loggedIn: loggedIn() }"
+      >
+        <div class="col-md-10 ps-4 col-6 name">
+          {{ stylist.name }}
+        </div>
+        <div class="col-md-1 col-3 text-end">
+          <a (click)="scrollTo(aboutElementRef)" class="py-4">ABOUT</a>
+        </div>
+        <div class="col-md-1 col-3 pe-4 text-end" *ngIf="services.length">
+          <a (click)="scrollTo(servicesElementRef)" class="py-4">SERVICES</a>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row portfolio-content" #aboutViewChild
-      [ngClass]="{'scrolled': loggedIn() && scrollClass, 'not-scrolled': loggedIn()}">
-      <div class="col-12 col-lg-6 ps-0 py-4 text-center d-flex justify-content-center">
-        <div *ngIf="stylist.image" class="img-container" [ngStyle]="{'background-image': 'url(' + stylist.image + ')'}">
-        </div>
+    <div
+      class="row portfolio-content"
+      #aboutViewChild
+      [ngClass]="{
+        scrolled: loggedIn() && scrollClass,
+        'not-scrolled': loggedIn()
+      }"
+    >
+      <div
+        class="col-12 col-lg-6 ps-0 py-4 text-center d-flex justify-content-center"
+      >
+        <div
+          *ngIf="stylist.image"
+          class="img-container"
+          [ngStyle]="{ 'background-image': 'url(' + stylist.image + ')' }"
+        ></div>
       </div>
       <div class="col-12 col-lg-6 py-4 text-center text-md-left">
-        <h2 class="bio-title">Hi, I'm {{stylist.name}}</h2>
-        <p class="bio-content">{{stylist.bio}}</p>
+        <h2 class="bio-title">Hi, I'm {{ stylist.name }}</h2>
+        <p class="bio-content">{{ stylist.bio }}</p>
 
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
-            <a [attr.href]="getUrl(stylist.facebook, 'http://www.facebook.com/')" target="_blank"
-              *ngIf="stylist.facebook"><i class="fas fa-icon fa-lg fa-facebook mx-4 p-4"></i></a>
-            <a [attr.href]="getUrl(stylist.twitter, 'http://www.twitter.com/')" target="_blank"
-              *ngIf="stylist.twitter"><i class="fas fa-icon fa-lg fa-twitter mx-4 p-4"></i></a>
-            <a [attr.href]="getUrl(stylist.instagram, 'http://www.instagram.com/')" target="_blank"
-              *ngIf="stylist.instagram"><i class="fas fa-icon fa-lg fa-instagram mx-4 p-4"></i></a>
+            <a
+              [attr.href]="getUrl(stylist.facebook, 'http://www.facebook.com/')"
+              target="_blank"
+              *ngIf="stylist.facebook"
+              ><i class="fas fa-icon fa-lg fa-facebook mx-4 p-4"></i
+            ></a>
+            <a
+              [attr.href]="getUrl(stylist.twitter, 'http://www.twitter.com/')"
+              target="_blank"
+              *ngIf="stylist.twitter"
+              ><i class="fas fa-icon fa-lg fa-twitter mx-4 p-4"></i
+            ></a>
+            <a
+              [attr.href]="
+                getUrl(stylist.instagram, 'http://www.instagram.com/')
+              "
+              target="_blank"
+              *ngIf="stylist.instagram"
+              ><i class="fas fa-icon fa-lg fa-instagram mx-4 p-4"></i
+            ></a>
           </div>
         </div>
 
@@ -42,13 +76,21 @@
           <div *ngIf="stylist.brands.length" class="col-12 d-flex separator">
             <span class="list-title">Brands:</span>
             <span class="d-flex flex-wrap align-items-center">
-              <span class="list-item px-2 mb-2" *ngFor="let item of stylist.brands">{{item.brand}}</span>
+              <span
+                class="list-item px-2 mb-2"
+                *ngFor="let item of stylist.brands"
+                >{{ item.brand }}</span
+              >
             </span>
           </div>
           <div *ngIf="stylist.talents.length" class="col-12 d-flex mt-2">
             <span class="list-title">Talents:</span>
             <span class="d-flex flex-wrap align-items-center">
-              <span class="list-item px-2 mb-2" *ngFor="let item of stylist.talents">{{item.talent}}</span>
+              <span
+                class="list-item px-2 mb-2"
+                *ngFor="let item of stylist.talents"
+                >{{ item.talent }}</span
+              >
             </span>
           </div>
         </div>
@@ -57,11 +99,20 @@
 
     <div class="row">
       <div class="col-lg-9 col-12">
-        <app-scheduler [stylist]="stylist" [service]="service" (close)="onServiceClose()"></app-scheduler>
+        <app-scheduler
+          [stylist]="stylist"
+          [service]="service"
+          (close)="onServiceClose()"
+        ></app-scheduler>
         <div class="row separator section-bottom">
-          <div class="col-6 col-md-4 d-flex flex-column mb-4 ps-0 pe-4" *ngFor="let item of portfolio">
-            <div class="image"><img [src]="item.image" class="image-full" /></div>
-            <div class="caption py-2">{{item.caption}}</div>
+          <div
+            class="col-6 col-md-4 d-flex flex-column mb-4 ps-0 pe-4"
+            *ngFor="let item of portfolio"
+          >
+            <div class="image">
+              <img [src]="item.image" class="image-full" />
+            </div>
+            <div class="caption py-2">{{ item.caption }}</div>
           </div>
         </div>
         <div class="row section-top" *ngIf="services.length" #servicesViewChild>
@@ -71,56 +122,89 @@
               <div class="row">
                 <div class="col-md-10 col-12">
                   <div class="row d-flex service-item-title align-items-center">
-                    <div class="col-md-9 col-8">{{service.name}}</div>
-                    <div class="col-md-3 col-4 text-end">{{service.price | currency}}</div>
+                    <div class="col-md-9 col-8">{{ service.name }}</div>
+                    <div class="col-md-3 col-4 text-end">
+                      {{ service.price | currency }}
+                    </div>
                   </div>
-                  <div class="row mb-2 d-flex service-item-desc align-items-center">
-                    <div class="col-md-9 col-8">{{service.description}}</div>
-                    <div class="col-md-3 col-4 text-end">{{(service.time * .5)}} hrs</div>
+                  <div
+                    class="row mb-2 d-flex service-item-desc align-items-center"
+                  >
+                    <div class="col-md-9 col-8">{{ service.description }}</div>
+                    <div class="col-md-3 col-4 text-end">
+                      {{ service.time * 0.5 }} hrs
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-2 col-12 text-center d-flex align-items-center"><button (click)="book(service)"
-                    class="button-v3">BOOK</button></div>
+                <div
+                  class="col-md-2 col-12 text-center d-flex align-items-center"
+                >
+                  <button (click)="book(service)" class="button-v3">
+                    BOOK
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-12 side p-0">
-        <iframe *ngIf="mapUrl" width="100%" height="250" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0"
-          marginwidth="0">
-          <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a>
+        <iframe
+          *ngIf="mapUrl"
+          width="100%"
+          height="250"
+          [src]="mapUrl"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+        >
+          <a href="https://www.maps.ie/create-google-map/"
+            >Google Maps iframe generator</a
+          >
         </iframe>
         <div class="p-2">
           <div class="side-contact p-2">
             <div class="side-title mb-2">Contact</div>
-            <div class="contact-item mb-2" *ngIf="stylist.city && stylist.state && stylist.zip">
+            <div
+              class="contact-item mb-2"
+              *ngIf="stylist.city && stylist.state && stylist.zip"
+            >
               <i class="fas fa-icon fa-map-marker pe-2"></i>
-              <span>{{stylist.city}}, {{stylist.state}} {{stylist.zip}}</span>
+              <span
+                >{{ stylist.city }}, {{ stylist.state }} {{ stylist.zip }}</span
+              >
             </div>
 
             <div class="contact-item" *ngIf="stylist.phone">
               <i class="fas fa-icon fa-phone pe-2"></i>
-              <span>{{stylist.phone}}</span>
+              <span>{{ stylist.phone }}</span>
             </div>
           </div>
         </div>
         <div class="p-2">
           <div class="side-contact p-2">
             <div class="side-title mb-2">Business Hours</div>
-            <div class="hour-item d-flex mb-2 row" [ngClass]="{'closed': hours[0] === '' || hours[1] === ''}"
-              *ngFor="let hours of stylist.hours; let i = index">
-              <div class="hour-day col-xl-4 col-12">{{days[i]}}</div>
-              <div class="hour-times col-xl-8 text-end col-12">{{hours[0]}} - {{(hours[0]) ? hours[1] : ''}}</div>
+            <div
+              class="hour-item d-flex mb-2 row"
+              [ngClass]="{ closed: hours[0] === '' || hours[1] === '' }"
+              *ngFor="let hours of stylist.hours; let i = index"
+            >
+              <div class="hour-day col-xl-4 col-12">{{ days[i] }}</div>
+              <div class="hour-times col-xl-8 text-end col-12">
+                {{ hours[0] }} - {{ hours[0] ? hours[1] : "" }}
+              </div>
             </div>
           </div>
         </div>
 
         <div class="p-2" *ngIf="false">
           <div class="side-contact p-2 cancel-copy">
-            <div class="mb-4">You will not be charged if you cancel at least 24 hours before your appointment starts.
-              Otherwise, you will
-              be charged 50% of service price for late cancellations and 100% for no shows.</div>
+            <div class="mb-4">
+              You will not be charged if you cancel at least 24 hours before
+              your appointment starts. Otherwise, you will be charged 50% of
+              service price for late cancellations and 100% for no shows.
+            </div>
             <button class="button-v3">Book Appointment</button>
           </div>
         </div>

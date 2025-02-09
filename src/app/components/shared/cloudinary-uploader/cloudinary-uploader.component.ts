@@ -60,11 +60,29 @@ interface UploadProgress {
   styles: [
     `
       .drag-drop {
-        border: 2px dashed #ccc;
+        border: 1px dashed #5ab7bb;
+        height: 75px;
         border-radius: 4px;
-        padding: 20px;
-        text-align: center;
+        background: rgba(90, 183, 187, 0.1);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
         cursor: pointer;
+      }
+
+      span.upload {
+        visibility: hidden;
+        position: absolute;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+        border: 0;
+        margin: 0;
+        padding: 0;
       }
 
       .upload input {
